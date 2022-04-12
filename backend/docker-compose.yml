@@ -1,0 +1,32 @@
+services:
+  database:
+    image: postgres:14.2
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      # database port
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: .
+      target: development-stage
+      args:
+        - UID=$UID
+    volumes:
+      - .:/api
+    ports:
+      # api port
+      - 3000:3000
+      # debugging port
+      - 9229:9229
+    depends_on:
+      - database
+
+volumes:
+  postgres:
+    name: database

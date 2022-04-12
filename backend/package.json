@@ -1,0 +1,78 @@
+{
+  "name": "bingewatch-backend",
+  "version": "0.1.0",
+  "description": "Backend for a sample project for tracking progress reviewing and discussing shows.",
+  "productName": "Bingewatch",
+  "author": "Alex-Mihai Firoiu <alexmihaifiroiu26@gmail.com>",
+  "private": true,
+  "license": "MIT License",
+  "scripts": {
+    "build": "prisma generate && nest build",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "start:development": "prisma migrate deploy && prisma generate && NODE_ENV=development nest start --debug 0.0.0.0:9229 --watch",
+    "start:production": "prisma migrate deploy && NODE_ENV=production node dist/main",
+    "migration": "prisma migrate dev --create-only",
+    "lint": "eslint \"src/**/*.ts\" --fix",
+    "test": "jest",
+    "test:cov": "jest --coverage"
+  },
+  "dependencies": {
+    "@nestjs/common": "8.4.4",
+    "@nestjs/core": "8.4.4",
+    "@nestjs/platform-express": "8.4.4",
+    "@prisma/client": "3.12.0",
+    "reflect-metadata": "0.1.13",
+    "rxjs": "7.5.5"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "8.2.5",
+    "@nestjs/schematics": "8.0.10",
+    "@nestjs/testing": "8.4.4",
+    "@types/express": "4.17.13",
+    "@types/jest": "27.4.1",
+    "@types/node": "16.11.27",
+    "@types/supertest": "2.0.12",
+    "@typescript-eslint/eslint-plugin": "5.20.0",
+    "@typescript-eslint/parser": "5.20.0",
+    "eslint": "8.13.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "jest": "27.5.1",
+    "prettier": "2.6.2",
+    "prisma": "3.12.0",
+    "source-map-support": "0.5.21",
+    "supertest": "6.2.2",
+    "ts-jest": "27.1.4",
+    "ts-loader": "9.2.8",
+    "ts-node": "10.7.0",
+    "tsconfig-paths": "3.14.1",
+    "typescript": "4.6.3"
+  },
+  "jest": {
+    "verbose": true,
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/src/**/*.(t|j)s"
+    ],
+    "coveragePathIgnorePatterns": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/tests/**",
+      "**/coverage/**",
+      "**/prisma/**"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  },
+  "prisma": {
+    "schema": "./src/Infrastructure/Persistence/Repository/schema.prisma"
+  }
+}

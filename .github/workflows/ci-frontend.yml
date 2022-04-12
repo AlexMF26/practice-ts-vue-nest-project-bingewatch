@@ -1,0 +1,37 @@
+name: ci-frontend
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/**"
+      - "frontend/**"
+  push:
+    paths:
+      - ".github/workflows/**"
+      - "frontend/**"
+
+jobs:
+  ci-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install frontend dependencies
+        run: npm i
+        working-directory: ./frontend
+      - name: Format frontend
+        run: npm run format
+        working-directory: ./frontend
+      - name: Lint frontend
+        run: npm run lint
+        working-directory: ./frontend
+      - name: Build frontend
+        run: npm run build
+        working-directory: ./frontend
+      - name: Test frontend
+        run: (npm run start&) && npm run test
+        working-directory: ./frontend

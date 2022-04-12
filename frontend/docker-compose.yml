@@ -1,0 +1,13 @@
+services:
+  app:
+    build:
+      dockerfile: Dockerfile
+      context: .
+      target: development-stage
+      args:
+        - UID=$UID
+    volumes:
+      - .:/app
+    ports:
+      # app port
+      - 9000:9000

@@ -1,0 +1,78 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "backend"
+    },
+    {
+      "path": "frontend"
+    }
+  ],
+
+  "settings": {
+    "files.eol": "\n",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.formatOnPaste": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "eslint.validate": ["javascript", "javascriptreact", "typescript", "vue"],
+    "[markdown]": {
+      "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+    },
+    "volar.completion.preferredAttrNameCase": "auto-camel",
+    "volar.completion.preferredTagNameCase": "pascal",
+    "editor.codeActionsOnSave": ["source.fixAll.eslint"],
+    "[prisma]": {
+      "editor.defaultFormatter": "Prisma.prisma"
+    },
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "javascript.preferences.importModuleSpecifier": "relative"
+  },
+
+  "extensions": {
+    "recommendations": [
+      "aaron-bond.better-comments",
+      "mikestead.dotenv",
+      "stevencl.adddoccomments",
+      "vivaxy.vscode-conventional-commits",
+      "ms-azuretools.vscode-docker",
+      "editorconfig.editorconfig",
+      "dbaeumer.vscode-eslint",
+      "davidanson.vscode-markdownlint",
+      "abhijoybasak.nestjs-files",
+      "eg2.vscode-npm-script",
+      "christian-kohler.npm-intellisense",
+      "esbenp.prettier-vscode",
+      "prisma.prisma",
+      "mrmlnc.vscode-scss",
+      "visualstudioexptteam.vscodeintellicode",
+      "johnsoncodehk.volar",
+      "cschleiden.vscode-github-actions"
+    ],
+    "unwantedRecommendations": [
+      "octref.vetur",
+      "hookyqr.beautify",
+      "dbaeumer.jshint",
+      "ms-vscode.vscode-typescript-tslint-plugin"
+    ]
+  },
+  "launch": {
+    "configurations": [
+      {
+        "type": "node",
+        "request": "attach",
+        "name": "Backend:attach to node in docker",
+        "remoteRoot": "/api",
+        "localRoot": "${workspaceFolder:backend}",
+        "protocol": "inspector",
+        "port": 9229,
+        "restart": true,
+        "address": "0.0.0.0"
+      }
+    ]
+  }
+}

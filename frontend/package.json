@@ -1,0 +1,44 @@
+{
+  "name": "bingewatch-frontend",
+  "version": "0.1.0",
+  "description": "Frontend for a sample project for tracking progress reviewing and discussing shows.",
+  "productName": "Bingewatch",
+  "author": "Alex-Mihai Firoiu <alexmihaifiroiu26@gmail.com>",
+  "private": true,
+  "license": "MIT License",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts,.vue ./",
+    "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
+    "start": "quasar dev",
+    "build": "quasar build",
+    "test": "cypress install && cypress run"
+  },
+  "dependencies": {
+    "@quasar/extras": "1.13.5",
+    "axios": "0.26.1",
+    "pinia": "2.0.13",
+    "quasar": "2.6.6",
+    "vue": "3.2.33",
+    "vue-i18n": "9.1.9",
+    "vue-router": "4.0.14"
+  },
+  "devDependencies": {
+    "@intlify/vite-plugin-vue-i18n": "3.4.0",
+    "@quasar/app-vite": "1.0.0-beta.14",
+    "@types/node": "16.11.27",
+    "@typescript-eslint/eslint-plugin": "5.20.0",
+    "@typescript-eslint/parser": "5.20.0",
+    "autoprefixer": "10.4.4",
+    "cypress": "9.5.4",
+    "eslint": "8.13.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-vue": "8.6.0",
+    "prettier": "2.6.2",
+    "typescript": "4.6.3"
+  },
+  "engines": {
+    "node": "^18 || ^16 || ^14.19",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  }
+}

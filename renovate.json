@@ -1,0 +1,51 @@
+{
+  "extends": ["config:base"],
+  "additionalBranchPrefix": "dependency/{{parentDir}}-",
+  "labels": ["dependencies"],
+  "lockFileMaintenance": { "enabled": true },
+  "packageRules": [
+    {
+      "matchDepTypes": ["optionalDependencies"],
+      "addLabels": ["optional"]
+    },
+    {
+      "matchDatasources": ["docker"],
+      "labels": ["docker-update"]
+    },
+    {
+      "matchPackagePatterns": ["typescript", "ts", "@types", "tsconfig"],
+      "labels": ["Typescript"]
+    },
+    {
+      "matchPackagePatterns": ["eslint", "prettier"],
+      "labels": ["linting/formatting"]
+    },
+    {
+      "matchPackagePatterns": ["cli"],
+      "labels": ["cli"]
+    },
+    {
+      "matchPackagePatterns": [
+        "nestjs",
+        "prisma",
+        "jest",
+        "reflect-metadata",
+        "rxjs",
+        "source-map-support"
+      ],
+      "labels": ["Backend"]
+    },
+    {
+      "matchPackagePatterns": [
+        "vue",
+        "quasar",
+        "cypress",
+        "pinia",
+        "axios",
+        "i18n",
+        "autoprefixer"
+      ],
+      "labels": ["Frontend"]
+    }
+  ]
+}

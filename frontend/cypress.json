@@ -1,0 +1,5 @@
+{
+  "baseUrl": "http://localhost:9000/",
+  "retries": { "runMode": 3, "openMode": 3 },
+  "integrationFolder": "cypress/tests"
+}
