@@ -10,19 +10,19 @@
     },
     {
       "matchDatasources": ["docker"],
-      "labels": ["docker-update"]
+      "addLabels": ["docker-update"]
     },
     {
       "matchPackagePatterns": ["typescript", "ts", "@types", "tsconfig"],
-      "labels": ["Typescript"]
+      "addLabels": ["Typescript"]
     },
     {
       "matchPackagePatterns": ["eslint", "prettier"],
-      "labels": ["linting/formatting"]
+      "addLabels": ["linting/formatting"]
     },
     {
       "matchPackagePatterns": ["cli"],
-      "labels": ["cli"]
+      "addLabels": ["cli"]
     },
     {
       "matchPackagePatterns": [
@@ -33,7 +33,7 @@
         "rxjs",
         "source-map-support"
       ],
-      "labels": ["Backend"]
+      "addLabels": ["Backend"]
     },
     {
       "matchPackagePatterns": [
@@ -45,7 +45,7 @@
         "i18n",
         "autoprefixer"
       ],
-      "labels": ["Frontend"]
+      "addLabels": ["Frontend"]
     }
   ]
 }
