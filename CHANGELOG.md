@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.0.1...v0.1.0) (2022-04-22)
+
+
+### Features
+
+* **backend:** :tada: Initial db migration ([2d8722b](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/2d8722b008424cf1d4904bfd6bfc9d1aeea1f900))
+
 ### 0.0.1 (2022-04-21)
 
 
