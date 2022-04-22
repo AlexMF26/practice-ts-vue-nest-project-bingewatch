@@ -27,10 +27,12 @@ FROM node:18.0.0 AS production-stage
 
 RUN npm install -g prisma
 
-COPY --from=build-stage /api/package.json /api/package.json
 COPY --from=build-stage /api/node_modules /api/node_modules
-COPY --from=build-stage /api/src/Infrastructure/Persistence/Repository/ /api/src/Infrastructure/Persistence/Repository/
 COPY --from=build-stage /api/dist /api/dist
+
+COPY --from=build-stage /api/package.json /api/package.json
+COPY --from=build-stage /api/src/Infrastructure/Persistence/Repository/Prisma /api/Prisma
+RUN sed -i 's:./src/Infrastructure/Persistence/Repository/Prisma/schema.prisma:./Prisma/schema.prisma:g' /api/package.json
 
 #Temporary
 COPY --from=build-stage /api/.env /api/.env

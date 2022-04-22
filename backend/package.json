@@ -73,6 +73,6 @@
     "testEnvironment": "node"
   },
   "prisma": {
-    "schema": "./src/Infrastructure/Persistence/Repository/schema.prisma"
+    "schema": "./src/Infrastructure/Persistence/Repository/Prisma/schema.prisma"
   }
 }
