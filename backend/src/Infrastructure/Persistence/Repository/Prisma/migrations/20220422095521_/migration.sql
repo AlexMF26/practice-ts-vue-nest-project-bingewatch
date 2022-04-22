@@ -1,8 +1,12 @@
+-- Add pgcrypto extension
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
 -- CreateTable
 CREATE TABLE "User" (
-    "id" SERIAL NOT NULL,
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "email" TEXT NOT NULL,
-    "name" TEXT,
+    "password" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
