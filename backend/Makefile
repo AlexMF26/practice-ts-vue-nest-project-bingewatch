@@ -9,11 +9,11 @@ build:
 .PHONY: test
 test:
 	UID=$(shell id -u) docker-compose up -d
-	docker compose exec api npm run test
-	docker-compose stop
+	UID=$(shell id -u) docker compose exec api npm run test
+	UID=$(shell id -u) docker-compose stop
 
 .PHONY: migration
 migration:
 	UID=$(shell id -u) docker-compose up -d
-	docker compose exec api npm run migration
-	docker-compose stop
+	UID=$(shell id -u) docker compose exec api npm run migration
+	UID=$(shell id -u) docker-compose stop
