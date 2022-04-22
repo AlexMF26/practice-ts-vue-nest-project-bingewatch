@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.1.0...v0.2.0) (2022-04-22)
+
+
+### Features
+
+* **backend:** :sparkles: added encryption helper ([0f5fb5e](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/0f5fb5e5f640b67f1dc42d204ba6159df4eca2ee))
+
 ## [0.1.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.0.1...v0.1.0) (2022-04-22)
 
 
