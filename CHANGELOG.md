@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.4.0...v0.5.0) (2022-04-23)
+
+
+### Features
+
+* **backend:** :sparkles: config module has been setup ([974d094](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/974d0949be98c3a5c86aa55232d07a5bd6a53082))
+
 ## [0.4.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.3.0...v0.4.0) (2022-04-23)
 
 
