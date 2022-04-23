@@ -5,7 +5,9 @@ import { RepositoryService } from '../Infrastructure/Persistence/Repository/repo
 import { AppModule } from './DI/app.module';
 
 export async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: ['log', 'error', 'warn', 'debug', 'verbose'],
+  });
   addPrismaHooks(app);
   addSwagger(app);
   addGlobalPipes(app);
