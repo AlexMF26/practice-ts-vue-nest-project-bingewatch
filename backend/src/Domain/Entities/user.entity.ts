@@ -1,17 +1,13 @@
-export class UserEntity {
+import { User } from '@prisma/client';
+import { Exclude } from 'class-transformer';
+
+export class UserEntity implements User {
   readonly id: string;
   readonly name: string;
   readonly email: string;
+  @Exclude()
   readonly passwordHash: string;
-  constructor(data: {
-    id: string;
-    name: string;
-    email: string;
-    passwordHash: string;
-  }) {
-    this.id = data.id;
-    this.name = data.name;
-    this.email = data.email;
-    this.passwordHash = data.passwordHash;
+  constructor(data: User) {
+    Object.assign(this, data);
   }
 }
