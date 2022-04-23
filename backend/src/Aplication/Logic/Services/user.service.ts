@@ -24,6 +24,9 @@ export class UserService {
     const user = await this.repositoryService.user.findUnique({
       where: { email },
     });
-    return new UserEntity(user);
+    if (user) {
+      return new UserEntity(user);
+    }
+    return null;
   }
 }
