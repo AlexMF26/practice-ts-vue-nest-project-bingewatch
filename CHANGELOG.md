@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.3.0...v0.4.0) (2022-04-23)
+
+
+### Features
+
+* **backend:** :sparkles: automated swagger ([3476d22](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/3476d22227edf0e861fb1940f61646894f6184ff))
+
 ## [0.3.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.2.1...v0.3.0) (2022-04-23)
 
 
