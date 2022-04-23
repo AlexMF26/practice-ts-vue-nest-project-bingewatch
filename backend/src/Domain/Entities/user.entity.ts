@@ -11,3 +11,10 @@ export class UserEntity implements User {
     Object.assign(this, data);
   }
 }
+
+// we need to have this because we are using a serializer
+export class SerializedUserEntity {
+  id: string;
+  name: string;
+  email: string;
+}

@@ -4,8 +4,8 @@ import { IsString, Matches } from 'class-validator';
 export class CreateUserDto {
   @ApiProperty({
     description: 'The name of the user',
-    type: String,
     example: 'Ion POPESCU',
+    pattern: "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*.?$",
   })
   @IsString()
   /* Regex to match the name of a person 
@@ -17,8 +17,9 @@ export class CreateUserDto {
   readonly name: string;
   @ApiProperty({
     description: 'The email of the user',
-    type: String,
     example: 'Ion.Popescu@google.com',
+    pattern:
+      '(?!.*s)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})',
   })
   @IsString()
   //Regex to check if the email is valid
@@ -29,8 +30,9 @@ export class CreateUserDto {
   @ApiProperty({
     description:
       'The password of the user. Must be at least 8 characters long and contain at least one number, one uppercase letter, lowercase letter and one special character',
-    type: String,
     example: 'P@ssword123',
+    pattern:
+      '(?!.*s)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})',
   })
   @IsString()
   /*
