@@ -18,7 +18,7 @@ export class UserController {
   async create(@Body() createUserDto: CreateUserDto) {
     const user = await this.userService.findOneByEmail(createUserDto.email);
     if (user) {
-      throw new BadRequestException('Email is already in use');
+      throw new BadRequestException('Email is already in use.');
     }
     return await this.userService.create(createUserDto);
   }
