@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.3.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.2.1...v0.3.0) (2022-04-23)
+
+
+### Features
+
+* **backend:** :bug: removed unnecessary mapping ([fff0674](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/fff06740231bd3508765f8989475691c84f636a5))
+* **backend:** :sparkles: Added class serialization and DTO validation ([12348d5](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/12348d5f29518d162e3a44162b54fffeb193913c))
+* **backend:** :sparkles: added global pipes ([9d89e00](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/9d89e00178068290fb7c2bc58a782cce3288b438))
+* **backend:** :sparkles: improved user service and controller ([48f4f11](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/48f4f11249dedfa5cf9d8ef359df75d0f1607b98))
+
+
+### Bug Fixes
+
+* **backend:** :bug: null check db return ([2b4d00f](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/2b4d00f281faff6fa8c417fc95d22c2df8a987a0))
+
 ### [0.2.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.2.0...v0.2.1) (2022-04-22)
 
 
