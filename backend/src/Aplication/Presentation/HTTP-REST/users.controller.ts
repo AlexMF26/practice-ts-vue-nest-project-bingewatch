@@ -26,18 +26,20 @@ export class UserController {
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
     this.logger.log(
-      `An HTTP request to create a new user with email ${createUserDto.email} was received`,
+      `An HTTP request to create a new user with email "${createUserDto.email}" was received.`,
     );
     const user = await this.userService.findOneByEmail(createUserDto.email);
     if (user) {
-      this.logger.warn(`User with email ${createUserDto.email} already exists`);
+      this.logger.warn(
+        `User with email "${createUserDto.email}" already exists.`,
+      );
       throw new BadRequestException(
-        `Email ${createUserDto.email} is already in use.`,
+        `Email "${createUserDto.email}" is already in use.`,
       );
     }
     const createdUser = await this.userService.create(createUserDto);
     this.logger.log(
-      `User ${createdUser.id} with email ${createdUser.email} was created`,
+      `User "${createdUser.id}" with email "${createdUser.email}" was created.`,
     );
     return createdUser;
   }
