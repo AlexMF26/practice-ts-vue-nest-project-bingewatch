@@ -20,6 +20,12 @@ export class RepositoryService
 
   async onModuleInit() {
     this.logger.log('Connecting to database');
+    this.$use(async (params, next) => {
+      this.logger.log(
+        `Executing "${params.action}" action on "${params.model}" model.`,
+      );
+      return next(params);
+    });
     await this.$connect();
   }
 
