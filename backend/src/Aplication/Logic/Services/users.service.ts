@@ -4,12 +4,12 @@ import { RepositoryService } from '../../../Infrastructure/Persistence/Repositor
 import { EncryptionService } from './encryption.service';
 
 @Injectable()
-export class UserService {
+export class UsersService {
   constructor(
     private readonly repositoryService: RepositoryService,
     private readonly encryptionService: EncryptionService,
   ) {}
-  logger = new Logger(UserService.name);
+  logger = new Logger(UsersService.name);
   async create(data: { password: string; email: string; name: string }) {
     this.logger.log(`Creating user with email "${data.email}".`);
     const passwordHash = await this.encryptionService.hashString(data.password);

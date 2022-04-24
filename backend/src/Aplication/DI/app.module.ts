@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from '../Presentation/HTTP-REST/app.controller';
-import { UserModule } from './user.module';
+import { UsersModule } from './users.module';
 import { config } from '../config';
 
 @Module({
@@ -9,7 +9,7 @@ import { config } from '../config';
     ConfigModule.forRoot({
       validationSchema: config.validationSchema,
     }),
-    UserModule,
+    UsersModule,
   ],
   controllers: [AppController],
 })
