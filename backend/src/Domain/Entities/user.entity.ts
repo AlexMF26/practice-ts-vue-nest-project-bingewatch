@@ -4,7 +4,7 @@ import { Exclude } from 'class-transformer';
 export class UserEntity implements User {
   readonly id: string;
   readonly createdAt: Date;
-  readonly Role: Role;
+  readonly role: Role;
   readonly name: string;
   readonly email: string;
   @Exclude()
@@ -23,7 +23,7 @@ export enum Role {
 export class SerializedUserEntity {
   readonly id: string;
   readonly createdAt: Date;
-  readonly Role: Role;
+  readonly role: Role;
   readonly name: string;
   readonly email: string;
 }
