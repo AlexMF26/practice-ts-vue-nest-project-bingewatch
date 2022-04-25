@@ -8,8 +8,8 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
-import { SerializedUserEntity } from '../../../Domain/Entities/user.entity';
-import { UsersService } from '../../Logic/Services/users.service';
+import { SerializedUserEntity } from '../../../../../Domain/Entities/user.entity';
+import { UsersService } from '../../../../Logic/Services/users.service';
 import { CreateUserDto } from '../DTOs/create-user.dto';
 
 @Controller('users')
