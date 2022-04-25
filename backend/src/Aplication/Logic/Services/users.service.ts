@@ -9,7 +9,9 @@ export class UsersService {
     private readonly repositoryService: RepositoryService,
     private readonly encryptionService: EncryptionService,
   ) {}
+
   logger = new Logger(UsersService.name);
+
   async create(data: { password: string; email: string; name: string }) {
     this.logger.log(`Creating user with email "${data.email}".`);
     const passwordHash = await this.encryptionService.hashString(data.password);
@@ -25,6 +27,7 @@ export class UsersService {
     );
     return new UserEntity(user);
   }
+
   async findOneByEmail(email: string) {
     this.logger.log(`Finding user with email "${email}".`);
     const user = await this.repositoryService.user.findUnique({
@@ -48,6 +51,22 @@ export class UsersService {
     if (user) {
       this.logger.log(`User "${user.id}" was found.`);
       return new UserEntity(user);
+    }
+    this.logger.warn(`User with id "${id}" was not found.`);
+    return null;
+  }
+
+  async getRole(id: string) {
+    this.logger.log(`Getting role for user with id "${id}".`);
+    const user = await this.repositoryService.user.findUnique({
+      where: { id },
+      select: {
+        role: true,
+      },
+    });
+    if (user) {
+      this.logger.log(`User "${id}" was found.`);
+      return user.role;
     }
     this.logger.warn(`User with id "${id}" was not found.`);
     return null;
