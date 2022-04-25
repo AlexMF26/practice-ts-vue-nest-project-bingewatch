@@ -36,7 +36,20 @@ export class UsersService {
       );
       return new UserEntity(user);
     }
-    this.logger.log(`User with email "${email}" was not found.`);
+    this.logger.warn(`User with email "${email}" was not found.`);
+    return null;
+  }
+
+  async findOneById(id: string) {
+    this.logger.log(`Finding user with id "${id}".`);
+    const user = await this.repositoryService.user.findUnique({
+      where: { id },
+    });
+    if (user) {
+      this.logger.log(`User "${user.id}" was found.`);
+      return new UserEntity(user);
+    }
+    this.logger.warn(`User with id "${id}" was not found.`);
     return null;
   }
 }

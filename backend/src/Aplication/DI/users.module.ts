@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { UsersService as UsersService } from '../Logic/Services/users.service';
-import { UsersController as UsersController } from '../Presentation/HTTP-REST/users.controller';
+import { UsersController } from '../Presentation/HTTP/REST/Controllers/users.controller';
 import { EncryptionModule } from './encryption.module';
 import { RepositoryModule } from './repository.module';
 
@@ -8,5 +8,6 @@ import { RepositoryModule } from './repository.module';
   imports: [RepositoryModule, EncryptionModule],
   providers: [UsersService],
   controllers: [UsersController],
+  exports: [UsersService],
 })
 export class UsersModule {}

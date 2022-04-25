@@ -49,6 +49,15 @@ function getSwaggerConfig() {
     .setTitle('Bingewatch API')
     .setDescription('Bingewatch API description')
     .setVersion('1.0')
+    .addCookieAuth(
+      'Authentication',
+      {
+        type: 'http',
+        in: 'Header',
+        scheme: 'Bearer',
+      },
+      'Authentication',
+    )
     .build();
   return config;
 }

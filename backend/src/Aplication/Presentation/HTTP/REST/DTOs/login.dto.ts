@@ -1,20 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, Matches } from 'class-validator';
 
-export class CreateUserDto {
-  @ApiProperty({
-    description: 'The name of the user.',
-    example: 'Ion POPESCU',
-    pattern: "^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*.?$",
-  })
-  @IsString()
-  /* Regex to match the name of a person 
-    allows for "'", "-" and "," and ".".
-  */
-  @Matches(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*.?$/, {
-    message: 'Name is not valid',
-  })
-  readonly name: string;
+export class LoginDto {
   @ApiProperty({
     description: 'The email of the user.',
     example: 'Ion.Popescu@google.com',
@@ -47,7 +34,7 @@ export class CreateUserDto {
     /(?!.*\s)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
     {
       message:
-        'Your password is too weak. Use at least 8 characters, one uppercase, one lowercase, one number and one special character.',
+        "Your password isn't valid. Our passwords use at least 8 characters, one uppercase, one lowercase, one number and one special character.",
     },
   )
   readonly password: string;
