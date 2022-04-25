@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.7.1...v0.8.0) (2022-04-25)
+
+
+### Features
+
+* **backend:** :sparkles: added structure for patching users ([c756b48](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/c756b48a70dc97bf8df2c083cfc2263d0d95a79b))
+
 ### [0.7.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.7.0...v0.7.1) (2022-04-25)
 
 
