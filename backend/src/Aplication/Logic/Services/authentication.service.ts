@@ -11,6 +11,7 @@ export class AuthentificationService {
     private readonly encryptionService: EncryptionService,
     private readonly jwtTokenService: JwtService,
   ) {}
+
   private readonly logger = new Logger(AuthentificationService.name);
 
   async validateUserCredentials(email: string, password: string) {
