@@ -8,12 +8,13 @@ export class LoginDto {
     pattern:
       '(?!.*s)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})',
   })
-  @IsString()
   //Regex to check if the email is valid
   @Matches(/^[\w\-\.]+@([\w-]+\.)+[\w-]{2,4}$/, {
     message: 'Invalid email',
   })
+  @IsString()
   readonly email: string;
+
   @ApiProperty({
     description:
       'The password of the user. Must be at least 8 characters long and contain at least one number, one uppercase letter, lowercase letter and one special character.',
@@ -21,7 +22,6 @@ export class LoginDto {
     pattern:
       '(?!.*s)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})',
   })
-  @IsString()
   /*
     (?!.*\s)          # Must contain no whitespace characters
     (?=.*[a-z])       # Must contain at least one lowercase letter
@@ -37,5 +37,6 @@ export class LoginDto {
         "Your password isn't valid. Our passwords use at least 8 characters, one uppercase, one lowercase, one number and one special character.",
     },
   )
+  @IsString()
   readonly password: string;
 }

@@ -4,6 +4,7 @@ import { hash, compare } from 'bcrypt';
 @Injectable()
 export class EncryptionService {
   logger = new Logger(EncryptionService.name);
+
   /**
    * @param  {string} data The string to be hashed.
    * @returns {Promise<string>} A promise to be resolved with the hashed string, the salt, the algorithm used and the cost factor.
@@ -13,6 +14,7 @@ export class EncryptionService {
     //Use 2^10 rounds
     return await hash(data, 10);
   }
+
   /**
    * @param  {string} data The string to be checked.
    * @param  {string} hash The bcrypt return string to compare with.

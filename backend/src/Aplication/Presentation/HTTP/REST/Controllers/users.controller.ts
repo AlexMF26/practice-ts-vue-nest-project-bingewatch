@@ -4,6 +4,7 @@ import {
   ClassSerializerInterceptor,
   Controller,
   Logger,
+  Patch,
   Post,
   UseInterceptors,
 } from '@nestjs/common';
@@ -11,6 +12,7 @@ import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 import { SerializedUserEntity } from '../../../../../Domain/Entities/user.entity';
 import { UsersService } from '../../../../Logic/Services/users.service';
 import { CreateUserDto } from '../DTOs/create-user.dto';
+import { UpdateUserDto } from '../DTOs/update-role.dto';
 
 @Controller('users')
 @ApiTags('users')
@@ -42,5 +44,10 @@ export class UsersController {
       `User "${createdUser.id}" with email "${createdUser.email}" was created.`,
     );
     return createdUser;
+  }
+
+  @Patch()
+  async update(@Body() updateUserDto: UpdateUserDto) {
+    return 'updateUser';
   }
 }
