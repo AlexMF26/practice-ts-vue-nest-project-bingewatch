@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.7.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.7.0...v0.7.1) (2022-04-25)
+
+
+### Bug Fixes
+
+* **backend:** :bug: update user patch dto ([29c0ab1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/29c0ab1ba1d1f7d03d46b51c50157e3ca5e0126f))
+
 ## [0.7.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.6.2...v0.7.0) (2022-04-25)
 
 
