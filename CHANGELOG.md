@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.5.1...v0.6.0) (2022-04-25)
+
+
+### Features
+
+* **backend:** :sparkles: added authentification ([8028c77](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/8028c770f498b2318c5fa69aa03edd2082a63446))
+
 ### [0.5.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.5.0...v0.5.1) (2022-04-24)
 
 
