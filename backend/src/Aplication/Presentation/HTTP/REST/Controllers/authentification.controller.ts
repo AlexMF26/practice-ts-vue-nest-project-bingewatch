@@ -52,7 +52,7 @@ export class AuthentificationController {
   @Get('/details')
   async getWhoAmI(@userId() id: string) {
     this.logger.log(
-      `An HTTP request to get authenticated user details was received.`,
+      `An HTTP request to get authenticated user details was received. User id: "${id}".`,
     );
     const user = await this.userService.findOneById(id);
     return user;
