@@ -30,8 +30,7 @@
       "editor.defaultFormatter": "Prisma.prisma"
     },
     "typescript.preferences.importModuleSpecifier": "relative",
-    "javascript.preferences.importModuleSpecifier": "relative",
-    "typescript.tsdk": "backend/node_modules/typescript/lib"
+    "javascript.preferences.importModuleSpecifier": "relative"
   },
 
   "extensions": {
