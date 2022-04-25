@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.6.2...v0.7.0) (2022-04-25)
+
+
+### Features
+
+* **backend:** :card_file_box: extended database ([32c47af](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/32c47af6b66201ca27af653054b42dfa4a9f7af9))
+* **backend:** :sparkles: added update user dto ([2fe28a6](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/2fe28a6217b06b5519bdf42c78a65ae511689808))
+
 ### [0.6.2](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.6.1...v0.6.2) (2022-04-25)
 
 
