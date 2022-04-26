@@ -20,6 +20,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+      - name: Set env variables
+        run: |
+          mv example.env .env
+          sed -i 's/database/localhost/g' .env
+          sed -i 's/OMDB_apikey=""/OMDB_apikey="${{ secrets.OMDB_APIKEY }}"/g' .env
+        working-directory: ./backend
       - name: Install backend dependencies
         run: npm i
         working-directory: ./backend
@@ -35,9 +41,6 @@ jobs:
       - name: Test backend
         run: |
           docker-compose up -d database
-          mv example.env .env
-          sed -i 's/database/localhost/g' .env
-          sed -i 's/OMDB_apikey=""/OMDB_apikey="${{ secrets.OMDB_APIKEY }}"/g' .env
           npx prisma migrate deploy
           npx prisma generate
           npm run test
