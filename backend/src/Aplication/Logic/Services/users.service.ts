@@ -135,7 +135,9 @@ export class UsersService {
       this.logger.warn(
         `User "${requesterId}" is not authorized to update user "${id}".`,
       );
-      throw new Error(`You are not allowed to update user "${id}".`);
+      throw new Error(
+        `User "${requesterId}" is not authorized to update user "${id}".`,
+      );
     }
     const updateData: any = {};
     let user = await this.findOneById(id);
