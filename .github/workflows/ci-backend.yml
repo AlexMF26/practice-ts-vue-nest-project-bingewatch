@@ -35,7 +35,9 @@ jobs:
       - name: Test backend
         run: |
           docker-compose up -d database
+          mv example.env .env
           sed -i 's/database/localhost/g' .env
+          sed -i 's/OMDB_apikey=""/OMDB_apikey="${{ secrets.OMDB_APIKEY }}"/g' .env
           npx prisma migrate deploy
           npx prisma generate
           npm run test
