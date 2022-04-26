@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.9.2](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.9.1...v0.9.2) (2022-04-26)
+
+
+### Bug Fixes
+
+* **backend:** :bug: fixed error message ([b2cf2fc](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/b2cf2fcf5ad6d0c2039708a337d7f8562ddaaa37))
+
 ### [0.9.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.9.0...v0.9.1) (2022-04-26)
 
 
