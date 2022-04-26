@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.9.3](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.9.2...v0.9.3) (2022-04-26)
+
+
+### Bug Fixes
+
+* **deps:** update prisma monorepo to v3.13.0 ([72283bf](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/72283bfe04569c24ef06ea31e074e5b45178aa58))
+
 ### [0.9.2](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.9.1...v0.9.2) (2022-04-26)
 
 
