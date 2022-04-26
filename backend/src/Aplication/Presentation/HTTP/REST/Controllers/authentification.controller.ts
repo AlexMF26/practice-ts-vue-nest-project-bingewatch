@@ -31,12 +31,11 @@ export class AuthentificationController {
     this.logger.log(
       `An HTTP request to login with email "${loginDto.email}" was received.`,
     );
-    const validUser = await this.authenticationService.validateUserCredentials(
+    const validUser = await this.userService.validateCredentials(
       loginDto.email,
       loginDto.password,
     );
     if (!validUser) {
-      this.logger.warn('Credentials are not valid.');
       throw new ForbiddenException('Wrong name or password.');
     }
     return this.authenticationService.loginWithCredentials(validUser);

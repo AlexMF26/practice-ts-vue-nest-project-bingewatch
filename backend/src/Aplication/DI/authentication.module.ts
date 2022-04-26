@@ -4,14 +4,12 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthentificationService } from '../Logic/Services/authentication.service';
 import { JwtStrategy } from '../Presentation/HTTP/Guards/jwt.strategy';
 import { AuthentificationController } from '../Presentation/HTTP/REST/Controllers/authentification.controller';
-import { EncryptionModule } from './encryption.module';
 import { UsersModule } from './users.module';
 
 @Module({
   imports: [
     ConfigModule,
     UsersModule,
-    EncryptionModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
