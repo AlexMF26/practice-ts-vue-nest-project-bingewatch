@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.10.1...v0.11.0) (2022-04-27)
+
+
+### Features
+
+* **backend:** :sparkles: Finished omdb adapter ([4781401](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/47814016ded35188fa57e58df8fa3b98bc8f7c4c))
+
 ### [0.10.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.10.0...v0.10.1) (2022-04-27)
 
 
