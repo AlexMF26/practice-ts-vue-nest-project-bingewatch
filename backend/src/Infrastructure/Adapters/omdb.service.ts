@@ -10,9 +10,11 @@ export class OmdbService {
     this.logger.log('OmdbService has been initialized');
   }
 
-  async getMovie(id: string) {
+  async getEntry(id: string) {
     const params = {
       i: id,
+      plot: 'full',
+      details: 'full',
     };
     const call = this.httpService.get(`/`, {
       params,
@@ -20,7 +22,58 @@ export class OmdbService {
     // convert observable to promise
     const temp = firstValueFrom(call);
     const response = await temp;
-    const movie = response.data;
-    return movie;
+    const entry = response.data;
+    return entry;
+  }
+
+  async getSeason(id: string, seasonNumber: number) {
+    const params = {
+      i: id,
+      plot: 'full',
+      details: 'full',
+      Season: seasonNumber,
+    };
+    const call = this.httpService.get(`/`, {
+      params,
+    });
+    // convert observable to promise
+    const temp = firstValueFrom(call);
+    const response = await temp;
+    const season = response.data;
+    return season;
+  }
+
+  async getEpisode(id: string, seasonNumber: number, episodeNumber: number) {
+    const params = {
+      i: id,
+      plot: 'full',
+      details: 'full',
+      Season: seasonNumber,
+      Episode: episodeNumber,
+    };
+    const call = this.httpService.get(`/`, {
+      params,
+    });
+    // convert observable to promise
+    const temp = firstValueFrom(call);
+    const response = await temp;
+    const episode = response.data;
+    return episode;
+  }
+
+  async search(query: string, page?: number, type?: 'movie' | 'series') {
+    const params = {
+      s: query,
+      page,
+      type,
+    };
+    const call = this.httpService.get(`/`, {
+      params,
+    });
+    // convert observable to promise
+    const temp = firstValueFrom(call);
+    const response = await temp;
+    const result = response.data;
+    return result;
   }
 }
