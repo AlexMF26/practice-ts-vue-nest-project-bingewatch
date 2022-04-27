@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.10.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.9.3...v0.10.0) (2022-04-27)
+
+
+### Features
+
+* **backend:** :sparkles: Created omdb adapter scaffold ([d752179](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/d752179acf5d7cf620b988e199d8886684f43eec))
+* **backend:** :sparkles: extended omdb service ([e28a9a5](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/e28a9a5cf8f0f9785d7fec90c5f7b3618c9992fa))
+
 ### [0.9.3](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.9.2...v0.9.3) (2022-04-26)
 
 
