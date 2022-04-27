@@ -1,5 +1,13 @@
 # Changelog
 
+### [0.10.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.10.0...v0.10.1) (2022-04-27)
+
+
+### Bug Fixes
+
+* **deps:** pin dependency @nestjs/axios to 0.0.7 ([c208dac](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/c208dacee7a7237869af456c9af17f8575e4c8dc))
+* **deps:** update dependency axios to v0.27.2 ([a906200](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/a906200d351347f6c815c7c9982c37d513ee24c3))
+
 ## [0.10.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.9.3...v0.10.0) (2022-04-27)
 
 
