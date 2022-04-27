@@ -8,7 +8,9 @@ export class UsersService {
   constructor(
     private readonly repositoryService: RepositoryService,
     private readonly encryptionService: EncryptionService,
-  ) {}
+  ) {
+    this.logger.log('UsersService has been initialized');
+  }
 
   logger = new Logger(UsersService.name);
 

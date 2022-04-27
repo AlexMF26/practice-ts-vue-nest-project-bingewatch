@@ -27,7 +27,9 @@ import { UpdateUserDto } from '../DTOs/update-role.dto';
 @Controller('users')
 @ApiTags('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: UsersService) {
+    this.logger.log('UsersController has been initialized');
+  }
 
   private readonly logger = new Logger(UsersController.name);
 

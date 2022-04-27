@@ -23,7 +23,9 @@ export class AuthentificationController {
   constructor(
     private readonly authenticationService: AuthentificationService,
     private readonly userService: UsersService,
-  ) {}
+  ) {
+    this.logger.log('AuthentificationController has been initialized');
+  }
   private readonly logger = new Logger(AuthentificationService.name);
 
   @Post()
