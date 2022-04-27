@@ -4,6 +4,9 @@ CREATE EXTENSION IF NOT EXISTS pgcrypto;
 -- CreateEnum
 CREATE TYPE "Role" AS ENUM ('ADMIN', 'USER');
 
+-- CreateEnum
+CREATE TYPE "EntryType" AS ENUM ('MOVIE', 'SERIES');
+
 -- CreateTable
 CREATE TABLE "User" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
@@ -13,6 +16,18 @@ CREATE TABLE "User" (
     "name" TEXT NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Entry" (
+    "imdbId" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
+    "posterUrl" TEXT NOT NULL,
+    "rating" DOUBLE PRECISION NOT NULL,
+    "type" "EntryType" NOT NULL DEFAULT E'MOVIE',
+    "seasons" INTEGER[],
+
+    CONSTRAINT "Entry_pkey" PRIMARY KEY ("imdbId")
 );
 
 -- CreateTable
@@ -26,26 +41,6 @@ CREATE TABLE "WatchlistItem" (
     CONSTRAINT "WatchlistItem_pkey" PRIMARY KEY ("id")
 );
 
--- CreateTable
-CREATE TABLE "Entry" (
-    "imdbId" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
-    "posterUrl" TEXT NOT NULL,
-    "rating" DOUBLE PRECISION NOT NULL,
-
-    CONSTRAINT "Entry_pkey" PRIMARY KEY ("imdbId")
-);
-
--- CreateTable
-CREATE TABLE "Season" (
-    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
-    "entryId" TEXT NOT NULL,
-    "seasonNumber" INTEGER NOT NULL,
-    "episodeNumber" INTEGER NOT NULL,
-
-    CONSTRAINT "Season_pkey" PRIMARY KEY ("id")
-);
-
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
@@ -54,6 +49,3 @@ ALTER TABLE "WatchlistItem" ADD CONSTRAINT "WatchlistItem_userId_fkey" FOREIGN K
 
 -- AddForeignKey
 ALTER TABLE "WatchlistItem" ADD CONSTRAINT "WatchlistItem_entryId_fkey" FOREIGN KEY ("entryId") REFERENCES "Entry"("imdbId") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Season" ADD CONSTRAINT "Season_entryId_fkey" FOREIGN KEY ("entryId") REFERENCES "Entry"("imdbId") ON DELETE RESTRICT ON UPDATE CASCADE;

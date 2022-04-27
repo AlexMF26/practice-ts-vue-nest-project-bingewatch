@@ -16,6 +16,11 @@ enum Role {
   USER
 }
 
+enum EntryType {
+  MOVIE
+  SERIES
+}
+
 model User {
   watchlist    WatchlistItem[]
   id           String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
@@ -23,6 +28,16 @@ model User {
   email        String          @unique
   passwordHash String
   name         String
+}
+
+model Entry {
+  watchlistItem WatchlistItem[]
+  imdbId        String          @id
+  title         String
+  posterUrl     String
+  rating        Float
+  type          EntryType       @default(MOVIE)
+  seasons       Int[] // will be empty for movies
 }
 
 model WatchlistItem {
@@ -33,21 +48,4 @@ model WatchlistItem {
   entryId  String
   progress Int    @default(0)
   rating   Int?
-}
-
-model Entry {
-  seasons       Season[] // will be empty for movies
-  watchlistItem WatchlistItem[]
-  imdbId        String          @id
-  title         String
-  posterUrl     String
-  rating        Float
-}
-
-model Season {
-  entry         Entry  @relation(fields: [entryId], references: [imdbId])
-  id            String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  entryId       String
-  seasonNumber  Int
-  episodeNumber Int
 }
