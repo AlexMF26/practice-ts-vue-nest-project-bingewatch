@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.11.0...v0.12.0) (2022-04-27)
+
+
+### Features
+
+* **backend:** :zap: Extended domain ([07dbe32](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/07dbe3236d502216bbdfb2b4e2594af3fe6b88f9))
+
 ## [0.11.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.10.1...v0.11.0) (2022-04-27)
 
 
