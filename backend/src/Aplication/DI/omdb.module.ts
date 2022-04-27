@@ -1,7 +1,7 @@
 import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { OmdbService } from '../../Infrastructure/Adapters/omdb.service';
+import { OmdbService } from '../../Infrastructure/Adapters/Omdb/omdb.service';
 
 @Module({
   imports: [
