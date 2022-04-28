@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.16.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.15.0...v0.16.0) (2022-04-28)
+
+
+### Features
+
+* **backend:** :sparkles: update watchlist ([148d797](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/148d79715e36b5a20612c7c4f867ef0c8528344a))
+
+
+### Performance Improvements
+
+* **backend:** :fire: improved code ([913be30](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/913be30ff47bc493bfdcfd460f9a939daab50029))
+
 ## [0.15.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.14.1...v0.15.0) (2022-04-28)
 
 
