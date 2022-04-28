@@ -14,7 +14,7 @@
     "test": "cypress install && cypress run"
   },
   "dependencies": {
-    "@quasar/extras": "1.13.5",
+    "@quasar/extras": "1.13.6",
     "axios": "0.27.2",
     "pinia": "2.0.13",
     "quasar": "2.6.6",
