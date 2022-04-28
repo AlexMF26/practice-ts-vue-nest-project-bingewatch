@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.14.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.14.0...v0.14.1) (2022-04-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @quasar/extras to v1.13.6 ([d3c9d87](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/d3c9d873f3d47b3005b37f357920bb9f9aa10918))
+
 ## [0.14.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.13.0...v0.14.0) (2022-04-28)
 
 
