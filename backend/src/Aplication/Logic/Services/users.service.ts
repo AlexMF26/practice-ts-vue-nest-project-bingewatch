@@ -1,4 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { EntryEntity } from '../../../Domain/Entities/entry.entity';
 import { Role, UserEntity } from '../../../Domain/Entities/user.entity';
 import { RepositoryService } from '../../../Infrastructure/Persistence/Repository/repository.service';
 import { EncryptionService } from './encryption.service';
@@ -218,5 +219,26 @@ export class UsersService {
     }
     this.logger.log(`User "${id}" is not admin.`);
     return false;
+  }
+
+  async getWatchlist(userId: string) {
+    this.logger.log(`Getting watchlist for user with id "${userId}".`);
+    const user = await this.findOneById(userId);
+    if (!user) {
+      this.logger.warn(`User with id "${userId}" was not found.`);
+      throw new Error(`User with id "${userId}" was not found.`);
+    }
+    const data = await this.repositoryService.watchlistItem.findMany({
+      where: { userId },
+      include: {
+        entry: true,
+      },
+    });
+    const watchlist = data.map((item) => {
+      const entry = new EntryEntity(item.entry);
+      const { id, progress, rating } = item;
+      return { entry, id, progress, rating };
+    });
+    return watchlist;
   }
 }

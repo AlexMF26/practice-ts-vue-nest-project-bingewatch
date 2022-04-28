@@ -3,6 +3,7 @@ import {
   Body,
   ClassSerializerInterceptor,
   Controller,
+  Get,
   Logger,
   Param,
   Patch,
@@ -108,6 +109,29 @@ export class UsersController {
       } else {
         this.logger.error(
           `The following error occurred while updating user: ${error.message}`,
+        );
+        throw error;
+      }
+    }
+  }
+
+  @Get(':id/watchlist')
+  async getWatchlist(@Param('id') userId: string) {
+    this.logger.log(
+      `An HTTP request to get watchlist of user "${userId}" was received.`,
+    );
+    try {
+      const watchlist = await this.usersService.getWatchlist(userId);
+      return watchlist;
+    } catch (error) {
+      if (error.message.includes('was not found')) {
+        this.logger.warn(`User "${userId}" was not found.`);
+        throw new BadRequestException(
+          `User with id "${userId}" was not found.`,
+        );
+      } else {
+        this.logger.error(
+          `The following error occurred while getting watchlist of user: ${error.message}`,
         );
         throw error;
       }
