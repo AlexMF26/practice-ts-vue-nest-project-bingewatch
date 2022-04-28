@@ -35,9 +35,8 @@ model Entry {
   imdbId        String          @id
   title         String
   posterUrl     String
-  rating        Float
-  type          EntryType       @default(MOVIE)
-  seasons       Int[] // will be empty for movies
+  rating        Float?
+  seasonsData   Int[] // will be empty for movies
 }
 
 model WatchlistItem {

@@ -23,9 +23,8 @@ CREATE TABLE "Entry" (
     "imdbId" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "posterUrl" TEXT NOT NULL,
-    "rating" DOUBLE PRECISION NOT NULL,
-    "type" "EntryType" NOT NULL DEFAULT E'MOVIE',
-    "seasons" INTEGER[],
+    "rating" DOUBLE PRECISION,
+    "seasonsData" INTEGER[],
 
     CONSTRAINT "Entry_pkey" PRIMARY KEY ("imdbId")
 );

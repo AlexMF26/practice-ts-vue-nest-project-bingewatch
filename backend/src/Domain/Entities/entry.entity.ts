@@ -1,14 +1,21 @@
 import { Entry } from '@prisma/client';
 
-export class EntryEntity implements Entry {
+export class EntryEntity implements Omit<Entry, 'seasonsData'> {
   readonly imdbId: string;
   readonly title: string;
   readonly posterUrl: string;
   readonly rating: number;
-  readonly type: EntryType;
-  readonly seasons: number[];
+  readonly seasons?: Season[];
+
   constructor(data: Entry) {
-    Object.assign(this, data);
+    const { seasonsData, ...entry } = data;
+    Object.assign(this, entry);
+    if (seasonsData && seasonsData.length > 0) {
+      this.seasons = [];
+      seasonsData.forEach((seasonData) => {
+        this.seasons.push({ episodes: seasonData });
+      });
+    }
   }
 }
 
@@ -16,3 +23,5 @@ export enum EntryType {
   MOVIE = 'MOVIE',
   SERIES = 'SERIES',
 }
+
+type Season = { episodes: number };
