@@ -209,4 +209,14 @@ export class UsersService {
     }
     return user;
   }
+  async isAdmin(id: string) {
+    this.logger.log(`Checking if user with id "${id}" is admin.`);
+    const user = await this.findOneById(id);
+    if (user.role === Role.ADMIN) {
+      this.logger.log(`User "${id}" is admin.`);
+      return true;
+    }
+    this.logger.log(`User "${id}" is not admin.`);
+    return false;
+  }
 }
