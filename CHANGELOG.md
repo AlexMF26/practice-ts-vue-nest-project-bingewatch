@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.15.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.14.1...v0.15.0) (2022-04-28)
+
+
+### Features
+
+* **backend:** :construction: added scaffold service for entries ([8722f68](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/8722f68a11e7ce0ba131818172fc423a717bbe5f))
+* **backend:** :sparkles: added is user method in service ([cff8dce](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/cff8dce727045bea10eb61b7d57eab9c0e9e4c1e))
+* **backend:** :sparkles: can get full watchlist ([dbd0691](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/dbd06910fb40545dfed7468c1dedb8018f80238f))
+
 ### [0.14.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.14.0...v0.14.1) (2022-04-28)
 
 
