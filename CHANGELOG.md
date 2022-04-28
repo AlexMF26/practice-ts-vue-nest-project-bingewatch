@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.13.0...v0.14.0) (2022-04-28)
+
+
+### Features
+
+* **backend:** :fire: slimmed database ([c3d8e18](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/c3d8e18133fcdcc67d9277124e55ae924a1b6f0c))
+
 ## [0.13.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.12.0...v0.13.0) (2022-04-27)
 
 
