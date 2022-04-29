@@ -3,9 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthentificationService {
-  constructor(private readonly jwtTokenService: JwtService) {
-    this.logger.log('AuthentificationService has been initialized');
-  }
+  constructor(private readonly jwtTokenService: JwtService) {}
 
   private readonly logger = new Logger(AuthentificationService.name);
 

@@ -3,11 +3,12 @@ import {
   Body,
   ClassSerializerInterceptor,
   Controller,
-  Get,
   Logger,
+  NotFoundException,
   Param,
   Patch,
   Post,
+  ServiceUnavailableException,
   UnauthorizedException,
   UseGuards,
   UseInterceptors,
@@ -28,9 +29,7 @@ import { UpdateUserDto } from '../DTOs/update-role.dto';
 @Controller('users')
 @ApiTags('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {
-    this.logger.log('UsersController has been initialized');
-  }
+  constructor(private readonly usersService: UsersService) {}
 
   private readonly logger = new Logger(UsersController.name);
 
@@ -51,14 +50,16 @@ export class UsersController {
       );
       return user;
     } catch (error) {
-      if (error.message === 'Email is already in use.') {
-        throw new BadRequestException(
-          `User with email "${createUserDto.email}" already exists.`,
-        );
+      if (error.message.includes('found')) {
+        throw new NotFoundException(error.message);
+      } else if (error.message.includes('given')) {
+        throw new BadRequestException(error.message);
+      } else if (error.message.includes('authorized')) {
+        throw new UnauthorizedException(error.message);
+      } else if (error.message.includes('External')) {
+        throw new ServiceUnavailableException(error.message);
       } else {
-        this.logger.error(
-          `The following error occurred while registering user: ${error.message}`,
-        );
+        this.logger.error(error.message);
         throw error;
       }
     }
@@ -80,14 +81,6 @@ export class UsersController {
     this.logger.log(
       `An HTTP request to update user "${targetId}" from user "${requesterId}" was received.`,
     );
-    if (updateUserDto && Object.keys(updateUserDto).length === 0) {
-      this.logger.warn(
-        `No data was provided to update "${targetId}" at the request of "${requesterId}".`,
-      );
-      throw new BadRequestException(
-        `No data was provided to update "${targetId}".`,
-      );
-    }
     try {
       const user = await this.usersService.changeUserData(
         targetId,
@@ -96,43 +89,16 @@ export class UsersController {
       );
       return user;
     } catch (error) {
-      if (error.message.includes('is not authorized to update user')) {
-        throw new UnauthorizedException(
-          `You are not allowed to update user "${targetId}".`,
-        );
-      } else if (error.message.includes('is not authorized to roles')) {
-        throw new UnauthorizedException(`You are not authorized to roles".`);
-      } else if (error.message === 'Email is already in use.') {
-        throw new BadRequestException(
-          `User with email "${updateUserDto.email}" already exists.`,
-        );
+      if (error.message.includes('found')) {
+        throw new NotFoundException(error.message);
+      } else if (error.message.includes('given')) {
+        throw new BadRequestException(error.message);
+      } else if (error.message.includes('authorized')) {
+        throw new UnauthorizedException(error.message);
+      } else if (error.message.includes('External')) {
+        throw new ServiceUnavailableException(error.message);
       } else {
-        this.logger.error(
-          `The following error occurred while updating user: ${error.message}`,
-        );
-        throw error;
-      }
-    }
-  }
-
-  @Get(':id/watchlist')
-  async getWatchlist(@Param('id') userId: string) {
-    this.logger.log(
-      `An HTTP request to get watchlist of user "${userId}" was received.`,
-    );
-    try {
-      const watchlist = await this.usersService.getWatchlist(userId);
-      return watchlist;
-    } catch (error) {
-      if (error.message.includes('was not found')) {
-        this.logger.warn(`User "${userId}" was not found.`);
-        throw new BadRequestException(
-          `User with id "${userId}" was not found.`,
-        );
-      } else {
-        this.logger.error(
-          `The following error occurred while getting watchlist of user: ${error.message}`,
-        );
+        this.logger.error(error.message);
         throw error;
       }
     }

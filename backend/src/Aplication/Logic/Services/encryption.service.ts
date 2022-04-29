@@ -3,32 +3,30 @@ import { hash, compare } from 'bcrypt';
 
 @Injectable()
 export class EncryptionService {
-  logger = new Logger(EncryptionService.name);
+  private readonly logger = new Logger(EncryptionService.name);
 
-  /**
-   * @param  {string} data The string to be hashed.
-   * @returns {Promise<string>} A promise to be resolved with the hashed string, the salt, the algorithm used and the cost factor.
-   */
-  public async hashString(data: string): Promise<string> {
+  public async hashString(data: string) {
     this.logger.log('Hashing string.');
-    //Use 2^10 rounds
-    return await hash(data, 10);
+    try {
+      // Generate a random salt and hash the string using a cost factor of 10
+      const digest = await hash(data, 10);
+      // The resulting string contains the algorithm used, the cost factor, the hash and the salt delimited by a $
+      return digest;
+    } catch (error) {
+      this.logger.error(error.message);
+      throw error;
+    }
   }
 
-  /**
-   * @param  {string} data The string to be checked.
-   * @param  {string} hash The bcrypt return string to compare with.
-   * @returns {Promise<boolean>} A promise to be resolved with true if the string is a match, false otherwise.
-   */
-  public async validateAgainstHash(
-    data: string,
-    hash: string,
-  ): Promise<boolean> {
+  public async validateAgainstHash(data: string, digest: string) {
     this.logger.log('Validating string against hash.');
-    /*
-      Take the salt from the hash(bcrypt stores the salt in the hash)
-      hash the data and compare it to the hash
-    */
-    return await compare(data, hash);
+    try {
+      //Hash the data using the salt and cost factor from the digest string and compare the result to the hash
+      const result = await compare(data, digest);
+      return result;
+    } catch (error) {
+      this.logger.error(error.message);
+      throw error;
+    }
   }
 }

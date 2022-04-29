@@ -1,5 +1,4 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { EntryEntity } from '../../../Domain/Entities/entry.entity';
 import { Role, UserEntity } from '../../../Domain/Entities/user.entity';
 import { RepositoryService } from '../../../Infrastructure/Persistence/Repository/repository.service';
 import { EncryptionService } from './encryption.service';
@@ -9,27 +8,35 @@ export class UsersService {
   constructor(
     private readonly repositoryService: RepositoryService,
     private readonly encryptionService: EncryptionService,
-  ) {
-    this.logger.log('UsersService has been initialized');
-  }
+  ) {}
 
-  logger = new Logger(UsersService.name);
+  private readonly logger = new Logger(UsersService.name);
 
-  async register(data: { password: string; email: string; name: string }) {
-    this.logger.log(`Registering user with email "${data.email}".`);
-    const existentUser = await this.findOneByEmail(data.email);
-    if (existentUser) {
-      this.logger.warn(`User with email "${data.email}" already exists.`);
-      throw new Error('Email is already in use.');
+  private async isAdmin(id: string) {
+    this.logger.log(`Checking if user with id "${id}" is admin.`);
+    let user;
+    try {
+      //prepare and run the query to select the user by id and retrieve its role
+      user = await this.repositoryService.user.findUnique({
+        where: { id },
+        select: { role: true },
+      });
+    } catch (error) {
+      this.logger.error(error.message);
+      throw error;
     }
-    const passwordHash = await this.encryptionService.hashString(data.password);
-    const userData = {
-      passwordHash,
-      email: data.email,
-      name: data.name,
-    };
-    const user = await this.create(userData);
-    return user;
+    // if the user doesn't exist
+    if (!user) {
+      this.logger.warn(`User with id "${id}" doesn't exist.`);
+      throw new Error('The user was not found.');
+    }
+    // if the user an admin
+    if (user.role === Role.ADMIN) {
+      this.logger.log(`User "${id}" is admin.`);
+      return true;
+    }
+    this.logger.log(`User "${id}" is not admin.`);
+    return false;
   }
 
   private async create(data: {
@@ -38,49 +45,69 @@ export class UsersService {
     name: string;
   }) {
     this.logger.log(`Creating user with email "${data.email}".`);
-    const user = await this.repositoryService.user.create({
-      data,
-    });
-    this.logger.log(
-      `User "${user.id}" with email "${user.email}" was created.`,
-    );
-    return new UserEntity(user);
-  }
-
-  async findOneByEmail(email: string) {
-    this.logger.log(`Finding user with email "${email}".`);
-    const user = await this.repositoryService.user.findUnique({
-      where: { email },
-      select: { id: true },
-    });
-    if (user) {
-      this.logger.log(`User "${user.id}" with email "${email}" was found.`);
-      return user.id;
+    const existentUser = await this.findByEmail(data.email);
+    // if the user already exists
+    if (existentUser) {
+      this.logger.error(`User with email "${data.email}" already exists.`);
+      throw new Error('The given email is already in use.');
     }
-    this.logger.log(`User with email "${email}" was not found.`);
-    return null;
-  }
-
-  async findOneById(id: string) {
-    this.logger.log(`Finding user with id "${id}".`);
-    const user = await this.repositoryService.user.findUnique({
-      where: { id },
-    });
-    if (user) {
-      this.logger.log(`User "${user.id}" was found.`);
+    try {
+      // prepare and run the insert query
+      const user = await this.repositoryService.user.create({
+        data,
+      });
+      this.logger.log(
+        `User "${user.id}" with email "${user.email}" was created.`,
+      );
+      // return the created user as a UserEntity
       return new UserEntity(user);
+    } catch (error) {
+      this.logger.error(error.message);
+      throw error;
     }
-    this.logger.log(`User with id "${id}" was not found.`);
-    return null;
   }
 
-  private async update(id: string, data: Partial<UserEntity>) {
-    this.logger.log(`Updating user with id "${id}".`);
-    const user = await this.repositoryService.user.update({
-      where: { id },
-      data,
-    });
-    return new UserEntity(user);
+  async findByEmail(email: string) {
+    this.logger.log(`Finding user with email "${email}".`);
+    // prepare and run the query to select the user by email and retrieve its id
+    try {
+      const user = await this.repositoryService.user.findUnique({
+        where: { email },
+        select: { id: true },
+      });
+      // if the user is found
+      if (user) {
+        this.logger.log(`User "${user.id}" with email "${email}" was found.`);
+        // return the user's id
+        return user.id;
+      }
+      this.logger.warn(`User with email "${email}" was not found.`);
+      return null;
+    } catch (error) {
+      this.logger.error(error.message);
+      throw error;
+    }
+  }
+
+  async findById(id: string) {
+    this.logger.log(`Finding user with id "${id}".`);
+    try {
+      // prepare and run the query select the user by id and retrieve its data
+      const user = await this.repositoryService.user.findUnique({
+        where: { id },
+      });
+      // if the user is found
+      if (user) {
+        this.logger.log(`User "${user.id}" was found.`);
+        // return the user as a UserEntity
+        return new UserEntity(user);
+      }
+      this.logger.warn(`User with id "${id}" was not found.`);
+      return null;
+    } catch (error) {
+      this.logger.error(error.message);
+      throw error;
+    }
   }
 
   async changeUserData(
@@ -93,120 +120,152 @@ export class UsersService {
       role: Role;
     }>,
   ) {
+    this.logger.log(`Changing user data for user with id "${id}".`);
+    // if data is empty
+    if (data && Object.keys(data).length === 0) {
+      this.logger.error(`No data to change ${id}.`);
+      throw new Error('No data to change was given.');
+    }
+    // get if the requester's role is admin
     const isAdmin = await this.isAdmin(requesterId);
+    // if the requester is an admin or the requester is the user to change
     const isAuthorized = id === requesterId || isAdmin;
     if (!isAuthorized) {
       this.logger.warn(
         `User "${requesterId}" is not authorized to update user "${id}".`,
       );
-      throw new Error(
-        `User "${requesterId}" is not authorized to update user "${id}".`,
-      );
+      throw new Error('You are not authorized to update this user.');
     }
+    // initialize the updated data as an empty object
     const updateData: Partial<{
       passwordHash: string;
       email: string;
       name: string;
       role: Role;
     }> = {};
-    let user = await this.findOneById(id);
-    if (data?.role && user.role !== data?.role) {
+    // get the user's data
+    const user = await this.findById(id);
+    // if the user is not found
+    if (!user) {
+      this.logger.warn(`User with id "${id}" was not found.`);
+      throw new Error('The user was not found.');
+    }
+    // check if the user role is required to change
+    if (user.role !== data?.role) {
+      // if the requester is not an admin
       if (!isAdmin) {
         this.logger.warn(`User "${requesterId}" is not authorized to roles".`);
-        throw new Error(`User "${requesterId}" is not authorized to roles".`);
-      } else {
-        this.logger.log(`User ${id} role will be changed to ${data.role}`);
-        updateData.role = data?.role;
+        throw new Error(`You are not authorized to roles".`);
       }
+      this.logger.log(`User ${id} role will be changed to ${data.role}`);
+      // add the new role to the updated data
+      updateData.role = data.role;
     }
+    // check if the password is required to change
     if (data?.password) {
+      // get if it is the same as the current password
       const isTheSamePassword =
         await this.encryptionService.validateAgainstHash(
-          data?.password,
+          data.password,
           user.passwordHash,
         );
+      // if the password is not the same
       if (!isTheSamePassword) {
         const passwordHash = await this.encryptionService.hashString(
-          data?.password,
+          data.password,
         );
         this.logger.log(`User "${id}" password will be changed.`);
+        // add the new passwordHash to the updated data
         updateData.passwordHash = passwordHash;
       }
     }
-    if (data?.email && user.email !== data?.email) {
-      const existentUser = await this.findOneByEmail(data?.email);
+    // check if the email is required to change
+    if (user.email !== data?.email) {
+      // get if the email is already in use
+      const existentUser = await this.findByEmail(data.email);
+      // if the email is already in use
       if (existentUser) {
-        this.logger.warn(`User with email "${data?.email}" already exists.`);
-        throw new Error('Email is already in use.');
+        this.logger.warn(`User with email "${data.email}" already exists.`);
+        throw new Error('The given email is already in use.');
       }
       this.logger.log(`User "${id}" email will be changed.`);
-      updateData.email = data?.email;
+      // add the new email to the updated data
+      updateData.email = data.email;
     }
-    if (data?.name && user.name !== data?.name) {
+    // check if the name is required to change
+    if (user.name !== data?.name) {
       this.logger.log(`User "${id}" name will be changed.`);
-      updateData.name = data?.name;
+      // add the new name to the updated data
+      updateData.name = data.name;
     }
+    // if there is no data to update
     if (Object.keys(updateData).length === 0) {
       this.logger.log(`User "${id}" data was not changed.`);
+      // return the user as a UserEntity
+      return new UserEntity(user);
+      // if there is data to update
     } else {
-      user = await this.update(id, updateData);
+      try {
+        this.logger.log(`Updating user with id "${id}".`);
+        // prepare and run the query to update the user
+        const updateUser = await this.repositoryService.user.update({
+          where: { id },
+          data,
+        });
+        this.logger.log(`User "${user.id}" was updated.`);
+        // return the updated user as a UserEntity
+        return new UserEntity(updateUser);
+      } catch (error) {
+        this.logger.error(error.message);
+        throw error;
+      }
     }
-    return user;
   }
 
   async validateCredentials(email: string, password: string) {
     this.logger.log(`Validating credentials for user with email "${email}".`);
-    const user = await this.repositoryService.user.findUnique({
-      where: { email },
-      select: { id: true, passwordHash: true },
-    });
+    let user;
+    try {
+      // prepare and run the query to select the user by email and retrieve its id and password hash
+      user = await this.repositoryService.user.findUnique({
+        where: { email },
+        select: { id: true, passwordHash: true },
+      });
+    } catch (error) {
+      this.logger.error(error.message);
+      throw error;
+    }
+    // if the user is not found
     if (!user) {
       this.logger.warn(`User with email "${email}" doesn't exist exists.`);
       return false;
     }
+    // if the user is found
     const isPasswordValid = await this.encryptionService.validateAgainstHash(
       password,
       user.passwordHash,
     );
+    // if the password is not valid
     if (!isPasswordValid) {
-      this.logger.warn('Password is not valid.');
+      this.logger.warn('The given password is not valid.');
       return false;
     }
+    // if the password is valid
+    // return the user's id
+    this.logger.log(`Credentials validated for user "${user.id}".`);
     return user.id;
   }
 
-  private async isAdmin(id: string) {
-    this.logger.log(`Checking if user with id "${id}" is admin.`);
-    const { role } = await this.repositoryService.user.findUnique({
-      where: { id },
-      select: { role: true },
-    });
-    if (role === Role.ADMIN) {
-      this.logger.log(`User "${id}" is admin.`);
-      return true;
-    }
-    this.logger.log(`User "${id}" is not admin.`);
-    return false;
-  }
-
-  async getWatchlist(userId: string) {
-    this.logger.log(`Getting watchlist for user with id "${userId}".`);
-    const user = await this.findOneById(userId);
-    if (!user) {
-      this.logger.warn(`User with id "${userId}" was not found.`);
-      throw new Error(`User with id "${userId}" was not found.`);
-    }
-    const data = await this.repositoryService.watchlistItem.findMany({
-      where: { userId },
-      include: {
-        entry: true,
-      },
-    });
-    const watchlist = data.map((item) => {
-      const entry = new EntryEntity(item.entry);
-      const { id, progress, rating } = item;
-      return { entry, id, progress, rating };
-    });
-    return watchlist;
+  async register(data: { password: string; email: string; name: string }) {
+    //hash the password
+    const passwordHash = await this.encryptionService.hashString(data.password);
+    const userData = {
+      passwordHash,
+      email: data.email,
+      name: data.name,
+    };
+    const user = await this.create(userData);
+    this.logger.log(`User "${user.id}" was registered.`);
+    return user;
   }
 }

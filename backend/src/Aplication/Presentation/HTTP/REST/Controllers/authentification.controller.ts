@@ -1,11 +1,15 @@
 import {
+  BadRequestException,
   Body,
   ClassSerializerInterceptor,
   Controller,
   ForbiddenException,
   Get,
   Logger,
+  NotFoundException,
   Post,
+  ServiceUnavailableException,
+  UnauthorizedException,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
@@ -33,10 +37,26 @@ export class AuthentificationController {
     this.logger.log(
       `An HTTP request to login with email "${loginDto.email}" was received.`,
     );
-    const validUser = await this.userService.validateCredentials(
-      loginDto.email,
-      loginDto.password,
-    );
+    let validUser;
+    try {
+      validUser = await this.userService.validateCredentials(
+        loginDto.email,
+        loginDto.password,
+      );
+    } catch (error) {
+      if (error.message.includes('found')) {
+        throw new NotFoundException(error.message);
+      } else if (error.message.includes('given')) {
+        throw new BadRequestException(error.message);
+      } else if (error.message.includes('authorized')) {
+        throw new UnauthorizedException(error.message);
+      } else if (error.message.includes('External')) {
+        throw new ServiceUnavailableException(error.message);
+      } else {
+        this.logger.error(error.message);
+        throw error;
+      }
+    }
     if (!validUser) {
       throw new ForbiddenException('Wrong name or password.');
     }
@@ -55,7 +75,23 @@ export class AuthentificationController {
     this.logger.log(
       `An HTTP request to get authenticated user details was received. User id: "${id}".`,
     );
-    const user = await this.userService.findOneById(id);
-    return user;
+
+    try {
+      const user = await this.userService.findById(id);
+      return user;
+    } catch (error) {
+      if (error.message.includes('found')) {
+        throw new NotFoundException(error.message);
+      } else if (error.message.includes('given')) {
+        throw new BadRequestException(error.message);
+      } else if (error.message.includes('authorized')) {
+        throw new UnauthorizedException(error.message);
+      } else if (error.message.includes('External')) {
+        throw new ServiceUnavailableException(error.message);
+      } else {
+        this.logger.error(error.message);
+        throw error;
+      }
+    }
   }
 }

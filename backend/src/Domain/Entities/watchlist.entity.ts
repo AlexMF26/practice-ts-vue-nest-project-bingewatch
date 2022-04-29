@@ -1,6 +1,6 @@
 import { WatchlistItem } from '@prisma/client';
 
-export type Watchlist = WatchlistItem[];
+export type WatchlistEntity = WatchlistItemEntity[];
 
 export class WatchlistItemEntity implements WatchlistItem {
   readonly id: string;
