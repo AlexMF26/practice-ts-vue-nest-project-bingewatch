@@ -61,7 +61,7 @@ export class WatchlistService {
     }
   }
 
-  async delete(id: string, requesterId: string) {
+  public async delete(id: string, requesterId: string) {
     this.logger.log(`Deleting item with id "${id}"`);
     try {
       const item = await this.repositoryService.watchlistItem.findUnique({
@@ -89,7 +89,7 @@ export class WatchlistService {
     }
   }
 
-  async findItemByImdbIdForUser(imdbId: string, userId: string) {
+  public async findItemByImdbIdForUser(imdbId: string, userId: string) {
     this.logger.log(
       `Getting item for entry "${imdbId}" in the watchlist of user "${userId}"`,
     );
@@ -123,7 +123,7 @@ export class WatchlistService {
     }
   }
 
-  async getWatchlistEntries(userId: string) {
+  public async getWatchlistEntries(userId: string) {
     this.logger.log(`Getting watchlist for user with id "${userId}".`);
     const user = await this.usersService.findById(userId);
     // if the user doesn't exist
@@ -150,7 +150,7 @@ export class WatchlistService {
     }
   }
 
-  async updateItem(
+  public async updateItem(
     id: string,
     requesterId: string,
     data: Partial<{

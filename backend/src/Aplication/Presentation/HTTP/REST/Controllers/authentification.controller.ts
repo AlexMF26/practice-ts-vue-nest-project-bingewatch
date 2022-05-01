@@ -33,7 +33,7 @@ export class AuthentificationController {
   private readonly logger = new Logger(AuthentificationService.name);
 
   @Post()
-  async loginWithCredentials(@Body() loginDto: LoginDto) {
+  public async loginWithCredentials(@Body() loginDto: LoginDto) {
     this.logger.log(
       `An HTTP request to login with email "${loginDto.email}" was received.`,
     );
@@ -71,7 +71,7 @@ export class AuthentificationController {
   @UseInterceptors(ClassSerializerInterceptor)
   @UseGuards(JwtGuard)
   @Get('/details')
-  async getWhoAmI(@userId() id: string) {
+  public async getWhoAmI(@userId() id: string) {
     this.logger.log(
       `An HTTP request to get authenticated user details was received. User id: "${id}".`,
     );

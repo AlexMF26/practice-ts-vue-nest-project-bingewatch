@@ -9,7 +9,7 @@ export class OmdbService {
 
   constructor(private readonly httpService: HttpService) {}
 
-  async getEntry(id: string) {
+  public async getEntry(id: string) {
     this.logger.log(`Getting entry "${id}".`);
     const params = {
       i: id,
@@ -38,7 +38,7 @@ export class OmdbService {
     return entry;
   }
 
-  async getSeason(id: string, seasonNumber: number) {
+  public async getSeason(id: string, seasonNumber: number) {
     this.logger.log(`Getting season "${seasonNumber}" for entry "${id}".`);
     if (Number.isInteger(seasonNumber) === false) {
       this.logger.error('Season number number must be an integer.');
@@ -74,7 +74,7 @@ export class OmdbService {
     return season;
   }
 
-  async search(query: string, page: number) {
+  public async search(query: string, page: number) {
     this.logger.log(`Getting page "${page}" for search with query "${query}".`);
     const params = {
       s: query,

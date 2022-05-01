@@ -5,7 +5,7 @@ export class AppController {
   logger = new Logger(AppController.name);
 
   @Get()
-  getHello() {
+  public getHello() {
     this.logger.log('The HTTP-REST default route has been called.');
     return 'Hello World!';
   }

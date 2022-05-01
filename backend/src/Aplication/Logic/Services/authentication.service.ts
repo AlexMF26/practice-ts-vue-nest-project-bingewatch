@@ -7,7 +7,7 @@ export class AuthentificationService {
 
   private readonly logger = new Logger(AuthentificationService.name);
 
-  async loginWithCredentials(id: string) {
+  public async loginWithCredentials(id: string) {
     this.logger.log(`Creating JWT token for user "${id}".`);
     const payload = { id };
     const token = this.jwtTokenService.sign(payload);

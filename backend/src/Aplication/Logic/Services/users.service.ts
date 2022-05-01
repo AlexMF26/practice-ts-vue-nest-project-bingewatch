@@ -67,7 +67,7 @@ export class UsersService {
     }
   }
 
-  async findByEmail(email: string) {
+  private async findByEmail(email: string) {
     this.logger.log(`Finding user with email "${email}".`);
     // prepare and run the query to select the user by email and retrieve its id
     try {
@@ -89,7 +89,7 @@ export class UsersService {
     }
   }
 
-  async findById(id: string) {
+  public async findById(id: string) {
     this.logger.log(`Finding user with id "${id}".`);
     try {
       // prepare and run the query select the user by id and retrieve its data
@@ -110,7 +110,7 @@ export class UsersService {
     }
   }
 
-  async changeUserData(
+  public async changeUserData(
     id: string,
     requesterId: string,
     data: Partial<{
@@ -222,7 +222,7 @@ export class UsersService {
     }
   }
 
-  async validateCredentials(email: string, password: string) {
+  public async validateCredentials(email: string, password: string) {
     this.logger.log(`Validating credentials for user with email "${email}".`);
     let user;
     try {
@@ -256,7 +256,11 @@ export class UsersService {
     return user.id;
   }
 
-  async register(data: { password: string; email: string; name: string }) {
+  public async register(data: {
+    password: string;
+    email: string;
+    name: string;
+  }) {
     //hash the password
     const passwordHash = await this.encryptionService.hashString(data.password);
     const userData = {

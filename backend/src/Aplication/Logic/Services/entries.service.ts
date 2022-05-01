@@ -54,7 +54,7 @@ export class EntriesService {
     }
   }
 
-  async getEntryByImdbId(imdbId: string) {
+  public async getEntryByImdbId(imdbId: string) {
     // get the entry from the database
     let data;
     try {
@@ -75,7 +75,7 @@ export class EntriesService {
     return entry;
   }
 
-  async updateRating(imdbId: string) {
+  public async updateRating(imdbId: string) {
     this.logger.log(`Updating rating for entry with imdbId "${imdbId}".`);
     const entry = await this.getEntryByImdbId(imdbId);
     if (entry.rating === null) {
@@ -114,7 +114,7 @@ export class EntriesService {
     }
   }
 
-  async refresh(imdbId: string) {
+  public async refresh(imdbId: string) {
     this.logger.log(`Refreshing entry with imdbId "${imdbId}".`);
     let entry;
     try {
@@ -149,7 +149,7 @@ export class EntriesService {
     }
   }
 
-  async query(query: string, page: number) {
+  public async query(query: string, page: number) {
     this.logger.log(`Querying for "${query}" on page ${page}.`);
     const data = await this.omdbService.search(query, page);
     // if there is no data, return empty array

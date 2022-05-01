@@ -39,7 +39,7 @@ export class UsersController {
   })
   @UseInterceptors(ClassSerializerInterceptor)
   @Post()
-  async create(@Body() createUserDto: CreateUserDto) {
+  public async create(@Body() createUserDto: CreateUserDto) {
     this.logger.log(
       `An HTTP request to create a new user with email "${createUserDto.email}" was received.`,
     );
@@ -73,7 +73,7 @@ export class UsersController {
   @UseInterceptors(ClassSerializerInterceptor)
   @UseGuards(JwtGuard)
   @Patch(':id')
-  async update(
+  public async update(
     @Param('id') targetId: string,
     @Body() updateUserDto: UpdateUserDto,
     @userId() requesterId: string,
