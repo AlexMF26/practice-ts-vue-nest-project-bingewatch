@@ -18,11 +18,45 @@ export class WatchlistService {
 
   logger = new Logger(WatchlistService.name);
 
-  private async create(entryId: string, userId: string, requesterId: string) {
+  private async findItemByImdbIdForUser(imdbId: string, userId: string) {
+    this.logger.log(
+      `Getting item for entry "${imdbId}" in the watchlist of user "${userId}"`,
+    );
+    const entry = await this.entriesService.getEntryByImdbId(imdbId);
+    if (!entry) {
+      this.logger.warn(`Entry with imdbId "${imdbId}" not found`);
+      throw new Error(`Entry with imdbId "${imdbId}" not found`);
+    }
+    const user = await this.usersService.findById(userId);
+    if (!user) {
+      this.logger.warn(`User with id "${userId}" not found`);
+      throw new Error(`User with id "${userId}" not found`);
+    }
+    try {
+      const item = await this.repositoryService.watchlistItem.findFirst({
+        where: {
+          userId,
+          entryId: imdbId,
+        },
+      });
+      if (!item) {
+        this.logger.log(
+          `Item for entry "${imdbId}" in the watchlist of user "${userId}" not found`,
+        );
+        return null;
+      }
+      return item;
+    } catch (error) {
+      this.logger.error(error.message);
+      throw error;
+    }
+  }
+
+  public async create(entryId: string, userId: string, requesterId: string) {
     this.logger.log(
       `Creating item for entry "${entryId}" in the watchlist of user "${userId}"`,
     );
-    if (entryId !== requesterId) {
+    if (userId !== requesterId) {
       this.logger.error(
         `User with id "${requesterId}" tried to add entry with id "${entryId}" to the watchlist of user "${userId}"`,
       );
@@ -54,7 +88,7 @@ export class WatchlistService {
           },
         },
       });
-      return newItem;
+      return new WatchlistItemEntity(newItem);
     } catch (error) {
       this.logger.error(error.message);
       throw error;
@@ -83,40 +117,6 @@ export class WatchlistService {
         where: { id },
       });
       return new WatchlistItemEntity(deletedItem);
-    } catch (error) {
-      this.logger.error(error.message);
-      throw error;
-    }
-  }
-
-  public async findItemByImdbIdForUser(imdbId: string, userId: string) {
-    this.logger.log(
-      `Getting item for entry "${imdbId}" in the watchlist of user "${userId}"`,
-    );
-    const entry = await this.entriesService.getEntryByImdbId(imdbId);
-    if (!entry) {
-      this.logger.warn(`Entry with imdbId "${imdbId}" not found`);
-      throw new Error(`Entry with imdbId "${imdbId}" not found`);
-    }
-    const user = await this.usersService.findById(userId);
-    if (!user) {
-      this.logger.warn(`User with id "${userId}" not found`);
-      throw new Error(`User with id "${userId}" not found`);
-    }
-    try {
-      const item = await this.repositoryService.watchlistItem.findFirst({
-        where: {
-          userId,
-          entryId: imdbId,
-        },
-      });
-      if (!item) {
-        this.logger.log(
-          `Item for entry "${imdbId}" in the watchlist of user "${userId}" not found`,
-        );
-        return null;
-      }
-      return item;
     } catch (error) {
       this.logger.error(error.message);
       throw error;
