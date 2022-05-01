@@ -22,11 +22,11 @@ export class TasksService {
     //dispatch a event for each imdb id
     imdbIds.forEach(async (imdbId) => {
       this.logger.log(`Dispatching maintenance events for entry ${imdbId}`);
-      this.eventEmitter.emit(
+      await this.eventEmitter.emitAsync(
         RefreshEntryDataEvent.name,
         new RefreshEntryDataEvent(imdbId),
       );
-      this.eventEmitter.emit(
+      await this.eventEmitter.emitAsync(
         RefreshEntryRatingEvent.name,
         new RefreshEntryRatingEvent(imdbId),
       );

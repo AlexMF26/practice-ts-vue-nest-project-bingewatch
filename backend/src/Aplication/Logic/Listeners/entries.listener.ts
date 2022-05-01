@@ -14,7 +14,7 @@ export class EntriesListener {
   public async refreshRating(payload: RefreshEntryRatingEvent) {
     this.logger.log(`Received event: ${RefreshEntryRatingEvent.name}`);
     try {
-      await this.entriesService.refreshData(payload.imdbId);
+      return await this.entriesService.refreshData(payload.imdbId);
     } catch (error) {
       this.logger.error(error.message);
       throw error;
@@ -24,7 +24,7 @@ export class EntriesListener {
   @OnEvent(RefreshEntryDataEvent.name)
   public async refreshData(payload: RefreshEntryDataEvent) {
     try {
-      await this.entriesService.refreshRating(payload.imdbId);
+      return await this.entriesService.refreshRating(payload.imdbId);
     } catch (error) {
       this.logger.error(error.message);
       throw error;
