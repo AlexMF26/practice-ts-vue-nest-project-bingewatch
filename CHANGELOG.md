@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.17.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.16.0...v0.17.0) (2022-05-01)
+
+
+### Features
+
+* **backend:** :sparkles: added plot to entry ([c6d0a58](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/c6d0a582db0df8e805eac2301958ee3a4b690210))
+* **backend:** :sparkles: entry controller ([4282389](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/4282389ed69f3970094681b628f6207dee0d5e0f))
+* **backend:** :sparkles: Finished watchlist ([5bb09bc](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/5bb09bcbaf36d954761845a819c9003f457d2af4))
+* **backend:** :zap: asynchronous events ([066b016](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/066b0160cb5a1417d6cdd8b18f48d3e6df2b648f))
+* **backend:** :zap: scheduled updates ([5dbee81](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/5dbee818757c6882c2241530b09d2f0809a2bbdb))
+
+
+### Bug Fixes
+
+* **backend:** :bug: added null ratings ([7046e0b](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/7046e0beba4d9ecd1fa3287261b5f1ef8a2fc6dc))
+* **backend:** :bug: fixed type bug ([cc984dd](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/cc984dd36de405724ff48b5e118ddda081160c15))
+
 ## [0.16.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.15.0...v0.16.0) (2022-04-28)
 
 
