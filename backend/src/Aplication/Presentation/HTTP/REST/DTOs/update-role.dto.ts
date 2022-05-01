@@ -16,7 +16,7 @@ export class UpdateUserDto {
   })
   @IsString()
   @IsOptional()
-  readonly name?: string;
+  public readonly name?: string;
 
   @ApiPropertyOptional({
     description: 'The email of the user.',
@@ -30,7 +30,7 @@ export class UpdateUserDto {
   })
   @IsString()
   @IsOptional()
-  readonly email?: string;
+  public readonly email?: string;
 
   @ApiPropertyOptional({
     description: 'The role of the user.',
@@ -39,7 +39,7 @@ export class UpdateUserDto {
   })
   @IsEnum(Role)
   @IsOptional()
-  readonly role?: Role;
+  public readonly role?: Role;
 
   @ApiPropertyOptional({
     description:
@@ -65,5 +65,5 @@ export class UpdateUserDto {
   )
   @IsString()
   @IsOptional()
-  readonly password?: string;
+  public readonly password?: string;
 }

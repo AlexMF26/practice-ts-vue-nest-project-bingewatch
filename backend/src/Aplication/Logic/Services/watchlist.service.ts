@@ -10,7 +10,7 @@ import { UsersService } from './users.service';
 
 @Injectable()
 export class WatchlistService {
-  constructor(
+  public constructor(
     private readonly repositoryService: RepositoryService,
     private readonly usersService: UsersService,
     private readonly entriesService: EntriesService,

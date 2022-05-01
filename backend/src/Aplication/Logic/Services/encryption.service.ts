@@ -3,7 +3,7 @@ import { hash, compare } from 'bcrypt';
 
 @Injectable()
 export class EncryptionService {
-  private readonly logger = new Logger(EncryptionService.name);
+  public readonly logger = new Logger(EncryptionService.name);
 
   public async hashString(data: string) {
     this.logger.log('Hashing string.');

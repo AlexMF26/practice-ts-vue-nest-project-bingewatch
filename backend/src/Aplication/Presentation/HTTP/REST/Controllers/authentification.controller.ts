@@ -24,12 +24,11 @@ import { LoginDto } from '../DTOs/login.dto';
 @Controller('authentification')
 @ApiTags('authentification')
 export class AuthentificationController {
-  constructor(
+  public constructor(
     private readonly authenticationService: AuthentificationService,
     private readonly userService: UsersService,
-  ) {
-    this.logger.log('AuthentificationController has been initialized');
-  }
+  ) {}
+
   private readonly logger = new Logger(AuthentificationService.name);
 
   @Post()
@@ -75,7 +74,6 @@ export class AuthentificationController {
     this.logger.log(
       `An HTTP request to get authenticated user details was received. User id: "${id}".`,
     );
-
     try {
       const user = await this.userService.findById(id);
       return user;

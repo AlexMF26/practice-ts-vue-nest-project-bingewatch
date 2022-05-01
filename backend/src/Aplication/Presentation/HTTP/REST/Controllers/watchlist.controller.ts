@@ -23,7 +23,7 @@ import { UpdateItemDto } from '../DTOs/update-watchlist-item.dto';
 @Controller('watchlist')
 @ApiTags('watchlist')
 export class WatchlistController {
-  constructor(private readonly watchlistService: WatchlistService) {}
+  public constructor(private readonly watchlistService: WatchlistService) {}
 
   private readonly logger = new Logger(WatchlistController.name);
 
@@ -62,7 +62,6 @@ export class WatchlistController {
     this.logger.log(
       `An HTTP request to create item for entry with imdbId "${createItemDto.imdbId}" for user "${createItemDto.userId}" was received.`,
     );
-
     try {
       const watchlistItem = await this.watchlistService.create(
         createItemDto.imdbId,
@@ -96,7 +95,6 @@ export class WatchlistController {
     this.logger.log(
       `An HTTP request to delete item with id "${id}" by user "${requesterId}" was received.`,
     );
-
     try {
       const watchlistItem = await this.watchlistService.delete(id, requesterId);
       return watchlistItem;
@@ -127,7 +125,6 @@ export class WatchlistController {
     this.logger.log(
       `An HTTP request to update item with id "${id}" by user "${requesterId}" was received.`,
     );
-
     try {
       const watchlistItem = await this.watchlistService.updateItem(
         id,

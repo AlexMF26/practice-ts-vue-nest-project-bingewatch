@@ -14,7 +14,7 @@ export class CreateUserDto {
     message: 'Name is not valid',
   })
   @IsString()
-  readonly name: string;
+  public readonly name: string;
 
   @ApiProperty({
     description: 'The email of the user.',
@@ -27,7 +27,7 @@ export class CreateUserDto {
     message: 'Invalid email',
   })
   @IsString()
-  readonly email: string;
+  public readonly email: string;
 
   @ApiProperty({
     description:
@@ -52,5 +52,5 @@ export class CreateUserDto {
     },
   )
   @IsString()
-  readonly password: string;
+  public readonly password: string;
 }

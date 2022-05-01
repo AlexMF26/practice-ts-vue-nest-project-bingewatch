@@ -8,10 +8,10 @@ import { EntriesService } from '../Services/entries.service';
 export class EntriesListener {
   private readonly logger = new Logger(EntriesListener.name);
 
-  constructor(private readonly entriesService: EntriesService) {}
+  public constructor(private readonly entriesService: EntriesService) {}
 
   @OnEvent(RefreshEntryRatingEvent.name)
-  async refreshRating(payload: RefreshEntryRatingEvent) {
+  public async refreshRating(payload: RefreshEntryRatingEvent) {
     this.logger.log(`Received event: ${RefreshEntryRatingEvent.name}`);
     try {
       await this.entriesService.refreshData(payload.imdbId);
@@ -22,7 +22,7 @@ export class EntriesListener {
   }
 
   @OnEvent(RefreshEntryDataEvent.name)
-  async refreshData(payload: RefreshEntryDataEvent) {
+  public async refreshData(payload: RefreshEntryDataEvent) {
     try {
       await this.entriesService.refreshRating(payload.imdbId);
     } catch (error) {

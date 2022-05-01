@@ -7,7 +7,7 @@ import { OmdbEntry, OmdbSearchResult, OmdbSeason } from './omdb.types';
 export class OmdbService {
   private readonly logger = new Logger(OmdbService.name);
 
-  constructor(private readonly httpService: HttpService) {}
+  public constructor(private readonly httpService: HttpService) {}
 
   public async getEntry(id: string) {
     this.logger.log(`Getting entry "${id}".`);

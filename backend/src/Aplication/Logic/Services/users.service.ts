@@ -5,7 +5,7 @@ import { EncryptionService } from './encryption.service';
 
 @Injectable()
 export class UsersService {
-  constructor(
+  public constructor(
     private readonly repositoryService: RepositoryService,
     private readonly encryptionService: EncryptionService,
   ) {}

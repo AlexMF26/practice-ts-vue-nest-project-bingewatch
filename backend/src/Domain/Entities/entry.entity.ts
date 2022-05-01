@@ -1,37 +1,43 @@
 import { Entry } from '@prisma/client';
 
 export class EntryEntity implements Omit<Entry, 'seasonsData'> {
-  readonly imdbId: string;
-  readonly title: string;
-  readonly posterUrl: string;
-  readonly rating: number;
-  readonly seasons: Season[];
-  readonly plot: string;
+  public readonly imdbId: string;
+  public readonly title: string;
+  public readonly posterUrl: string;
+  public readonly rating: number;
+  public readonly seasons: Season[];
+  public readonly plot: string;
 
-  constructor(data: Entry) {
+  public constructor(data: Entry) {
     const { seasonsData, ...entry } = data;
     Object.assign(this, entry);
     this.seasons = [];
     if (seasonsData && seasonsData.length > 0) {
       seasonsData.forEach((seasonData) => {
-        this.seasons.push({ episodes: seasonData });
+        this.seasons.push(new Season(seasonData));
       });
     }
   }
 }
 
-export enum EntryType {
-  MOVIE = 'MOVIE',
-  SERIES = 'SERIES',
+export class Season {
+  public readonly episodes: number;
+
+  constructor(episodes: number) {
+    this.episodes = episodes;
+  }
 }
 
-export type Season = { episodes: number };
-
 export class EntrySearchResult {
-  readonly imdbId: string;
-  readonly title: string;
-  readonly posterUrl: string;
-  constructor(data: { imdbId: string; title: string; posterUrl: string }) {
+  public readonly imdbId: string;
+  public readonly title: string;
+  public readonly posterUrl: string;
+
+  public constructor(data: {
+    imdbId: string;
+    title: string;
+    posterUrl: string;
+  }) {
     Object.assign(this, data);
   }
 }

@@ -9,13 +9,13 @@ import { EntriesService } from './entries.service';
 export class TasksService {
   private readonly logger = new Logger(TasksService.name);
 
-  constructor(
+  public constructor(
     private eventEmitter: EventEmitter2,
     private readonly entriesService: EntriesService,
   ) {}
 
   @Cron('*/30 * * * *')
-  async refreshEntities() {
+  public async refreshEntities() {
     this.logger.log('Refreshing entries...');
     //get all the imdb ids for all entries in the database
     const imdbIds = await this.entriesService.getAllIds();

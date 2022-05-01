@@ -12,13 +12,14 @@ export class RepositoryService
   extends PrismaClient
   implements OnModuleInit, OnModuleDestroy
 {
-  logger = new Logger(RepositoryService.name);
-  async onModuleDestroy(): Promise<void> {
+  private readonly logger = new Logger(RepositoryService.name);
+
+  public async onModuleDestroy(): Promise<void> {
     this.logger.log('Disconnecting from database');
     await this.$disconnect();
   }
 
-  async onModuleInit() {
+  public async onModuleInit() {
     this.logger.log('Connecting to database');
     this.$use(async (params, next) => {
       this.logger.log(
@@ -29,7 +30,7 @@ export class RepositoryService
     await this.$connect();
   }
 
-  async enableShutdownHooks(app: INestApplication) {
+  public async enableShutdownHooks(app: INestApplication) {
     this.$on('beforeExit', async () => {
       await app.close();
     });

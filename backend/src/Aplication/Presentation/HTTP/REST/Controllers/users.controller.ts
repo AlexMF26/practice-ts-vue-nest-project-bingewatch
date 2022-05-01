@@ -29,7 +29,7 @@ import { UpdateUserDto } from '../DTOs/update-role.dto';
 @Controller('users')
 @ApiTags('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  public constructor(private readonly usersService: UsersService) {}
 
   private readonly logger = new Logger(UsersController.name);
 

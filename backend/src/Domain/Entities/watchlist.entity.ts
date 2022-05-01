@@ -3,12 +3,12 @@ import { WatchlistItem } from '@prisma/client';
 export type WatchlistEntity = WatchlistItemEntity[];
 
 export class WatchlistItemEntity implements WatchlistItem {
-  readonly id: string;
-  readonly userId: string;
-  readonly entryId: string;
-  readonly progress: number;
-  readonly rating: number | null;
-  constructor(data: WatchlistItem) {
+  public readonly id: string;
+  public readonly userId: string;
+  public readonly entryId: string;
+  public readonly progress: number;
+  public readonly rating: number | null;
+  public constructor(data: WatchlistItem) {
     Object.assign(this, data);
   }
 }

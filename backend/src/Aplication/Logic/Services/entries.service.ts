@@ -9,12 +9,12 @@ import { RepositoryService } from '../../../Infrastructure/Persistence/Repositor
 
 @Injectable()
 export class EntriesService {
-  constructor(
+  public constructor(
     private readonly repositoryService: RepositoryService,
     private readonly omdbService: OmdbService,
   ) {}
 
-  logger = new Logger(EntriesService.name);
+  private readonly logger = new Logger(EntriesService.name);
 
   private async getSeason(imdbId: string, seasonNumber: number) {
     const data = await this.omdbService.getSeason(imdbId, seasonNumber);

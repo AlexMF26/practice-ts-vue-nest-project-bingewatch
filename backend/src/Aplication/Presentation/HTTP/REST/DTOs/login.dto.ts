@@ -13,7 +13,7 @@ export class LoginDto {
     message: 'Invalid email',
   })
   @IsString()
-  readonly email: string;
+  public readonly email: string;
 
   @ApiProperty({
     description:
@@ -38,5 +38,5 @@ export class LoginDto {
     },
   )
   @IsString()
-  readonly password: string;
+  public readonly password: string;
 }

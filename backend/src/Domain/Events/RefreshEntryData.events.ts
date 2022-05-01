@@ -1,6 +1,6 @@
 export class RefreshEntryDataEvent {
-  readonly imdbId: string;
-  constructor(imdbId: string) {
+  public readonly imdbId: string;
+  public constructor(imdbId: string) {
     this.imdbId = imdbId;
   }
 }
