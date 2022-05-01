@@ -4,6 +4,8 @@ import { AppController } from '../Presentation/HTTP/REST/Controllers/app.control
 import { UsersModule } from './users.module';
 import { config } from '../config';
 import { AuthentificationModule } from './authentication.module';
+import { EntriesModule } from './entries.module';
+import { WatchlistModule } from './watchlist.module';
 
 @Module({
   imports: [
@@ -12,6 +14,8 @@ import { AuthentificationModule } from './authentication.module';
     }),
     UsersModule,
     AuthentificationModule,
+    EntriesModule,
+    WatchlistModule,
   ],
   controllers: [AppController],
 })
