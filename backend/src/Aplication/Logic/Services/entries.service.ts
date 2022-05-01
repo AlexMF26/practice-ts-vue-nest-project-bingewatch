@@ -74,15 +74,13 @@ export class EntriesService {
       const entry = await this.create(imdbId);
       return entry;
     }
-    //TODO: remove this and relay on cronjobs in the future to keep stuff up to date
-    const entry = await this.refresh(imdbId);
-    return entry;
+    return new EntryEntity(data);
   }
 
-  public async updateRating(imdbId: string) {
+  public async refreshRating(imdbId: string) {
     this.logger.log(`Updating rating for entry with imdbId "${imdbId}".`);
     const entry = await this.getEntryByImdbId(imdbId);
-    if (entry.rating === null) {
+    if (entry === null) {
       this.logger.error(`No entry with imdbId "${imdbId}".`);
       throw new Error(`No entry with imdbId "${imdbId}" was found.`);
     }
@@ -118,8 +116,8 @@ export class EntriesService {
     }
   }
 
-  public async refresh(imdbId: string) {
-    this.logger.log(`Refreshing entry with imdbId "${imdbId}".`);
+  public async refreshData(imdbId: string) {
+    this.logger.log(`Refreshing data for entry with imdbId "${imdbId}".`);
     let entry;
     try {
       entry = await this.repositoryService.entry.findUnique({
@@ -142,6 +140,7 @@ export class EntriesService {
           title: data.Title,
           posterUrl: data.Poster,
           seasonsData: seasons,
+          plot: data.Plot,
         },
         where: { imdbId },
       });
@@ -179,5 +178,14 @@ export class EntriesService {
     });
     this.logger.log(`Found "${output.length}" results.`);
     return output;
+  }
+
+  public async getAllIds() {
+    const ids = await this.repositoryService.entry.findMany({
+      select: {
+        imdbId: true,
+      },
+    });
+    return ids.map((id) => id.imdbId);
   }
 }

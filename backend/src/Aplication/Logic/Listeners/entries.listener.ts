@@ -1,0 +1,33 @@
+import { Injectable, Logger } from '@nestjs/common';
+import { OnEvent } from '@nestjs/event-emitter';
+import { RefreshEntryDataEvent } from '../../../Domain/Events/RefreshEntryData.events';
+import { RefreshEntryRatingEvent } from '../../../Domain/Events/RefreshEntryRating.event';
+import { EntriesService } from '../Services/entries.service';
+
+@Injectable()
+export class EntriesListener {
+  private readonly logger = new Logger(EntriesListener.name);
+
+  constructor(private readonly entriesService: EntriesService) {}
+
+  @OnEvent(RefreshEntryRatingEvent.name)
+  async refreshRating(payload: RefreshEntryRatingEvent) {
+    this.logger.log(`Received event: ${RefreshEntryRatingEvent.name}`);
+    try {
+      await this.entriesService.refreshData(payload.imdbId);
+    } catch (error) {
+      this.logger.error(error.message);
+      throw error;
+    }
+  }
+
+  @OnEvent(RefreshEntryDataEvent.name)
+  async refreshData(payload: RefreshEntryDataEvent) {
+    try {
+      await this.entriesService.refreshRating(payload.imdbId);
+    } catch (error) {
+      this.logger.error(error.message);
+      throw error;
+    }
+  }
+}
