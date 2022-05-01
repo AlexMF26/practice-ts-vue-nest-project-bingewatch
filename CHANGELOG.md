@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.17.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.17.0...v0.17.1) (2022-05-01)
+
+
+### Bug Fixes
+
+* **deps:** pin dependencies ([db70b90](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/db70b90bd5f30ad2e12069eed36c50f969fc21dd))
+
 ## [0.17.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.16.0...v0.17.0) (2022-05-01)
 
 
