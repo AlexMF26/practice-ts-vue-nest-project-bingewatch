@@ -35,6 +35,7 @@ model Entry {
   imdbId        String          @id
   title         String
   posterUrl     String
+  plot          String          @db.Text
   rating        Float?
   seasonsData   Int[] // will be empty for movies
 }

@@ -6,6 +6,7 @@ export class EntryEntity implements Omit<Entry, 'seasonsData'> {
   readonly posterUrl: string;
   readonly rating: number;
   readonly seasons: Season[];
+  readonly plot: string;
 
   constructor(data: Entry) {
     const { seasonsData, ...entry } = data;

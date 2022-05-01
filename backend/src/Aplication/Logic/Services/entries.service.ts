@@ -48,6 +48,7 @@ export class EntriesService {
           title: entryData.Title,
           posterUrl: entryData.Poster,
           seasonsData: seasons,
+          plot: entryData.Plot,
         },
       });
       return new EntryEntity(entry);
