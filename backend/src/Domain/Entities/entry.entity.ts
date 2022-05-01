@@ -5,13 +5,13 @@ export class EntryEntity implements Omit<Entry, 'seasonsData'> {
   readonly title: string;
   readonly posterUrl: string;
   readonly rating: number;
-  readonly seasons?: Season[];
+  readonly seasons: Season[];
 
   constructor(data: Entry) {
     const { seasonsData, ...entry } = data;
     Object.assign(this, entry);
+    this.seasons = [];
     if (seasonsData && seasonsData.length > 0) {
-      this.seasons = [];
       seasonsData.forEach((seasonData) => {
         this.seasons.push({ episodes: seasonData });
       });

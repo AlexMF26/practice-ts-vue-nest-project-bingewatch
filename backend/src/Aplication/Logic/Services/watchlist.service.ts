@@ -192,7 +192,7 @@ export class WatchlistService {
       progress: number;
     }> = {};
 
-    if (data?.rating) {
+    if (data?.rating && data.rating !== item?.rating) {
       if (
         data.rating <= 0 ||
         data.rating > 10 ||
@@ -200,14 +200,20 @@ export class WatchlistService {
       ) {
         this.logger.warn(`Rating ${data.rating} is out of range`);
         throw new Error('The given rating must be between 0 and 10');
+      } else {
+        changes.rating = data.rating;
       }
-    } else {
-      changes.rating = data.rating;
     }
     if (data?.progress) {
-      const maxProgress = item.entry.seasonsData.reduce((acc, cur) => {
-        return acc + cur;
-      }, 0);
+      let maxProgress: number;
+      const numberofSeasons = item.entry.seasonsData.length;
+      if (numberofSeasons === 0) {
+        maxProgress = 1;
+      } else {
+        maxProgress = item.entry.seasonsData.reduce((acc, cur) => {
+          return acc + cur;
+        }, 0);
+      }
       if (
         data.progress + item.progress > maxProgress ||
         data.progress + item.progress < 0

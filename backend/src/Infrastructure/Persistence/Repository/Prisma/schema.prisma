@@ -45,6 +45,6 @@ model WatchlistItem {
   id       String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   userId   String @db.Uuid
   entryId  String
-  progress Int?
+  progress Int    @default(0)
   rating   Int?
 }
