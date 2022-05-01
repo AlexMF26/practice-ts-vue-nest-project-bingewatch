@@ -1,5 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { EntryEntity } from '../../../Domain/Entities/entry.entity';
+import {
+  EntryEntity,
+  EntrySearchResult,
+} from '../../../Domain/Entities/entry.entity';
 import { OmdbService } from '../../../Infrastructure/Adapters/Omdb/omdb.service';
 import { OmdbType } from '../../../Infrastructure/Adapters/Omdb/omdb.types';
 import { RepositoryService } from '../../../Infrastructure/Persistence/Repository/repository.service';
@@ -166,12 +169,12 @@ export class EntriesService {
       (result) => result.Type !== OmdbType.Episode,
     );
     // map results to fit the needed data
-    const output = results.map((result) => {
-      return {
+    const output: EntrySearchResult[] = results.map((result) => {
+      return new EntrySearchResult({
         imdbId: result.imdbID,
         title: result.Title,
         posterUrl: result.Poster,
-      };
+      });
     });
     this.logger.log(`Found "${output.length}" results.`);
     return output;

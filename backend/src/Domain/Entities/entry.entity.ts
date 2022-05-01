@@ -24,4 +24,13 @@ export enum EntryType {
   SERIES = 'SERIES',
 }
 
-type Season = { episodes: number };
+export type Season = { episodes: number };
+
+export class EntrySearchResult {
+  readonly imdbId: string;
+  readonly title: string;
+  readonly posterUrl: string;
+  constructor(data: { imdbId: string; title: string; posterUrl: string }) {
+    Object.assign(this, data);
+  }
+}
