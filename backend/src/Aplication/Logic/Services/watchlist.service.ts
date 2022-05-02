@@ -226,6 +226,7 @@ export class WatchlistService {
     }
     if (Object.keys(changes).length === 0) {
       this.logger.warn(`No changes to update ${id}.`);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { entry, ...unchangedItem } = item;
       return new WatchlistItemEntity(unchangedItem);
     }
