@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.17.1...v0.18.0) (2022-05-02)
+
+
+### Features
+
+* **backend:** :sparkles: Added default admin possibility ([441886d](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/441886d58291b3ee7a55b8666a3922ee08badd37))
+
 ### [0.17.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.17.0...v0.17.1) (2022-05-01)
 
 
