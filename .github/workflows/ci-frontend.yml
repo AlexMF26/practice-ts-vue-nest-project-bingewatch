@@ -32,6 +32,18 @@ jobs:
       - name: Build frontend
         run: npm run build
         working-directory: ./frontend
+      - name: Prepare api
+        run: |
+          mv example.env .env
+          sed -i 's/database/localhost/g' .env
+          sed -i 's/OMDB_apikey=""/OMDB_apikey="${{ secrets.OMDB_APIKEY }}"/g' .env
+          sed -i 's/DEFAULT_ADMIN_NAME=""/DEFAULT_ADMIN_NAME="${{ secrets.ADMIN_NAME }}"/g' .env
+          sed -i 's/DEFAULT_ADMIN_PASSWORD=""/DEFAULT_ADMIN_PASSWORD="${{ secrets.ADMIN_PASSWORD }}"/g' .env
+          sed -i 's/DEFAULT_ADMIN_EMAIL=""/DEFAULT_ADMIN_EMAIL="${{ secrets.ADMIN_EMAIL }}"/g' .env
+          npm i
+        working-directory: ./backend
       - name: Test frontend
-        run: (npm run start&) && npm run test
+        run: |
+          cd ../backend/ && docker-compose up -d database && (npm run start:development&)
+          cd ../frontend/ && (npm run start&) && npm run test
         working-directory: ./frontend
