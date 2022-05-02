@@ -25,6 +25,9 @@ jobs:
           mv example.env .env
           sed -i 's/database/localhost/g' .env
           sed -i 's/OMDB_apikey=""/OMDB_apikey="${{ secrets.OMDB_APIKEY }}"/g' .env
+          sed -i 's/DEFAULT_ADMIN_NAME=""/DEFAULT_ADMIN_NAME="${{ secrets.ADMIN_NAME }}"/g' .env
+          sed -i 's/DEFAULT_ADMIN_PASSWORD=""/DEFAULT_ADMIN_PASSWORD="${{ secrets.ADMIN_PASSWORD }}"/g' .env
+          sed -i 's/DEFAULT_ADMIN_EMAIL=""/DEFAULT_ADMIN_EMAIL="${{ secrets.ADMIN_EMAIL }}"/g' .env
         working-directory: ./backend
       - name: Install backend dependencies
         run: npm i

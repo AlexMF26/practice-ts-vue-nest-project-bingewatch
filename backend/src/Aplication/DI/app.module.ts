@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from '../Presentation/HTTP/REST/Controllers/app.controller';
 import { UsersModule } from './users.module';
 import { config } from '../config';
@@ -9,6 +9,7 @@ import { WatchlistModule } from './watchlist.module';
 import { TasksModule } from './tasks.module';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
+import { UsersService } from '../Logic/Services/users.service';
 
 @Module({
   imports: [
@@ -25,4 +26,22 @@ import { ScheduleModule } from '@nestjs/schedule';
   ],
   controllers: [AppController],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly configService: ConfigService,
+  ) {}
+
+  async onModuleInit() {
+    const defAdminName = this.configService.get<string>('DEFAULT_ADMIN_NAME');
+    const defAdminPass = this.configService.get<string>(
+      'DEFAULT_ADMIN_PASSWORD',
+    );
+    const defAdminEmail = this.configService.get<string>('DEFAULT_ADMIN_EMAIL');
+    return await this.usersService.defaultAdminInit({
+      password: defAdminPass,
+      email: defAdminEmail,
+      name: defAdminName,
+    });
+  }
+}

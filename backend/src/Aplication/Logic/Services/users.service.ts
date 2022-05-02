@@ -272,4 +272,36 @@ export class UsersService {
     this.logger.log(`User "${user.id}" was registered.`);
     return user;
   }
+
+  public async defaultAdminInit(data: {
+    password: string;
+    email: string;
+    name: string;
+  }) {
+    this.logger.log(`Adding default admin: "${data.name}".`);
+    const passwordHash = await this.encryptionService.hashString(data.password);
+    const existentUser = await this.findByEmail(data.email);
+    // if the doesn't already exists user already exists
+    if (!existentUser) {
+      try {
+        const user = await this.repositoryService.user.create({
+          data: {
+            role: Role.ADMIN,
+            passwordHash,
+            email: data.email,
+            name: data.name,
+          },
+        });
+        this.logger.log(`Default admin "${data.name}" was added.`);
+        return new UserEntity(user);
+      } catch (error) {
+        this.logger.error(error.message);
+        throw error;
+      }
+    } else {
+      this.logger.log(`Default admin "${data.name}" already exists.`);
+      const user = await this.findById(existentUser);
+      return new UserEntity(user);
+    }
+  }
 }
