@@ -13,7 +13,7 @@
     "start:production": "prisma migrate deploy && NODE_ENV=production node dist/main",
     "migration": "prisma migrate dev --create-only",
     "lint": "eslint \"src/**/*.ts\" --fix",
-    "test": "jest",
+    "test": "jest --forceExit",
     "test:cov": "jest --coverage"
   },
   "dependencies": {

@@ -44,4 +44,5 @@ jobs:
           npx prisma migrate deploy
           npx prisma generate
           npm run test
+          docker-compose stop
         working-directory: ./backend
