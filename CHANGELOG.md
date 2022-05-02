@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.18.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.18.0...v0.18.1) (2022-05-02)
+
+
+### Bug Fixes
+
+* **backend:** :sparkles: tests should run with a reseted db ([5d5641b](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/5d5641b18c7792f14767058983e2ca6a249fac0c))
+
 ## [0.18.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.17.1...v0.18.0) (2022-05-02)
 
 
