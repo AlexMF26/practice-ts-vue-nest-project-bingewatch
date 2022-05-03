@@ -4,10 +4,12 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { RepositoryService } from '../Infrastructure/Persistence/Repository/repository.service';
 import { AppModule } from './DI/app.module';
+import * as cookieParser from 'cookie-parser';
 
 export async function bootstrap() {
   const app = await init();
   await addPrismaHooks(app);
+  addMiddleware(app);
   addSwagger(app);
   addGlobalPipes(app);
   await start(app);
@@ -70,4 +72,10 @@ function addGlobalPipes(app: INestApplication) {
 function addValidationPipe(app: INestApplication) {
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
   return app;
+}
+function addMiddleware(app: INestApplication) {
+  addCookiesMiddleware(app);
+}
+function addCookiesMiddleware(app: INestApplication) {
+  app.use(cookieParser());
 }

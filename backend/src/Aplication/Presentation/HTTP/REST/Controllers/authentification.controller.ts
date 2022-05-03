@@ -8,11 +8,13 @@ import {
   Logger,
   NotFoundException,
   Post,
+  Res,
   ServiceUnavailableException,
   UnauthorizedException,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
+import { Response } from 'express';
 import { ApiCookieAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { SerializedUserEntity } from '../../../../../Domain/Entities/user.entity';
 import { AuthentificationService } from '../../../../Logic/Services/authentication.service';
@@ -32,7 +34,10 @@ export class AuthentificationController {
   private readonly logger = new Logger(AuthentificationService.name);
 
   @Post()
-  public async loginWithCredentials(@Body() loginDto: LoginDto) {
+  public async loginWithCredentials(
+    @Body() loginDto: LoginDto,
+    @Res({ passthrough: true }) response: Response,
+  ) {
     this.logger.log(
       `An HTTP request to login with email "${loginDto.email}" was received.`,
     );
@@ -62,6 +67,7 @@ export class AuthentificationController {
     const answear = await this.authenticationService.loginWithCredentials(
       validUser,
     );
+    response.cookie('Authentication', answear.accessToken);
     return answear;
   }
 
