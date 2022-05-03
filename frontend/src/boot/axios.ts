@@ -34,14 +34,13 @@ export default boot(({ app, store }) => {
 
   api.interceptors.response.use(
     (response) => {
-      useAlertStore().addAlert(response?.statusText, AlertType.Success, 1000);
       return response;
     },
     (error) => {
       useAlertStore().addAlert(
         error?.response?.data?.message,
         AlertType.Error,
-        10000
+        6000
       );
       return error;
     }

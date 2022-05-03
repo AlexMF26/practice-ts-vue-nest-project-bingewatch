@@ -6,6 +6,8 @@ import {
 } from '../api/interface';
 import jwt_decode from 'jwt-decode';
 import { api } from '../boot/axios';
+import { useAlertStore } from './alert.store';
+import { AlertType } from '../types/Alert';
 
 export type AuthState = {
   loggedIn: boolean;
@@ -52,9 +54,11 @@ export const useAuthStore = defineStore('auth', {
       this.email = userDetailsData.email;
     },
     async login(loginInfo: LoginDto) {
+      const alertStore = useAlertStore();
       await this.getToken(loginInfo);
       await this.getDetails();
       this.loggedIn = true;
+      alertStore.addAlert('You are now logged in', AlertType.Success, 2000);
     },
   },
 });
