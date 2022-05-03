@@ -1,5 +1,7 @@
 import { boot } from 'quasar/wrappers';
 import axios, { AxiosInstance } from 'axios';
+import { useAlertStore } from '../stores/alert.store';
+import { AlertType } from '../types/Alert';
 
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
@@ -18,7 +20,8 @@ const api = axios.create({
   withCredentials: true,
 });
 
-export default boot(({ app }) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export default boot(({ app, store }) => {
   // for use inside Vue files (Options API) through this.$axios and this.$api
 
   app.config.globalProperties.$axios = axios;
@@ -28,6 +31,21 @@ export default boot(({ app }) => {
   app.config.globalProperties.$api = api;
   // ^ ^ ^ this will allow you to use this.$api (for Vue Options API form)
   //       so you can easily perform requests against your app's API
+
+  api.interceptors.response.use(
+    (response) => {
+      useAlertStore().addAlert(response?.statusText, AlertType.Success, 1000);
+      return response;
+    },
+    (error) => {
+      useAlertStore().addAlert(
+        error?.response?.data?.message,
+        AlertType.Error,
+        10000
+      );
+      return error;
+    }
+  );
 });
 
 export { api };
