@@ -7,15 +7,25 @@ import {
 import jwt_decode from 'jwt-decode';
 import { api } from '../boot/axios';
 
+export type AuthState = {
+  loggedIn: boolean;
+  isAdmin: boolean;
+  expiration: number;
+  userId: string;
+  email: string;
+  userName: string;
+};
+
 export const useAuthStore = defineStore('auth', {
-  state: () => ({
-    loggedIn: false,
-    isAdmin: false,
-    expiration: 0,
-    userId: '',
-    userName: '',
-    email: '',
-  }),
+  state: () =>
+    ({
+      loggedIn: false,
+      isAdmin: false,
+      expiration: 0,
+      userId: '',
+      userName: '',
+      email: '',
+    } as AuthState),
 
   actions: {
     async getToken(loginInfo: LoginDto) {
