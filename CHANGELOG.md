@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.19.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.18.1...v0.19.0) (2022-05-03)
+
+
+### Features
+
+* **backend:** :sparkles: added api interface types ([a7cbc2c](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/a7cbc2cb948cb756fb99850dbcec6ed7165ee1c0))
+* **backend:** :sparkles: return authorization cookie ([563bc77](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/563bc77d5c5a7a409b0f5768b7c78ed6eb7f11d2))
+* **frontend:** :sparkles: access dev api ([028de5f](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/028de5f497fa8645e6b291e5d365dda725dae0f2))
+* **frontend:** :sparkles: added alert store and intercept axios errors ([15b11b4](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/15b11b47e1c5e0e0f193e1b32e78ddc2bda11019))
+* **frontend:** :sparkles: added alerts ([868d113](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/868d1133339561744fac00c32be3b5aab7108d27))
+* **frontend:** :sparkles: auth store ([b258c0b](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/b258c0bea460143e7adcbeae8e5bf8bf388793ce))
+
+
+### Bug Fixes
+
+* **backend:** :sparkles: added authentication response class for swagger ([3553cf6](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/3553cf6db361d35a0877340e21718b9c6efa95ef))
+* **deps:** pin dependencies ([6e7bb99](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/6e7bb99a4042ac97bfffb55831d2e7fb7edc0cfd))
+* **frontend:** :fire: removed unnecesary stuff ([5feb366](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/5feb366f9feccf18a8f0a50e1159292c77e0e25a))
+* **frontend:** :memo: added types ([b70a953](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/b70a95391e76055f129eee2c92f31eda625b194c))
+
 ### [0.18.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.18.0...v0.18.1) (2022-05-02)
 
 
