@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { BearerTokenEntity } from '../../../Domain/Entities/authentification.entity';
 
 @Injectable()
 export class AuthentificationService {
@@ -12,9 +13,7 @@ export class AuthentificationService {
     const payload = { id };
     const token = this.jwtTokenService.sign(payload);
     this.logger.log(`JWT token created for user "${id}".`);
-    return {
-      accessToken: token,
-      tokenType: 'Bearer',
-    };
+    const response = new BearerTokenEntity(token);
+    return response;
   }
 }

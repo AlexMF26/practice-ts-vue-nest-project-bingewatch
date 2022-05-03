@@ -59,7 +59,10 @@ export class AuthentificationController {
     if (!validUser) {
       throw new ForbiddenException('Wrong name or password.');
     }
-    return this.authenticationService.loginWithCredentials(validUser);
+    const answear = await this.authenticationService.loginWithCredentials(
+      validUser,
+    );
+    return answear;
   }
 
   @ApiCookieAuth('Authentication')
