@@ -11,7 +11,8 @@
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "start": "quasar dev",
     "build": "quasar build",
-    "test": "cypress install && cypress run"
+    "test": "cypress install && cypress run",
+    "update-api-interface": "swagger-typescript-api -p http://localhost:3000/api-json -o ./src/api/ -n interface.ts -r --no-client"
   },
   "dependencies": {
     "@quasar/extras": "1.13.6",
@@ -34,6 +35,7 @@
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-vue": "8.7.1",
     "prettier": "2.6.2",
+    "swagger-typescript-api": "^9.3.1",
     "typescript": "4.6.4"
   },
   "engines": {

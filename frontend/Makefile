@@ -11,3 +11,7 @@ test:
 	UID=$(shell id -u) docker-compose up -d
 	docker compose exec app npm run test
 	docker-compose stop
+
+.PHONY: update-api-interface
+update-api-interface:
+	npm run update-api-interface
