@@ -11,3 +11,17 @@ services:
     ports:
       # app port
       - 9000:9000
+
+  backend:
+    extends:
+      file: ../backend/docker-compose.yml
+      service: api
+
+  database:
+    extends:
+      file: ../backend/docker-compose.yml
+      service: database
+
+volumes:
+  postgres:
+    name: database
