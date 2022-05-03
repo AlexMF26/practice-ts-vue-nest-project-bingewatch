@@ -11,6 +11,7 @@ export const useAlertStore = defineStore('alert', {
     ({
       alerts: [],
     } as AlertState),
+
   actions: {
     addAlert(message: string, type: AlertType, timeout: number) {
       const id = uuidv4();
@@ -23,6 +24,7 @@ export const useAlertStore = defineStore('alert', {
         this.removeAlert(id);
       }, timeout);
     },
+
     removeAlert(id: string) {
       this.alerts = this.alerts.filter((alert) => alert.id !== id);
     },

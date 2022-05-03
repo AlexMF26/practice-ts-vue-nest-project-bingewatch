@@ -43,6 +43,7 @@ export const useAuthStore = defineStore('auth', {
       } = jwt_decode(loginData.accessToken);
       this.expiration = jwtDecode.exp;
     },
+
     async getDetails() {
       const userDetailsResponse = await api.get<SerializedUserEntity>(
         '/authentification/details'
@@ -53,6 +54,7 @@ export const useAuthStore = defineStore('auth', {
       this.isAdmin = userDetailsData.role === 'ADMIN';
       this.email = userDetailsData.email;
     },
+
     async login(loginInfo: LoginDto) {
       const alertStore = useAlertStore();
       await this.getToken(loginInfo);
