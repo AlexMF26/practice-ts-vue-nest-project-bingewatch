@@ -6,7 +6,7 @@
       <q-toolbar-title shrink>
         Bingewatch
         <q-avatar>
-          <img src="logo.svg" />
+          <img src="~assets/logo.svg" />
         </q-avatar>
       </q-toolbar-title>
     </q-toolbar>
