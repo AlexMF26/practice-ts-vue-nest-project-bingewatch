@@ -11,7 +11,7 @@
       </q-toolbar-title>
     </q-toolbar>
   </q-header>
-  <q-drawer show-if-above v-model="rightDrawerOpen" side="left" bordered>
+  <q-drawer v-model="rightDrawerOpen" side="left" bordered elevated>
     <q-list dense> </q-list>
   </q-drawer>
 </template>
