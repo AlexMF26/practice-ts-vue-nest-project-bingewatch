@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.20.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.19.0...v0.20.0) (2022-05-04)
+
+
+### Features
+
+* **frontend:** :sparkles: added routing ([16a1ca0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/16a1ca076ab6dd38aa15d49f00d6e7199464b2bb))
+* **frontend:** :sparkles: finished store ([d5256e6](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/d5256e67f14c9b4e356ce0c89f6989bde5391caf))
+
+
+### Bug Fixes
+
+* **frontend:** :fire: removed i18n vite plugin ([7577288](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/75772882d27259c5cc14be123e685044ba8ade2f))
+* **frontend:** :green_heart: added logo to assets so it can be resolved when building ([b229b99](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/b229b9907aad6614f26627bd3991c5d9597cb3a3))
+
 ## [0.19.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.18.1...v0.19.0) (2022-05-03)
 
 
