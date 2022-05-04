@@ -73,18 +73,7 @@ module.exports = configure(function (/* ctx */) {
       // extendViteConf (viteConf) {},
       // viteVuePluginOptions: {},
 
-      vitePlugins: [
-        [
-          '@intlify/vite-plugin-vue-i18n',
-          {
-            // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
-            // compositionOnly: false,
-
-            // you need to set i18n resource including paths !
-            include: path.resolve(__dirname, './src/i18n/**'),
-          },
-        ],
-      ],
+      vitePlugins: [],
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
