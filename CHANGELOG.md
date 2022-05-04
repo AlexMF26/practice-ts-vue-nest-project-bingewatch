@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.20.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.20.0...v0.20.1) (2022-05-04)
+
+
+### Bug Fixes
+
+* **deps:** update dependency vue-router to v4.0.15 ([a765bc6](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/a765bc626d07a67ee86b15eeadd7e76c048df7e9))
+
 ## [0.20.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.19.0...v0.20.0) (2022-05-04)
 
 
