@@ -6,6 +6,29 @@ const routes: RouteRecordRaw[] = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('src/pages/LandingPage.vue') },
+      {
+        path: '/entry/:id',
+        component: () => import('src/pages/EntryPage.vue'),
+        props: (route) => ({ id: route.params.id }),
+      },
+      {
+        path: '/watchlist/:id',
+        component: () => import('src/pages/WatchlistPage.vue'),
+        props: (route) => ({ id: route.params.id }),
+      },
+      {
+        path: '/login',
+        component: () => import('src/pages/LoginPage.vue'),
+      },
+      {
+        path: '/register',
+        component: () => import('src/pages/RegisterPage.vue'),
+      },
+      {
+        path: '/user/:id',
+        component: () => import('src/pages/UserPage.vue'),
+        props: (route) => ({ id: route.params.id }),
+      },
     ],
   },
 
