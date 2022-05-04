@@ -1,4 +1,4 @@
-FROM node:18.0.0 AS development-stage
+FROM node:18.1.0 AS development-stage
 
 USER node
 # Default uid is 1000 
@@ -12,7 +12,7 @@ EXPOSE 9000
 ENTRYPOINT ["npm","run", "start:development"]
 
 
-FROM node:18.0.0 as build-stage
+FROM node:18.1.0 as build-stage
 
 WORKDIR /api
 
@@ -23,7 +23,7 @@ COPY ./ ./
 RUN npm run build
 
 
-FROM node:18.0.0 AS production-stage
+FROM node:18.1.0 AS production-stage
 
 RUN npm install -g prisma
 
