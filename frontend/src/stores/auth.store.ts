@@ -62,5 +62,20 @@ export const useAuthStore = defineStore('auth', {
       this.loggedIn = true;
       alertStore.addAlert('You are now logged in', AlertType.Success, 2000);
     },
+    logout() {
+      this.$state = {
+        loggedIn: false,
+        isAdmin: false,
+        expiration: 0,
+        userId: '',
+        userName: '',
+        email: '',
+      };
+    },
+    expirationCheck() {
+      if (this.expiration < Date.now()) {
+        this.logout();
+      }
+    },
   },
 });
