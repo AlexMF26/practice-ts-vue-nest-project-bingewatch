@@ -1,9 +1,9 @@
 <template>
   <q-card
     v-for="(alert, index) in alerts"
-    :key="alert"
+    :key="alert.id"
     class="alert-card shadow-2"
-    v-bind:style="{ 'margin-top': 8 + index * 8 + 'rem' }"
+    v-bind:style="{ 'margin-top': 1 + index * 5 + 'rem' }"
   >
     <div class="q-pa-md q-pr-xs row">
       <q-icon
