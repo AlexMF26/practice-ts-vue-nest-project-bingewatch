@@ -1,4 +1,4 @@
-FROM node:18.0.0 AS development-stage
+FROM node:18.1.0 AS development-stage
 
 RUN apt-get update && apt-get install --no-install-recommends -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
 
@@ -12,7 +12,7 @@ EXPOSE 9000
 ENTRYPOINT ["npm","run", "start"]
 
 
-FROM node:18.0.0 as build-stage
+FROM node:18.1.0 as build-stage
 
 WORKDIR /app
 
