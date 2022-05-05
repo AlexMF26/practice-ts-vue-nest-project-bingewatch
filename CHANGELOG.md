@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.24.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.23.0...v0.24.0) (2022-05-05)
+
+
+### Features
+
+* **frontend:** :sparkles: added guard on user settings ([cc2c2f8](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/cc2c2f86696dc5767cd179d54b99012d65bd5558))
+* **frontend:** :sparkles: added guards ([877c4d7](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/877c4d76f7af4e8c0340d0174ba2be593439d1a3))
+* **frontend:** :sparkles: implemented account settings ([ec13931](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/ec13931fb26e5e2151925358ac53691cba5df634))
+
+
+### Bug Fixes
+
+* **backend:** :sparkles: fixed bug in update workflow ([2c1337f](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/2c1337f33ddefcdcbc7fdb57f455f34f0fe036bf))
+
 ## [0.23.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.22.2...v0.23.0) (2022-05-05)
 
 
