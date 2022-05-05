@@ -73,9 +73,11 @@ export const useUserStore = defineStore('user', {
       };
     },
     expirationCheck() {
-      if (this.expiration < Date.now()) {
+      if (this.loggedIn && this.expiration < Date.now()) {
         this.logout();
+        return true;
       }
+      return false;
     },
   },
 });
