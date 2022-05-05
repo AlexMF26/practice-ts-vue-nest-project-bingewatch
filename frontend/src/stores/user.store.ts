@@ -18,7 +18,7 @@ export type AuthState = {
   userName: string;
 };
 
-export const useAuthStore = defineStore('auth', {
+export const useUserStore = defineStore('user', {
   state: () =>
     ({
       loggedIn: false,
