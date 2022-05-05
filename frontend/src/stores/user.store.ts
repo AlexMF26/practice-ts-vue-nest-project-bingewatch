@@ -31,6 +31,8 @@ export const useUserStore = defineStore('user', {
       email: '',
     } as AuthState),
 
+  persist: true,
+
   actions: {
     logout() {
       this.$state = {
