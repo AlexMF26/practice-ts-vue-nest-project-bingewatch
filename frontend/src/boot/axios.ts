@@ -58,7 +58,7 @@ export default boot(({ app, store }) => {
           message.charAt(message.length - 1) === '.' ? message : message + '.';
         useAlertStore(store).addAlert(message, AlertType.Error, 6000);
       }
-      return error;
+      return Promise.reject(error);
     }
   );
 });
