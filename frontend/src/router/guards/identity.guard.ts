@@ -9,7 +9,7 @@ export function identityGuard(
   const store = useUserStore();
   if (!store.loggedIn) {
     next('/login');
-  } else if (to.params.id === store.userId) {
+  } else if (to.params.id === store.userId || store.isAdmin) {
     next();
   } else {
     next('/unauthorized');
