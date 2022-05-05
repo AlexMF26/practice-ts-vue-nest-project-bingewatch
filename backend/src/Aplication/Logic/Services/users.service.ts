@@ -1,19 +1,25 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Role, UserEntity } from '../../../Domain/Entities/user.entity';
 import { RepositoryService } from '../../../Infrastructure/Persistence/Repository/repository.service';
-import { EncryptionService } from './encryption.service';
+import { SecurityService } from './security.service';
 
 @Injectable()
 export class UsersService {
   public constructor(
     private readonly repositoryService: RepositoryService,
-    private readonly encryptionService: EncryptionService,
+    private readonly encryptionService: SecurityService,
   ) {}
 
   private readonly logger = new Logger(UsersService.name);
 
   private async isAdmin(id: string) {
     this.logger.log(`Checking if user with id "${id}" is admin.`);
+    // check if the id is valid
+    const validId = await this.encryptionService.checkValidUUID(id);
+    if (!validId) {
+      this.logger.warn(`Invalid id "${id}".`);
+      throw new Error('The given id is not valid.');
+    }
     let user;
     try {
       //prepare and run the query to select the user by id and retrieve its role
@@ -91,6 +97,12 @@ export class UsersService {
 
   public async findById(id: string) {
     this.logger.log(`Finding user with id "${id}".`);
+    // check if the id is valid
+    const validId = await this.encryptionService.checkValidUUID(id);
+    if (!validId) {
+      this.logger.warn(`Invalid id "${id}".`);
+      throw new Error('The given id is not valid.');
+    }
     try {
       // prepare and run the query select the user by id and retrieve its data
       const user = await this.repositoryService.user.findUnique({

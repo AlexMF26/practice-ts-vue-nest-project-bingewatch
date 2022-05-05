@@ -17,21 +17,21 @@ import {
 import { Response } from 'express';
 import { ApiCookieAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { SerializedUserEntity } from '../../../../../Domain/Entities/user.entity';
-import { AuthentificationService } from '../../../../Logic/Services/authentication.service';
 import { UsersService } from '../../../../Logic/Services/users.service';
 import { userId } from '../../Decorators/userId.decorator';
 import { JwtGuard } from '../../Guards/jwt.guard';
 import { LoginDto } from '../DTOs/login.dto';
+import { SecurityService } from '../../../../Logic/Services/security.service';
 
 @Controller('authentification')
 @ApiTags('authentification')
 export class AuthentificationController {
   public constructor(
-    private readonly authenticationService: AuthentificationService,
+    private readonly encryptionService: SecurityService,
     private readonly userService: UsersService,
   ) {}
 
-  private readonly logger = new Logger(AuthentificationService.name);
+  private readonly logger = new Logger(AuthentificationController.name);
 
   @Post()
   public async loginWithCredentials(
@@ -64,9 +64,7 @@ export class AuthentificationController {
     if (!validUser) {
       throw new ForbiddenException('Wrong name or password.');
     }
-    const answear = await this.authenticationService.loginWithCredentials(
-      validUser,
-    );
+    const answear = await this.encryptionService.createJwtFromId(validUser);
     response.cookie('Authentication', answear.accessToken);
     return answear;
   }
