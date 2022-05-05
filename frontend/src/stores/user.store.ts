@@ -120,5 +120,12 @@ export const useUserStore = defineStore('user', {
       useAlertStore().addAlert('Update successful.', AlertType.Success, 2000);
       return updateData;
     },
+
+    async getUser(id: string) {
+      const userResponse = await api.get<SerializedUserEntity>('/users/' + id);
+      const userData = userResponse.data;
+      useAlertStore().addAlert('Fetched user.', AlertType.Success, 2000);
+      return userData;
+    },
   },
 });
