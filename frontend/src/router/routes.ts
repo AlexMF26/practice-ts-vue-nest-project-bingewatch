@@ -1,5 +1,6 @@
 import { RouteRecordRaw } from 'vue-router';
-import { useUserStore } from '../stores/user.store';
+import { identityGuard } from './guards/identity.guard';
+import { loggedOutOnlyGuard } from './guards/loggedOutOnly.guard';
 
 const routes: RouteRecordRaw[] = [
   {
@@ -15,27 +16,20 @@ const routes: RouteRecordRaw[] = [
         path: '/login',
         component: () => import('src/pages/LoginPage.vue'),
         name: 'login',
+        beforeEnter: [loggedOutOnlyGuard],
       },
       {
         path: '/register',
         component: () => import('src/pages/RegisterPage.vue'),
         name: 'register',
+        beforeEnter: [loggedOutOnlyGuard],
       },
       {
         path: '/user/:id',
         component: () => import('src/pages/UserPage.vue'),
         props: (route) => ({ id: route.params.id }),
         name: 'user',
-        beforeEnter: (to, _from, next) => {
-          const store = useUserStore();
-          if (!store.loggedIn) {
-            next('/login');
-          } else if (to.params.id === store.userId) {
-            next();
-          } else {
-            next('/unauthorized');
-          }
-        },
+        beforeEnter: [identityGuard],
       },
       {
         path: '/entry/:id',

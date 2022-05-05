@@ -5,9 +5,8 @@ import {
   createWebHashHistory,
   createWebHistory,
 } from 'vue-router';
-import { useUserStore } from '../stores/user.store';
-
 import routes from './routes';
+import { expirationGuard } from './guards/expiration.guard';
 
 /*
  * If not building with SSR mode, you can
@@ -18,6 +17,7 @@ import routes from './routes';
  * with the Router instance.
  */
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default route(function ({ store /* , ssrContext */ }) {
   const createHistory = process.env.SERVER
     ? createMemoryHistory
@@ -35,13 +35,7 @@ export default route(function ({ store /* , ssrContext */ }) {
     history: createHistory(process.env.VUE_ROUTER_BASE),
   });
 
-  Router.beforeEach((_to, _from, next) => {
-    const userStore = useUserStore(store);
-    if (userStore.expirationCheck()) {
-      next('/login');
-    }
-    next();
-  });
+  Router.beforeEach(expirationGuard);
 
   return Router;
 });
