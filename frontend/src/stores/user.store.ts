@@ -1,8 +1,10 @@
 import { defineStore } from 'pinia';
 import {
   BearerTokenEntity,
+  CreateUserDto,
   LoginDto,
   SerializedUserEntity,
+  UpdateUserDto,
 } from '../api/interface';
 import jwt_decode from 'jwt-decode';
 import { api } from '../boot/axios';
@@ -30,6 +32,32 @@ export const useUserStore = defineStore('user', {
     } as AuthState),
 
   actions: {
+    logout() {
+      this.$state = {
+        loggedIn: false,
+        isAdmin: false,
+        expiration: 0,
+        userId: '',
+        userName: '',
+        email: '',
+      };
+    },
+
+    expirationCheck() {
+      if (this.loggedIn && this.expiration < Date.now()) {
+        this.logout();
+        return true;
+      }
+      return false;
+    },
+
+    canModify(resourceOwnerId: string) {
+      if (this.loggedIn && this.userId === resourceOwnerId) {
+        return true;
+      }
+      return false;
+    },
+
     async getToken(loginInfo: LoginDto) {
       const loginResponse = await api.post<BearerTokenEntity>(
         '/authentification',
@@ -62,22 +90,23 @@ export const useUserStore = defineStore('user', {
       this.loggedIn = true;
       alertStore.addAlert('You are now logged in', AlertType.Success, 2000);
     },
-    logout() {
-      this.$state = {
-        loggedIn: false,
-        isAdmin: false,
-        expiration: 0,
-        userId: '',
-        userName: '',
-        email: '',
-      };
+
+    async register(registerInfo: CreateUserDto) {
+      const registerResponse = await api.post<SerializedUserEntity>(
+        '/users',
+        registerInfo
+      );
+      const registerData = registerResponse.data;
+      return registerData;
     },
-    expirationCheck() {
-      if (this.loggedIn && this.expiration < Date.now()) {
-        this.logout();
-        return true;
-      }
-      return false;
+
+    async update(updateInfo: UpdateUserDto) {
+      const updateResponse = await api.put<SerializedUserEntity>(
+        '/users',
+        updateInfo
+      );
+      const updateData = updateResponse.data;
+      return updateData;
     },
   },
 });
