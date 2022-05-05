@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.22.2](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.22.1...v0.22.2) (2022-05-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @nestjs/event-emitter to v1.1.1 ([b287110](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/b287110b7a373cc5bc0c4326aa827e15980b1df3))
+
 ### [0.22.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.22.0...v0.22.1) (2022-05-05)
 
 
