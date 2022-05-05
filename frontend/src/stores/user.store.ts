@@ -5,7 +5,7 @@ import {
   LoginDto,
   SerializedUserEntity,
   UpdateUserDto,
-} from '../api/interface';
+} from '../types/api/interface';
 import jwt_decode from 'jwt-decode';
 import { api } from '../boot/axios';
 import { useAlertStore } from './alert.store';
