@@ -44,7 +44,7 @@ export const useUserStore = defineStore('user', {
     },
 
     expirationCheck() {
-      if (this.loggedIn && this.expiration < Date.now()) {
+      if (this.loggedIn && this.expiration < Math.round(Date.now() / 1000)) {
         this.logout();
         return true;
       }
@@ -89,6 +89,7 @@ export const useUserStore = defineStore('user', {
       await this.getDetails();
       this.loggedIn = true;
       alertStore.addAlert('You are now logged in', AlertType.Success, 2000);
+      console.log(this.expiration);
     },
 
     async register(registerInfo: CreateUserDto) {
