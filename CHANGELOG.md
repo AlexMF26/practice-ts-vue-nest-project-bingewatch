@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.25.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.24.0...v0.25.0) (2022-05-05)
+
+
+### Features
+
+* **backend:** :sparkles: added new api route to get watchlist item by userId and imdbId ([20b6044](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/20b60449c05b72ce163f8be7cf50a9c37749ba74))
+* **frontend:** :zap: added debounce ([4cb0037](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/4cb00372d91c88525acd7578afc936e94cbbf916))
+
+
+### Bug Fixes
+
+* **frontend:** :memo: added alerts ([7d8a817](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/7d8a817da9a574d64ab7dd8b070e4708bf5ac382))
+
 ## [0.24.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.23.0...v0.24.0) (2022-05-05)
 
 
