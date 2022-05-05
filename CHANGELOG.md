@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.22.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.21.0...v0.22.0) (2022-05-05)
+
+
+### Features
+
+* **frontend:** :sparkles: add login page ([697375d](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/697375d76bb933148b5c9fa7d36edb0eba8c1cd9))
+* **frontend:** :sparkles: added login form ([4a04d23](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/4a04d238581e39fd124ed57337237473ec3da18a))
+* **frontend:** :sparkles: added plugin to persist user store ([04b78b4](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/04b78b496feabe5d6dfc012237bff1dfad07d57c))
+* **frontend:** :sparkles: added register form ([f090020](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/f090020d9a79896470c62343dc9257eb8b886a95))
+* **frontend:** :sparkles: Adjusted alerts for multiple messages ([f80097a](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/f80097a1ab74c6abfbd90d392eea87ddc867e409))
+
+
+### Bug Fixes
+
+* **backend:** :memo: updated pattern in dto ([4feceaf](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/4feceafbc4024976f74765caaf18b51a5a82bb61))
+* **frontend:** :bug: don't compare seconds with miliseconds ([69ae4cc](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/69ae4cc810f43539e364230440d7a3a1c47f7be0))
+* **frontend:** :bug: reject axios error ([72f1b07](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/72f1b07a44e2bf8512fd74803972d1655137f0ec))
+
 ## [0.21.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.20.1...v0.21.0) (2022-05-05)
 
 
