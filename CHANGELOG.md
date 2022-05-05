@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.26.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.25.0...v0.26.0) (2022-05-05)
+
+
+### Features
+
+* **backend:** :sparkles: added new api route to get user ([49bf237](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/49bf2372ff97f1e44398f395588555bdfa272619))
+* **frontend:** :sparkles: account methods also work on other users if you are an admin ([dd10087](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/dd10087764302c17ec17eb4264cd07fb2ff4c4c4))
+* **frontend:** :sparkles: added unknown error route ([63fbe0a](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/63fbe0af193b489e3a011ec30de235b0d027d693))
+* **frontend:** :sparkles: extended user store ([f774292](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/f77429238d586a5f22e1060f826ed0ef7f46e6e0))
+
+
+### Bug Fixes
+
+* **frontend:** :bug: added error routing ([4a366e7](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/4a366e7d3e82493e3d3208c22935b696e293bfda))
+* **frontend:** :bug: allow admins in identity guards ([423e20a](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/423e20a81dca983b09c3ceefd901b690a6b1413d))
+
 ## [0.25.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.24.0...v0.25.0) (2022-05-05)
 
 
