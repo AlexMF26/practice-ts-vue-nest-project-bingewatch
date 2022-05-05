@@ -20,7 +20,6 @@ const api = axios.create({
   withCredentials: true,
 });
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default boot(({ app, store }) => {
   // for use inside Vue files (Options API) through this.$axios and this.$api
 
@@ -37,7 +36,7 @@ export default boot(({ app, store }) => {
       return response;
     },
     (error) => {
-      useAlertStore().addAlert(
+      useAlertStore(store).addAlert(
         error?.response?.data?.message,
         AlertType.Error,
         6000
