@@ -5,8 +5,7 @@ export class LoginDto {
   @ApiProperty({
     description: 'The email of the user.',
     example: 'Ion.Popescu@google.com',
-    pattern:
-      '(?!.*s)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})',
+    pattern: '[w-.]+@([w-]+.)+[w-]{2,4}$',
   })
   //Regex to check if the email is valid
   @Matches(/^[\w\-\.]+@([\w-]+\.)+[\w-]{2,4}$/, {
