@@ -58,11 +58,13 @@ import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 import { useUserStore } from '../stores/user.store';
 
+const store = useUserStore();
+const { loggedIn, userId } = storeToRefs(store);
 const rightDrawerOpen = ref(false);
+
+const { logout } = store;
+
 function toggleRightDrawer() {
   rightDrawerOpen.value = !rightDrawerOpen.value;
 }
-const store = useUserStore();
-const { loggedIn, userId } = storeToRefs(store);
-const logout = store.logout;
 </script>

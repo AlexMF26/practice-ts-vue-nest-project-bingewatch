@@ -38,8 +38,9 @@ import { useAlertStore } from '../stores/alert.store';
 import { storeToRefs } from 'pinia';
 
 const store = useAlertStore();
-const { removeAlert } = store;
 const { alerts } = storeToRefs(store);
+
+const { removeAlert } = store;
 </script>
 
 <style lang="scss" scoped>
