@@ -3,6 +3,7 @@ import {
   Body,
   ClassSerializerInterceptor,
   Controller,
+  Get,
   Logger,
   NotFoundException,
   Param,
@@ -87,6 +88,40 @@ export class UsersController {
         requesterId,
         updateUserDto,
       );
+      return user;
+    } catch (error) {
+      if (error.message.includes('found')) {
+        throw new NotFoundException(error.message);
+      } else if (error.message.includes('given')) {
+        throw new BadRequestException(error.message);
+      } else if (error.message.includes('authorized')) {
+        throw new UnauthorizedException(error.message);
+      } else if (error.message.includes('External')) {
+        throw new ServiceUnavailableException(error.message);
+      } else {
+        this.logger.error(error.message);
+        throw error;
+      }
+    }
+  }
+
+  @ApiCookieAuth('Authentication')
+  @ApiOkResponse({
+    // we need to use this because we are using a serializer
+    type: SerializedUserEntity,
+  })
+  @UseInterceptors(ClassSerializerInterceptor)
+  @UseGuards(JwtGuard)
+  @Get(':id')
+  public async get(
+    @Param('id') targetId: string,
+    @userId() requesterId: string,
+  ) {
+    this.logger.log(
+      `An HTTP request to get user "${targetId}" from user "${requesterId}" was received.`,
+    );
+    try {
+      const user = await this.usersService.getUser(targetId, requesterId);
       return user;
     } catch (error) {
       if (error.message.includes('found')) {

@@ -110,6 +110,26 @@ export class UsersService {
     }
   }
 
+  public async getUser(id: string, requesterId: string) {
+    this.logger.log(
+      `Getting user with id "${id}" at the request of "${requesterId}".`,
+    );
+    if (id !== requesterId) {
+      const requesterIsAdmin = await this.isAdmin(requesterId);
+      if (!requesterIsAdmin) {
+        this.logger.error(`User "${requesterId}" is not admin.`);
+        throw new Error('You are not authorized to perform this action.');
+      }
+    }
+    const user = await this.findById(id);
+    if (!user) {
+      this.logger.error(`User with id "${id}" doesn't exist.`);
+      throw new Error('The user was not found.');
+    }
+    this.logger.log(`User "${user.id}" was found.`);
+    return user;
+  }
+
   public async changeUserData(
     id: string,
     requesterId: string,
