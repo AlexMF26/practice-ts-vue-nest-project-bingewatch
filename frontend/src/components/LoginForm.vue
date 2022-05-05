@@ -74,8 +74,12 @@ const onSubmit = debounce(
         password: password.value,
       });
       router.push({ path: '/' });
-    } catch (e) {
-      userStore.logout();
+    } catch (error: any) {
+      if (error?.message?.toString()?.includes('401')) {
+        router.push('/unauthorized');
+      } else if (error?.message?.toString()?.includes('404')) {
+        router.push('/not-found');
+      }
     }
   },
   500,
