@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.23.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.22.2...v0.23.0) (2022-05-05)
+
+
+### Features
+
+* **frontend:** :art: styling ([2a24b2d](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/2a24b2dcab28908317b1d1478e817a3c1feea138))
+* **frontend:** :sparkles: added unauthorized error ([e1d8a38](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/e1d8a3889e548729fa56290290d70a208cf59332))
+
 ### [0.22.2](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.22.1...v0.22.2) (2022-05-05)
 
 
