@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.21.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.20.1...v0.21.0) (2022-05-05)
+
+
+### Features
+
+* **frontend:** :construction: finished userStore ([a31912c](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/a31912c1fb28763f18e22d40b3196853b1199d89))
+* **frontend:** :sparkles: added expiration guard ([2a74637](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/2a74637fba70847c0988c7f2eb091ca4c410b61e))
+* **frontend:** :sparkles: enchanced topbar ([9d2e74d](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/9d2e74d37e770982723b5edc4ea0eb9d021edbcd))
+
+
+### Bug Fixes
+
+* **frontend:** :bug: avoid undefined store ([5ac9ad5](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/5ac9ad5e08a7d5caa1aa08cd8b950b83e1735a41))
+* **frontend:** :bug: drawer should stay closed ([74e2396](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/74e2396de57588ca9fdeb39fe265371f480f7bcd))
+
+
+### Performance Improvements
+
+* **frontend:** :zap: small performance improvement ([e64c657](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/e64c657a8161bcff6894d28467e4b89ed824c8ce))
+
 ### [0.20.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.20.0...v0.20.1) (2022-05-04)
 
 
