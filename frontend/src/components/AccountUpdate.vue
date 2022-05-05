@@ -80,13 +80,18 @@
 <script setup lang="ts">
 import { debounce } from 'quasar';
 import { computed, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import { useUserStore } from '../stores/user.store';
 
-const props = defineProps({
-  id: String,
-});
+export type Props = {
+  id: string;
+};
+
+const props = defineProps<Props>();
+const emit = defineEmits<{ (e: 'updateUserData'): void }>();
 
 const store = useUserStore();
+const router = useRouter();
 const activeTab = ref<'name' | 'email' | 'password'>('name');
 const name = ref('');
 const email = ref('');
@@ -127,9 +132,16 @@ const submit = debounce(
       } else if (activeTab.value === 'password') {
         await updatePassword();
       }
-      await store.getDetails();
-    } catch (error) {
-      console.error(error);
+      if (store.userId === props.id) {
+        await store.getDetails();
+      }
+      emit('updateUserData');
+    } catch (error: any) {
+      if (error?.message?.toString()?.includes('401')) {
+        router.push('/unauthorized');
+      } else if (error?.message?.toString()?.includes('404')) {
+        router.push('/not-found');
+      }
     }
   },
   500,
@@ -137,36 +149,30 @@ const submit = debounce(
 );
 
 async function updateName() {
-  if (props.id !== undefined) {
-    return await store.update(
-      {
-        name: name.value,
-      },
-      props.id
-    );
-  }
+  return await store.update(
+    {
+      name: name.value,
+    },
+    props.id
+  );
 }
 
 async function updateEmail() {
-  if (props.id !== undefined) {
-    return await store.update(
-      {
-        email: email.value,
-      },
-      props.id
-    );
-  }
+  return await store.update(
+    {
+      email: email.value,
+    },
+    props.id
+  );
 }
 
 async function updatePassword() {
-  if (props.id !== undefined) {
-    return await store.update(
-      {
-        password: password.value,
-      },
-      props.id
-    );
-  }
+  return await store.update(
+    {
+      password: password.value,
+    },
+    props.id
+  );
 }
 
 function isInvalidEmail(val: string) {

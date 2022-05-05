@@ -17,11 +17,11 @@
     <q-card-section>
       <q-tab-panels v-model="activeTab" animated>
         <q-tab-panel name="details">
-          <AccountDetails />
+          <AccountDetails :infos="infos" />
         </q-tab-panel>
 
         <q-tab-panel name="update">
-          <AccountUpdate :id="props.id" />
+          <AccountUpdate :id="props.id" @update-user-data="fetchData()" />
         </q-tab-panel>
       </q-tab-panels>
     </q-card-section>
@@ -29,14 +29,49 @@
 </template>
 
 <script setup lang="ts">
-import AccountDetails from '../components/AccountDetails.vue';
+import AccountDetails, { dataEntry } from '../components/AccountDetails.vue';
 import AccountUpdate from '../components/AccountUpdate.vue';
 
-import { ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
+import { useUserStore } from '../stores/user.store';
+import { useRouter } from 'vue-router';
 
-const props = defineProps({
-  id: String,
-});
+const props = defineProps<{ id: string }>();
 
 const activeTab = ref<'details' | 'update'>('details');
+const store = useUserStore();
+const router = useRouter();
+const infos = ref<dataEntry[]>([]);
+
+async function fetchData() {
+  try {
+    const user = await store.getUser(props.id);
+    infos.value = [
+      {
+        description: 'Username',
+        data: user.name,
+        icon: 'person',
+      },
+      {
+        description: 'Email',
+        data: user.email,
+        icon: 'email',
+      },
+      {
+        description: 'Role',
+        data: user.role,
+        icon: 'workspace_premium',
+      },
+    ];
+  } catch (error: any) {
+    if (error?.message?.toString()?.includes('401')) {
+      router.push('/unauthorized');
+    } else if (error?.message?.toString()?.includes('404')) {
+      router.push('/not-found');
+    } else {
+      router.push('/unknown-error');
+    }
+  }
+}
+onBeforeMount(fetchData);
 </script>

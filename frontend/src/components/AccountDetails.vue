@@ -1,28 +1,23 @@
 <template>
-  <div v-for="value in values" :key="value.description">
+  <div v-for="value in props.infos" :key="value.description">
     <q-icon :name="value.icon" />
     <b class="q-mr-md">{{ value.description }}:</b>{{ value.data }}
   </div>
 </template>
 <script setup lang="ts">
-import { storeToRefs } from 'pinia';
-import { ref } from 'vue';
-import { useUserStore } from '../stores/user.store';
+export type dataEntry = {
+  description: string;
+  data: string;
+  icon: string;
+};
 
-const store = useUserStore();
-const { userName, email } = storeToRefs(store);
-const values = ref([
-  {
-    icon: 'person',
-    description: 'Name',
-    data: userName.value,
-  },
-  {
-    icon: 'email',
-    description: 'Email',
-    data: email.value,
-  },
-]);
+export type Props = {
+  infos: dataEntry[];
+};
+
+const props = withDefaults(defineProps<Props>(), {
+  infos: () => [],
+});
 </script>
 
 <style lang="scss" scoped>
