@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md" style="max-width: 400px">
+  <div class="q-pa-md">
     <q-form
       @submit="onSubmit"
       @reset="onReset"
@@ -11,7 +11,7 @@
         v-model="email"
         label="Your email *"
         type="email"
-        :rules="[(val) => isinvalidEmail(val) || 'Please enter a valid email']"
+        :rules="[(val) => isInvalidEmail(val) || 'Please enter a valid email']"
       >
         <template v-slot:prepend>
           <q-icon name="email" />
@@ -24,7 +24,7 @@
         label="Your password *"
         type="password"
         :rules="[
-          (val) => isinvalidPassword(val) || 'Please enter a valid password',
+          (val) => isInvalidPassword(val) || 'Please enter a valid password',
         ]"
       >
         <template v-slot:prepend>
@@ -77,7 +77,7 @@ async function onSubmit() {
   }
 }
 
-function isinvalidEmail(val: string) {
+function isInvalidEmail(val: string) {
   const emailPattern = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
   if (emailPattern.test(val)) {
     invalidEmail.value = false;
@@ -87,7 +87,7 @@ function isinvalidEmail(val: string) {
   return false;
 }
 
-function isinvalidPassword(val: string) {
+function isInvalidPassword(val: string) {
   if (/[\s]/.test(val)) {
     invalidPassword.value = true;
     return 'Password must not contain spaces';
