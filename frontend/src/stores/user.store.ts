@@ -86,11 +86,14 @@ export const useUserStore = defineStore('user', {
     },
 
     async login(loginInfo: LoginDto) {
-      const alertStore = useAlertStore();
       await this.getToken(loginInfo);
       await this.getDetails();
       this.loggedIn = true;
-      alertStore.addAlert('You are now logged in', AlertType.Success, 2000);
+      useAlertStore().addAlert(
+        'You are now logged in.',
+        AlertType.Success,
+        2000
+      );
       console.log(this.expiration);
     },
 
@@ -100,6 +103,11 @@ export const useUserStore = defineStore('user', {
         registerInfo
       );
       const registerData = registerResponse.data;
+      useAlertStore().addAlert(
+        'You are now registered.',
+        AlertType.Success,
+        2000
+      );
       return registerData;
     },
 
@@ -109,6 +117,7 @@ export const useUserStore = defineStore('user', {
         updateInfo
       );
       const updateData = updateResponse.data;
+      useAlertStore().addAlert('Update successful.', AlertType.Success, 2000);
       return updateData;
     },
   },
