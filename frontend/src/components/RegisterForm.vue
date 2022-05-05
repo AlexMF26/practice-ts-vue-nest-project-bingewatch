@@ -59,6 +59,7 @@
 </template>
 
 <script setup lang="ts">
+import { debounce } from 'quasar';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useUserStore } from '../stores/user.store';
@@ -79,21 +80,25 @@ function onReset() {
   invalidPassword.value = true;
 }
 
-async function onSubmit() {
-  try {
-    const user = await userStore.register({
-      email: email.value,
-      password: password.value,
-      name: name.value,
-    });
-    if (user) {
-      userStore.login({ email: user.email, password: password.value });
-      router.push({ path: '/' });
+const onSubmit = debounce(
+  async function () {
+    try {
+      const user = await userStore.register({
+        email: email.value,
+        password: password.value,
+        name: name.value,
+      });
+      if (user) {
+        userStore.login({ email: user.email, password: password.value });
+        router.push({ path: '/' });
+      }
+    } catch (e) {
+      userStore.logout();
     }
-  } catch (e) {
-    userStore.logout();
-  }
-}
+  },
+  500,
+  true
+);
 
 function isInvalidEmail(val: string) {
   const emailPattern = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,4}$/;

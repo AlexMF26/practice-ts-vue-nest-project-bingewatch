@@ -78,8 +78,8 @@
   </q-card-section>
 </template>
 <script setup lang="ts">
-import { computed } from '@vue/reactivity';
-import { ref } from 'vue';
+import { debounce } from 'quasar';
+import { computed, ref } from 'vue';
 import { useUserStore } from '../stores/user.store';
 
 const props = defineProps({
@@ -104,6 +104,7 @@ const disableSubmit = computed(() => {
   if (activeTab.value === 'password') {
     return invalidPassword.value;
   }
+  return false;
 });
 
 function reset() {
@@ -116,20 +117,24 @@ function reset() {
   }
 }
 
-async function submit() {
-  try {
-    if (activeTab.value === 'name') {
-      await updateName();
-    } else if (activeTab.value === 'email') {
-      await updateEmail();
-    } else if (activeTab.value === 'password') {
-      await updatePassword();
+const submit = debounce(
+  async function () {
+    try {
+      if (activeTab.value === 'name') {
+        await updateName();
+      } else if (activeTab.value === 'email') {
+        await updateEmail();
+      } else if (activeTab.value === 'password') {
+        await updatePassword();
+      }
+      await store.getDetails();
+    } catch (error) {
+      console.error(error);
     }
-    await store.getDetails();
-  } catch (error) {
-    console.error(error);
-  }
-}
+  },
+  500,
+  true
+);
 
 async function updateName() {
   if (props.id !== undefined) {
