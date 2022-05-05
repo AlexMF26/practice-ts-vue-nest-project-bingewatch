@@ -52,6 +52,37 @@ export class WatchlistController {
     }
   }
 
+  @Get(':userI/:imdbId')
+  public async getWatchItem(
+    @Param('userId') userId: string,
+    @Param('imdbId') imdbId: string,
+  ) {
+    this.logger.log(
+      `An HTTP request to get watchlist item for entry "${imdbId}" for user with "${userId}" was received.`,
+    );
+
+    try {
+      const item = await this.watchlistService.findItemByImdbIdForUser(
+        imdbId,
+        userId,
+      );
+      return item;
+    } catch (error) {
+      if (error.message.includes('found')) {
+        throw new NotFoundException(error.message);
+      } else if (error.message.includes('given')) {
+        throw new BadRequestException(error.message);
+      } else if (error.message.includes('authorized')) {
+        throw new UnauthorizedException(error.message);
+      } else if (error.message.includes('External')) {
+        throw new ServiceUnavailableException(error.message);
+      } else {
+        this.logger.error(error.message);
+        throw error;
+      }
+    }
+  }
+
   @ApiCookieAuth('Authentication')
   @UseGuards(JwtGuard)
   @Post('item')

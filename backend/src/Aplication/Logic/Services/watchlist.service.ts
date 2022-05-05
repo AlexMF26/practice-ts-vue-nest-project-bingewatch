@@ -18,7 +18,7 @@ export class WatchlistService {
 
   logger = new Logger(WatchlistService.name);
 
-  private async findItemByImdbIdForUser(imdbId: string, userId: string) {
+  public async findItemByImdbIdForUser(imdbId: string, userId: string) {
     this.logger.log(
       `Getting item for entry "${imdbId}" in the watchlist of user "${userId}"`,
     );
@@ -45,7 +45,7 @@ export class WatchlistService {
         );
         return null;
       }
-      return item;
+      return new WatchlistItemEntity(item);
     } catch (error) {
       this.logger.error(error.message);
       throw error;
