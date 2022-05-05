@@ -36,11 +36,28 @@ export default boot(({ app, store }) => {
       return response;
     },
     (error) => {
-      useAlertStore(store).addAlert(
-        error?.response?.data?.message,
-        AlertType.Error,
-        6000
-      );
+      let message = error?.response?.data?.message;
+      if (message === undefined) {
+        useAlertStore(store).addAlert(
+          'Something wrong happened',
+          AlertType.Error,
+          6000
+        );
+      } else if (Array.isArray(message)) {
+        message = message
+          .map((messageUnit) => {
+            let m = messageUnit.trim();
+            m = m.charAt(m.length - 1) === '.' ? m : m + '.';
+            return m;
+          })
+          .join(' ');
+        useAlertStore(store).addAlert(message, AlertType.Error, 6000);
+      } else {
+        message = message.trim();
+        message =
+          message.charAt(message.length - 1) === '.' ? message : message + '.';
+        useAlertStore(store).addAlert(message, AlertType.Error, 6000);
+      }
       return error;
     }
   );
