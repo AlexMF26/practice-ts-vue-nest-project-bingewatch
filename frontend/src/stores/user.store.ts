@@ -103,9 +103,9 @@ export const useUserStore = defineStore('user', {
       return registerData;
     },
 
-    async update(updateInfo: UpdateUserDto) {
-      const updateResponse = await api.put<SerializedUserEntity>(
-        '/users',
+    async update(updateInfo: UpdateUserDto, id: string) {
+      const updateResponse = await api.patch<SerializedUserEntity>(
+        '/users/' + id,
         updateInfo
       );
       const updateData = updateResponse.data;
