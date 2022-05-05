@@ -151,15 +151,16 @@ export class UsersService {
       throw new Error('The user was not found.');
     }
     // check if the user role is required to change
-    if (user.role !== data?.role) {
+    if (data?.role && user.role !== data.role) {
       // if the requester is not an admin
-      if (!isAdmin) {
-        this.logger.warn(`User "${requesterId}" is not authorized to roles".`);
+      if (isAdmin) {
+        this.logger.log(`User ${id} role will be changed to ${data.role}`);
+        // add the new role to the updated data
+        updateData.role = data.role;
+      } else {
+        this.logger.warn(`User "${requesterId}" is not authorized to roles.`);
         throw new Error(`You are not authorized to roles".`);
       }
-      this.logger.log(`User ${id} role will be changed to ${data.role}`);
-      // add the new role to the updated data
-      updateData.role = data.role;
     }
     // check if the password is required to change
     if (data?.password) {
@@ -180,7 +181,7 @@ export class UsersService {
       }
     }
     // check if the email is required to change
-    if (user.email !== data?.email) {
+    if (data?.email && user.email !== data.email) {
       // get if the email is already in use
       const existentUser = await this.findByEmail(data.email);
       // if the email is already in use
@@ -193,7 +194,7 @@ export class UsersService {
       updateData.email = data.email;
     }
     // check if the name is required to change
-    if (user.name !== data?.name) {
+    if (data?.name && user.name !== data.name) {
       this.logger.log(`User "${id}" name will be changed.`);
       // add the new name to the updated data
       updateData.name = data.name;
@@ -210,7 +211,7 @@ export class UsersService {
         // prepare and run the query to update the user
         const updateUser = await this.repositoryService.user.update({
           where: { id },
-          data,
+          data: updateData,
         });
         this.logger.log(`User "${user.id}" was updated.`);
         // return the updated user as a UserEntity
