@@ -3,7 +3,11 @@
     <q-toolbar>
       <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
       <q-space />
-      <q-toolbar-title shrink>
+      <q-toolbar-title
+        shrink
+        @click="$router.push({ path: '/' })"
+        style="cursor: pointer"
+      >
         Bingewatch
         <q-avatar>
           <img src="~assets/logo.svg" />
@@ -68,3 +72,9 @@ function toggleRightDrawer() {
   rightDrawerOpen.value = !rightDrawerOpen.value;
 }
 </script>
+
+<style scoped lang="scss">
+.q-toolbar__title {
+  color: $accent;
+}
+</style>

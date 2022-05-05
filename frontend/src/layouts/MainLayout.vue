@@ -12,3 +12,9 @@
 import AlertsComponent from '../components/AlertsComponent.vue';
 import TopBar from '../components/TopBar.vue';
 </script>
+
+<style lang="scss">
+main {
+  background-color: $secondary;
+}
+</style>
