@@ -50,7 +50,7 @@
       "prisma.prisma",
       "mrmlnc.vscode-scss",
       "visualstudioexptteam.vscodeintellicode",
-      "johnsoncodehk.volar",
+      "vue.volar",
       "cschleiden.vscode-github-actions"
     ],
     "unwantedRecommendations": [
