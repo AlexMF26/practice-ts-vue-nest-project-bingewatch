@@ -5,6 +5,7 @@ import {
   WatchlistEntryItemEntity,
 } from '../../../Domain/Entities/watchlistEntry.entity';
 import { RepositoryService } from '../../../Infrastructure/Persistence/Repository/repository.service';
+import { SecurityService } from './security.service';
 import { EntriesService } from './entries.service';
 import { UsersService } from './users.service';
 
@@ -14,6 +15,7 @@ export class WatchlistService {
     private readonly repositoryService: RepositoryService,
     private readonly usersService: UsersService,
     private readonly entriesService: EntriesService,
+    private readonly encryptionService: SecurityService,
   ) {}
 
   logger = new Logger(WatchlistService.name);
@@ -22,15 +24,15 @@ export class WatchlistService {
     this.logger.log(
       `Getting item for entry "${imdbId}" in the watchlist of user "${userId}"`,
     );
-    const entry = await this.entriesService.getEntryByImdbId(imdbId);
-    if (!entry) {
-      this.logger.warn(`Entry with imdbId "${imdbId}" not found`);
-      throw new Error(`Entry with imdbId "${imdbId}" not found`);
-    }
     const user = await this.usersService.findById(userId);
     if (!user) {
       this.logger.warn(`User with id "${userId}" not found`);
       throw new Error(`User with id "${userId}" not found`);
+    }
+    const entry = await this.entriesService.getEntryByImdbId(imdbId);
+    if (!entry) {
+      this.logger.warn(`Entry with imdbId "${imdbId}" not found`);
+      throw new Error(`Entry with imdbId "${imdbId}" not found`);
     }
     try {
       const item = await this.repositoryService.watchlistItem.findFirst({
@@ -97,6 +99,12 @@ export class WatchlistService {
 
   public async delete(id: string, requesterId: string) {
     this.logger.log(`Deleting item with id "${id}"`);
+    // check if the id is valid
+    const validId = await this.encryptionService.checkValidUUID(id);
+    if (!validId) {
+      this.logger.warn(`Invalid id "${id}".`);
+      throw new Error('The given id is not valid.');
+    }
     try {
       const item = await this.repositoryService.watchlistItem.findUnique({
         where: { id },
@@ -162,6 +170,12 @@ export class WatchlistService {
     if (data && Object.keys(data).length === 0) {
       this.logger.error(`No data to change ${id}.`);
       throw new Error('No data to change was given.');
+    }
+    // check if the id is valid
+    const validId = await this.encryptionService.checkValidUUID(id);
+    if (!validId) {
+      this.logger.warn(`Invalid id "${id}".`);
+      throw new Error('The given id is not valid.');
     }
     let item;
     try {

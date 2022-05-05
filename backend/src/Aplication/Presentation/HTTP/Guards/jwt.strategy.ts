@@ -18,12 +18,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       ignoreExpiration: false,
       secretOrKey: configService.get<string>('JWT_SECRET'),
     });
-    this.logger.log('JWT strategy has been initialized');
   }
 
   public async validate(payload: { exp: number; iat: number; id: string }) {
     this.logger.log(
-      `Validating JWT token. It contains the following user id: "${payload.id}".`,
+      `Validating JWT token. It contains the following id: "${payload.id}".`,
     );
     return {
       id: payload.id,
