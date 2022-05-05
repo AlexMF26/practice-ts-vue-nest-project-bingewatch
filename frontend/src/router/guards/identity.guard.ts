@@ -1,6 +1,11 @@
+import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router';
 import { useUserStore } from '../../stores/user.store';
 
-export function identityGuard(to, _from, next) {
+export function identityGuard(
+  to: RouteLocationNormalized,
+  _from: RouteLocationNormalized,
+  next: NavigationGuardNext
+) {
   const store = useUserStore();
   if (!store.loggedIn) {
     next('/login');
