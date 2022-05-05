@@ -50,12 +50,22 @@ const routes: RouteRecordRaw[] = [
     component: () => import('pages/ErrorUnauthorized.vue'),
     name: 'unauthorized',
   },
+  {
+    path: '/not-found',
+    component: () => import('pages/ErrorNotFound.vue'),
+    name: 'not-found',
+  },
+  {
+    path: '/unknown-error',
+    component: () => import('pages/UnknownError.vue'),
+    name: 'unknown-error',
+  },
   // Always leave this as last one,
   // but you can also remove it
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue'),
-    name: '404',
+    name: 'catch-all',
   },
 ];
 
