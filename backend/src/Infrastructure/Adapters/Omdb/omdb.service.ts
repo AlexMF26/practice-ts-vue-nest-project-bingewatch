@@ -76,10 +76,6 @@ export class OmdbService {
 
   public async search(query: string, page: number) {
     this.logger.log(`Getting page "${page}" for search with query "${query}".`);
-    const params = {
-      s: query,
-      page,
-    };
     if (page < 1) {
       this.logger.error('Page number must be greater than 0.');
       throw new Error('The given page number is less than 1.');
@@ -89,10 +85,15 @@ export class OmdbService {
       throw new Error('The given page number is not an integer.');
     }
     //check if the query doesn't contains something else than spaces
-    if (query.trim().length === 0) {
+    query = query.trim();
+    if (query.length === 0) {
       this.logger.error('Search query must not be empty.');
       throw new Error('The given search query is empty.');
     }
+    const params = {
+      s: query,
+      page,
+    };
     // doing api call
     const call = this.httpService.get<OmdbSearchResult>(`/`, {
       params,
