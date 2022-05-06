@@ -1,9 +1,13 @@
 <template>
-  <q-page class="row items-center justify-evenly"> {{ props }} </q-page>
+  <q-page>
+    <EntryComponent :id="props.id" />
+  </q-page>
 </template>
 
-<script setup>
-const props = defineProps({
-  id: String,
-});
+<script setup lang="ts">
+import EntryComponent from '../components/EntryComponent.vue';
+export type Props = {
+  id: string;
+};
+const props = defineProps<Props>();
 </script>
