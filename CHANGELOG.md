@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.27.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.26.0...v0.27.0) (2022-05-06)
+
+
+### Features
+
+* **frontend:** :sparkles: add entries actions ([d1c175a](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/d1c175a23306d04fc147e8261bffa3f830c74f5b))
+* **frontend:** :sparkles: added watchlist actions ([62db019](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/62db019bbbecf1621bca9aef2918e1493d7c4392))
+* **frontend:** :sparkles: search implemented ([cd75f84](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/cd75f84ccde601417eb3df770ca84b67f31a7536))
+
+
+### Bug Fixes
+
+* **backend:** :art: changed openapi spec to /info ([db0455a](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/db0455af9d8d55a5ace442c21262479f79c58bfc))
+* **backend:** :bug: validation first ([a6388b3](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/a6388b3171cf23b8749b75d6939ca97e823a2810))
+* **frontend:** :art: updated api types ([a825eda](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/a825eda89c2212002b6dfbb3cd304c64030f7a81))
+* **frontend:** :hammer: updated npm script ([9dfd75d](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/9dfd75d6101418968a0953987b7e69aedf8bf377))
+* **frontend:** :lipstick: fix css ([bf11831](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/bf118314f0f95e770ebfb2e1c44b0c68ddf38f30))
+
 ## [0.26.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.25.0...v0.26.0) (2022-05-05)
 
 
