@@ -81,6 +81,7 @@
 import { debounce } from 'quasar';
 import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useAuthStore } from '../stores/auth.store';
 import { useUserStore } from '../stores/user.store';
 
 export type Props = {
@@ -90,7 +91,8 @@ export type Props = {
 const props = defineProps<Props>();
 const emit = defineEmits<{ (e: 'updateUserData'): void }>();
 
-const store = useUserStore();
+const userStore = useUserStore();
+const authStore = useAuthStore();
 const router = useRouter();
 const activeTab = ref<'name' | 'email' | 'password'>('name');
 const name = ref('');
@@ -132,8 +134,8 @@ const submit = debounce(
       } else if (activeTab.value === 'password') {
         await updatePassword();
       }
-      if (store.userId === props.id) {
-        await store.getDetails();
+      if (authStore.userId === props.id) {
+        await authStore.getDetails();
       }
       emit('updateUserData');
     } catch (error: any) {
@@ -149,7 +151,7 @@ const submit = debounce(
 );
 
 async function updateName() {
-  return await store.update(
+  return await userStore.update(
     {
       name: name.value,
     },
@@ -158,7 +160,7 @@ async function updateName() {
 }
 
 async function updateEmail() {
-  return await store.update(
+  return await userStore.update(
     {
       email: email.value,
     },
@@ -167,7 +169,7 @@ async function updateEmail() {
 }
 
 async function updatePassword() {
-  return await store.update(
+  return await userStore.update(
     {
       password: password.value,
     },

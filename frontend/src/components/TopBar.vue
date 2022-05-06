@@ -67,9 +67,9 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
-import { useUserStore } from '../stores/user.store';
+import { useAuthStore } from '../stores/auth.store';
 
-const store = useUserStore();
+const store = useAuthStore();
 const { loggedIn, userId } = storeToRefs(store);
 const rightDrawerOpen = ref(false);
 

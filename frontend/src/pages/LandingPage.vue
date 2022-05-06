@@ -39,9 +39,9 @@
 import SearchBarEntry from '../components/SearchBarEntry.vue';
 
 import { storeToRefs } from 'pinia';
-import { useUserStore } from '../stores/user.store';
+import { useAuthStore } from '../stores/auth.store';
 
-const { userId, loggedIn } = storeToRefs(useUserStore());
+const { userId, loggedIn } = storeToRefs(useAuthStore());
 </script>
 
 <style lang="scss" scoped>

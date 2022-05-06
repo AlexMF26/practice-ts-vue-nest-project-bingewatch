@@ -1,13 +1,13 @@
 import { NavigationGuardNext, RouteLocationNormalized } from 'vue-router';
-import { useUserStore } from '../../stores/user.store';
+import { useAuthStore } from '../../stores/auth.store';
 
 export function expirationGuard(
   _to: RouteLocationNormalized,
   _from: RouteLocationNormalized,
   next: NavigationGuardNext
 ) {
-  const userStore = useUserStore();
-  if (userStore.expirationCheck()) {
+  const authStore = useAuthStore();
+  if (authStore.expirationCheck()) {
     next('/login');
   }
   next();

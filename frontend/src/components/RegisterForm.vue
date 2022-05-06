@@ -62,6 +62,7 @@
 import { debounce } from 'quasar';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useAuthStore } from '../stores/auth.store';
 import { useUserStore } from '../stores/user.store';
 
 const email = ref('');
@@ -70,6 +71,7 @@ const name = ref('');
 const invalidEmail = ref(true);
 const invalidPassword = ref(true);
 const invalidName = ref(true);
+const authStore = useAuthStore();
 const userStore = useUserStore();
 const router = useRouter();
 
@@ -89,7 +91,7 @@ const onSubmit = debounce(
         name: name.value,
       });
       if (user) {
-        userStore.login({ email: user.email, password: password.value });
+        authStore.login({ email: user.email, password: password.value });
         router.push({ path: '/' });
       }
     } catch (error: any) {

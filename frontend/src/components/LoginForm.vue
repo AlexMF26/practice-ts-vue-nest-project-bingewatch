@@ -50,13 +50,13 @@
 import { debounce } from 'quasar';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { useUserStore } from '../stores/user.store';
+import { useAuthStore } from '../stores/auth.store';
 
 const email = ref('');
 const password = ref('');
 const invalidEmail = ref(true);
 const invalidPassword = ref(true);
-const userStore = useUserStore();
+const authStore = useAuthStore();
 const router = useRouter();
 
 function onReset() {
@@ -69,7 +69,7 @@ function onReset() {
 const onSubmit = debounce(
   async function () {
     try {
-      await userStore.login({
+      await authStore.login({
         email: email.value,
         password: password.value,
       });
