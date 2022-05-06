@@ -14,7 +14,7 @@ import TopBar from '../components/TopBar.vue';
 </script>
 
 <style lang="scss">
-main {
+.q-page-container {
   background-color: $secondary;
 }
 </style>
