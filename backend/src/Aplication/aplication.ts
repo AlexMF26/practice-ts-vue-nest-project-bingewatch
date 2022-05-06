@@ -36,7 +36,7 @@ async function addPrismaHooks(app: INestApplication) {
 
 function addSwagger(app: INestApplication) {
   const document = initalizeSwaggerDocument(app);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('info', app, document);
   return app;
 }
 
