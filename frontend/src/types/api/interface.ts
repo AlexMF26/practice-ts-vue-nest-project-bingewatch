@@ -90,7 +90,7 @@ export interface UpdateUserDto {
 export interface LoginDto {
   /**
    * The email of the user.
-   * @pattern (?!.*s)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})
+   * @pattern [w-.]+@([w-]+.)+[w-]{2,4}$
    * @example Ion.Popescu@google.com
    */
   email: string;
@@ -103,21 +103,11 @@ export interface LoginDto {
   password: string;
 }
 
-export interface BearerTokenEntity {
-  accessToken: string;
-  tokenType: string;
-}
-
-export interface WatchlistEntryItemEntity {
+export interface DetailedWatchlistItemEntity {
   entry: EntryEntity;
   progress: number;
   rating: number | null;
   id: string;
-}
-
-export interface CreateItemDto {
-  userId: string;
-  imdbId: string;
 }
 
 export interface WatchlistItemEntity {
@@ -126,6 +116,11 @@ export interface WatchlistItemEntity {
   entryId: string;
   progress: number;
   rating: number | null;
+}
+
+export interface CreateItemDto {
+  userId: string;
+  imdbId: string;
 }
 
 export interface UpdateItemDto {

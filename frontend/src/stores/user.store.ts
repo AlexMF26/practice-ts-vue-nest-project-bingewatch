@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia';
 import {
-  BearerTokenEntity,
   CreateUserDto,
   LoginDto,
   SerializedUserEntity,
@@ -61,7 +60,7 @@ export const useUserStore = defineStore('user', {
     },
 
     async getToken(loginInfo: LoginDto) {
-      const loginResponse = await api.post<BearerTokenEntity>(
+      const loginResponse = await api.post<string>(
         '/authentification',
         loginInfo
       );
@@ -70,7 +69,7 @@ export const useUserStore = defineStore('user', {
         exp: number;
         iat: number;
         id: string;
-      } = jwt_decode(loginData.accessToken);
+      } = jwt_decode(loginData);
       this.expiration = jwtDecode.exp;
     },
 
