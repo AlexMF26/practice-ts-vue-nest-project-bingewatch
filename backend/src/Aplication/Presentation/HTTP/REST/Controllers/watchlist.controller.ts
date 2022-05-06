@@ -66,6 +66,11 @@ export class WatchlistController {
         imdbId,
         userId,
       );
+      if (!item) {
+        throw new NotFoundException(
+          `Item with imdbId "${imdbId}" not found in the watchlist of user.`,
+        );
+      }
       return item;
     } catch (error) {
       if (error.message.includes('found')) {
