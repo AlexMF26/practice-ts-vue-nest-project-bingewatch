@@ -23,12 +23,7 @@
         </q-item-section>
         <q-item-section>Home</q-item-section>
       </q-item>
-      <q-item v-if="loggedIn" clickable @click="logout()">
-        <q-item-section avatar>
-          <q-icon color="accent" name="logout" />
-        </q-item-section>
-        <q-item-section>Logout</q-item-section>
-      </q-item>
+
       <q-item v-if="loggedIn" :to="`/watchlist/${userId}`" exact>
         <q-item-section avatar>
           <q-icon color="accent" name="view_list" />
@@ -41,6 +36,12 @@
         </q-item-section>
         <q-item-section>Account settings</q-item-section>
       </q-item>
+      <q-item v-if="loggedIn" clickable @click="logout()">
+        <q-item-section avatar>
+          <q-icon color="accent" name="logout" />
+        </q-item-section>
+        <q-item-section>Logout</q-item-section>
+      </q-item>
       <q-item to="/login" exact v-if="!loggedIn">
         <q-item-section avatar>
           <q-icon color="accent" name="login" />
@@ -52,6 +53,12 @@
           <q-icon color="accent" name="person_add" />
         </q-item-section>
         <q-item-section>Register</q-item-section>
+      </q-item>
+      <q-item href="/api/info/" exact>
+        <q-item-section avatar>
+          <q-icon color="accent" name="api" />
+        </q-item-section>
+        <q-item-section>API</q-item-section>
       </q-item>
     </q-list>
   </q-drawer>

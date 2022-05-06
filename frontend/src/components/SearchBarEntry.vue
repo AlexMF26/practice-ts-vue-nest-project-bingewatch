@@ -17,13 +17,19 @@
         hide-dropdown-icon
         hide-selected
         fill-input
-        filled
         style="width: 80vw"
+        :rules="[(val) => val.length >= 3 || 'Please use minimum 3 characters']"
+        placeholder="Search..."
+        filled
+        hint="Enter the title of your favorite piece of entertainment"
       >
         <template v-slot:no-option>
           <q-item>
             <q-item-section class="text-grey"> No results </q-item-section>
           </q-item>
+        </template>
+        <template v-slot:prepend>
+          <q-icon name="search" />
         </template>
       </q-select>
     </div>
