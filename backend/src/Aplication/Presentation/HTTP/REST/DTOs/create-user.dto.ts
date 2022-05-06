@@ -11,7 +11,7 @@ export class CreateUserDto {
     allows for "'", "-" and "," and ".".
   */
   @Matches(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*.?$/, {
-    message: 'Name is not valid',
+    message: 'Name is not valid.',
   })
   @IsString()
   public readonly name: string;
@@ -24,7 +24,7 @@ export class CreateUserDto {
   })
   //Regex to check if the email is valid
   @Matches(/^[\w\-\.]+@([\w-]+\.)+[\w-]{2,4}$/, {
-    message: 'Invalid email',
+    message: 'Invalid email.',
   })
   @IsString()
   public readonly email: string;

@@ -1,9 +1,10 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { WatchlistItemEntity } from '../../../Domain/Entities/watchlist.entity';
 import {
-  WatchlistEntriesEntity,
-  WatchlistEntryItemEntity,
-} from '../../../Domain/Entities/watchlistEntry.entity';
+  DetailedWatchlistItemEntity,
+  WatchlistEntity,
+  WatchlistItemEntity,
+} from '../../../Domain/Entities/watchlist.entity';
+
 import { RepositoryService } from '../../../Infrastructure/Persistence/Repository/repository.service';
 import { SecurityService } from './security.service';
 import { EntriesService } from './entries.service';
@@ -15,7 +16,7 @@ export class WatchlistService {
     private readonly repositoryService: RepositoryService,
     private readonly usersService: UsersService,
     private readonly entriesService: EntriesService,
-    private readonly encryptionService: SecurityService,
+    private readonly securityService: SecurityService,
   ) {}
 
   logger = new Logger(WatchlistService.name);
@@ -100,7 +101,7 @@ export class WatchlistService {
   public async delete(id: string, requesterId: string) {
     this.logger.log(`Deleting item with id "${id}"`);
     // check if the id is valid
-    const validId = await this.encryptionService.checkValidUUID(id);
+    const validId = await this.securityService.checkValidUUID(id);
     if (!validId) {
       this.logger.warn(`Invalid id "${id}".`);
       throw new Error('The given id is not valid.');
@@ -147,8 +148,8 @@ export class WatchlistService {
           entry: true,
         },
       });
-      const watchlistEntries: WatchlistEntriesEntity = data.map((item) => {
-        const transformedItem = new WatchlistEntryItemEntity(item);
+      const watchlistEntries: WatchlistEntity = data.map((item) => {
+        const transformedItem = new DetailedWatchlistItemEntity(item);
         return transformedItem;
       });
       return watchlistEntries;
@@ -172,7 +173,7 @@ export class WatchlistService {
       throw new Error('No data to change was given.');
     }
     // check if the id is valid
-    const validId = await this.encryptionService.checkValidUUID(id);
+    const validId = await this.securityService.checkValidUUID(id);
     if (!validId) {
       this.logger.warn(`Invalid id "${id}".`);
       throw new Error('The given id is not valid.');

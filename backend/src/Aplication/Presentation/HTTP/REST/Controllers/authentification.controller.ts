@@ -27,8 +27,8 @@ import { SecurityService } from '../../../../Logic/Services/security.service';
 @ApiTags('authentification')
 export class AuthentificationController {
   public constructor(
-    private readonly encryptionService: SecurityService,
-    private readonly userService: UsersService,
+    private readonly securityService: SecurityService,
+    private readonly usersService: UsersService,
   ) {}
 
   private readonly logger = new Logger(AuthentificationController.name);
@@ -41,9 +41,9 @@ export class AuthentificationController {
     this.logger.log(
       `An HTTP request to login with email "${loginDto.email}" was received.`,
     );
-    let validUser;
+    let validUser: string | false;
     try {
-      validUser = await this.userService.validateCredentials(
+      validUser = await this.usersService.validateCredentials(
         loginDto.email,
         loginDto.password,
       );
@@ -64,8 +64,8 @@ export class AuthentificationController {
     if (!validUser) {
       throw new ForbiddenException('Wrong name or password.');
     }
-    const answear = await this.encryptionService.createJwtFromId(validUser);
-    response.cookie('Authentication', answear.accessToken);
+    const answear = await this.securityService.createJwtFromId(validUser);
+    response.cookie('Authentication', answear);
     return answear;
   }
 
@@ -82,7 +82,7 @@ export class AuthentificationController {
       `An HTTP request to get authenticated user details was received. User id: "${id}".`,
     );
     try {
-      const user = await this.userService.findById(id);
+      const user = await this.usersService.findById(id);
       return user;
     } catch (error) {
       if (error.message.includes('found')) {

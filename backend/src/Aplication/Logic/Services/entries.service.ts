@@ -1,4 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { Entry } from '@prisma/client';
 import {
   EntryEntity,
   EntrySearchResult,
@@ -60,7 +61,7 @@ export class EntriesService {
 
   public async getEntryByImdbId(imdbId: string) {
     // get the entry from the database
-    let data;
+    let data: Entry;
     try {
       data = await this.repositoryService.entry.findUnique({
         where: { imdbId },
@@ -118,7 +119,7 @@ export class EntriesService {
 
   public async refreshData(imdbId: string) {
     this.logger.log(`Refreshing data for entry with imdbId "${imdbId}".`);
-    let entry;
+    let entry: Entry;
     try {
       entry = await this.repositoryService.entry.findUnique({
         where: { imdbId },

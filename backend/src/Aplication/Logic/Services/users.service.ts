@@ -1,4 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { Role as PrismaRole } from '@prisma/client';
 import { Role, UserEntity } from '../../../Domain/Entities/user.entity';
 import { RepositoryService } from '../../../Infrastructure/Persistence/Repository/repository.service';
 import { SecurityService } from './security.service';
@@ -7,7 +8,7 @@ import { SecurityService } from './security.service';
 export class UsersService {
   public constructor(
     private readonly repositoryService: RepositoryService,
-    private readonly encryptionService: SecurityService,
+    private readonly securityService: SecurityService,
   ) {}
 
   private readonly logger = new Logger(UsersService.name);
@@ -15,12 +16,12 @@ export class UsersService {
   private async isAdmin(id: string) {
     this.logger.log(`Checking if user with id "${id}" is admin.`);
     // check if the id is valid
-    const validId = await this.encryptionService.checkValidUUID(id);
+    const validId = await this.securityService.checkValidUUID(id);
     if (!validId) {
       this.logger.warn(`Invalid id "${id}".`);
       throw new Error('The given id is not valid.');
     }
-    let user;
+    let user: { role: PrismaRole };
     try {
       //prepare and run the query to select the user by id and retrieve its role
       user = await this.repositoryService.user.findUnique({
@@ -98,7 +99,7 @@ export class UsersService {
   public async findById(id: string) {
     this.logger.log(`Finding user with id "${id}".`);
     // check if the id is valid
-    const validId = await this.encryptionService.checkValidUUID(id);
+    const validId = await this.securityService.checkValidUUID(id);
     if (!validId) {
       this.logger.warn(`Invalid id "${id}".`);
       throw new Error('The given id is not valid.');
@@ -191,20 +192,19 @@ export class UsersService {
         updateData.role = data.role;
       } else {
         this.logger.warn(`User "${requesterId}" is not authorized to roles.`);
-        throw new Error(`You are not authorized to roles".`);
+        throw new Error('You are not authorized to roles.');
       }
     }
     // check if the password is required to change
     if (data?.password) {
       // get if it is the same as the current password
-      const isTheSamePassword =
-        await this.encryptionService.validateAgainstHash(
-          data.password,
-          user.passwordHash,
-        );
+      const isTheSamePassword = await this.securityService.validateAgainstHash(
+        data.password,
+        user.passwordHash,
+      );
       // if the password is not the same
       if (!isTheSamePassword) {
-        const passwordHash = await this.encryptionService.hashString(
+        const passwordHash = await this.securityService.hashString(
           data.password,
         );
         this.logger.log(`User "${id}" password will be changed.`);
@@ -257,7 +257,7 @@ export class UsersService {
 
   public async validateCredentials(email: string, password: string) {
     this.logger.log(`Validating credentials for user with email "${email}".`);
-    let user;
+    let user: { id: string; passwordHash: string };
     try {
       // prepare and run the query to select the user by email and retrieve its id and password hash
       user = await this.repositoryService.user.findUnique({
@@ -274,7 +274,7 @@ export class UsersService {
       return false;
     }
     // if the user is found
-    const isPasswordValid = await this.encryptionService.validateAgainstHash(
+    const isPasswordValid = await this.securityService.validateAgainstHash(
       password,
       user.passwordHash,
     );
@@ -295,7 +295,7 @@ export class UsersService {
     name: string;
   }) {
     //hash the password
-    const passwordHash = await this.encryptionService.hashString(data.password);
+    const passwordHash = await this.securityService.hashString(data.password);
     const userData = {
       passwordHash,
       email: data.email,
@@ -312,7 +312,7 @@ export class UsersService {
     name: string;
   }) {
     this.logger.log(`Adding default admin: "${data.name}".`);
-    const passwordHash = await this.encryptionService.hashString(data.password);
+    const passwordHash = await this.securityService.hashString(data.password);
     const existentUser = await this.findByEmail(data.email);
     // if the doesn't already exists user already exists
     if (!existentUser) {

@@ -1,13 +1,12 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { hash, compare } from 'bcrypt';
-import { BearerTokenEntity } from '../../../Domain/Entities/authentification.entity';
 
 @Injectable()
 export class SecurityService {
   public readonly logger = new Logger(SecurityService.name);
 
-  public constructor(private readonly jwtTokenService: JwtService) {}
+  public constructor(private readonly jwtService: JwtService) {}
 
   public async hashString(data: string) {
     this.logger.log('Hashing string.');
@@ -47,9 +46,8 @@ export class SecurityService {
   public async createJwtFromId(id: string) {
     this.logger.log(`Creating JWT token id "${id}".`);
     const payload = { id };
-    const token = this.jwtTokenService.sign(payload);
+    const token = this.jwtService.sign(payload);
     this.logger.log(`JWT token created "${id}".`);
-    const response = new BearerTokenEntity(token);
-    return response;
+    return token;
   }
 }

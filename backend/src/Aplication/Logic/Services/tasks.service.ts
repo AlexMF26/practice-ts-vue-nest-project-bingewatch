@@ -10,7 +10,7 @@ export class TasksService {
   private readonly logger = new Logger(TasksService.name);
 
   public constructor(
-    private eventEmitter: EventEmitter2,
+    private readonly eventEmitterService: EventEmitter2,
     private readonly entriesService: EntriesService,
   ) {}
 
@@ -22,11 +22,11 @@ export class TasksService {
     //dispatch a event for each imdb id
     imdbIds.forEach(async (imdbId) => {
       this.logger.log(`Dispatching maintenance events for entry ${imdbId}`);
-      await this.eventEmitter.emitAsync(
+      await this.eventEmitterService.emitAsync(
         RefreshEntryDataEvent.name,
         new RefreshEntryDataEvent(imdbId),
       );
-      await this.eventEmitter.emitAsync(
+      await this.eventEmitterService.emitAsync(
         RefreshEntryRatingEvent.name,
         new RefreshEntryRatingEvent(imdbId),
       );
