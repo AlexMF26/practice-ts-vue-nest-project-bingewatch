@@ -37,6 +37,9 @@ export default boot(({ app, store }) => {
     },
     (error) => {
       let message = error?.response?.data?.message;
+      if (error?.response?.data?.statusCode === 404) {
+        return Promise.reject(error);
+      }
       if (message === undefined) {
         useAlertStore(store).addAlert(
           'Something wrong happened',
