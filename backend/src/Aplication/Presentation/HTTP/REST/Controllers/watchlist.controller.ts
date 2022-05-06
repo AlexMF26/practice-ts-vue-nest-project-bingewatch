@@ -52,7 +52,7 @@ export class WatchlistController {
     }
   }
 
-  @Get(':userI/:imdbId')
+  @Get(':userId/:imdbId')
   public async getWatchItem(
     @Param('userId') userId: string,
     @Param('imdbId') imdbId: string,
