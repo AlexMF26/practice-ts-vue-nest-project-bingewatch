@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.28.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.27.0...v0.28.0) (2022-05-06)
+
+
+### Features
+
+* **frontend:** :sparkles: add poster component ([0686f0f](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/0686f0f8714d5e67aec45238f336cf551e41f5e9))
+* **frontend:** :sparkles: Entry component ([b2fe071](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/b2fe071d39cc4eb1a0291822b67180692ac9ee4c))
+
+
+### Bug Fixes
+
+* **backend:** :bug: fix route path ([4d23451](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/4d234511f71e44b4dad0f18b62c38b6e9b89ddcb))
+* **backend:** :bug: throw 404 if is null ([67b1113](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/67b11134078df074ac9f9259590d34d5e8defed3))
+* **frontend:** :bug: don't spam the alerts ([1ace67f](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/1ace67f5739fd548d4e1765f123da92b0a860d38))
+* **frontend:** :bug: fix unreactive stuff ([cafc724](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/cafc724101c47bbda1f0f77f60a145094e4346c8))
+
 ## [0.27.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.26.0...v0.27.0) (2022-05-06)
 
 
