@@ -8,7 +8,7 @@
 </template>
 <script setup lang="ts">
 import { debounce } from 'quasar';
-import { onBeforeMount, ref } from 'vue';
+import { onBeforeMount, onUpdated, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useWatchlistStore } from '../stores/watchlist.store';
 import { WatchlistItemEntity } from '../types/api/interface';
@@ -76,7 +76,10 @@ const unwatch = debounce(
   500,
   true
 );
+
 onBeforeMount(fetchData);
+
+onUpdated(fetchData);
 </script>
 
 <style scoped lang="scss">

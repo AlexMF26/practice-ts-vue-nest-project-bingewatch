@@ -66,10 +66,13 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 import { useAuthStore } from '../stores/auth.store';
 
 const store = useAuthStore();
+const route = useRoute();
+
 const { loggedIn, userId } = storeToRefs(store);
 const rightDrawerOpen = ref(false);
 
@@ -78,6 +81,10 @@ const { logout } = store;
 function toggleRightDrawer() {
   rightDrawerOpen.value = !rightDrawerOpen.value;
 }
+
+watch(route, () => {
+  rightDrawerOpen.value = false;
+});
 </script>
 
 <style scoped lang="scss">
