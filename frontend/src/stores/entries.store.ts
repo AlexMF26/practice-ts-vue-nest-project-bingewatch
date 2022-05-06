@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { api } from '../boot/axios';
-import { EntrySearchResult } from '../types/api/interface';
+import { EntryEntity, EntrySearchResult } from '../types/api/interface';
 
 export const useEntriesStore = defineStore('entries', {
   actions: {
@@ -14,6 +14,10 @@ export const useEntriesStore = defineStore('entries', {
           },
         }
       );
+      return response.data;
+    },
+    async get(id: string) {
+      const response = await api.get<EntryEntity>(`/entries/${id}`);
       return response.data;
     },
   },
