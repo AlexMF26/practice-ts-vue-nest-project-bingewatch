@@ -8,7 +8,7 @@
 </template>
 <script setup lang="ts">
 import { debounce } from 'quasar';
-import { onBeforeMount, onUpdated, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useWatchlistStore } from '../stores/watchlist.store';
 import { WatchlistItemEntity } from '../types/api/interface';

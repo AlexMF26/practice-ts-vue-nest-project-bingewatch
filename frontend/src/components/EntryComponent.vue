@@ -37,7 +37,7 @@
 import PosterComponent from './PosterComponent.vue';
 import WatchlistItemInEntry from './WatchlistItemInEntry.vue';
 
-import { onBeforeMount, onUpdated, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useEntriesStore } from '../stores/entries.store';
 import { EntryEntity } from '../types/api/interface';

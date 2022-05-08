@@ -32,7 +32,7 @@
 import AccountDetails, { dataEntry } from '../components/AccountDetails.vue';
 import AccountUpdate from '../components/AccountUpdate.vue';
 
-import { onBeforeMount, onUpdated, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 import { useUserStore } from '../stores/user.store';
 import { useRouter } from 'vue-router';
 
