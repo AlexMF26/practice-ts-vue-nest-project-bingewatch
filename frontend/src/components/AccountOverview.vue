@@ -75,6 +75,4 @@ async function fetchData() {
 }
 
 onBeforeMount(fetchData);
-
-onUpdated(fetchData);
 </script>

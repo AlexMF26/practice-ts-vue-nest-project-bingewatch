@@ -78,8 +78,6 @@ const unwatch = debounce(
 );
 
 onBeforeMount(fetchData);
-
-onUpdated(fetchData);
 </script>
 
 <style scoped lang="scss">
