@@ -1,8 +1,10 @@
 <template>
-  <q-page class="row items-center justify-evenly"> {{ props }} </q-page>
+  <q-page> <WatchlistComponent :id="props.id" /></q-page>
 </template>
 
 <script setup>
+import WatchlistComponent from '../components/WatchlistComponent.vue';
+
 const props = defineProps({
   id: String,
 });
