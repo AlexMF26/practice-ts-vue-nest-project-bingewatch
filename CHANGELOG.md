@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.29.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.28.1...v0.29.0) (2022-05-08)
+
+
+### Features
+
+* **frontend:** :sparkles: added initial watchlist ([43d9f9d](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/43d9f9dfcc646b05ef9b81c3ab3913b9023f779f))
+
+
+### Bug Fixes
+
+* **frontend:** :fire: removed unused imports ([6c9f3b5](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/6c9f3b51817e7bf2fee3ecf8374270036c8dd942))
+
 ### [0.28.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.28.0...v0.28.1) (2022-05-08)
 
 
