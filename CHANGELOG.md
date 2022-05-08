@@ -1,5 +1,13 @@
 # Changelog
 
+### [0.28.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.28.0...v0.28.1) (2022-05-08)
+
+
+### Bug Fixes
+
+* **backend:** :bug: removed race condition ([c3e9dd4](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/c3e9dd41bb9f9516bd609b2866c2f2875f9d2b3c))
+* **frontend:** :bug: remove spam ([b186834](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/b1868342f28f4debad1ce8a67b0049254df41aca))
+
 ## [0.28.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.27.0...v0.28.0) (2022-05-06)
 
 
