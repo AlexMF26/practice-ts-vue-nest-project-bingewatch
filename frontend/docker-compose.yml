@@ -12,7 +12,7 @@ services:
       # app port
       - 9000:9000
 
-  backend:
+  api:
     extends:
       file: ../backend/docker-compose.yml
       service: api
