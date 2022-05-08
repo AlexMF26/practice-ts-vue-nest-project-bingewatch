@@ -54,8 +54,12 @@ export class EntriesService {
       });
       return new EntryEntity(entry);
     } catch (error) {
-      this.logger.error(error.message);
-      throw error;
+      if (error.message.includes('Unique')) {
+        return await this.getEntryByImdbId(imdbId);
+      } else {
+        this.logger.error(error.message);
+        throw error;
+      }
     }
   }
 
