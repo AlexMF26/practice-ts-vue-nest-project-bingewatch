@@ -46,6 +46,13 @@ prepare: stop
 	rm -rf node_modules/
 	npm install
 
+.PHONY: prepare-ci
+prepare-ci: stop
+	rm -rf dist/
+	mkdir dist
+	rm -rf node_modules/
+	npm ci
+
 .PHONY: stop
 stop:
 	docker-compose stop
