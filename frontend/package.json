@@ -12,7 +12,7 @@
     "start": "quasar dev",
     "build": "quasar build",
     "test": "(npm run start&) && cypress install && cypress run",
-    "update-api-interface": "sleep 15 && swagger-typescript-api -p http://api:3000/info-json -o ./src/types/api/ -n interface.ts -r --no-client"
+    "update-api-interface": "swagger-typescript-api -p http://api:3000/info-json -o ./src/types/api/ -n interface.ts -r --no-client"
   },
   "dependencies": {
     "@quasar/extras": "1.13.6",
