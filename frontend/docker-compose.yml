@@ -5,7 +5,7 @@ services:
     build:
       dockerfile: Dockerfile
       context: .
-      target: development-stage-$TYPE-user
+      target: "development-stage-${TYPE}-user"
       args:
         - UID=$UID
     volumes:
@@ -13,21 +13,9 @@ services:
     ports:
       # app port
       - 9000:9000
-    depends_on:
-      - api
+    networks:
+      - bingewatch-dev-net
 
-  api:
-    extends:
-      file: ../backend/docker-compose.yml
-      service: api
-    depends_on:
-      - database
-
-  database:
-    extends:
-      file: ../backend/docker-compose.yml
-      service: database
-
-volumes:
-  postgres:
-    name: database
+networks:
+  bingewatch-dev-net:
+    name: bingewatch-dev-net
