@@ -15,19 +15,6 @@ export interface EntrySearchResult {
   posterUrl: string;
 }
 
-export interface Season {
-  episodes: number;
-}
-
-export interface EntryEntity {
-  imdbId: string;
-  title: string;
-  posterUrl: string;
-  rating: number;
-  seasons: Season[];
-  plot: string;
-}
-
 export interface CreateUserDto {
   /**
    * The name of the user.
@@ -101,6 +88,19 @@ export interface LoginDto {
    * @example P@ssword123
    */
   password: string;
+}
+
+export interface Season {
+  episodes: number;
+}
+
+export interface EntryEntity {
+  imdbId: string;
+  title: string;
+  posterUrl: string;
+  rating: number;
+  seasons: Season[];
+  plot: string;
 }
 
 export interface DetailedWatchlistItemEntity {
