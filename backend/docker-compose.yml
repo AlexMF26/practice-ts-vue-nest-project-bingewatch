@@ -1,11 +1,11 @@
 services:
   api:
     command: [ "npm", "run", "${ENTRY}" ]
-    user: ${TYPE}
+    user: $TYPE
     build:
       dockerfile: Dockerfile
       context: .
-      target: development-stage-$TYPE-user
+      target: "development-stage-${TYPE}-user"
       args:
         - UID=$UID
     volumes:

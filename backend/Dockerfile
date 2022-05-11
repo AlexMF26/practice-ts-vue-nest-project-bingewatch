@@ -1,3 +1,12 @@
+FROM node:18.1.0 AS development-stage-root-user
+
+WORKDIR /api
+
+EXPOSE 3000
+EXPOSE 9229
+
+
+
 FROM node:18.1.0 AS development-stage-node-user
 
 USER node
@@ -9,14 +18,6 @@ WORKDIR /api
 EXPOSE 3000
 EXPOSE 9229
 
-
-
-FROM node:18.1.0 AS development-stage-root-user
-
-WORKDIR /api
-
-EXPOSE 3000
-EXPOSE 9229
 
 
 FROM node:18.1.0 as build-stage
