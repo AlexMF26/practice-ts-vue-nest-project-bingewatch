@@ -23,7 +23,6 @@ jobs:
       - name: Set env variables
         run: |
           mv example.env .env
-          sed -i 's/database/localhost/g' .env
           sed -i 's/OMDB_apikey=""/OMDB_apikey="${{ secrets.OMDB_APIKEY }}"/g' .env
           sed -i 's/DEFAULT_ADMIN_NAME=""/DEFAULT_ADMIN_NAME="${{ secrets.ADMIN_NAME }}"/g' .env
           sed -i 's/DEFAULT_ADMIN_PASSWORD=""/DEFAULT_ADMIN_PASSWORD="${{ secrets.ADMIN_PASSWORD }}"/g' .env
@@ -32,20 +31,6 @@ jobs:
       - name: Install backend dependencies
         run: npm i
         working-directory: ./backend
-      - name: Format backend
-        run: npm run format
-        working-directory: ./backend
-      - name: Lint backend
-        run: npm run lint
-        working-directory: ./backend
-      - name: Build backend
-        run: npm run build
-        working-directory: ./backend
       - name: Test backend
-        run: |
-          docker-compose up -d database
-          npx prisma migrate deploy
-          npx prisma generate
-          npm run test
-          docker-compose stop
+        run: make test-root
         working-directory: ./backend
