@@ -16,14 +16,14 @@ start-detached-root: stop
 
 .PHONY: test
 test: stop
-	docker-compose up database -d
-	UID=$(shell id -u) ENTRY=test TYPE=node docker-compose up api
+	docker-compose up -d database
+	UID=$(shell id -u) ENTRY=test TYPE=node docker-compose up  --exit-code-from api api
 	make stop
 
 .PHONY: test-root
 test-root: stop
-	docker-compose up database -d
-	UID=$(shell id -u) ENTRY=test TYPE=root docker-compose up api
+	docker-compose up -d database
+	UID=$(shell id -u) ENTRY=test TYPE=root docker-compose up  --exit-code-from api api
 	make stop
 
 .PHONY: migration
@@ -38,6 +38,13 @@ migration-root: stop
 build:
 	docker build . --target production-stage --no-cache --force-rm -t production-api
 	docker build . --target production-stage --no-cache --force-rm -t production-app
+
+.PHONY: prepare
+prepare: stop
+	rm -rf dist/
+	mkdir dist
+	rm -rf node_modules/
+	npm install
 
 .PHONY: stop
 stop:
