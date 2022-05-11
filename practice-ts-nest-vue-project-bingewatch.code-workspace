@@ -43,7 +43,6 @@
       "editorconfig.editorconfig",
       "dbaeumer.vscode-eslint",
       "davidanson.vscode-markdownlint",
-      "abhijoybasak.nestjs-files",
       "eg2.vscode-npm-script",
       "christian-kohler.npm-intellisense",
       "esbenp.prettier-vscode",
