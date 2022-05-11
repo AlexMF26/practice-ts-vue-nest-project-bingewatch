@@ -45,5 +45,5 @@ jobs:
       - name: Test frontend
         run: |
           cd ../backend/ && docker-compose up -d database && (npm run start:development&)
-          cd ../frontend/ && (npm run start&) && npm run test
+          cd ../frontend/ && npm run test
         working-directory: ./frontend
