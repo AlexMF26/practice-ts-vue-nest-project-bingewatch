@@ -1,15 +1,22 @@
-FROM node:18.1.0 AS development-stage
+FROM node:18.1.0 AS development-stage-node-user
 
 USER node
-# Default uid is 1000 
-ARG UID=1000
+ARG UID
 RUN usermod -u ${UID} node
 
 WORKDIR /api
 
-ENV NODE_ENV=development
-EXPOSE 9000
-ENTRYPOINT ["npm","run", "start:development"]
+EXPOSE 3000
+EXPOSE 9229
+
+
+
+FROM node:18.1.0 AS development-stage-root-user
+
+WORKDIR /api
+
+EXPOSE 3000
+EXPOSE 9229
 
 
 FROM node:18.1.0 as build-stage
@@ -21,6 +28,7 @@ RUN npm install --production
 
 COPY ./ ./
 RUN npm run build
+
 
 
 FROM node:18.1.0 AS production-stage
