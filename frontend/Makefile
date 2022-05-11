@@ -26,7 +26,7 @@ update-api-interface-root: stop start-api-root
 build:
 	docker build . --target production-stage --no-cache --force-rm -t production-app
 
-	.PHONY: prepare
+.PHONY: prepare
 prepare: stop
 	rm -rf dist/
 	mkdir dist
@@ -36,6 +36,17 @@ prepare: stop
 	mkdir .cache
 	rm -rf node_modules/
 	npm install
+
+.PHONY: prepare-ci
+prepare-ci: stop
+	rm -rf dist/
+	mkdir dist
+	rm -rf .quasar/
+	mkdir .quasar
+	rm -rf .cache/
+	mkdir .cache
+	rm -rf node_modules/
+	npm ci
 
 .PHONY: stop
 stop:
