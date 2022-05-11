@@ -11,9 +11,9 @@
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "start": "quasar dev",
     "build": "quasar build",
-    "prepare:cypress": "CYPRESS_CACHE_FOLDER=.cache cypress install",
-    "start:cypress": "CYPRESS_CACHE_FOLDER=.cache cypress run",
-    "test": "(npm run start&) && npm run prepare:cypress && npm run start:cypress",
+    "cypress:prepare": "cypress install",
+    "cypress:start": "cypress run",
+    "test": "(npm run start&) && npm run cypress:prepare && npm run cypress:start",
     "update-api-interface": "swagger-typescript-api -p http://api:3000/info-json -o ./src/types/api/ -n interface.ts -r --no-client"
   },
   "dependencies": {

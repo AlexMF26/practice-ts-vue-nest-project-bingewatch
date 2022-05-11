@@ -2,6 +2,9 @@ services:
   app:
     command: [ "npm", "run", "${ENTRY}" ]
     user: ${TYPE}
+    environment:
+      - HOME=/app/.cache
+      - CYPRESS_CACHE_FOLDER=/app/.cache
     build:
       dockerfile: Dockerfile
       context: .
