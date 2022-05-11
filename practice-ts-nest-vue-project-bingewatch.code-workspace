@@ -30,7 +30,10 @@
       "editor.defaultFormatter": "Prisma.prisma"
     },
     "typescript.preferences.importModuleSpecifier": "relative",
-    "javascript.preferences.importModuleSpecifier": "relative"
+    "javascript.preferences.importModuleSpecifier": "relative",
+    "[dockercompose]": {
+      "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+    }
   },
 
   "extensions": {
