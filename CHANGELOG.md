@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.30.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.29.0...v0.30.0) (2022-05-12)
+
+
+### Features
+
+* **common:** :sparkles: added production containers ([efd2a03](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/efd2a0335325912c02e880f63fc882b64f8dd233))
+
+
+### Bug Fixes
+
+* **backend:** :bug: 2 dev dependencies moved to dependencies ([b070b5e](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/b070b5eeb9ad05cf5143b93550b082cce1ac9deb))
+* **deps:** update prisma monorepo to v3.14.0 ([a5d507b](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/a5d507b6e206f02ffc2cd9983502c44fc693abab))
+* **frontend:** :bug: fix cypress ([ae169e5](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/ae169e57163a33e5efbe90f8bdf75021f83b1df1))
+* **frontend:** :bug: fix npm scripts ([744e302](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/744e302f96dc37ffb53a5166a3a6a7e9a131465e))
+
 ## [0.29.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.28.1...v0.29.0) (2022-05-08)
 
 
