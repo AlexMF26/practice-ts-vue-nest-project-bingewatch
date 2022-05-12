@@ -16,14 +16,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: "npm"
           cache-dependency-path: "**/package-lock.json"
       - name: Install frontend dependencies
-        run: make prepare-fast
+        run: npm ci
         working-directory: frontend
       - name: Format frontend
         run: npm run format
@@ -33,14 +32,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: "npm"
           cache-dependency-path: "**/package-lock.json"
       - name: Install frontend dependencies
-        run: make prepare-fast
+        run: npm ci
         working-directory: frontend
       - name: Lint frontend
         run: npm run lint
@@ -63,17 +61,16 @@ jobs:
       OMDB_API_KEY: ${{ secrets.OMDB_API_KEY }}
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: "npm"
           cache-dependency-path: "**/package-lock.json"
       - name: Install backend dependencies
-        run: make prepare-fast
+        run: npm ci
         working-directory: backend
       - name: Install frontend dependencies
-        run: make prepare-fast
+        run: npm ci
         working-directory: frontend
       - name: Test frontend
         run: make test-root
