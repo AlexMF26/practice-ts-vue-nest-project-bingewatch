@@ -1,0 +1,25 @@
+FROM node:18.1.0 AS build-stage
+
+WORKDIR /api
+
+COPY ./*.json ./
+RUN npm ci --omit=dev
+
+COPY ./src ./src
+RUN npm run build
+
+
+
+FROM node:18.1.0 AS production-stage
+
+COPY --from=build-stage /api/node_modules /api/node_modules
+COPY --from=build-stage /api/dist /api/dist
+
+COPY --from=build-stage /api/package.json /api/package.json
+COPY --from=build-stage /api/src/Infrastructure/Persistence/Repository/Prisma /api/Prisma
+RUN sed -i 's:./src/Infrastructure/Persistence/Repository/Prisma/schema.prisma:./Prisma/schema.prisma:g' /api/package.json
+
+ENV NODE_ENV=production
+WORKDIR /api
+EXPOSE 3000
+ENTRYPOINT ["npm","run", "start:production"]

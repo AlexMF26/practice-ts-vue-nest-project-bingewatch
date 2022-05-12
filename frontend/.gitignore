@@ -35,3 +35,6 @@ yarn-error.log*
 # Cypress artifacts
 cypress/screenshots
 cypress/videos
+
+# Docker user home
+.cache/*

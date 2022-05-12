@@ -1,11 +1,21 @@
 services:
   api:
     command: [ "npm", "run", "${ENTRY}" ]
-    user: ${TYPE}
+    user: $TYPE
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@database:5432/mydb?schema=public
+      - PORT=3000
+      - JWT_SECRET=secret
+      - JWT_EXPIRATION_TIME=2d
+      - OMDB_API=https://www.omdbapi.com
+      - OMDB_API_KEY
+      - DEFAULT_ADMIN_NAME
+      - DEFAULT_ADMIN_PASSWORD
+      - DEFAULT_ADMIN_EMAIL
     build:
       dockerfile: Dockerfile
       context: .
-      target: development-stage-$TYPE-user
+      target: "development-stage-${TYPE}-user"
       args:
         - UID=$UID
     volumes:
@@ -17,6 +27,8 @@ services:
       - 9229:9229
     depends_on:
       - database
+    networks:
+      - bingewatch-dev-net
 
   database:
     image: postgres:14.2
@@ -28,8 +40,14 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_DB: mydb
+    networks:
+      - bingewatch-dev-net
 
 volumes:
   postgres:
     name: database
+
+networks:
+  bingewatch-dev-net:
+    name: bingewatch-dev-net

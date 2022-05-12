@@ -8,11 +8,13 @@
   "license": "MIT License",
   "scripts": {
     "lint": "eslint --ext .js,.ts,.vue ./",
-    "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
+    "format": "prettier --check --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "start": "quasar dev",
     "build": "quasar build",
-    "test": "(npm run start&) && cypress install && cypress run",
-    "update-api-interface": "sleep 15 && swagger-typescript-api -p http://api:3000/info-json -o ./src/types/api/ -n interface.ts -r --no-client"
+    "cypress:prepare": "cypress install",
+    "cypress:start": "cypress run",
+    "test": "(npm run start&) && npm run cypress:prepare && npm run cypress:start",
+    "update-api-interface": "swagger-typescript-api -p http://api:3000/info-json -o ./src/types/api/ -n interface.ts -r --no-client"
   },
   "dependencies": {
     "@quasar/extras": "1.13.6",

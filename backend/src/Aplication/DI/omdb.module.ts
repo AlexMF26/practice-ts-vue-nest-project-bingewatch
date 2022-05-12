@@ -10,7 +10,7 @@ import { OmdbService } from '../../Infrastructure/Adapters/Omdb/omdb.service';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
         baseURL: configService.get<string>('OMDB_API'),
-        params: { apiKey: configService.get<string>('OMDB_apikey') },
+        params: { apiKey: configService.get<string>('OMDB_API_KEY') },
       }),
     }),
   ],

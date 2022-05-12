@@ -1,51 +1,73 @@
 name: ci-backend
 
 on:
-  workflow_dispatch:
   pull_request:
     paths:
-      - ".github/workflows/**"
+      - ".github/workflows/ci-backend.yml"
       - "backend/**"
+
   push:
     paths:
-      - ".github/workflows/**"
+      - ".github/workflows/ci-backend.yml"
       - "backend/**"
 
 jobs:
-  ci-backend:
+  format:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Set env variables
-        run: |
-          mv example.env .env
-          sed -i 's/database/localhost/g' .env
-          sed -i 's/OMDB_apikey=""/OMDB_apikey="${{ secrets.OMDB_APIKEY }}"/g' .env
-          sed -i 's/DEFAULT_ADMIN_NAME=""/DEFAULT_ADMIN_NAME="${{ secrets.ADMIN_NAME }}"/g' .env
-          sed -i 's/DEFAULT_ADMIN_PASSWORD=""/DEFAULT_ADMIN_PASSWORD="${{ secrets.ADMIN_PASSWORD }}"/g' .env
-          sed -i 's/DEFAULT_ADMIN_EMAIL=""/DEFAULT_ADMIN_EMAIL="${{ secrets.ADMIN_EMAIL }}"/g' .env
-        working-directory: ./backend
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
       - name: Install backend dependencies
-        run: npm i
-        working-directory: ./backend
+        run: npm ci
+        working-directory: backend
       - name: Format backend
         run: npm run format
-        working-directory: ./backend
+        working-directory: backend
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
+      - name: Install backend dependencies
+        run: npm ci
+        working-directory: backend
       - name: Lint backend
         run: npm run lint
-        working-directory: ./backend
+        working-directory: backend
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
       - name: Build backend
-        run: npm run build
-        working-directory: ./backend
+        run: make build
+        working-directory: backend
+  test:
+    runs-on: ubuntu-latest
+    env:
+      DEFAULT_ADMIN_EMAIL: ${{ secrets.DEFAULT_ADMIN_EMAIL }}
+      DEFAULT_ADMIN_NAME: ${{ secrets.DEFAULT_ADMIN_NAME }}
+      DEFAULT_ADMIN_PASSWORD: ${{ secrets.DEFAULT_ADMIN_PASSWORD }}
+      OMDB_API_KEY: ${{ secrets.OMDB_API_KEY }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
+      - name: Install backend dependencies
+        run: npm ci
+        working-directory: backend
       - name: Test backend
-        run: |
-          docker-compose up -d database
-          npx prisma migrate deploy
-          npx prisma generate
-          npm run test
-          docker-compose stop
-        working-directory: ./backend
+        run: make test-root
+        working-directory: backend
