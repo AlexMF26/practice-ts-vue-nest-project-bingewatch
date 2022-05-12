@@ -8,7 +8,7 @@
   "license": "MIT License",
   "scripts": {
     "build": "prisma generate && nest build",
-    "format": "prettier --write \"src/**/*.ts\"",
+    "format": "prettier --check --write \"src/**/*.ts\" --ignore-path .gitignore",
     "start:development": "prisma migrate deploy && prisma generate && NODE_ENV=development nest start --debug 0.0.0.0:9229 --watch",
     "start:production": "prisma migrate deploy && NODE_ENV=production node dist/main",
     "migration": "prisma migrate dev --create-only",
