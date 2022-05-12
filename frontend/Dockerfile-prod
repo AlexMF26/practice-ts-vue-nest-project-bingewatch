@@ -1,12 +1,14 @@
-FROM node:18.1.0 as build-stage
+FROM node:18.1.0 AS build-stage
 
 WORKDIR /app
 
-COPY *.json .
-RUN npm install
+COPY ./*.config.js ./
+COPY ./.eslint* ./
+COPY index.html index.html
 
-COPY *.config.js .
-COPY ./index.html ./index.html
+COPY *.json ./
+RUN npm ci
+
 COPY ./src ./src
 COPY ./public ./public
 RUN npm run build

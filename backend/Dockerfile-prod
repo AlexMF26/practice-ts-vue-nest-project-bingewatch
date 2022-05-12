@@ -1,9 +1,9 @@
-FROM node:18.1.0 as build-stage
+FROM node:18.1.0 AS build-stage
 
 WORKDIR /api
 
-COPY *.json .
-RUN npm install --production
+COPY ./*.json ./
+RUN npm ci --omit=dev
 
 COPY ./src ./src
 RUN npm run build
@@ -11,8 +11,6 @@ RUN npm run build
 
 
 FROM node:18.1.0 AS production-stage
-
-RUN npm install -g prisma
 
 COPY --from=build-stage /api/node_modules /api/node_modules
 COPY --from=build-stage /api/dist /api/dist
