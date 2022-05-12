@@ -14,6 +14,11 @@ on:
 jobs:
   ci-frontend:
     runs-on: ubuntu-latest
+    env:
+      DEFAULT_ADMIN_EMAIL: ${{ secrets.DEFAULT_ADMIN_EMAIL }}
+      DEFAULT_ADMIN_NAME: ${{ secrets.DEFAULT_ADMIN_NAME }}
+      DEFAULT_ADMIN_PASSWORD: ${{ secrets.DEFAULT_ADMIN_PASSWORD }}
+      OMDB_API_KEY: ${{ secrets.OMDB_API_KEY }}
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js
@@ -23,14 +28,8 @@ jobs:
       - name: Install frontend dependencies
         run: npm i
         working-directory: ./frontend
-      - name: Prepare api
-        run: |
-          mv example.env .env
-          sed -i 's/OMDB_apikey=""/OMDB_apikey="${{ secrets.OMDB_APIKEY }}"/g' .env
-          sed -i 's/DEFAULT_ADMIN_NAME=""/DEFAULT_ADMIN_NAME="${{ secrets.ADMIN_NAME }}"/g' .env
-          sed -i 's/DEFAULT_ADMIN_PASSWORD=""/DEFAULT_ADMIN_PASSWORD="${{ secrets.ADMIN_PASSWORD }}"/g' .env
-          sed -i 's/DEFAULT_ADMIN_EMAIL=""/DEFAULT_ADMIN_EMAIL="${{ secrets.ADMIN_EMAIL }}"/g' .env
-          npm i
+      - name: Install backend dependencies
+        run: npm i
         working-directory: ./backend
       - name: Test frontend
         run: make test-root

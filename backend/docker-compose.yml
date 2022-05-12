@@ -2,6 +2,16 @@ services:
   api:
     command: [ "npm", "run", "${ENTRY}" ]
     user: $TYPE
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@database:5432/mydb?schema=public
+      - PORT=3000
+      - JWT_SECRET=secret
+      - JWT_EXPIRATION_TIME=2d
+      - OMDB_API=https://www.omdbapi.com
+      - OMDB_API_KEY
+      - DEFAULT_ADMIN_NAME
+      - DEFAULT_ADMIN_PASSWORD
+      - DEFAULT_ADMIN_EMAIL
     build:
       dockerfile: Dockerfile
       context: .

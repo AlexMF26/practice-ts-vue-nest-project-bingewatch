@@ -9,7 +9,8 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
 const { configure } = require('quasar/wrappers');
-const path = require('path');
+
+console.log(process.env);
 
 module.exports = configure(function (/* ctx */) {
   return {
@@ -82,7 +83,7 @@ module.exports = configure(function (/* ctx */) {
       open: true, // opens browser window automatically
       proxy: {
         '/api': {
-          target: 'http://api:3000',
+          target: process.env.API,
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
         },

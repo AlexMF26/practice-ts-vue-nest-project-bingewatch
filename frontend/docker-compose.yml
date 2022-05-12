@@ -5,6 +5,7 @@ services:
     environment:
       - HOME=/app/.cache
       - CYPRESS_CACHE_FOLDER=/app/.cache
+      - API=http://api:3000
     build:
       dockerfile: Dockerfile
       context: .
