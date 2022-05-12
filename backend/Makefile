@@ -37,7 +37,6 @@ migration-root: stop
 .PHONY: build
 build:
 	docker build . --target production-stage --no-cache --force-rm -t production-api
-	docker build . --target production-stage --no-cache --force-rm -t production-app
 
 .PHONY: prepare-fast
 prepare-fast: cleanup
