@@ -25,12 +25,14 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Install frontend dependencies
-        run: npm i
-        working-directory: ./frontend
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
       - name: Install backend dependencies
-        run: npm i
+        run: make prepare-fast
         working-directory: ./backend
+      - name: Install frontend dependencies
+        run: make prepare-fast
+        working-directory: ./frontend
       - name: Test frontend
         run: make test-root
         working-directory: ./frontend
