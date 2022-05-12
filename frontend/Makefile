@@ -24,7 +24,7 @@ update-api-interface-root: stop start-api-root
 
 .PHONY: build
 build:
-	docker build . --target production-stage --no-cache --force-rm -t production-app
+	docker build . --file ./Dockerfile-prod --target production-stage --no-cache --force-rm -t production-app
 
 .PHONY: prepare-fast
 prepare-fast: cleanup

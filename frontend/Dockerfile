@@ -21,25 +21,3 @@ RUN usermod -u ${UID} node
 WORKDIR /app
 
 EXPOSE 9000
-
-
-
-FROM node:18.1.0 as build-stage
-
-WORKDIR /app
-
-COPY package*.json .
-RUN npm install
-
-COPY ./ ./
-RUN npm run build
-
-
-
-FROM nginx:1.21.6-alpine AS production-stage
-
-COPY --from=build-stage /app/dist/spa /usr/share/nginx/html
-
-EXPOSE 80
-EXPOSE 443
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
