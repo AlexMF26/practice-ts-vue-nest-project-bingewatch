@@ -12,7 +12,55 @@ on:
       - "frontend/**"
 
 jobs:
-  ci-frontend:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
+      - name: Install frontend dependencies
+        run: make prepare-fast
+        working-directory: ./frontend
+      - name: Format frontend
+        run: npm run format
+        working-directory: ./frontend
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
+      - name: Install frontend dependencies
+        run: make prepare-fast
+        working-directory: ./frontend
+      - name: Lint frontend
+        run: npm run lint
+        working-directory: ./frontend
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
+      - name: Install frontend dependencies
+        run: make prepare-fast
+        working-directory: ./frontend
+      - name: Build frontend
+        run: make build
+        working-directory: ./frontend
+  test:
     runs-on: ubuntu-latest
     env:
       DEFAULT_ADMIN_EMAIL: ${{ secrets.DEFAULT_ADMIN_EMAIL }}
