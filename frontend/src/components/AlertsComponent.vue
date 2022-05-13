@@ -3,7 +3,7 @@
     v-for="(alert, index) in alerts"
     :key="alert.id"
     class="alert-card shadow-2"
-    v-bind:style="{ 'margin-top': 1 + index * 8 + 'rem' }"
+    v-bind:style="{ 'margin-top': 4 + index * 10 + 'vh' }"
   >
     <div class="q-pa-md q-pr-xs row">
       <q-icon
@@ -48,7 +48,8 @@ const { removeAlert } = store;
   z-index: 99;
   position: absolute;
   right: 0;
-  margin-right: 1rem;
-  width: 20rem;
+  margin-right: 5vw;
+  min-width: 30vw;
+  max-width: 95vw;
 }
 </style>

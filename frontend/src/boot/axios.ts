@@ -1,5 +1,5 @@
 import { boot } from 'quasar/wrappers';
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosError, AxiosInstance } from 'axios';
 import { useAlertStore } from '../stores/alert.store';
 import { AlertType } from '../types/Alert';
 
@@ -36,32 +36,45 @@ export default boot(({ app, store }) => {
       return response;
     },
     (error) => {
-      let message = error?.response?.data?.message;
-      if (error?.response?.data?.statusCode === 404) {
-        return Promise.reject(error);
-      }
-      if (message === undefined) {
+      if (error instanceof AxiosError) {
+        const statusCode = error.response?.status;
+        if (statusCode === 401 || statusCode === 404) {
+          return Promise.reject(error);
+        } else {
+          let message = error.response?.data?.message;
+          if (message == undefined || statusCode == undefined) {
+            useAlertStore(store).addAlert(
+              'Something wrong happened',
+              AlertType.Error,
+              6000
+            );
+          } else if (Array.isArray(message)) {
+            message = message
+              .map((messageUnit) => {
+                let m = messageUnit.trim();
+                m = m.charAt(m.length - 1) === '.' ? m : m + '.';
+                return m;
+              })
+              .join(' ');
+            useAlertStore(store).addAlert(message, AlertType.Error, 6000);
+          } else {
+            message = message.trim();
+            message =
+              message.charAt(message.length - 1) === '.'
+                ? message
+                : message + '.';
+            useAlertStore(store).addAlert(message, AlertType.Error, 6000);
+          }
+          return Promise.reject(error);
+        }
+      } else {
         useAlertStore(store).addAlert(
           'Something wrong happened',
           AlertType.Error,
           6000
         );
-      } else if (Array.isArray(message)) {
-        message = message
-          .map((messageUnit) => {
-            let m = messageUnit.trim();
-            m = m.charAt(m.length - 1) === '.' ? m : m + '.';
-            return m;
-          })
-          .join(' ');
-        useAlertStore(store).addAlert(message, AlertType.Error, 6000);
-      } else {
-        message = message.trim();
-        message =
-          message.charAt(message.length - 1) === '.' ? message : message + '.';
-        useAlertStore(store).addAlert(message, AlertType.Error, 6000);
+        return Promise.reject(error);
       }
-      return Promise.reject(error);
     }
   );
 });

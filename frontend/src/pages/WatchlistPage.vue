@@ -2,10 +2,12 @@
   <q-page> <WatchlistComponent :id="props.id" /></q-page>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import WatchlistComponent from '../components/WatchlistComponent.vue';
 
-const props = defineProps({
-  id: String,
-});
+export type Props = {
+  id: string;
+};
+
+const props = defineProps<Props>();
 </script>

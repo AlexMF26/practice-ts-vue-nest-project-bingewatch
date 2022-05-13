@@ -1,5 +1,5 @@
 <template>
-  <q-card style="min-width: 40rem">
+  <q-card style="min-width: 60vw; max-width: 95vw">
     <q-card-section>
       <q-tabs
         v-model="activeTab"
@@ -36,7 +36,11 @@ import { onBeforeMount, ref } from 'vue';
 import { useUserStore } from '../stores/user.store';
 import { useRouter } from 'vue-router';
 
-const props = defineProps<{ id: string }>();
+export type Props = {
+  id: string;
+};
+
+const props = defineProps<Props>();
 
 const activeTab = ref<'details' | 'update'>('details');
 const store = useUserStore();
@@ -63,10 +67,10 @@ async function fetchData() {
         icon: 'workspace_premium',
       },
     ];
-  } catch (error: any) {
-    if (error?.message?.toString()?.includes('401')) {
+  } catch (error) {
+    if (error instanceof Error && error.message.includes('401')) {
       router.push('/unauthorized');
-    } else if (error?.message?.toString()?.includes('404')) {
+    } else if (error instanceof Error && error.message.includes('404')) {
       router.push('/not-found');
     } else {
       router.push('/unknown-error');

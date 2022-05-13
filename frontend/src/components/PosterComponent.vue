@@ -14,6 +14,7 @@
     v-else
   />
 </template>
+
 <script setup lang="ts">
 export type Props = {
   posterUrl: string;

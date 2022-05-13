@@ -1,6 +1,8 @@
 <template>
-  <q-page class="row justify-evenly">
-    <h1 class="col-12 q-mt-xl text-center">Login</h1>
+  <q-page class="full-width column items-center content-center">
+    <h2 class="text-center" style="margin-top: 20vh; margin-bottom: 20vh">
+      Login
+    </h2>
     <LoginForm />
   </q-page>
 </template>
@@ -10,7 +12,7 @@ import LoginForm from '../components/LoginForm.vue';
 </script>
 
 <style lang="scss" scoped>
-h1 {
+h2 {
   color: $accent;
 }
 </style>

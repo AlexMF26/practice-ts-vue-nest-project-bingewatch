@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 <template>
   <q-tabs
     v-model="activeTab"
@@ -77,6 +76,7 @@
     </div>
   </q-card-section>
 </template>
+
 <script setup lang="ts">
 import { debounce } from 'quasar';
 import { computed, ref } from 'vue';
@@ -138,10 +138,10 @@ const submit = debounce(
         await authStore.getDetails();
       }
       emit('updateUserData');
-    } catch (error: any) {
-      if (error?.message?.toString()?.includes('401')) {
+    } catch (error) {
+      if (error instanceof Error && error.message.includes('401')) {
         router.push('/unauthorized');
-      } else if (error?.message?.toString()?.includes('404')) {
+      } else if (error instanceof Error && error.message.includes('404')) {
         router.push('/not-found');
       }
     }

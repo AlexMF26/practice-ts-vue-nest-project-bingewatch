@@ -67,10 +67,10 @@ const { userId, loggedIn } = storeToRefs(authStore);
 async function fetchData() {
   try {
     entry.value = await entriesStore.get(props.id);
-  } catch (error: any) {
-    if (error?.message?.toString()?.includes('401')) {
+  } catch (error) {
+    if (error instanceof Error && error.message.includes('401')) {
       router.push('/unauthorized');
-    } else if (error?.message?.toString()?.includes('404')) {
+    } else if (error instanceof Error && error.message.includes('404')) {
       router.push('/not-found');
     } else {
       router.push('/unknown-error');

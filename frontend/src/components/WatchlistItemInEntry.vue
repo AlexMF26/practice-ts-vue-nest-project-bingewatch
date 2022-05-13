@@ -6,6 +6,7 @@
     <q-btn @click="unwatch()" color="negative">Unwatch</q-btn>
   </div>
 </template>
+
 <script setup lang="ts">
 import { debounce } from 'quasar';
 import { onBeforeMount, ref } from 'vue';
@@ -33,10 +34,10 @@ const item = ref<WatchlistItemEntity>({
 async function fetchData() {
   try {
     item.value = await store.getWatchListItem(props.userId, props.entryId);
-  } catch (error: any) {
-    if (error?.message?.toString()?.includes('401')) {
+  } catch (error) {
+    if (error instanceof Error && error.message.includes('401')) {
       router.push('/unauthorized');
-    } else if (error?.message?.toString()?.includes('404')) {
+    } else if (error instanceof Error && error.message.includes('404')) {
       item.value = {
         id: '',
         entryId: '',

@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md">
+  <div>
     <q-form
       @submit="onSubmit"
       @reset="onReset"
@@ -94,10 +94,10 @@ const onSubmit = debounce(
         authStore.login({ email: user.email, password: password.value });
         router.push({ path: '/' });
       }
-    } catch (error: any) {
-      if (error?.message?.toString()?.includes('401')) {
+    } catch (error) {
+      if (error instanceof Error && error.message.includes('401')) {
         router.push('/unauthorized');
-      } else if (error?.message?.toString()?.includes('404')) {
+      } else if (error instanceof Error && error.message.includes('404')) {
         router.push('/not-found');
       }
     }
@@ -159,6 +159,7 @@ function isInvalidPassword(val: string) {
 <style lang="scss" scoped>
 .q-input,
 .buttons-row {
-  width: 40rem;
+  min-width: 40vw;
+  max-width: 90vw;
 }
 </style>

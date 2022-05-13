@@ -4,6 +4,7 @@
     <b class="q-mr-md">{{ value.description }}:</b>{{ value.data }}
   </div>
 </template>
+
 <script setup lang="ts">
 export type dataEntry = {
   description: string;
@@ -22,7 +23,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 <style lang="scss" scoped>
 .q-icon {
-  margin-right: 0.5rem;
+  margin-right: 2vw;
 }
 .q-icon,
 b {
