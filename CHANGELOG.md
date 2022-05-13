@@ -1,5 +1,13 @@
 # Changelog
 
+### [0.30.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.30.0...v0.30.1) (2022-05-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency swagger-ui-express to v4.4.0 ([a01a9e5](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/a01a9e52949695981e7ea6a73b59ea217a728580))
+* **deps:** update nest monorepo to v8.4.5 ([8ff44ad](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/8ff44ad9c16ce4641507610fdadb020155e09a2b))
+
 ## [0.30.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.29.0...v0.30.0) (2022-05-12)
 
 
