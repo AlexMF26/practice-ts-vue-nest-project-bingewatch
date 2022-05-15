@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.30.2](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.30.1...v0.30.2) (2022-05-15)
+
+
+### Bug Fixes
+
+* **backend:** :bug: remove unnecessary 404 exception in favor of null return ([e7f3e6f](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/e7f3e6ffdeb404e770e3f58be69bb4303d91c3f9))
+
 ### [0.30.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.30.0...v0.30.1) (2022-05-13)
 
 
