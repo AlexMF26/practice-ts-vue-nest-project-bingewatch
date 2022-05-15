@@ -99,7 +99,7 @@ export class EntriesService {
         _avg: { rating: true },
       });
       // if there is no reviews
-      if (data?._avg?.rating) {
+      if (!data?._avg?.rating) {
         this.logger.warn(`No reviews for entry with imdbId "${imdbId}".`);
         return;
       }
