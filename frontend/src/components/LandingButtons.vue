@@ -24,7 +24,7 @@
       @click="$router.push('/watchlist/' + userId)"
       color="accent"
       text-color="secondary"
-      class="col-9"
+      class="col-7"
     ></q-btn>
   </div>
 </template>
