@@ -1,7 +1,7 @@
 <template>
   <div class="full-width row justify-between">
     <div class="col-6 offset-1 unit">
-      <h6>Plot</h6>
+      <h4>Plot</h4>
       <p>{{ entry?.plot }}</p>
       <WatchlistItemInEntry v-if="loggedIn" />
     </div>
@@ -9,6 +9,7 @@
       <h4>{{ entry?.title }}</h4>
       <PosterComponent :posterUrl="entry?.posterUrl" />
       <div v-if="entry?.seasons.length !== 0">
+        <span class="text-h4 q-mt-md q-mr-md">Series</span>
         <div>
           <span class="text-h6 q-my-md q-mr-md">Seasons:</span
           >{{ entry?.seasons.length }}
@@ -23,7 +24,11 @@
         </div>
       </div>
       <div v-else>
-        <span class="text-h6 q-mt-md q-mr-md">Movie</span>
+        <span class="text-h4 q-mt-md q-mr-md">Movie</span>
+      </div>
+      <div>
+        <span class="text-h6 q-my-md q-mr-md">Rating:</span
+        >{{ entry?.rating ? entry?.rating.toFixed(2) : 'N/A' }}
       </div>
     </div>
   </div>
