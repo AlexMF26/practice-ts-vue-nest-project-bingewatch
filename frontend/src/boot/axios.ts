@@ -20,7 +20,7 @@ const api = axios.create({
   withCredentials: true,
 });
 
-export default boot(({ app, store }) => {
+export default boot(({ app, store, router }) => {
   // for use inside Vue files (Options API) through this.$axios and this.$api
 
   app.config.globalProperties.$axios = axios;
@@ -38,16 +38,16 @@ export default boot(({ app, store }) => {
     (error) => {
       if (error instanceof AxiosError) {
         const statusCode = error.response?.status;
-        if (statusCode === 401 || statusCode === 404) {
-          return Promise.reject(error);
+        if (statusCode === undefined) {
+          router.push('/unknown-error');
+        } else if (statusCode === 401) {
+          router.push('/unauthorized');
+        } else if (statusCode === 404) {
+          router.push('/not-found');
         } else {
           let message = error.response?.data?.message;
-          if (message == undefined || statusCode == undefined) {
-            useAlertStore(store).addAlert(
-              'Something wrong happened',
-              AlertType.Error,
-              6000
-            );
+          if (message == undefined) {
+            router.push('/unknown-error');
           } else if (Array.isArray(message)) {
             message = message
               .map((messageUnit) => {
@@ -65,16 +65,11 @@ export default boot(({ app, store }) => {
                 : message + '.';
             useAlertStore(store).addAlert(message, AlertType.Error, 6000);
           }
-          return Promise.reject(error);
         }
       } else {
-        useAlertStore(store).addAlert(
-          'Something wrong happened',
-          AlertType.Error,
-          6000
-        );
-        return Promise.reject(error);
+        router.push('/unknown-error');
       }
+      return Promise.reject(error);
     }
   );
 });
