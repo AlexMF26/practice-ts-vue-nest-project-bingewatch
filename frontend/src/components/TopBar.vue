@@ -5,7 +5,7 @@
       <q-space />
       <q-toolbar-title
         shrink
-        @click="$router.push({ path: '/' })"
+        @click="$router.push('/')"
         style="cursor: pointer"
       >
         Bingewatch

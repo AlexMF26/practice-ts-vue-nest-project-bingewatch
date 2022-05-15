@@ -1,7 +1,7 @@
 <template>
   <div class="row items-center justify-evenly q-py-xl" v-if="!loggedIn">
     <q-btn
-      @click="$router.push({ path: '/login' })"
+      @click="$router.push('/login')"
       color="accent"
       label="Login"
       class="col-5"
@@ -11,7 +11,7 @@
     <q-btn
       icon="person_add"
       label="Register"
-      @click="$router.push({ path: '/register' })"
+      @click="$router.push('/register')"
       color="accent"
       text-color="secondary"
       class="col-5"
@@ -21,7 +21,7 @@
     <q-btn
       icon="list"
       label="Your watchlist"
-      @click="$router.push({ path: '/watchlist/' + userId })"
+      @click="$router.push('/watchlist/' + userId)"
       color="accent"
       text-color="secondary"
       class="col-9"

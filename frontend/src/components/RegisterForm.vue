@@ -84,22 +84,14 @@ function onReset() {
 
 const onSubmit = debounce(
   async function () {
-    try {
-      const user = await userStore.register({
-        email: email.value,
-        password: password.value,
-        name: name.value,
-      });
-      if (user) {
-        authStore.login({ email: user.email, password: password.value });
-        router.push({ path: '/' });
-      }
-    } catch (error) {
-      if (error instanceof Error && error.message.includes('401')) {
-        router.push('/unauthorized');
-      } else if (error instanceof Error && error.message.includes('404')) {
-        router.push('/not-found');
-      }
+    const user = await userStore.register({
+      email: email.value,
+      password: password.value,
+      name: name.value,
+    });
+    if (user) {
+      authStore.login({ email: user.email, password: password.value });
+      router.push('/');
     }
   },
   500,
