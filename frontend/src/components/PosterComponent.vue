@@ -4,7 +4,7 @@
     alt="poster"
     width="250"
     height="300"
-    v-if="props.posterUrl !== 'N/A'"
+    v-if="props.posterUrl !== undefined && props.posterUrl !== 'N/A'"
   />
   <img
     src="~assets/document-missing.svg"
@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 export type Props = {
-  posterUrl: string;
+  posterUrl?: string;
 };
 const props = defineProps<Props>();
 </script>

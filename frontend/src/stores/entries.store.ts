@@ -10,7 +10,7 @@ import { useWatchlistStore } from './watchlist.store';
 
 export type EntryState = {
   entry: EntryEntity | null;
-  userData: Omit<WatchlistItemEntity, 'entry'> | null;
+  userData: WatchlistItemEntity | null;
 };
 
 export const useEntriesStore = defineStore('entries', {
@@ -34,15 +34,13 @@ export const useEntriesStore = defineStore('entries', {
       return response.data;
     },
     async get(id: string) {
-      await this.getEntry(id);
+      this.userData = null;
+      const entry = await this.getEntry(id);
       const authStore = useAuthStore();
       const loggedIn = authStore.loggedIn;
       if (loggedIn) {
-        const watchlistStore = useWatchlistStore();
         const userId = authStore.userId;
-        await watchlistStore.getWatchListItem(userId, id);
-      } else {
-        this.userData = null;
+        await this.getUserData(entry.imdbId, userId);
       }
     },
     async getEntry(id: string) {
@@ -56,7 +54,11 @@ export const useEntriesStore = defineStore('entries', {
         userId,
         imdbId
       );
-      this.userData = detailedEntry;
+      if (detailedEntry) {
+        this.userData = detailedEntry;
+      } else {
+        this.userData = null;
+      }
       return this.userData;
     },
   },

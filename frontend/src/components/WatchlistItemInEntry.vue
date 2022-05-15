@@ -1,5 +1,5 @@
 <template>
-  <div v-if="item.id === ''">
+  <div v-if="userData === null">
     <q-btn @click="watch()" color="positive">Watch</q-btn>
   </div>
   <div v-else>
@@ -8,56 +8,34 @@
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from 'pinia';
 import { debounce } from 'quasar';
-import { onBeforeMount, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useAuthStore } from '../stores/auth.store';
+import { useEntriesStore } from '../stores/entries.store';
 import { useWatchlistStore } from '../stores/watchlist.store';
-import { WatchlistItemEntity } from '../types/api/interface';
 
-export type Props = {
-  entryId: string;
-  userId: string;
-};
-const props = defineProps<Props>();
+const entriesStore = useEntriesStore();
+const authStore = useAuthStore();
+const watchlistStore = useWatchlistStore();
 
-const store = useWatchlistStore();
-const router = useRouter();
+const { entry, userData } = storeToRefs(entriesStore);
 
-const item = ref<WatchlistItemEntity>({
-  id: '',
-  entryId: '',
-  userId: '',
-  progress: 0,
-  rating: null,
-});
+const { userId } = storeToRefs(authStore);
 
-async function fetchData() {
-  try {
-    item.value = await store.getWatchListItem(props.userId, props.entryId);
-  } catch (error) {
-    if (error instanceof Error && error.message.includes('401')) {
-      router.push('/unauthorized');
-    } else if (error instanceof Error && error.message.includes('404')) {
-      item.value = {
-        id: '',
-        entryId: '',
-        userId: '',
-        progress: 0,
-        rating: null,
-      };
-    } else {
-      router.push('/unknown-error');
-    }
-  }
+async function refreshData() {
+  await entriesStore.getUserData(
+    entry.value?.imdbId as string,
+    userId.value as string
+  );
 }
 
 const watch = debounce(
   async function () {
-    const data = await store.addWatchListItem({
-      userId: props.userId,
-      imdbId: props.entryId,
+    await watchlistStore.addWatchListItem({
+      userId: userId.value as string,
+      imdbId: entry.value?.imdbId as string,
     });
-    item.value = data;
+    await refreshData();
   },
   500,
   true
@@ -65,20 +43,12 @@ const watch = debounce(
 
 const unwatch = debounce(
   async function () {
-    await store.deleteWatchListItem(item.value.id);
-    item.value = {
-      id: '',
-      entryId: '',
-      userId: '',
-      progress: 0,
-      rating: null,
-    };
+    await watchlistStore.deleteWatchListItem(userData.value?.id as string);
+    await refreshData();
   },
   500,
   true
 );
-
-onBeforeMount(fetchData);
 </script>
 
 <style scoped lang="scss">
