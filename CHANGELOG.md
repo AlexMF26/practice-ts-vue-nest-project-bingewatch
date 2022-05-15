@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.31.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.30.2...v0.31.0) (2022-05-15)
+
+
+### Features
+
+* **frontend:** :sparkles: added rating to entry page ([af1ff6e](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/af1ff6e4a8e3bd36ea6e9c3204208b0a092c8a3c))
+
 ### [0.30.2](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.30.1...v0.30.2) (2022-05-15)
 
 
