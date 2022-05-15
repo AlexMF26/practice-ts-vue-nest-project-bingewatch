@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.31.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.31.0...v0.31.1) (2022-05-15)
+
+
+### Bug Fixes
+
+* **backend:** :bug: fix updateReview method ([fb17cb4](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/fb17cb46896616d0dfcdc7c0391a58c05b079e3f))
+
 ## [0.31.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.30.2...v0.31.0) (2022-05-15)
 
 
