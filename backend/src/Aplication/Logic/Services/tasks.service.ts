@@ -14,7 +14,7 @@ export class TasksService {
     private readonly entriesService: EntriesService,
   ) {}
 
-  @Cron('*/30 * * * *')
+  @Cron('*/5 * * * *')
   public async refreshEntities() {
     this.logger.log('Refreshing entries...');
     //get all the imdb ids for all entries in the database
