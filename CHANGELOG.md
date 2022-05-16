@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.32.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.31.1...v0.32.0) (2022-05-16)
+
+
+### Features
+
+* **frontend:** :sparkles: finish entry ([6bf882a](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/6bf882a174a638c2702979383a2a0ce843494f62))
+
+
+### Bug Fixes
+
+* **backend:** :bug: allow unrating ([334f146](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/334f146e6958b2018fa48fed7391205bc8aab07f))
+* **backend:** :bug: fix the situation where after all the ratings are removed the average rating isn't updated ([b6aa2df](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/b6aa2dfb51ed2fc7a5ae9f8cdca9422fc98841ae))
+* **frontend:** :bug: fix update method ([47890a0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/47890a0fd66a1492867f3d114c66123c7b8e009e))
+
 ### [0.31.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.31.0...v0.31.1) (2022-05-15)
 
 
