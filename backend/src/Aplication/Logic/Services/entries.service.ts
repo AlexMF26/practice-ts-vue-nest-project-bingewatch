@@ -98,12 +98,12 @@ export class EntriesService {
         },
         _avg: { rating: true },
       });
-      // if there is no reviews
-      if (!data?._avg?.rating) {
-        this.logger.warn(`No reviews for entry with imdbId "${imdbId}".`);
-        return;
+      // if there is no reviews new rating is null
+      let newRating: number | null = null;
+      // if there are reviews use the average
+      if (data?._avg?.rating) {
+        newRating = data._avg.rating;
       }
-      const newRating = data._avg.rating;
       // update the entry
       const updatedEntry = await this.repositoryService.entry.update({
         where: {
