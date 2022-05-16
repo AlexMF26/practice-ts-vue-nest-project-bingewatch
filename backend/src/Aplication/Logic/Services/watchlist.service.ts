@@ -207,12 +207,14 @@ export class WatchlistService {
       progress: number;
     }> = {};
 
-    if (data?.rating && data.rating !== item?.rating) {
-      if (
-        data.rating <= 0 ||
-        data.rating > 10 ||
-        !Number.isInteger(data.rating)
-      ) {
+    if (data?.rating !== undefined && data.rating !== item?.rating) {
+      const updatableRating =
+        data.rating === null
+          ? true
+          : Number.isInteger(data.rating) &&
+            data.rating >= 0 &&
+            data.rating <= 10;
+      if (!updatableRating) {
         this.logger.warn(`Rating ${data.rating} is out of range`);
         throw new Error('The given rating must be between 0 and 10');
       } else {
