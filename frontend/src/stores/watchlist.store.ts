@@ -57,7 +57,7 @@ export const useWatchlistStore = defineStore('watchlist', {
       return null;
     },
     async updateWatchListItem(itemId: string, updateItemDto: UpdateItemDto) {
-      const response = await api.put<WatchlistItemEntity>(
+      const response = await api.patch<WatchlistItemEntity>(
         `/watchlist/item/${itemId}`,
         updateItemDto
       );
