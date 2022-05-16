@@ -1,58 +1,20 @@
 <template>
-  <div v-if="userData === null">
-    <q-btn @click="watch()" color="positive">Watch</q-btn>
+  <div class="full-width row items-center content-center">
+    <EntryWatchUnwatchButton />
+    <EntryProgress v-if="userData !== null" />
   </div>
-  <div v-else>
-    <q-btn @click="unwatch()" color="negative">Unwatch</q-btn>
-  </div>
+  <EntryRating class="q-mt-lg" v-if="userData !== null" />
 </template>
 
 <script setup lang="ts">
+import EntryWatchUnwatchButton from './EntryWatchUnwatchButton.vue';
+import EntryProgress from './EntryProgress.vue';
+import EntryRating from './EntryRating.vue';
+
 import { storeToRefs } from 'pinia';
-import { debounce } from 'quasar';
-import { useAuthStore } from '../stores/auth.store';
 import { useEntriesStore } from '../stores/entries.store';
-import { useWatchlistStore } from '../stores/watchlist.store';
 
 const entriesStore = useEntriesStore();
-const authStore = useAuthStore();
-const watchlistStore = useWatchlistStore();
 
-const { entry, userData } = storeToRefs(entriesStore);
-
-const { userId } = storeToRefs(authStore);
-
-async function refreshData() {
-  await entriesStore.getUserData(
-    entry.value?.imdbId as string,
-    userId.value as string
-  );
-}
-
-const watch = debounce(
-  async function () {
-    await watchlistStore.addWatchListItem({
-      userId: userId.value as string,
-      imdbId: entry.value?.imdbId as string,
-    });
-    await refreshData();
-  },
-  500,
-  true
-);
-
-const unwatch = debounce(
-  async function () {
-    await watchlistStore.deleteWatchListItem(userData.value?.id as string);
-    await refreshData();
-  },
-  500,
-  true
-);
+const { userData } = storeToRefs(entriesStore);
 </script>
-
-<style scoped lang="scss">
-.q-btn {
-  width: 20vh;
-}
-</style>

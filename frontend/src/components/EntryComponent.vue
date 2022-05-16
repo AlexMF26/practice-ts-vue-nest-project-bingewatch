@@ -1,11 +1,6 @@
 <template>
-  <div class="full-width row justify-between">
-    <div class="col-6 offset-1 unit">
-      <h4>Plot</h4>
-      <p>{{ entry?.plot }}</p>
-      <WatchlistItemInEntry v-if="loggedIn" />
-    </div>
-    <div class="col-4 offset-1 unit">
+  <div class="full-width row justify-evenly">
+    <div class="col-4 q-mx-xl">
       <h4>{{ entry?.title }}</h4>
       <PosterComponent :posterUrl="entry?.posterUrl" />
       <div v-if="entry?.seasons.length !== 0">
@@ -30,6 +25,11 @@
         <span class="text-h6 q-my-md q-mr-md">Rating:</span
         >{{ entry?.rating ? entry?.rating.toFixed(2) : 'N/A' }}
       </div>
+    </div>
+    <div class="col-6 q-mx-xl">
+      <h4>Plot</h4>
+      <p>{{ entry?.plot }}</p>
+      <WatchlistItemInEntry v-if="loggedIn" />
     </div>
   </div>
 </template>
