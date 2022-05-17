@@ -33,12 +33,36 @@ const { entry, userData } = storeToRefs(entriesStore);
 
 const { userId } = storeToRefs(authStore);
 
-const newRating = ref<number | null>(userData.value?.rating ?? null);
+const getLabel = (rating: number | null) =>
+  rating === null ? 'N/A' : `${rating}`;
 
-const ratings = [null, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const newRating = ref<{
+  value: number | null;
+  label: ReturnType<typeof getLabel>;
+}>({
+  value: userData.value?.rating ?? null,
+  label: getLabel(userData.value?.rating ?? null),
+});
+
+const ratings = [
+  { value: null, label: getLabel(null) },
+  { value: 1, label: getLabel(1) },
+  { value: 2, label: getLabel(2) },
+  { value: 3, label: getLabel(3) },
+  { value: 4, label: getLabel(4) },
+  { value: 5, label: getLabel(5) },
+  { value: 6, label: getLabel(6) },
+  { value: 7, label: getLabel(7) },
+  { value: 8, label: getLabel(8) },
+  { value: 9, label: getLabel(9) },
+  { value: 10, label: getLabel(10) },
+];
 
 const canUpdate = computed(() => {
-  if (userData.value !== null && userData.value?.rating !== newRating.value) {
+  if (
+    userData.value !== null &&
+    userData.value?.rating !== newRating.value.value
+  ) {
     return true;
   } else {
     return false;
@@ -54,7 +78,7 @@ async function refreshData() {
 
 async function update() {
   await watchlistStore.updateWatchListItem(userData.value?.id as string, {
-    rating: newRating.value as number | undefined,
+    rating: newRating.value.value as number | undefined,
   });
   await refreshData();
 }

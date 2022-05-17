@@ -30,11 +30,30 @@ const watchlistStore = useWatchlistStore();
 const { items } = storeToRefs(watchlistStore);
 const item = computed(() => items.value.find((i) => i.id === props.id));
 
-const newRating = ref<number | null>(null);
+const getLabel = (rating: number | null) =>
+  rating === null ? 'N/A' : `${rating}`;
 
-newRating.value = item.value?.rating ?? null;
+const newRating = ref<{
+  value: number | null;
+  label: ReturnType<typeof getLabel>;
+}>({
+  value: item.value?.rating ?? null,
+  label: getLabel(item.value?.rating ?? null),
+});
 
-const ratings = [null, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const ratings = [
+  { value: null, label: getLabel(null) },
+  { value: 1, label: getLabel(1) },
+  { value: 2, label: getLabel(2) },
+  { value: 3, label: getLabel(3) },
+  { value: 4, label: getLabel(4) },
+  { value: 5, label: getLabel(5) },
+  { value: 6, label: getLabel(6) },
+  { value: 7, label: getLabel(7) },
+  { value: 8, label: getLabel(8) },
+  { value: 9, label: getLabel(9) },
+  { value: 10, label: getLabel(10) },
+];
 
 const loading = ref(false);
 
@@ -42,7 +61,7 @@ watchEffect(async () => {
   if (props.isOwner) {
     loading.value = true;
     await watchlistStore.updateWatchListItem(props.id, {
-      rating: newRating.value as number,
+      rating: newRating.value.value as number,
     });
     await new Promise((resolve) => setTimeout(resolve, 200));
     loading.value = false;
