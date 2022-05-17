@@ -1,5 +1,8 @@
 <template>
-  <div class="row items-center justify-between">
+  <div
+    class="row items-center"
+    :class="props.isOwner ? 'justify-between' : 'justify-evenly'"
+  >
     <q-btn
       dense
       color="primary"
@@ -8,6 +11,7 @@
       text-color="secondary"
       :disabled="(item?.progress ?? 0) <= 0"
       @click="remove"
+      v-if="props.isOwner"
     />
     <div v-if="type == 'movie'">
       {{ item?.progress === 1 ? 'Completed' : 'Not completed' }}
@@ -21,6 +25,7 @@
       text-color="secondary"
       :disabled="(item?.progress ?? 0) >= (maxProgress ?? 1)"
       @click="add"
+      v-if="props.isOwner"
     />
   </div>
 </template>
