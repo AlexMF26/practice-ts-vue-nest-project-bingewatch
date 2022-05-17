@@ -1,6 +1,16 @@
 <template>
   <div class="q-pa-md">
-    <q-table :rows="items" row-key="id" :columns="columns">
+    <q-table
+      :rows="items"
+      row-key="id"
+      :columns="columns"
+      :sort-method="customSort"
+      :rows-per-page-options="[0]"
+      hide-pagination
+      column-sort-order="ad"
+      binary-state-sort
+      dense
+    >
       <template v-slot:body="props">
         <q-tr :props="props">
           <q-td key="title" :props="props">
@@ -55,7 +65,7 @@ const columns: QTableProps['columns'] = [
     name: 'progress',
     label: 'Progress',
     field: (row: DetailedWatchlistItemEntity) => row.progress,
-    align: 'right',
+    align: 'center',
   },
   {
     name: 'rating',
@@ -64,4 +74,15 @@ const columns: QTableProps['columns'] = [
     align: 'center',
   },
 ];
+
+function customSort(rows: DetailedWatchlistItemEntity[]) {
+  const data = [...rows];
+
+  data.sort(
+    (a: DetailedWatchlistItemEntity, b: DetailedWatchlistItemEntity) => {
+      return a.entry.title < b.entry.title ? -1 : 1;
+    }
+  );
+  return data;
+}
 </script>

@@ -1,12 +1,11 @@
 <template>
-  <div class="row float-right items-center">
+  <div class="row items-center justify-between">
     <q-btn
       dense
       color="primary"
       icon="remove"
       round
       text-color="secondary"
-      class="on-left"
       :disabled="(item?.progress ?? 0) <= 0"
       @click="remove"
     />
@@ -20,7 +19,6 @@
       icon="add"
       round
       text-color="secondary"
-      class="on-right"
       :disabled="(item?.progress ?? 0) >= (maxProgress ?? 1)"
       @click="add"
     />
