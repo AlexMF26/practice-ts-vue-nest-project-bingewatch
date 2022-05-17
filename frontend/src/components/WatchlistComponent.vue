@@ -1,11 +1,75 @@
 <template>
-  <div v-for="item in items" :key="item.id">{{ item.entry.title }}<br /></div>
+  <div class="q-pa-md">
+    <q-table :rows="items" row-key="id" :columns="columns">
+      <template v-slot:body="props">
+        <q-tr :props="props">
+          <q-td key="title" :props="props">
+            <WatchlistItemTitle :id="props.key" />
+          </q-td>
+          <q-td key="progress" :props="props">
+            <WatchlistItemProgress
+              :id="props.key"
+              :isOwner="componentProps.isOwner"
+            />
+          </q-td>
+          <q-td key="rating" :props="props">
+            <WatchlistItemRating
+              :id="props.key"
+              :isOwner="componentProps.isOwner"
+            />
+          </q-td>
+          <q-td>
+            <WatchlistItemActions
+              :id="props.key"
+              :isOwner="componentProps.isOwner"
+            />
+          </q-td>
+        </q-tr>
+      </template>
+    </q-table>
+  </div>
 </template>
 
 <script setup lang="ts">
+import WatchlistItemTitle from './WatchlistItemTitle.vue';
+import WatchlistItemProgress from './WatchlistItemProgress.vue';
+import WatchlistItemRating from './WatchlistItemRating.vue';
+import WatchlistItemActions from './WatchlistItemActions.vue';
+
 import { storeToRefs } from 'pinia';
 import { useWatchlistStore } from '../stores/watchlist.store';
+import { DetailedWatchlistItemEntity } from '../types/api/interface';
+
+export type Props = {
+  isOwner: boolean;
+};
+
+const componentProps = defineProps<Props>();
 
 const watchlistStore = useWatchlistStore();
 const { items } = storeToRefs(watchlistStore);
+
+const columns = [
+  {
+    name: 'title',
+    label: 'Title',
+    field: (row: DetailedWatchlistItemEntity) => row.entry.title,
+  },
+
+  {
+    name: 'progress',
+    label: 'Progress',
+    field: (row: DetailedWatchlistItemEntity) => row.progress,
+  },
+  {
+    name: 'rating',
+    label: 'Rating',
+    field: (row: DetailedWatchlistItemEntity) => row.rating ?? 'N/A',
+  },
+  {
+    name: 'actions',
+    label: 'Actions',
+    field: (row: DetailedWatchlistItemEntity) => row.id,
+  },
+];
 </script>
