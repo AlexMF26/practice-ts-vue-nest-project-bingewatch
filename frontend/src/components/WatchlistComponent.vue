@@ -5,10 +5,9 @@
       row-key="id"
       :columns="columns"
       :sort-method="customSort"
+      :pagination="{ sortBy: 'title' }"
       :rows-per-page-options="[0]"
       hide-pagination
-      column-sort-order="ad"
-      binary-state-sort
       dense
     >
       <template v-slot:body="props">
