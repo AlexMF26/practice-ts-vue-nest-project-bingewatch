@@ -18,12 +18,6 @@
               :isOwner="componentProps.isOwner"
             />
           </q-td>
-          <q-td>
-            <WatchlistItemActions
-              :id="props.key"
-              :isOwner="componentProps.isOwner"
-            />
-          </q-td>
         </q-tr>
       </template>
     </q-table>
@@ -34,7 +28,6 @@
 import WatchlistItemTitle from './WatchlistItemTitle.vue';
 import WatchlistItemProgress from './WatchlistItemProgress.vue';
 import WatchlistItemRating from './WatchlistItemRating.vue';
-import WatchlistItemActions from './WatchlistItemActions.vue';
 
 import { storeToRefs } from 'pinia';
 import { useWatchlistStore } from '../stores/watchlist.store';
@@ -65,11 +58,6 @@ const columns = [
     name: 'rating',
     label: 'Rating',
     field: (row: DetailedWatchlistItemEntity) => row.rating ?? 'N/A',
-  },
-  {
-    name: 'actions',
-    label: 'Actions',
-    field: (row: DetailedWatchlistItemEntity) => row.id,
   },
 ];
 </script>
