@@ -12,11 +12,14 @@
       :disabled="(item?.progress ?? 0) <= 0"
       @click="remove"
       v-if="props.isOwner"
+      class="offset-5 offset-sm-0"
     />
-    <div v-if="type == 'movie'">
+    <div v-if="type == 'movie'" class="text-center col-12 col-sm-auto">
       {{ item?.progress === 1 ? 'Completed' : 'Not completed' }}
     </div>
-    <div v-else>{{ item?.progress }}/{{ maxProgress }}</div>
+    <div v-else class="text-center col-12 col-sm-auto">
+      {{ item?.progress }}/{{ maxProgress }}
+    </div>
     <q-btn
       dense
       color="primary"
@@ -26,6 +29,7 @@
       :disabled="(item?.progress ?? 0) >= (maxProgress ?? 1)"
       @click="add"
       v-if="props.isOwner"
+      class="offset-5 offset-sm-0"
     />
   </div>
 </template>

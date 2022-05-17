@@ -1,7 +1,7 @@
 <template>
   <div class="full-width row justify-evenly">
-    <div class="col-4 q-mx-xl">
-      <h4>{{ entry?.title }}</h4>
+    <div class="col-auto q-mx-xl text-center">
+      <h4 class="text-center">{{ entry?.title }}</h4>
       <PosterComponent :posterUrl="entry?.posterUrl" />
       <div v-if="entry?.seasons.length !== 0">
         <span class="text-h4 q-mt-md q-mr-md">Series</span>

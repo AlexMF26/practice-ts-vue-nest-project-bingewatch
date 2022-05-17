@@ -1,4 +1,5 @@
 <template>
+  <h2 class="text-center">{{ userName }}'s Watchlist</h2>
   <q-page> <WatchlistComponent v-if="ready" :isOwner="isOwner" /></q-page>
 </template>
 
@@ -21,7 +22,7 @@ const ready = ref(false);
 
 const authStore = useAuthStore();
 
-const { userId } = storeToRefs(authStore);
+const { userId, userName } = storeToRefs(authStore);
 
 const isOwner = computed(() => {
   return userId.value === props.id;
@@ -33,3 +34,9 @@ onBeforeMount(async () => {
   ready.value = true;
 });
 </script>
+
+<style lang="scss" scoped>
+h2 {
+  color: $accent;
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md">
+  <div style="max-width: 95vw; margin: auto; margin-top: 4vh">
     <q-table
       :rows="items"
       row-key="id"
@@ -7,6 +7,7 @@
       :sort-method="customSort"
       :pagination="{ sortBy: 'title' }"
       :rows-per-page-options="[0]"
+      no-data-label="No items in your watchlist"
       hide-pagination
       dense
     >

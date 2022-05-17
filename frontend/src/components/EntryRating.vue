@@ -6,14 +6,14 @@
       label="Your rating"
       filled
       dense
-      class="col-grow q-mr-md"
+      class="col-12 col-sm-grow q-mt-lg"
     ></q-select>
     <q-btn
       v-if="canUpdate"
       label="Update"
       color="accent"
       @click="update"
-      class="col-auto"
+      class="col-12 col-sm-auto q-mt-lg offset-0 offset-sm-1"
     ></q-btn>
   </div>
 </template>
