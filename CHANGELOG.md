@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.34.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.33.0...v0.34.0) (2022-05-17)
+
+
+### Features
+
+* **frontend:** :sparkles: watchlist item progress ([ac4a5db](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/ac4a5db41423aa3159db13f8c8b5360af18067cd))
+
+
+### Bug Fixes
+
+* **frontend:** :lipstick: align columns ([73262b4](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/73262b440cca37a062821c3378c9f1c6523f1df9))
+
 ## [0.33.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.32.0...v0.33.0) (2022-05-17)
 
 
