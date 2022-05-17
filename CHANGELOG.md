@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.35.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.34.0...v0.35.0) (2022-05-17)
+
+
+### Features
+
+* **frontend:** :iphone: made frontend responsive ([6f94f40](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/6f94f40bcc639daff6c1bfd386196516b10dfbff))
+* **frontend:** :sparkles: mapped ratings ([c3bfab6](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/c3bfab69bc8629431152e22bd8ea30b37637064f))
+
+
+### Bug Fixes
+
+* **frontend:** :bug: fix pagination ([c3867fa](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/c3867fa70adc3018a2515df40a10d2465d4dd234))
+* **frontend:** :bug: fix watchlist item progress authorization ([92f86b4](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/92f86b4de357d78757adcb0b9001d246a03b16b5))
+
 ## [0.34.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.33.0...v0.34.0) (2022-05-17)
 
 
