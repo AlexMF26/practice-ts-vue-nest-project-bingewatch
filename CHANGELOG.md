@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.33.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.32.0...v0.33.0) (2022-05-17)
+
+
+### Features
+
+* **frontend:** :fire: improve watchlist by removing actions ([a4461d6](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/a4461d66b33217fda5d8a77112833649bf9d277c))
+* **frontend:** :sparkles: added watchlist item title component ([17e2b43](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/17e2b4362a483471c1980fd8621abf91abc5c52a))
+* **frontend:** :sparkles: setup watchlist ([7c61e0a](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/7c61e0aac9dfbd0271ba24fe2867a4c49df5d72f))
+* **frontend:** :sparkles: Watchlist item rating ([4d2853e](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/4d2853ec5caec8b1e4e4c64c0259060bcc99c9c2))
+
 ## [0.32.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.31.1...v0.32.0) (2022-05-16)
 
 
