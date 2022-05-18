@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.37.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.36.0...v0.37.0) (2022-05-18)
+
+
+### Features
+
+* **backend:** :sparkles: improved rest compliance ([f89f732](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/f89f7324e7ff13da34b2f3f37ed36652003d6b31))
+
+
+### Bug Fixes
+
+* **frontend:** :bug: added missing property ([3d12703](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/3d127030e556a207d5a637211573219fbc850909))
+
 ## [0.36.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.35.5...v0.36.0) (2022-05-18)
 
 
