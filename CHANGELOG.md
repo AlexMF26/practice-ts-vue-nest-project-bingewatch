@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.35.2](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.35.1...v0.35.2) (2022-05-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @nestjs/config to v2.0.1 ([00e630d](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/00e630dca5039acfea3754bf58bad0731de47212))
+
 ### [0.35.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.35.0...v0.35.1) (2022-05-18)
 
 
