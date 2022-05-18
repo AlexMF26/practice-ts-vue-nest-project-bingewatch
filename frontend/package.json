@@ -17,7 +17,7 @@
     "update-api-interface": "swagger-typescript-api -p http://api:3000/info-json -o ./src/types/api/ -n interface.ts -r --no-client"
   },
   "dependencies": {
-    "@quasar/extras": "1.13.6",
+    "@quasar/extras": "1.14.0",
     "axios": "0.27.2",
     "jwt-decode": "3.1.2",
     "pinia": "2.0.14",
