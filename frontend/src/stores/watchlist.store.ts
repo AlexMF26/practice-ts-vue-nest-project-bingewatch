@@ -27,9 +27,12 @@ export const useWatchlistStore = defineStore('watchlist', {
       return this.items;
     },
     async getWatchListItem(userId: string, imdbId: string) {
-      const response = await api.get<WatchlistItemEntity>(
-        `/watchlist/${userId}/${imdbId}`
-      );
+      const response = await api.get<WatchlistItemEntity>('/watchlist', {
+        params: {
+          userId,
+          imdbId,
+        },
+      });
       return response.data;
     },
     async addWatchListItem(createItemDto: CreateItemDto) {
