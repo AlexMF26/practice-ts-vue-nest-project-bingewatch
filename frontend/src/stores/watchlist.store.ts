@@ -42,12 +42,13 @@ export const useWatchlistStore = defineStore('watchlist', {
       );
       const entryStore = useEntriesStore();
       const entry = await entryStore.getEntry(createItemDto.imdbId);
-      const { progress, rating, id } = response.data;
+      const { progress, rating, id, reviewId } = response.data;
       this.items.push({
         entry: entry,
         progress,
         rating,
         id,
+        reviewId,
       });
       return response.data;
     },
@@ -68,8 +69,8 @@ export const useWatchlistStore = defineStore('watchlist', {
       if (index !== -1) {
         const entryStore = useEntriesStore();
         const entry = await entryStore.getEntry(this.items[index].entry.imdbId);
-        const { progress, rating, id } = response.data;
-        this.items[index] = { entry, progress, rating, id };
+        const { progress, rating, id, reviewId } = response.data;
+        this.items[index] = { entry, progress, rating, id, reviewId };
       }
       return response.data;
     },
