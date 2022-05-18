@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.35.3](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.35.2...v0.35.3) (2022-05-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @nestjs/cli to v8.2.6 ([9e5f649](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/9e5f649ba83fb08efc2d7569bab2d69cba23e929))
+
 ### [0.35.2](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.35.1...v0.35.2) (2022-05-18)
 
 
