@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.36.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.35.5...v0.36.0) (2022-05-18)
+
+
+### Features
+
+* **common:** :card_file_box: extended db to support for reviews ([55a0256](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/55a025626d042fd02722339eda75583f18746dd2))
+
 ### [0.35.5](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.35.4...v0.35.5) (2022-05-18)
 
 
