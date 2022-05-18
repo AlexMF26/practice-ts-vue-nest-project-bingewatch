@@ -1,14 +1,27 @@
 <template>
-  <div class="q-ml-md">
+  <div class="row items-center justify-evenly">
     <q-btn
       round
       color="accent"
       icon="remove"
       :disabled="!canRemove"
       @click="remove()"
+      style="margin-right: 0.4vw"
     />
-    {{ userData?.progress }}/{{ maxProgress }}
-    <q-btn round color="accent" icon="add" :disabled="!canAdd" @click="add()" />
+    <span v-if="type == 'movie'" class="text-center col-12 col-sm-auto">
+      {{ userData?.progress === 1 ? 'Completed' : 'Not completed' }}
+    </span>
+    <span v-else class="text-center col-12 col-sm-auto"
+      >{{ userData?.progress }}/{{ maxProgress }}</span
+    >
+    <q-btn
+      round
+      color="accent"
+      icon="add"
+      :disabled="!canAdd"
+      @click="add()"
+      style="margin-left: 0.4vw"
+    />
   </div>
 </template>
 
@@ -36,6 +49,9 @@ const maxProgress = computed(() => {
     }, 0);
   }
 });
+const type = computed(() =>
+  entry.value?.seasons.length !== 0 ? 'series' : 'movie'
+);
 
 const canAdd = computed(() => {
   if (
