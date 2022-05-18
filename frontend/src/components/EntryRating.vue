@@ -19,8 +19,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from '@vue/reactivity';
 import { storeToRefs } from 'pinia';
+import { computed, ref } from 'vue';
 import { useAuthStore } from '../stores/auth.store';
 import { useEntriesStore } from '../stores/entries.store';
 import { useWatchlistStore } from '../stores/watchlist.store';

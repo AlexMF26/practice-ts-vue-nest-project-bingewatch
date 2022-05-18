@@ -7,10 +7,9 @@
 import WatchlistComponent from '../components/WatchlistComponent.vue';
 
 import { useWatchlistStore } from '../stores/watchlist.store';
-import { onBeforeMount, ref } from 'vue';
+import { computed, onBeforeMount, ref } from 'vue';
 import { useAuthStore } from '../stores/auth.store';
 import { storeToRefs } from 'pinia';
-import { computed } from '@vue/reactivity';
 
 export type Props = {
   id: string;
