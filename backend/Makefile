@@ -28,11 +28,15 @@ test-root: stop
 
 .PHONY: migration
 migration: stop
-	UID=$(shell id -u) ENTRY=migration TYPE=node docker-compose up --abort-on-container-exit
+	make start-detached
+	docker-compose exec api npm run migration
+	make stop
 
 .PHONY: migration-root
 migration-root: stop
-	UID=$(shell id -u) ENTRY=migration TYPE=root docker-compose up --abort-on-container-exit
+	make start-detached-root
+	docker-compose exec api npm run migration
+	make stop
 
 .PHONY: build
 build:
