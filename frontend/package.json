@@ -22,7 +22,7 @@
     "jwt-decode": "3.1.2",
     "pinia": "2.0.14",
     "pinia-plugin-persistedstate": "1.5.2",
-    "quasar": "2.6.6",
+    "quasar": "2.7.0",
     "uuid": "8.3.2",
     "vue": "3.2.33",
     "vue-router": "4.0.15"
