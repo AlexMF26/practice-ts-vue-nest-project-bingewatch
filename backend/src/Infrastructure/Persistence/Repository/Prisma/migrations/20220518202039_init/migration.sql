@@ -23,6 +23,7 @@ CREATE TABLE "Entry" (
     "imdbId" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "posterUrl" TEXT NOT NULL,
+    "plot" TEXT NOT NULL,
     "rating" DOUBLE PRECISION,
     "seasonsData" INTEGER[],
 
