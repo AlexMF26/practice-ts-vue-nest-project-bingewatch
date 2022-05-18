@@ -9,6 +9,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   ServiceUnavailableException,
   UnauthorizedException,
   UseGuards,
@@ -52,10 +53,10 @@ export class WatchlistController {
     }
   }
 
-  @Get(':userId/:imdbId')
+  @Get()
   public async getWatchItem(
-    @Param('userId') userId: string,
-    @Param('imdbId') imdbId: string,
+    @Query('userId') userId: string,
+    @Query('imdbId') imdbId: string,
   ) {
     this.logger.log(
       `An HTTP request to get watchlist item for entry "${imdbId}" for user with "${userId}" was received.`,
