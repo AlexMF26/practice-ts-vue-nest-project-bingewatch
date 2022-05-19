@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.38.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.37.0...v0.38.0) (2022-05-19)
+
+
+### Features
+
+* **common:** :card_file_box: modify migration to allow for anonymous reviews ([8aefcdd](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/8aefcdd2d635c64a5b5456b83dacc84320ea233b))
+
 ## [0.37.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.36.0...v0.37.0) (2022-05-18)
 
 
