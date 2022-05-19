@@ -107,7 +107,6 @@ export interface DetailedWatchlistItemEntity {
   entry: EntryEntity;
   id: string;
   rating: number | null;
-  reviewId: string | null;
   progress: number;
 }
 
@@ -117,7 +116,6 @@ export interface WatchlistItemEntity {
   entryId: string;
   progress: number;
   rating: number | null;
-  reviewId: string | null;
 }
 
 export interface CreateItemDto {
