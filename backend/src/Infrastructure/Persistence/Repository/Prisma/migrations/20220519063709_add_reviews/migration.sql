@@ -1,7 +1,7 @@
 -- CreateTable
 CREATE TABLE "Opinion" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
-    "authorId" UUID NOT NULL,
+    "authorId" UUID,
     "replyToId" UUID,
     "watchlistItemId" UUID NOT NULL,
     "text" TEXT NOT NULL DEFAULT E'',
@@ -14,7 +14,7 @@ CREATE TABLE "Opinion" (
 CREATE UNIQUE INDEX "Opinion_watchlistItemId_key" ON "Opinion"("watchlistItemId");
 
 -- AddForeignKey
-ALTER TABLE "Opinion" ADD CONSTRAINT "Opinion_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Opinion" ADD CONSTRAINT "Opinion_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Opinion" ADD CONSTRAINT "Opinion_watchlistItemId_fkey" FOREIGN KEY ("watchlistItemId") REFERENCES "WatchlistItem"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

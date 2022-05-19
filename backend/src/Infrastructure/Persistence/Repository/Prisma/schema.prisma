@@ -58,7 +58,7 @@ model Opinion {
   replies         Opinion[]      @relation("replies")
   watchlistItem   WatchlistItem? @relation(fields: [watchlistItemId], references: [id])
   id              String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  authorId        String         @db.Uuid
+  authorId        String?        @db.Uuid
   replyToId       String?        @db.Uuid
   watchlistItemId String         @unique @db.Uuid
   text            String         @default("") @db.Text
