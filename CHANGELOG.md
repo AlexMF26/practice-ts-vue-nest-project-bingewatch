@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.38.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.38.0...v0.38.1) (2022-05-19)
+
+
+### Bug Fixes
+
+* **backend:** :card_file_box: set authorId as optional in the database ([263647f](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/263647f9895b261a7cd3186f1ed37290f870ad78))
+
 ## [0.38.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.37.0...v0.38.0) (2022-05-19)
 
 
