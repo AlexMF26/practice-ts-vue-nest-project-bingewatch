@@ -20,6 +20,7 @@
     "@quasar/extras": "1.14.0",
     "axios": "0.27.2",
     "jwt-decode": "3.1.2",
+    "marked": "^4.0.16",
     "pinia": "2.0.14",
     "pinia-plugin-persistedstate": "1.5.2",
     "quasar": "2.7.0",
@@ -29,6 +30,7 @@
   },
   "devDependencies": {
     "@quasar/app-vite": "1.0.0",
+    "@types/marked": "^4.0.3",
     "@types/node": "16.11.36",
     "@typescript-eslint/eslint-plugin": "5.25.0",
     "@typescript-eslint/parser": "5.25.0",
