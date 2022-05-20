@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.39.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.38.1...v0.39.0) (2022-05-20)
+
+
+### Features
+
+* **backend:** :sparkles: added controller dto ([3dd64e1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/3dd64e124204dde045c075b2d26996ff6edae5d1))
+* **backend:** :sparkles: added opinion DTOs ([2f1cb27](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/2f1cb2776313ac7ca456dd221a58cd76dfd69e01))
+* **backend:** :sparkles: added opinion events and entity to domain ([bddb80b](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/bddb80ba01c760d37ca755e1140642896344b37e))
+* **backend:** :sparkles: added opinions cleanup task ([6452c67](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/6452c6727adb1db5296b89cdb71e3d6407078ea3))
+* **backend:** :sparkles: added opinions listener ([bc817ba](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/bc817bac23a3b24bf20ac8134e31c939b4f7d753))
+* **backend:** :sparkles: added opinions service ([218419c](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/218419c40e031f8ac7e3d6a5ff0b3dd60dd86ad5))
+
+
+### Bug Fixes
+
+* **backend:** :bug: added return types to methods that the compiler couldn't infer ([cdf4091](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/cdf409188571305faabf921f4f32c09938894b88))
+* **backend:** :bug: fix return type in the service ([b2b9a80](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/b2b9a8017cdef11fcfd8ded2977e005ca294521e))
+* **backend:** :bug: made isAdmin method of user service public ([0af848e](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/0af848ef190ca25b691ac424a25f03b8afb11617))
+* **backend:** :card_file_box: db migration ([4aa15f3](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/4aa15f31524b8cd21beecfdbb34832f0a02f38a0))
+* **backend:** :sparkles: Watchlist module exports user service ([748489e](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/748489ea59d9c7c9fda3dcc1cd4d0a74b338a182))
+* **common:** :bug: changed http rest routes to be more rest compliant ([d96bbf4](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/d96bbf461ebda26df67dbe8117bd85d2ffbf0e20))
+
 ### [0.38.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.38.0...v0.38.1) (2022-05-19)
 
 
