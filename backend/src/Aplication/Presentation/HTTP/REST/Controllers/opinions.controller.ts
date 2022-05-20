@@ -20,7 +20,7 @@ import { JwtGuard } from '../../Guards/jwt.guard';
 import { AddReviewDto } from '../DTOs/add-review.dto';
 import { OpinionContentDto } from '../DTOs/opinion-content.dto';
 
-@Controller('Opinions')
+@Controller('opinions')
 @ApiTags('opinions')
 export class OpinionsController {
   private readonly logger = new Logger(OpinionsController.name);
