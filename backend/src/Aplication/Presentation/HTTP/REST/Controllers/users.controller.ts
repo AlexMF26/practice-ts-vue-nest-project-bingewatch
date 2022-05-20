@@ -25,7 +25,7 @@ import { UsersService } from '../../../../Logic/Services/users.service';
 import { userId } from '../../Decorators/userId.decorator';
 import { JwtGuard } from '../../Guards/jwt.guard';
 import { CreateUserDto } from '../DTOs/create-user.dto';
-import { UpdateUserDto } from '../DTOs/update-role.dto';
+import { UpdateUserDto } from '../DTOs/update-user.dto';
 
 @Controller('users')
 @ApiTags('users')
