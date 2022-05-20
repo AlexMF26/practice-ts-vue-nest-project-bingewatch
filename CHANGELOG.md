@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.40.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.40.0...v0.40.1) (2022-05-20)
+
+
+### Bug Fixes
+
+* **frontend:** :bug: fix a bug where you would see your name instead of the owner name ([10de7b1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/10de7b1d2c7cb3cd9f641a55ba1f972b2a9df230))
+
 ## [0.40.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.39.0...v0.40.0) (2022-05-20)
 
 
