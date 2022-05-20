@@ -15,6 +15,68 @@ export interface EntrySearchResult {
   posterUrl: string;
 }
 
+export interface Season {
+  episodes: number;
+}
+
+export interface EntryEntity {
+  imdbId: string;
+  title: string;
+  posterUrl: string;
+  rating: number;
+  seasons: Season[];
+  plot: string;
+}
+
+export interface OpinionEntity {
+  id: string;
+  authorId: string | null;
+  entryImdb: string | null;
+  replyToId: string | null;
+  text: string | null;
+}
+
+export interface AddReviewDto {
+  entryId: string;
+  text: string;
+}
+
+export interface OpinionContentDto {
+  text: string;
+}
+
+export interface WatchlistItemEntity {
+  id: string;
+  userId: string;
+  entryId: string;
+  progress: number;
+  rating: number | null;
+}
+
+export interface CreateItemDto {
+  userId: string;
+  imdbId: string;
+}
+
+export interface UpdateItemDto {
+  /**
+   * @min 1
+   * @max 10
+   * @example 8
+   */
+  rating?: number;
+
+  /** @example -1 */
+  progress?: number;
+}
+
+export interface DetailedWatchlistItemEntity {
+  entry: EntryEntity;
+  id: string;
+  rating: number | null;
+  progress: number;
+}
+
 export interface CreateUserDto {
   /**
    * The name of the user.
@@ -88,49 +150,4 @@ export interface LoginDto {
    * @example P@ssword123
    */
   password: string;
-}
-
-export interface Season {
-  episodes: number;
-}
-
-export interface EntryEntity {
-  imdbId: string;
-  title: string;
-  posterUrl: string;
-  rating: number;
-  seasons: Season[];
-  plot: string;
-}
-
-export interface DetailedWatchlistItemEntity {
-  entry: EntryEntity;
-  id: string;
-  rating: number | null;
-  progress: number;
-}
-
-export interface WatchlistItemEntity {
-  id: string;
-  userId: string;
-  entryId: string;
-  progress: number;
-  rating: number | null;
-}
-
-export interface CreateItemDto {
-  userId: string;
-  imdbId: string;
-}
-
-export interface UpdateItemDto {
-  /**
-   * @min 1
-   * @max 10
-   * @example 8
-   */
-  rating?: number;
-
-  /** @example -1 */
-  progress?: number;
 }
