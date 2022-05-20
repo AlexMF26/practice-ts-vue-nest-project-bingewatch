@@ -33,7 +33,7 @@ import AccountDetails, { dataEntry } from '../components/AccountDetails.vue';
 import AccountUpdate from '../components/AccountUpdate.vue';
 
 import { onBeforeMount, ref } from 'vue';
-import { useUserStore } from '../stores/user.store';
+import { useUsersStore } from '../stores/users.store';
 import { useRouter } from 'vue-router';
 
 export type Props = {
@@ -43,7 +43,7 @@ export type Props = {
 const props = defineProps<Props>();
 
 const activeTab = ref<'details' | 'update'>('details');
-const store = useUserStore();
+const store = useUsersStore();
 const router = useRouter();
 const infos = ref<dataEntry[]>([]);
 

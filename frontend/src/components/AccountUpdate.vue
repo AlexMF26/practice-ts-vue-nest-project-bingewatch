@@ -82,7 +82,7 @@ import { debounce } from 'quasar';
 import { computed, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '../stores/auth.store';
-import { useUserStore } from '../stores/user.store';
+import { useUsersStore } from '../stores/users.store';
 
 export type Props = {
   id: string;
@@ -91,7 +91,7 @@ export type Props = {
 const props = defineProps<Props>();
 const emit = defineEmits<{ (e: 'updateUserData'): void }>();
 
-const userStore = useUserStore();
+const userStore = useUsersStore();
 const authStore = useAuthStore();
 const router = useRouter();
 const activeTab = ref<'name' | 'email' | 'password'>('name');

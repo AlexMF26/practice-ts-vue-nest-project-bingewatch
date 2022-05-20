@@ -1,6 +1,6 @@
 import { boot } from 'quasar/wrappers';
 import axios, { AxiosError, AxiosInstance } from 'axios';
-import { useAlertStore } from '../stores/alert.store';
+import { useAlertsStore } from '../stores/alerts.store';
 import { AlertType } from '../types/Alert';
 
 declare module '@vue/runtime-core' {
@@ -56,14 +56,14 @@ export default boot(({ app, store, router }) => {
                 return m;
               })
               .join(' ');
-            useAlertStore(store).addAlert(message, AlertType.Error, 6000);
+            useAlertsStore(store).addAlert(message, AlertType.Error, 6000);
           } else {
             message = message.trim();
             message =
               message.charAt(message.length - 1) === '.'
                 ? message
                 : message + '.';
-            useAlertStore(store).addAlert(message, AlertType.Error, 6000);
+            useAlertsStore(store).addAlert(message, AlertType.Error, 6000);
           }
         }
       } else {

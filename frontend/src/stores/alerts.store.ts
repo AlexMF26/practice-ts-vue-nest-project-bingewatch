@@ -6,7 +6,7 @@ export type AlertState = {
   alerts: Alert[];
 };
 
-export const useAlertStore = defineStore('alert', {
+export const useAlertsStore = defineStore('alerts', {
   state: () =>
     ({
       alerts: [],

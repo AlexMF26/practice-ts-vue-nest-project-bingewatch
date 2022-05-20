@@ -34,10 +34,10 @@
 </template>
 
 <script setup lang="ts">
-import { useAlertStore } from '../stores/alert.store';
+import { useAlertsStore } from '../stores/alerts.store';
 import { storeToRefs } from 'pinia';
 
-const store = useAlertStore();
+const store = useAlertsStore();
 const { alerts } = storeToRefs(store);
 
 const { removeAlert } = store;

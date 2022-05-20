@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { LoginDto, SerializedUserEntity } from '../types/api/interface';
 import jwt_decode from 'jwt-decode';
 import { api } from '../boot/axios';
-import { useAlertStore } from './alert.store';
+import { useAlertsStore } from './alerts.store';
 import { AlertType } from '../types/Alert';
 
 export type AuthState = {
@@ -83,7 +83,7 @@ export const useAuthStore = defineStore('auth', {
       await this.getToken(loginInfo);
       await this.getDetails();
       this.loggedIn = true;
-      useAlertStore().addAlert(
+      useAlertsStore().addAlert(
         'You are now logged in.',
         AlertType.Success,
         2000

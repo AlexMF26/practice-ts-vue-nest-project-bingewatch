@@ -63,7 +63,7 @@ import { debounce } from 'quasar';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '../stores/auth.store';
-import { useUserStore } from '../stores/user.store';
+import { useUsersStore } from '../stores/users.store';
 
 const email = ref('');
 const password = ref('');
@@ -72,7 +72,7 @@ const invalidEmail = ref(true);
 const invalidPassword = ref(true);
 const invalidName = ref(true);
 const authStore = useAuthStore();
-const userStore = useUserStore();
+const userStore = useUsersStore();
 const router = useRouter();
 
 function onReset() {

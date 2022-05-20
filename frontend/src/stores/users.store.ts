@@ -5,10 +5,10 @@ import {
   UpdateUserDto,
 } from '../types/api/interface';
 import { api } from '../boot/axios';
-import { useAlertStore } from './alert.store';
+import { useAlertsStore } from './alerts.store';
 import { AlertType } from '../types/Alert';
 
-export const useUserStore = defineStore('user', {
+export const useUsersStore = defineStore('users', {
   actions: {
     async register(registerInfo: CreateUserDto) {
       const registerResponse = await api.post<SerializedUserEntity>(
@@ -16,7 +16,7 @@ export const useUserStore = defineStore('user', {
         registerInfo
       );
       const registerData = registerResponse.data;
-      useAlertStore().addAlert(
+      useAlertsStore().addAlert(
         'You are now registered.',
         AlertType.Success,
         2000
@@ -30,7 +30,7 @@ export const useUserStore = defineStore('user', {
         updateInfo
       );
       const updateData = updateResponse.data;
-      useAlertStore().addAlert('Update successful.', AlertType.Success, 2000);
+      useAlertsStore().addAlert('Update successful.', AlertType.Success, 2000);
       return updateData;
     },
 
