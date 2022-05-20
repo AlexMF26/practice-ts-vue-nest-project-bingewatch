@@ -25,6 +25,12 @@
         <span class="text-h6 q-my-md q-mr-md">Rating:</span
         >{{ entry?.rating ? entry?.rating.toFixed(2) : 'N/A' }}
       </div>
+      <q-btn
+        @click="$router.push(`${$route.path}/reviews`)"
+        color="accent"
+        label="Reviews"
+        class="q-mt-md"
+      />
     </div>
     <div class="col-6 q-mx-xl">
       <h4>Plot</h4>
