@@ -1,5 +1,6 @@
 describe('initial test', () => {
-  it('should visit', () => {
+  it('should contain moto', () => {
     cy.visit('/');
+    cy.contains('You Bingewatch? Track your progress!').should('exist');
   });
 });
