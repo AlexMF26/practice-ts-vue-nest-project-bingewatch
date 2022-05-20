@@ -38,7 +38,7 @@ export class EntriesService {
     return seasons;
   }
 
-  private async create(imdbId: string) {
+  private async create(imdbId: string): Promise<EntryEntity> {
     const entryData = await this.omdbService.getEntry(imdbId);
     const seasons = await this.getSeasons(imdbId);
     // prepare the update query and execute it
@@ -63,7 +63,7 @@ export class EntriesService {
     }
   }
 
-  public async getEntryByImdbId(imdbId: string) {
+  public async getEntryByImdbId(imdbId: string): Promise<EntryEntity> {
     // get the entry from the database
     let data: Entry;
     try {
