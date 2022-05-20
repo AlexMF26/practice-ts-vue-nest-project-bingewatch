@@ -13,7 +13,7 @@ export class UsersService {
 
   private readonly logger = new Logger(UsersService.name);
 
-  private async isAdmin(id: string) {
+  public async isAdmin(id: string) {
     this.logger.log(`Checking if user with id "${id}" is admin.`);
     // check if the id is valid
     const validId = await this.securityService.checkValidUUID(id);
