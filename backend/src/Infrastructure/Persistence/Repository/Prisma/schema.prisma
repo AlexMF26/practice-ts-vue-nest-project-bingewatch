@@ -33,6 +33,7 @@ model User {
 
 model Entry {
   watchlistItem WatchlistItem[]
+  opinion       Opinion[]
   imdbId        String          @id
   title         String
   posterUrl     String
@@ -42,25 +43,23 @@ model Entry {
 }
 
 model WatchlistItem {
-  user     User      @relation(fields: [userId], references: [id])
-  entry    Entry     @relation(fields: [entryId], references: [imdbId])
-  id       String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  userId   String    @db.Uuid
+  user     User   @relation(fields: [userId], references: [id])
+  entry    Entry  @relation(fields: [entryId], references: [imdbId])
+  id       String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId   String @db.Uuid
   entryId  String
-  progress Int       @default(0)
+  progress Int    @default(0)
   rating   Int?
-  Opinion  Opinion[]
 }
 
 model Opinion {
-  author          User?          @relation(fields: [authorId], references: [id])
-  replyTo         Opinion?       @relation("replies", fields: [replyToId], references: [id])
-  replies         Opinion[]      @relation("replies")
-  watchlistItem   WatchlistItem? @relation(fields: [watchlistItemId], references: [id])
-  id              String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  authorId        String?        @db.Uuid
-  replyToId       String?        @db.Uuid
-  watchlistItemId String         @unique @db.Uuid
-  text            String         @default("") @db.Text
-  hidden          Boolean        @default(false)
+  author    User?     @relation(fields: [authorId], references: [id])
+  entry     Entry?    @relation(fields: [entryImdb], references: [imdbId])
+  replyTo   Opinion?  @relation("replies", fields: [replyToId], references: [id])
+  replies   Opinion[] @relation("replies")
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  authorId  String?   @db.Uuid
+  entryImdb String?
+  replyToId String?   @db.Uuid
+  text      String?
 }
