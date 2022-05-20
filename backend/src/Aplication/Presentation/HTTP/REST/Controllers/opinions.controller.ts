@@ -11,10 +11,12 @@ import {
   Post,
   ServiceUnavailableException,
   UnauthorizedException,
+  UseGuards,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiCookieAuth, ApiTags } from '@nestjs/swagger';
 import { OpinionsService } from '../../../../Logic/Services/opinions.service';
 import { userId } from '../../Decorators/userId.decorator';
+import { JwtGuard } from '../../Guards/jwt.guard';
 import { AddReviewDto } from '../DTOs/add-review.dto';
 import { OpinionContentDto } from '../DTOs/opinion-content.dto';
 
@@ -81,6 +83,8 @@ export class OpinionsController {
     }
   }
 
+  @ApiCookieAuth('Authentication')
+  @UseGuards(JwtGuard)
   @Post()
   public async addReview(
     @userId() authorId: string,
@@ -116,6 +120,8 @@ export class OpinionsController {
     }
   }
 
+  @ApiCookieAuth('Authentication')
+  @UseGuards(JwtGuard)
   @Post(':id/replies')
   public async addReply(
     @Param('id') opinionId: string,
@@ -152,6 +158,8 @@ export class OpinionsController {
     }
   }
 
+  @ApiCookieAuth('Authentication')
+  @UseGuards(JwtGuard)
   @Patch(':id')
   public async updateOpinon(
     @Param('id') opinionId: string,
@@ -188,6 +196,8 @@ export class OpinionsController {
     }
   }
 
+  @ApiCookieAuth('Authentication')
+  @UseGuards(JwtGuard)
   @Delete(':id')
   public async deleteOpinon(
     @Param('id') opinionId: string,
