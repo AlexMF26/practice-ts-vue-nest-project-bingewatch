@@ -34,6 +34,56 @@ export class UsersController {
 
   private readonly logger = new Logger(UsersController.name);
 
+  @Get('/:id/reviews')
+  public async getReviews(@Param('id') authorId: string) {
+    this.logger.log(
+      `An HTTP request to get entry with imdbId "${authorId}" was received.`,
+    );
+
+    try {
+      const reviews = await this.usersService.findOpinionsByUser(authorId);
+      return reviews;
+    } catch (error) {
+      if (error.message.includes('found')) {
+        throw new NotFoundException(error.message);
+      } else if (error.message.includes('given')) {
+        throw new BadRequestException(error.message);
+      } else if (error.message.includes('authorized')) {
+        throw new UnauthorizedException(error.message);
+      } else if (error.message.includes('External')) {
+        throw new ServiceUnavailableException(error.message);
+      } else {
+        this.logger.error(error.message);
+        throw error;
+      }
+    }
+  }
+
+  @Get(':id/watchlist')
+  public async getWatchlist(@Param('id') id: string) {
+    this.logger.log(
+      `An HTTP request to get watchlist for user with "${id}" was received.`,
+    );
+
+    try {
+      const watchlist = await this.usersService.getWatchlist(id);
+      return watchlist;
+    } catch (error) {
+      if (error.message.includes('found')) {
+        throw new NotFoundException(error.message);
+      } else if (error.message.includes('given')) {
+        throw new BadRequestException(error.message);
+      } else if (error.message.includes('authorized')) {
+        throw new UnauthorizedException(error.message);
+      } else if (error.message.includes('External')) {
+        throw new ServiceUnavailableException(error.message);
+      } else {
+        this.logger.error(error.message);
+        throw error;
+      }
+    }
+  }
+
   @ApiCreatedResponse({
     // we need to use this because we are using a serializer
     type: SerializedUserEntity,

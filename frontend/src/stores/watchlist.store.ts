@@ -21,13 +21,13 @@ export const useWatchlistStore = defineStore('watchlist', {
   actions: {
     async getWatchlist(userId: string) {
       const response = await api.get<DetailedWatchlistItemEntity[]>(
-        `/watchlist/${userId}`
+        `/users/${userId}/watchlist`
       );
       this.items = response.data;
       return this.items;
     },
     async getWatchListItem(userId: string, imdbId: string) {
-      const response = await api.get<WatchlistItemEntity>('/watchlist', {
+      const response = await api.get<WatchlistItemEntity>('/watchlist/item', {
         params: {
           userId,
           imdbId,

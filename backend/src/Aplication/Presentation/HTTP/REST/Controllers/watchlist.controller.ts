@@ -28,33 +28,8 @@ export class WatchlistController {
 
   private readonly logger = new Logger(WatchlistController.name);
 
-  @Get(':id')
-  public async getWatchlist(@Param('id') id: string) {
-    this.logger.log(
-      `An HTTP request to get watchlist for user with "${id}" was received.`,
-    );
-
-    try {
-      const watchlist = await this.watchlistService.getWatchlistEntries(id);
-      return watchlist;
-    } catch (error) {
-      if (error.message.includes('found')) {
-        throw new NotFoundException(error.message);
-      } else if (error.message.includes('given')) {
-        throw new BadRequestException(error.message);
-      } else if (error.message.includes('authorized')) {
-        throw new UnauthorizedException(error.message);
-      } else if (error.message.includes('External')) {
-        throw new ServiceUnavailableException(error.message);
-      } else {
-        this.logger.error(error.message);
-        throw error;
-      }
-    }
-  }
-
-  @Get()
-  public async getWatchItem(
+  @Get('item')
+  public async getWatchlistItem(
     @Query('userId') userId: string,
     @Query('imdbId') imdbId: string,
   ) {

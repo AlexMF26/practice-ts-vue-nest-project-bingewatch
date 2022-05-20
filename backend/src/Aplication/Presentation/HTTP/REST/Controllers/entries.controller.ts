@@ -67,4 +67,29 @@ export class EntriesController {
       }
     }
   }
+
+  @Get('/:id/reviews')
+  public async getReviews(@Param('id') imdbId: string) {
+    this.logger.log(
+      `An HTTP request to get entry with imdbId "${imdbId}" was received.`,
+    );
+
+    try {
+      const reviews = await this.entriesService.findReviewsForEntry(imdbId);
+      return reviews;
+    } catch (error) {
+      if (error.message.includes('found')) {
+        throw new NotFoundException(error.message);
+      } else if (error.message.includes('given')) {
+        throw new BadRequestException(error.message);
+      } else if (error.message.includes('authorized')) {
+        throw new UnauthorizedException(error.message);
+      } else if (error.message.includes('External')) {
+        throw new ServiceUnavailableException(error.message);
+      } else {
+        this.logger.error(error.message);
+        throw error;
+      }
+    }
+  }
 }
