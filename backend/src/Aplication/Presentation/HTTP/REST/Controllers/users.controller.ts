@@ -34,15 +34,15 @@ export class UsersController {
 
   private readonly logger = new Logger(UsersController.name);
 
-  @Get('/:id/reviews')
-  public async getReviews(@Param('id') authorId: string) {
+  @Get('/:id/opinions')
+  public async getOpinions(@Param('id') authorId: string) {
     this.logger.log(
       `An HTTP request to get entry with imdbId "${authorId}" was received.`,
     );
 
     try {
-      const reviews = await this.usersService.findOpinionsByUser(authorId);
-      return reviews;
+      const opinions = await this.usersService.findOpinionsByUser(authorId);
+      return opinions;
     } catch (error) {
       if (error.message.includes('found')) {
         throw new NotFoundException(error.message);
