@@ -1,7 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { OpinionEntity } from '../../../Domain/Entities/opinion.entity';
 import { RepositoryService } from '../../../Infrastructure/Persistence/Repository/repository.service';
-import { EntriesService } from './entries.service';
 import { SecurityService } from './security.service';
 import { UsersService } from './users.service';
 import { WatchlistService } from './watchlist.service';
@@ -15,29 +14,7 @@ export class OpinionsService {
     private readonly watchlistService: WatchlistService,
     private readonly usersService: UsersService,
     private readonly securityService: SecurityService,
-    private readonly entriesService: EntriesService,
   ) {}
-
-  public async findReviewsForEntry(entryId: string) {
-    this.logger.log(`Finding opinions for entry ${entryId}.`);
-    // will throw error if entryId is invalid or entry does not exist
-    await this.entriesService.getEntryByImdbId(entryId);
-    try {
-      const opinions = await this.repositoryService.opinion.findMany({
-        where: {
-          entryImdb: entryId,
-          replyTo: null,
-        },
-      });
-      if (!opinions) {
-        return [];
-      }
-      return opinions.map((opinion) => new OpinionEntity(opinion));
-    } catch (error) {
-      this.logger.error(error.message);
-      throw error;
-    }
-  }
 
   public async findRepliesForOpinion(opinionId: string) {
     this.logger.log(`Finding replies for opinion ${opinionId}.`);

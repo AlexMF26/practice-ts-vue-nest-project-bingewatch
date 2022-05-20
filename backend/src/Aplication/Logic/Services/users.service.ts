@@ -1,6 +1,11 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Role as PrismaRole } from '@prisma/client';
+import { OpinionEntity } from '../../../Domain/Entities/opinion.entity';
 import { Role, UserEntity } from '../../../Domain/Entities/user.entity';
+import {
+  WatchlistEntity,
+  DetailedWatchlistItemEntity,
+} from '../../../Domain/Entities/watchlist.entity';
 import { RepositoryService } from '../../../Infrastructure/Persistence/Repository/repository.service';
 import { SecurityService } from './security.service';
 
@@ -12,6 +17,56 @@ export class UsersService {
   ) {}
 
   private readonly logger = new Logger(UsersService.name);
+
+  public async findOpinionsByUser(userId: string) {
+    this.logger.log(`Finding opinions of user ${userId}.`);
+    const user = await this.findById(userId);
+    if (!user) {
+      this.logger.warn(`User with id ${userId} was not found.`);
+      throw new Error('The user was not found.');
+    }
+    try {
+      const opinions = await this.repositoryService.opinion.findMany({
+        where: {
+          authorId: userId,
+        },
+      });
+      if (!opinions) {
+        return [];
+      }
+      return opinions.map((opinion) => new OpinionEntity(opinion));
+    } catch (error) {
+      this.logger.error(error.message);
+      throw error;
+    }
+  }
+
+  public async getWatchlist(userId: string) {
+    this.logger.log(`Getting watchlist for user with id "${userId}".`);
+    const user = await this.findById(userId);
+    // if the user doesn't exist
+    if (!user) {
+      this.logger.warn(`User with id "${userId}" was not found.`);
+      throw new Error('The user was not found.');
+    }
+    // get the watchlist( and the entrydata) for the user
+    try {
+      const data = await this.repositoryService.watchlistItem.findMany({
+        where: { userId },
+        include: {
+          entry: true,
+        },
+      });
+      const watchlistEntries: WatchlistEntity = data.map((item) => {
+        const transformedItem = new DetailedWatchlistItemEntity(item);
+        return transformedItem;
+      });
+      return watchlistEntries;
+    } catch (error) {
+      this.logger.error(error.message);
+      throw error;
+    }
+  }
 
   public async isAdmin(id: string) {
     this.logger.log(`Checking if user with id "${id}" is admin.`);

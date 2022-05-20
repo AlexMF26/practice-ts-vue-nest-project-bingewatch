@@ -4,6 +4,7 @@ import {
   EntryEntity,
   EntrySearchResult,
 } from '../../../Domain/Entities/entry.entity';
+import { OpinionEntity } from '../../../Domain/Entities/opinion.entity';
 import { OmdbService } from '../../../Infrastructure/Adapters/Omdb/omdb.service';
 import { OmdbType } from '../../../Infrastructure/Adapters/Omdb/omdb.types';
 import { RepositoryService } from '../../../Infrastructure/Persistence/Repository/repository.service';
@@ -16,6 +17,27 @@ export class EntriesService {
   ) {}
 
   private readonly logger = new Logger(EntriesService.name);
+
+  public async findReviewsForEntry(entryId: string) {
+    this.logger.log(`Finding opinions for entry ${entryId}.`);
+    // will throw error if entryId is invalid or entry does not exist
+    await this.getEntryByImdbId(entryId);
+    try {
+      const opinions = await this.repositoryService.opinion.findMany({
+        where: {
+          entryImdb: entryId,
+          replyTo: null,
+        },
+      });
+      if (!opinions) {
+        return [];
+      }
+      return opinions.map((opinion) => new OpinionEntity(opinion));
+    } catch (error) {
+      this.logger.error(error.message);
+      throw error;
+    }
+  }
 
   private async getSeason(imdbId: string, seasonNumber: number) {
     const data = await this.omdbService.getSeason(imdbId, seasonNumber);

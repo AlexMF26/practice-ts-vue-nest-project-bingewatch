@@ -1,9 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import {
-  DetailedWatchlistItemEntity,
-  WatchlistEntity,
-  WatchlistItemEntity,
-} from '../../../Domain/Entities/watchlist.entity';
+import { WatchlistItemEntity } from '../../../Domain/Entities/watchlist.entity';
 
 import { RepositoryService } from '../../../Infrastructure/Persistence/Repository/repository.service';
 import { SecurityService } from './security.service';
@@ -126,33 +122,6 @@ export class WatchlistService {
         where: { id },
       });
       return new WatchlistItemEntity(deletedItem);
-    } catch (error) {
-      this.logger.error(error.message);
-      throw error;
-    }
-  }
-
-  public async getWatchlistEntries(userId: string) {
-    this.logger.log(`Getting watchlist for user with id "${userId}".`);
-    const user = await this.usersService.findById(userId);
-    // if the user doesn't exist
-    if (!user) {
-      this.logger.warn(`User with id "${userId}" was not found.`);
-      throw new Error('The user was not found.');
-    }
-    // get the watchlist( and the entrydata) for the user
-    try {
-      const data = await this.repositoryService.watchlistItem.findMany({
-        where: { userId },
-        include: {
-          entry: true,
-        },
-      });
-      const watchlistEntries: WatchlistEntity = data.map((item) => {
-        const transformedItem = new DetailedWatchlistItemEntity(item);
-        return transformedItem;
-      });
-      return watchlistEntries;
     } catch (error) {
       this.logger.error(error.message);
       throw error;
