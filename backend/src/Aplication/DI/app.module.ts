@@ -10,6 +10,7 @@ import { TasksModule } from './tasks.module';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 import { UsersService } from '../Logic/Services/users.service';
+import { OpinionsModule } from './opinions.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { UsersService } from '../Logic/Services/users.service';
     AuthentificationModule,
     EntriesModule,
     WatchlistModule,
+    OpinionsModule,
   ],
   controllers: [AppController],
 })
