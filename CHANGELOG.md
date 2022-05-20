@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.40.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.39.0...v0.40.0) (2022-05-20)
+
+
+### Features
+
+* **frontend:** :label: updated api types ([01bd645](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/01bd645f6fc6da3f2ebc79cc2a5f11c51815f7cb))
+
+
+### Bug Fixes
+
+* **backend:** :speech_balloon: correct log message ([0d217df](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/0d217df7919c0360314805f4323af40804bfa67e))
+
 ## [0.39.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.38.1...v0.39.0) (2022-05-20)
 
 
