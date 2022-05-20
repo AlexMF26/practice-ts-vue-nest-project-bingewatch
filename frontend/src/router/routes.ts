@@ -32,6 +32,12 @@ const routes: RouteRecordRaw[] = [
         beforeEnter: [identityGuard],
       },
       {
+        path: '/entry/:id/reviews',
+        component: () => import('src/pages/EntryReviewsPage.vue'),
+        props: (route) => ({ id: route.params.id }),
+        name: 'entryReviews',
+      },
+      {
         path: '/entry/:id',
         component: () => import('src/pages/EntryPage.vue'),
         props: (route) => ({ id: route.params.id }),
@@ -42,6 +48,12 @@ const routes: RouteRecordRaw[] = [
         component: () => import('src/pages/WatchlistPage.vue'),
         props: (route) => ({ id: route.params.id }),
         name: 'watchlist',
+      },
+      {
+        path: '/opinion/:id/replies',
+        component: () => import('src/pages/OpinionRepliesPage.vue'),
+        props: (route) => ({ id: route.params.id }),
+        name: 'opinionReplies',
       },
     ],
   },
