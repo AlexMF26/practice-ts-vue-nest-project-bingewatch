@@ -37,7 +37,7 @@ export class UsersController {
   @Get('/:id/opinions')
   public async getOpinions(@Param('id') authorId: string) {
     this.logger.log(
-      `An HTTP request to get entry with imdbId "${authorId}" was received.`,
+      `An HTTP request to get opinions of user "${authorId}" was received.`,
     );
 
     try {
