@@ -54,7 +54,7 @@
         </q-item-section>
         <q-item-section>Register</q-item-section>
       </q-item>
-      <q-item href="/api/info/" exact>
+      <q-item :href="apiSwagger" exact>
         <q-item-section avatar>
           <q-icon color="accent" name="api" />
         </q-item-section>
@@ -69,6 +69,9 @@ import { storeToRefs } from 'pinia';
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useAuthStore } from '../stores/auth.store';
+const apiBase = import.meta.env.VITE_API;
+
+const apiSwagger = `${apiBase}/info/`;
 
 const store = useAuthStore();
 const route = useRoute();
