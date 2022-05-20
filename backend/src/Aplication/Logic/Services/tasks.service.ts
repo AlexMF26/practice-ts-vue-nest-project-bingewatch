@@ -1,9 +1,11 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Cron } from '@nestjs/schedule';
+import { DeleteOpinionEvent } from '../../../Domain/Events/DeleteOpinion.event';
 import { RefreshEntryDataEvent } from '../../../Domain/Events/RefreshEntryData.events';
 import { RefreshEntryRatingEvent } from '../../../Domain/Events/RefreshEntryRating.event';
 import { EntriesService } from './entries.service';
+import { OpinionsService } from './opinions.service';
 
 @Injectable()
 export class TasksService {
@@ -12,6 +14,7 @@ export class TasksService {
   public constructor(
     private readonly eventEmitterService: EventEmitter2,
     private readonly entriesService: EntriesService,
+    private readonly opinionsService: OpinionsService,
   ) {}
 
   @Cron('*/5 * * * *')
@@ -32,5 +35,20 @@ export class TasksService {
       );
     });
     this.logger.log('Refreshing entries done');
+  }
+
+  @Cron('*/10 * * * *')
+  public async opinionsCleanup() {
+    this.logger.log('Checking opinions marked for deletion...');
+    //get all the opinions marked for deletion that have not been deleted
+    const ids = await this.opinionsService.getPreservedOpinionsIds();
+    ids.forEach(async (id) => {
+      this.logger.log(`Dispatching maintenance events for opinion ${id}`);
+      await this.eventEmitterService.emitAsync(
+        DeleteOpinionEvent.name,
+        new DeleteOpinionEvent(id),
+      );
+    });
+    this.logger.log('Checking opinions marked for deletion done');
   }
 }
