@@ -195,7 +195,7 @@ export class OpinionsService {
           text: text,
         },
       });
-      return updatedOpinion;
+      return new OpinionEntity(updatedOpinion);
     } catch (error) {
       this.logger.error(error.message);
       throw error;
