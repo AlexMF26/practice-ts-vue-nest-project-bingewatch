@@ -1,5 +1,5 @@
 <template>
-  <h2 class="text-center">{{ userName }}'s Watchlist</h2>
+  <h2 class="text-center" v-if="ready">{{ userName }}'s Watchlist</h2>
   <q-page> <WatchlistComponent v-if="ready" :isOwner="isOwner" /></q-page>
 </template>
 
@@ -10,6 +10,7 @@ import { useWatchlistStore } from '../stores/watchlist.store';
 import { computed, onBeforeMount, ref } from 'vue';
 import { useAuthStore } from '../stores/auth.store';
 import { storeToRefs } from 'pinia';
+import { useUsersStore } from '../stores/users.store';
 
 export type Props = {
   id: string;
@@ -21,15 +22,20 @@ const ready = ref(false);
 
 const authStore = useAuthStore();
 
-const { userId, userName } = storeToRefs(authStore);
+const { userId } = storeToRefs(authStore);
 
 const isOwner = computed(() => {
   return userId.value === props.id;
 });
 
+const userName = ref('');
+
 onBeforeMount(async () => {
   const watchlistStore = useWatchlistStore();
   await watchlistStore.getWatchlist(props.id);
+  const userStore = useUsersStore();
+  const user = await userStore.getUser(props.id);
+  userName.value = user.name;
   ready.value = true;
 });
 </script>
