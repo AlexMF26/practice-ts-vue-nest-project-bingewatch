@@ -10,5 +10,6 @@ import { UsersModule } from './users.module';
   imports: [RepositoryModule, UsersModule, EntriesModule, SecurityModule],
   providers: [WatchlistService],
   controllers: [WatchlistController],
+  exports: [WatchlistService],
 })
 export class WatchlistModule {}
