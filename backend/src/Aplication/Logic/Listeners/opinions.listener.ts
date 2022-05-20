@@ -16,7 +16,6 @@ export class OpinionsListener {
       await this.opinionsService.deleteOpinionSafely(payload.id);
     } catch (error) {
       this.logger.error(error.message);
-      throw error;
     }
   }
 }
