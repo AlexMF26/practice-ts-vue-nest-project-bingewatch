@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.41.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.40.1...v0.41.0) (2022-05-21)
+
+
+### Features
+
+* **frontend:** :sparkles: add entry reviews page ([db7d6a1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/db7d6a127dc1c3d34ce561fa95676084c1db6298))
+* **frontend:** :sparkles: added new opinion component ([bb1692c](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/bb1692c18a1b0283b8e67dd283608efdf753ee73))
+* **frontend:** :sparkles: added new page for reviews of an entry ([6662e4f](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/6662e4fc05f6aff5fd8a5641ca682b6363f29a12))
+* **frontend:** :sparkles: added opinion routes ([928363b](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/928363bd3b8cbe8c5b410f9d783de2e6a8b29639))
+* **frontend:** :sparkles: added opinion store ([e7e7a8e](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/e7e7a8e7bdf46310c6266fc85e2ef8d20144ac0d))
+* **frontend:** :sparkles: added reviews button ([83c2e70](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/83c2e70c0ff6c2f1165c775cad116c97c47da118))
+* **frontend:** :sparkles: initial reviews component ([451803a](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/451803ae0e4a2c776abe70b36d6a22d73dd9f043))
+
+
+### Bug Fixes
+
+* **backend:** :bug: Can't delete watchlist items when they have an associated opinion ([b713ae1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/b713ae120be942ae044343ea4af57ec2f8500890))
+* **frontend:** :bug: fix positonal arguments order ([64a3bbd](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/64a3bbde95f758fc6bc618ed4dc3b23116df6d8a))
+* **frontend:** :bug: fix store name ([ce1f64d](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/ce1f64d0bb8bb4547579f2765b522a54d791f985))
+* **frontend:** :bug: point to the proper link that's injected from env ([1d13ad7](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/1d13ad7dfe4c48331b70db887bc0cfa6c25b3218))
+
 ### [0.40.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.40.0...v0.40.1) (2022-05-20)
 
 
