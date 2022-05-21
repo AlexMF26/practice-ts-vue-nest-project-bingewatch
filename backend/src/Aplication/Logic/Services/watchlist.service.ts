@@ -118,6 +118,20 @@ export class WatchlistService {
           'You are not authorized delete entries from other users watchlist.',
         );
       }
+      const opinion = await this.repositoryService.opinion.findFirst({
+        where: {
+          authorId: item.userId,
+          entryImdb: item.entryId,
+        },
+      });
+      if (opinion) {
+        this.logger.warn(
+          `Item with id "${id}" was not deleted. It has an opinion associated with it.`,
+        );
+        throw new Error(
+          'The given item was not deleted. It has an opinion associated with it.',
+        );
+      }
       const deletedItem = await this.repositoryService.watchlistItem.delete({
         where: { id },
       });
