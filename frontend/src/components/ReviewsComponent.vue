@@ -1,20 +1,23 @@
 <template>
   <div class="column justify-center items-center content-center" v-if="ready">
     <NewOpinion v-if="canReview" class="q-my-xl" :id="props.id" />
-    <div v-else-if="hasReview" class="q-my-xl">My Review</div>
-    <div
+    <OpinionComponent
+      v-else-if="hasReview"
+      class="q-my-xl q-pa-md rounded-borders shadow-2"
+      :id="reviewed?.id as string"
+    />
+    <OpinionComponent
       v-for="opinion in opinions"
       :key="opinion.id"
       :id="opinion.id"
       class="q-my-xl"
-    >
-      review {{ opinion.id }}
-    </div>
+    ></OpinionComponent>
   </div>
 </template>
 
 <script setup lang="ts">
 import NewOpinion from './NewOpinion.vue';
+import OpinionComponent from './OpinionComponent.vue';
 
 import { computed, onBeforeMount, ref } from 'vue';
 import { storeToRefs } from 'pinia';
@@ -40,7 +43,7 @@ const { opinions } = storeToRefs(opinionsStore);
 const { userId, loggedIn } = storeToRefs(authStore);
 
 const reviewed = computed(() => {
-  return opinions.value.some((opinion) => opinion.authorId === userId.value);
+  return opinions.value.find((opinion) => opinion.authorId === userId.value);
 });
 
 const watchlistItem = ref<WatchlistItemEntity | ''>('');
@@ -56,10 +59,14 @@ onBeforeMount(async () => {
 });
 
 const canReview = computed(() => {
-  return loggedIn.value && watchlistItem.value != '' && !reviewed.value;
+  return (
+    loggedIn.value && watchlistItem.value != '' && reviewed.value == undefined
+  );
 });
 
 const hasReview = computed(() => {
-  return loggedIn.value && watchlistItem.value != '' && reviewed.value;
+  return (
+    loggedIn.value && watchlistItem.value != '' && reviewed.value != undefined
+  );
 });
 </script>
