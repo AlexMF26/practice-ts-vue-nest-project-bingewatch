@@ -10,7 +10,7 @@ export type OpinionsState = {
   opinions: OpinionEntity[];
 };
 
-export const useOpinionsStore = defineStore('entries', {
+export const useOpinionsStore = defineStore('opinions', {
   state: () =>
     ({
       opinions: [],
