@@ -65,8 +65,8 @@ export class OpinionsService {
       throw new Error('Invalid text. Cannot be empty.');
     }
     const watchlistItem = await this.watchlistService.findItemByImdbIdForUser(
-      authorId,
       entryId,
+      authorId,
     );
     if (!watchlistItem) {
       this.logger.warn(
