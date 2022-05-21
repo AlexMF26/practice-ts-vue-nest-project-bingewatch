@@ -3,8 +3,8 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, ref } from 'vue';
 import ReviewsComponent from '../components/ReviewsComponent.vue';
+import { onBeforeMount, ref } from 'vue';
 import { useOpinionsStore } from '../stores/opinions.stores';
 
 export type Props = {
