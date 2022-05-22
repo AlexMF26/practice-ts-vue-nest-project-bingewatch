@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.41.2](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.41.1...v0.41.2) (2022-05-22)
+
+
+### Bug Fixes
+
+* **frontend:** :bug: fix reply routes ([ac53e6b](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/ac53e6bef5b445d9485a9eb6cad2680b3a6d1855))
+
 ### [0.41.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.41.0...v0.41.1) (2022-05-22)
 
 
