@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.42.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.42.0...v0.42.1) (2022-05-22)
+
+
+### Bug Fixes
+
+* **frontend:** :bug: fix bug where data wouldn't be refetched on route change ([7c55e09](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/7c55e099aea76b60ce86f874b79da78eda1c9f8b))
+
 ## [0.42.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.41.2...v0.42.0) (2022-05-22)
 
 
