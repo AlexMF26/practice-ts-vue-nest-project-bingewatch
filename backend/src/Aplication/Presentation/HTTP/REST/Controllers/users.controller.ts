@@ -155,23 +155,16 @@ export class UsersController {
     }
   }
 
-  @ApiCookieAuth('Authentication')
   @ApiOkResponse({
     // we need to use this because we are using a serializer
     type: SerializedUserEntity,
   })
   @UseInterceptors(ClassSerializerInterceptor)
-  @UseGuards(JwtGuard)
   @Get(':id')
-  public async get(
-    @Param('id') targetId: string,
-    @userId() requesterId: string,
-  ) {
-    this.logger.log(
-      `An HTTP request to get user "${targetId}" from user "${requesterId}" was received.`,
-    );
+  public async get(@Param('id') targetId: string) {
+    this.logger.log(`An HTTP request to get user "${targetId} was received.`);
     try {
-      const user = await this.usersService.getUser(targetId, requesterId);
+      const user = await this.usersService.getUser(targetId);
       return user;
     } catch (error) {
       if (error.message.includes('found')) {
