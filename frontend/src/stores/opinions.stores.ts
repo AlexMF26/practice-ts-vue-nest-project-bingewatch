@@ -26,7 +26,7 @@ export const useOpinionsStore = defineStore('opinions', {
     },
     async getReplies(opinionId: string) {
       const response = await api.get<OpinionEntity[]>(
-        `/entries/opinions/${opinionId}/replies`
+        `/opinions/${opinionId}/replies`
       );
       this.opinions = response.data;
       return this.opinions;
