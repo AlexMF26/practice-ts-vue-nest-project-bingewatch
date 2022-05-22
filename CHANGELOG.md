@@ -1,5 +1,16 @@
 # Changelog
 
+### [0.41.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.41.0...v0.41.1) (2022-05-22)
+
+
+### Bug Fixes
+
+* **backend:** :bug: extended guard ([6629984](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/6629984681c2d5eeb3613ae278102b027132b96e))
+* **backend:** :bug: remove unnecessary guard ([fc0b09c](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/fc0b09c43c52d57ee50d8e17525d164b9c16d7c5))
+* **backend:** :bug: removed unnecessary guard ([12a4809](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/12a4809cc1338e9fccae727cdcec02c85b2478eb))
+* **frontend:** :bug: don't show your own review twice ([0aa3e1b](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/0aa3e1bbc38e856604bbae695add595e7ef00438))
+* **frontend:** :bug: fix opinion component ([c910b34](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/c910b34cc2b95a199c093000eb03e30fabe55f95))
+
 ## [0.41.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.40.1...v0.41.0) (2022-05-21)
 
 
