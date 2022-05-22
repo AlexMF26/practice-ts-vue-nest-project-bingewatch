@@ -9,9 +9,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - ".github/workflows/ci-backend.yml"
-      - "backend/**"
 
 jobs:
   format:
