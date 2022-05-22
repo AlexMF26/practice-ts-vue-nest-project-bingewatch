@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.42.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.41.2...v0.42.0) (2022-05-22)
+
+
+### Features
+
+* **frontend:** :sparkles: add replies functionality ([45abb1a](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/45abb1a68cc939898b6ebd6c3f2918f19bf49e87))
+
+
+### Bug Fixes
+
+* **frontend:** :sparkles: fix add replies methods ([5f0484f](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/5f0484f8814daf2c8fc1382f21de36d772d6f910))
+
 ### [0.41.2](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.41.1...v0.41.2) (2022-05-22)
 
 
