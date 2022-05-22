@@ -64,7 +64,7 @@ const markdownToHtml = computed(() => marked(markdown.value));
 const activeTab = ref<'input' | 'preview'>('input');
 
 const disabled = computed(() => {
-  return markdown.value.length === 0;
+  return markdown.value.trim().length === 0;
 });
 
 const opinionsStore = useOpinionsStore();
@@ -75,6 +75,7 @@ const postReview = debounce(
       text: markdown.value,
       entryId: props.id,
     });
+    markdown.value = '';
   },
   1000,
   true
