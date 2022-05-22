@@ -67,16 +67,16 @@ export const useOpinionsStore = defineStore('opinions', {
       const partialDeletion =
         opinion.text === null && opinion.authorId === null;
       if (partialDeletion) {
-        this.opinions = this.opinions.filter(
-          (opinion) => opinion.id !== opinionId
-        );
-      } else {
         const index = this.opinions.findIndex(
           (opinion) => opinion.id === opinionId
         );
         if (index !== -1) {
           this.opinions[index] = opinion;
         }
+      } else {
+        this.opinions = this.opinions.filter(
+          (opinion) => opinion.id !== opinionId
+        );
       }
     },
   },
