@@ -1,4 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { Opinion } from '@prisma/client';
 import { OpinionEntity } from '../../../Domain/Entities/opinion.entity';
 import { RepositoryService } from '../../../Infrastructure/Persistence/Repository/repository.service';
 import { SecurityService } from './security.service';
@@ -157,6 +158,14 @@ export class OpinionsService {
     }
     // will throw error if opinionId is invalid or opinion does not exist
     const opinion = await this.findOpinion(opinionId);
+    if (!opinion.text && opinion.authorId) {
+      this.logger.warn(
+        `The given opinion ${opinionId} is deleted and cannot be updated..`,
+      );
+      throw new Error(
+        `The given opinion ${opinionId} is deleted and cannot be updated.`,
+      );
+    }
     if (opinion.authorId !== requesterId) {
       // will throw error if requesterId is invalid or user does not exist
       const isRequestedByAnAdmin = await this.usersService.isAdmin(requesterId);
@@ -202,8 +211,7 @@ export class OpinionsService {
       }
     }
     try {
-      await this.deleteOpinionSafely(opinionId);
-      return new OpinionEntity(opinion);
+      return this.deleteOpinionSafely(opinionId);
     } catch (error) {
       this.logger.error(error.message);
       throw error;
@@ -212,11 +220,12 @@ export class OpinionsService {
 
   public async deleteOpinionSafely(opinionId: string) {
     const shouldPreserve = await this.hasUndeletedReplies(opinionId);
+    let opinion: Opinion;
     if (shouldPreserve) {
       this.logger.log(
         `Opinion ${opinionId} has undeleted replies. Cannot fully delete. Will remove author and text.`,
       );
-      await this.repositoryService.opinion.update({
+      opinion = await this.repositoryService.opinion.update({
         where: { id: opinionId },
         data: {
           author: { disconnect: true },
@@ -227,10 +236,11 @@ export class OpinionsService {
       this.logger.log(
         `Opinion ${opinionId} has no undeleted replies. Will fully delete.`,
       );
-      await this.repositoryService.opinion.delete({
+      opinion = await this.repositoryService.opinion.delete({
         where: { id: opinionId },
       });
     }
+    return new OpinionEntity(opinion);
   }
 
   private async hasUndeletedReplies(opinionId: string) {

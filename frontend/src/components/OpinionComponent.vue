@@ -1,6 +1,6 @@
 <template>
   <q-card bordered>
-    <q-card-actions align="around" v-if="hasFullAcces">
+    <q-card-actions align="around" v-if="hasFullAcces && !deleted">
       <q-btn
         color="negative"
         text-color="secondary"
@@ -52,8 +52,10 @@
       <div
         v-html="contentHtml"
         class="markdown bg-secondary shadow-2 q-pa-md"
-      ></div
-    ></q-card-section>
+        v-if="!deleted"
+      ></div>
+      <span v-else class="deleted text-subtitle2">deleted</span></q-card-section
+    >
 
     <q-card-actions align="around" v-if="isEditing">
       <q-btn
@@ -126,6 +128,9 @@ const content = computed(() => {
   return opinion.value?.text ?? 'deleted opinion';
 });
 
+const deleted = computed(() => {
+  return opinion.value?.authorId === null && opinion.value?.text === null;
+});
 const contentHtml = computed(() => marked(content.value));
 const newMarkdown = ref(content.value);
 
@@ -181,6 +186,11 @@ async function submit() {
   max-width: 90vw;
   max-height: 50vh;
   overflow: auto;
+}
+.deleted {
+  text-align: center;
+  display: inline-block;
+  width: 100%;
 }
 textarea {
   min-width: 30vw;
