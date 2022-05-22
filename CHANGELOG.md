@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.43.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.42.1...v0.43.0) (2022-05-22)
+
+
+### Features
+
+* **common:** :sparkles: different behaviour for full and partial deletion ([136fab0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/136fab0a83356f1a6f81f5cb32f29b4302e0468b))
+
+
+### Bug Fixes
+
+* **frontend:** :bug: dont consider whitespace characters for validation purposes ([78b3eba](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/78b3eba8b589852d33eadcb3a25edbb276b6f851))
+
 ### [0.42.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.42.0...v0.42.1) (2022-05-22)
 
 
