@@ -1,6 +1,6 @@
 <template>
   <div class="column justify-center items-center content-center" v-if="ready">
-    <NewOpinion v-if="canReview" class="q-my-xl" :id="props.id" />
+    <NewReview v-if="canReview" class="q-my-xl" :id="props.id" />
     <div
       v-else-if="hasReview"
       class="q-my-xl q-pa-xs bg-accent rounded-borders"
@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import NewOpinion from './NewOpinion.vue';
+import NewReview from './NewReview.vue';
 import OpinionComponent from './OpinionComponent.vue';
 
 import { computed, onBeforeMount, ref } from 'vue';
