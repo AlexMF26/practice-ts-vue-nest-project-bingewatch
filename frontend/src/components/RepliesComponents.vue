@@ -1,5 +1,5 @@
 <template>
-  <q-page class="column justify-center items-center content-center">
+  <div class="column justify-center items-center content-center">
     <h4 class="q-my-xl" v-if="opinions.length === 0">No replies...</h4>
     <NewReply :id="props.id" class="q-my-xl" v-if="loggedIn" />
     <ReplyComponent
@@ -9,7 +9,7 @@
       :id="opinion.id"
       :authorId="opinion.authorId"
     ></ReplyComponent>
-  </q-page>
+  </div>
 </template>
 
 <script setup lang="ts">
