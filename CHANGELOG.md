@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.43.0...v1.0.0) (2022-05-22)
+
+
+### Bug Fixes
+
+* **frontend:** :bug: corrected if statements ([7df9016](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/7df901623fb2c97e493850b95f896aad46c46cee))
+* **frontend:** :lipstick: fix ui alignment order ([b22887f](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/b22887ff5fc76994faa9a09423651798ce5c54b8))
+
 ## [0.43.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.42.1...v0.43.0) (2022-05-22)
 
 
