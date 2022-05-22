@@ -8,11 +8,15 @@ import * as cookieParser from 'cookie-parser';
 
 export async function bootstrap() {
   const app = await init();
+  await prepare(app);
+  await start(app);
+}
+
+export async function prepare(app: INestApplication) {
   await addPrismaHooks(app);
   addMiddleware(app);
   addSwagger(app);
   addGlobalPipes(app);
-  await start(app);
 }
 
 async function init() {
