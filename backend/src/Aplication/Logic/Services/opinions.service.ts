@@ -158,12 +158,16 @@ export class OpinionsService {
     // will throw error if opinionId is invalid or opinion does not exist
     const opinion = await this.findOpinion(opinionId);
     if (opinion.authorId !== requesterId) {
-      this.logger.warn(
-        `User ${requesterId} is not the author of opinion ${opinionId}.`,
-      );
-      throw new Error(
-        `User ${requesterId} is not authorized to update opinion ${opinionId}.`,
-      );
+      // will throw error if requesterId is invalid or user does not exist
+      const isRequestedByAnAdmin = await this.usersService.isAdmin(requesterId);
+      if (!isRequestedByAnAdmin) {
+        this.logger.warn(
+          `User ${requesterId} is not the authorized to update opinion ${opinionId}.`,
+        );
+        throw new Error(
+          `User ${requesterId} is not authorized to update opinion ${opinionId}.`,
+        );
+      }
     }
     try {
       const updatedOpinion = await this.repositoryService.opinion.update({
