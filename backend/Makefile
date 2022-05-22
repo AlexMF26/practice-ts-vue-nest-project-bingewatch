@@ -26,6 +26,18 @@ test-root: stop
 	UID=$(shell id -u) ENTRY=test TYPE=root docker-compose up  --exit-code-from api api
 	make stop
 
+.PHONY: test-debug
+test-debug: stop
+	docker-compose up -d database
+	UID=$(shell id -u) ENTRY=test:debug TYPE=node docker-compose up  --exit-code-from api api
+	make stop
+
+.PHONY: test-debug-root
+test-debug-root: stop
+	docker-compose up -d database
+	UID=$(shell id -u) ENTRY=test:debug TYPE=root docker-compose up  --exit-code-from api api
+	make stop
+
 .PHONY: migration
 migration: stop
 	make start-detached

@@ -70,7 +70,6 @@
         "name": "Backend:attach to node in docker",
         "remoteRoot": "/api",
         "localRoot": "${workspaceFolder:backend}",
-        "protocol": "inspector",
         "port": 9229,
         "restart": true,
         "address": "0.0.0.0"
