@@ -1,13 +1,14 @@
 <template>
   <div class="column justify-center items-center content-center" v-if="ready">
     <NewOpinion v-if="canReview" class="q-my-xl" :id="props.id" />
-    <OpinionComponent
+    <div
       v-else-if="hasReview"
-      class="q-my-xl q-pa-md rounded-borders shadow-2"
-      :id="reviewed?.id as string"
-    />
+      class="q-my-xl q-pa-xs bg-accent rounded-borders"
+    >
+      <OpinionComponent :id="reviewed?.id as string" />
+    </div>
     <OpinionComponent
-      v-for="opinion in opinions"
+      v-for="opinion in otherReviews"
       :key="opinion.id"
       :id="opinion.id"
       class="q-my-xl"
@@ -51,10 +52,12 @@ const watchlistItem = ref<WatchlistItemEntity | ''>('');
 const ready = ref(false);
 
 onBeforeMount(async () => {
-  watchlistItem.value = await watchlistStore.getWatchListItem(
-    userId.value,
-    props.id
-  );
+  if (loggedIn.value) {
+    watchlistItem.value = await watchlistStore.getWatchListItem(
+      userId.value,
+      props.id
+    );
+  }
   ready.value = true;
 });
 
@@ -68,5 +71,9 @@ const hasReview = computed(() => {
   return (
     loggedIn.value && watchlistItem.value != '' && reviewed.value != undefined
   );
+});
+
+const otherReviews = computed(() => {
+  return opinions.value.filter((opinion) => opinion.id !== reviewed.value?.id);
 });
 </script>
