@@ -17,7 +17,7 @@ export class TasksService {
     private readonly opinionsService: OpinionsService,
   ) {}
 
-  @Cron('*/5 * * * *')
+  @Cron('*/15 * * * *')
   public async refreshEntities() {
     this.logger.log('Refreshing entries...');
     //get all the imdb ids for all entries in the database
@@ -37,7 +37,7 @@ export class TasksService {
     this.logger.log('Refreshing entries done');
   }
 
-  @Cron('*/10 * * * *')
+  @Cron('0 1 * * *')
   public async opinionsCleanup() {
     this.logger.log('Checking opinions marked for deletion...');
     //get all the opinions marked for deletion that have not been deleted
