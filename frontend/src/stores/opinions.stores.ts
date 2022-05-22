@@ -1,10 +1,12 @@
 import { defineStore } from 'pinia';
 import { api } from '../boot/axios';
+import { AlertType } from '../types/Alert';
 import {
   AddReviewDto,
   OpinionContentDto,
   OpinionEntity,
 } from '../types/api/interface';
+import { useAlertsStore } from './alerts.store';
 
 export type OpinionsState = {
   opinions: OpinionEntity[];
@@ -37,7 +39,13 @@ export const useOpinionsStore = defineStore('opinions', {
       return response.data;
     },
     async addReply(opinionId: string, dto: OpinionContentDto) {
-      await api.post<OpinionEntity>(`/opinions/${opinionId}/replies`, dto);
+      const response = await api.post<OpinionEntity>(
+        `/opinions/${opinionId}/replies`,
+        dto
+      );
+      this.opinions.push(response.data);
+      useAlertsStore().addAlert('Reply added', AlertType.Success, 5000);
+      return response.data;
     },
     async changeOpionion(opinionId: string, dto: OpinionContentDto) {
       const response = await api.patch<OpinionEntity>(
