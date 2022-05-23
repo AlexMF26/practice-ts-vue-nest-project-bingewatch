@@ -1,5 +1,15 @@
 # Changelog
 
+### [1.0.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v1.0.0...v1.0.1) (2022-05-23)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @nestjs/jwt to v8.0.1 ([3630901](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/3630901ce8f63597234e73c6c2775909ae35c558))
+* **deps:** update dependency @nestjs/schedule to v2 ([1052fbc](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/1052fbc12da62ee72b4928d70028b3c6cb6090c0))
+* **deps:** update dependency quasar to v2.7.1 ([c301c6a](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/c301c6a50e121808616c305df72ef1641d58aeed))
+* **deps:** update dependency vue to v3.2.36 ([b3b6e3e](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/b3b6e3ee1788881f91e0e35db20aa84734ec3aeb))
+
 ## [1.0.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v0.43.0...v1.0.0) (2022-05-22)
 
 
