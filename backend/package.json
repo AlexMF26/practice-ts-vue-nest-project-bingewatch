@@ -14,7 +14,7 @@
     "migration": "prisma migrate dev --create-only",
     "lint": "eslint \"src/**/*.ts\" --fix",
     "test": "prisma migrate reset -f && jest --runInBand --forceExit",
-    "test:debug": "node --inspect-brk=0.0.0.0 -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand --forceExit",
+    "test:debug": "node --inspect-brk=0.0.0.0:9229 -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand --forceExit",
     "test:cov": "jest --coverage"
   },
   "dependencies": {
