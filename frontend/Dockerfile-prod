@@ -15,7 +15,7 @@ RUN npm run build
 
 
 
-FROM nginx:1.21.6-alpine AS production-stage
+FROM nginx:1.22.0-alpine AS production-stage
 
 COPY --from=build-stage /app/dist/spa /usr/share/nginx/html
 
