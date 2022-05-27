@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.2](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v1.0.1...v1.0.2) (2022-05-27)
+
+
+### Bug Fixes
+
+* **deps:** update dependency pinia-plugin-persistedstate to v1.6.1 ([c67579b](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/c67579bbd244e36a2f6cead801fd6b92258ab27b))
+
 ### [1.0.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v1.0.0...v1.0.1) (2022-05-23)
 
 
