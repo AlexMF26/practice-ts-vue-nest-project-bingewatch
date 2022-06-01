@@ -10,6 +10,8 @@
 
 const { configure } = require('quasar/wrappers');
 
+const path = require('path');
+
 module.exports = configure(function (/* ctx */) {
   return {
     eslint: {
@@ -27,7 +29,7 @@ module.exports = configure(function (/* ctx */) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
-    boot: ['axios'],
+    boot: ['i18n', 'axios'],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: ['app.scss'],
@@ -72,7 +74,18 @@ module.exports = configure(function (/* ctx */) {
       // extendViteConf (viteConf) {},
       // viteVuePluginOptions: {},
 
-      vitePlugins: [],
+      vitePlugins: [
+        [
+          '@intlify/vite-plugin-vue-i18n',
+          {
+            // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
+            // compositionOnly: false,
+
+            // you need to set i18n resource including paths !
+            include: path.resolve(__dirname, './src/i18n/**'),
+          },
+        ],
+      ],
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer

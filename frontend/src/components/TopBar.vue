@@ -1,21 +1,22 @@
 <template>
   <q-header elevated class="bg-primary text-secondary">
     <q-toolbar>
-      <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
-      <q-space />
       <q-toolbar-title
         shrink
         @click="$router.push('/')"
         style="cursor: pointer"
       >
-        Bingewatch
         <q-avatar>
           <img src="~assets/logo.svg" />
         </q-avatar>
+        Bingewatch
       </q-toolbar-title>
+      <q-space />
+      <LanguageSwitcher class="on-left gt-xs" />
+      <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
     </q-toolbar>
   </q-header>
-  <q-drawer v-model="rightDrawerOpen" side="left" elevated>
+  <q-drawer v-model="rightDrawerOpen" side="right" elevated class="on-right">
     <q-list padding>
       <q-item to="/" exact>
         <q-item-section avatar>
@@ -60,11 +61,16 @@
         </q-item-section>
         <q-item-section>API</q-item-section>
       </q-item>
+      <q-item
+        ><q-item-section>
+          <LanguageSwitcher class="on-left xs" /> </q-item-section
+      ></q-item>
     </q-list>
   </q-drawer>
 </template>
 
 <script setup lang="ts">
+import LanguageSwitcher from './LanguageSwitcher.vue';
 import { storeToRefs } from 'pinia';
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
