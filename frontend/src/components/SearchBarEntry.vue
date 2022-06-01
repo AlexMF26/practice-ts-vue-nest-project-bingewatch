@@ -18,14 +18,18 @@
         hide-selected
         fill-input
         style="width: 80vw"
-        :rules="[(val) => val.length >= 3 || 'Please use minimum 3 characters']"
-        placeholder="Search..."
+        :rules="[
+          (val) => val.length >= 3 || $t('landingContent.minimumLength'),
+        ]"
+        :placeholder="$t('landingContent.searchPlaceholder')"
         filled
-        hint="Enter the title of your favorite piece of entertainment"
+        :hint="$t('landingContent.searchHint')"
       >
         <template v-slot:no-option>
           <q-item>
-            <q-item-section class="text-grey"> No results </q-item-section>
+            <q-item-section class="text-grey">
+              {{ $t('landingContent.noResults') }}
+            </q-item-section>
           </q-item>
         </template>
         <template v-slot:prepend>
@@ -55,16 +59,16 @@ function onEnter() {
   if (input.value !== '') {
     const result = options.value.find((option) => option.title === input.value);
     if (result) {
-      goToEntry(result.imdbId);
+      router.push('/entry/' + result.imdbId);
     } else if (options.value.length > 0) {
-      goToEntry(options.value[0].imdbId);
+      router.push('/entry/' + options.value[0].imdbId);
     }
   }
 }
 
 function onSelect(val: EntrySearchResult) {
   if (val) {
-    goToEntry(val.imdbId);
+    router.push('/entry/' + val.imdbId);
   }
 }
 
@@ -83,9 +87,5 @@ async function loadOptions(
   }
   const results = await store.query(val);
   update(() => (options.value = results));
-}
-
-function goToEntry(imdbId: string) {
-  router.push('/entry/' + imdbId);
 }
 </script>
