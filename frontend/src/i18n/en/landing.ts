@@ -1,8 +1,6 @@
-export const landingContent = {
+export const landing = {
   motto: 'You Bingewatch? Track your progress!',
   or: 'or',
-  login: 'login',
-  register: 'register',
   noResults: 'No results',
   searchPlaceholder: 'Search...',
   searchHint: 'Enter the title of your favorite piece of entertainment',

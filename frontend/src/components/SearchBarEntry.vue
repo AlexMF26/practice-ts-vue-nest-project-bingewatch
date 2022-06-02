@@ -18,17 +18,15 @@
         hide-selected
         fill-input
         style="width: 80vw"
-        :rules="[
-          (val) => val.length >= 3 || $t('landingContent.minimumLength'),
-        ]"
-        :placeholder="$t('landingContent.searchPlaceholder')"
+        :rules="[(val) => val.length >= 3 || $t('landing.minimumLength')]"
+        :placeholder="$t('landing.searchPlaceholder')"
         filled
-        :hint="$t('landingContent.searchHint')"
+        :hint="$t('landing.searchHint')"
       >
         <template v-slot:no-option>
           <q-item>
             <q-item-section class="text-grey">
-              {{ $t('landingContent.noResults') }}
+              {{ $t('landing.noResults') }}
             </q-item-section>
           </q-item>
         </template>

@@ -3,7 +3,7 @@
     <div class="row items-center justify-evenly q-py-xl">
       <SearchBarEntry />
     </div>
-    <h3 class="q-py-xl text-center">{{ $t('landingContent.motto') }}</h3>
+    <h3 class="q-py-xl text-center">{{ $t('landing.motto') }}</h3>
     <LandingButtons />
   </q-page>
 </template>

@@ -1,7 +1,9 @@
-import { landingContent } from './landingContent';
+import { auth } from './auth';
+import { landing } from './landing';
 import { lang } from './lang';
 
 export default {
-  landingContent,
+  landing,
   lang,
+  auth,
 };

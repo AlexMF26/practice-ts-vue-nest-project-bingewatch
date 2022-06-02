@@ -3,14 +3,14 @@
     <q-btn
       @click="$router.push('/login')"
       color="accent"
-      :label="$t('landingContent.login')"
+      :label="$t('auth.login')"
       class="col-5"
       icon-right="login"
     ></q-btn>
     <span class="text-h6">OR</span>
     <q-btn
       icon="person_add"
-      :label="$t('landingContent.register')"
+      :label="$t('auth.register')"
       @click="$router.push('/register')"
       color="accent"
       text-color="secondary"
@@ -20,7 +20,7 @@
   <div class="row items-center justify-evenly q-pt-xl" v-if="loggedIn">
     <q-btn
       icon="list"
-      :label="$t('landingContent.yourWatchlist')"
+      :label="$t('landing.yourWatchlist')"
       @click="$router.push('/watchlist/' + userId)"
       color="accent"
       text-color="secondary"
