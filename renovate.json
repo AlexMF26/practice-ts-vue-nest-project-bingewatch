@@ -1,5 +1,7 @@
 {
   "extends": ["config:base"],
+  "reviewers": ["AlexMF26"],
+  "assignees": ["AlexMF26"],
   "additionalBranchPrefix": "dependency/{{parentDir}}-",
   "labels": ["dependencies"],
   "lockFileMaintenance": { "enabled": true },
