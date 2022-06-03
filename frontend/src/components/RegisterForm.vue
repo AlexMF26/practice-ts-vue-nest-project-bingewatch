@@ -10,7 +10,7 @@
         filled
         v-model="name"
         :label="$t('auth.yourName')"
-        type="email"
+        type="text"
         :rules="[(val) => isInvalidName(val) || $t('auth.invalidName')]"
       >
         <template v-slot:prepend>
