@@ -1,4 +1,16 @@
 export const auth = {
   login: 'Autentificare',
   register: 'Înregistrare',
+  submit: 'Confirmare',
+  reset: 'Resetare',
+  yourEmail: 'Adresa ta de email *',
+  yourPassword: 'Parola ta *',
+  invalidEmail: 'Te rugăm să introduci o adresă de email validă',
+  invalidPassword: 'Te rugăm să introduci o parolă validă',
+  passwordSpace: 'Parola nu poate conține spații',
+  passwordLength: 'Parola trebuie să aibă cel puțin 8 caractere',
+  passwordUppercase: 'Parola trebuie să aibă cel puțin o literă mare',
+  passwordLowercase: 'Parola trebuie să aibă cel puțin o literă mică',
+  passwordDigit: 'Parola trebuie să aibă cel puțin un caracter numeric',
+  passwordSpecial: 'Parola trebuie să aibă cel puțin un caracter special',
 };
