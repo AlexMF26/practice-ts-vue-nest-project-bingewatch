@@ -37,7 +37,7 @@
       <q-btn
         color="primary"
         text-color="secondary"
-        :disabled="disabled"
+        :disable="disabled"
         @click="postReview"
       >
         Post

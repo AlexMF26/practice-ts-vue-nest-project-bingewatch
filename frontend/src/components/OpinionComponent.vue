@@ -67,7 +67,7 @@
       <q-btn
         color="positive"
         text-color="secondary"
-        :disabled="!canSubmit"
+        :disable="!canSubmit"
         label="Submit"
         @click="submit"
       ></q-btn>

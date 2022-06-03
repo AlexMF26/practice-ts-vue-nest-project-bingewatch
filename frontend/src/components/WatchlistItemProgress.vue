@@ -26,7 +26,7 @@
       icon="add"
       round
       text-color="secondary"
-      :disabled="(item?.progress ?? 0) >= (maxProgress ?? 1)"
+      :disable="(item?.progress ?? 0) >= (maxProgress ?? 1)"
       @click="add"
       v-if="props.isOwner"
       class="offset-5 offset-sm-0"
