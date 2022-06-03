@@ -1,9 +1,9 @@
 <template>
   <div v-if="userData === null">
-    <q-btn @click="watch()" color="positive">Watch</q-btn>
+    <q-btn @click="watch()" color="positive">{{ $t('entry.watch') }}</q-btn>
   </div>
   <div v-else>
-    <q-btn @click="unwatch()" color="negative">Unwatch</q-btn>
+    <q-btn @click="unwatch()" color="negative">{{ $t('entry.unwatch') }}</q-btn>
   </div>
 </template>
 

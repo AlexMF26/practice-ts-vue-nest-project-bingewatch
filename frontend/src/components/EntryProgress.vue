@@ -4,12 +4,16 @@
       round
       color="accent"
       icon="remove"
-      :disabled="!canRemove"
+      :disable="!canRemove"
       @click="remove()"
       style="margin-right: 0.4vw"
     />
     <span v-if="type == 'movie'" class="text-center col-12 col-sm-auto">
-      {{ userData?.progress === 1 ? 'Completed' : 'Not completed' }}
+      {{
+        userData?.progress === 1
+          ? $t('entry.completed')
+          : $t('entry.notCompleted')
+      }}
     </span>
     <span v-else class="text-center col-12 col-sm-auto"
       >{{ userData?.progress }}/{{ maxProgress }}</span
@@ -18,7 +22,7 @@
       round
       color="accent"
       icon="add"
-      :disabled="!canAdd"
+      :disable="!canAdd"
       @click="add()"
       style="margin-left: 0.4vw"
     />

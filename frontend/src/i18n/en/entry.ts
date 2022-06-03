@@ -1,0 +1,15 @@
+export const entry = {
+  series: 'Series',
+  movie: 'Movie',
+  seasons: 'Seasons',
+  episodes: 'Episodes',
+  rating: 'Rating',
+  reviews: 'Reviews',
+  plot: 'Plot',
+  watch: 'Watch',
+  unwatch: 'Unwatch',
+  yourRating: 'Your rating',
+  completed: 'Completed',
+  notCompleted: 'Not completed',
+  update: 'Update',
+};

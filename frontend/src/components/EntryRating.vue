@@ -3,14 +3,14 @@
     <q-select
       v-model="newRating"
       :options="ratings"
-      label="Your rating"
+      :label="$t('entry.yourRating')"
       filled
       dense
       class="col-12 col-sm-grow q-mt-lg"
     ></q-select>
     <q-btn
       v-if="canUpdate"
-      label="Update"
+      :label="$t('entry.update')"
       color="accent"
       @click="update"
       class="col-12 col-sm-auto q-mt-lg offset-0 offset-sm-1"

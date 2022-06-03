@@ -1,0 +1,15 @@
+export const entry = {
+  series: 'Serial',
+  movie: 'Film',
+  seasons: 'Sezoane',
+  episodes: 'Episoade',
+  rating: 'Notă',
+  reviews: 'Recenzii',
+  plot: 'Intriga (engleză)',
+  watch: 'Vazut',
+  unwatch: 'Nevazut',
+  yourRating: 'Nota ta',
+  completed: 'Completat',
+  notCompleted: 'Necompletat',
+  update: 'Actualizează',
+};
