@@ -4,13 +4,13 @@
       <q-btn
         color="negative"
         text-color="secondary"
-        label="Delete"
+        :label="$t('opinions.delete')"
         @click="deleteOpinion"
       ></q-btn>
       <q-btn
         color="positive"
         text-color="secondary"
-        label="Edit"
+        :label="$t('opinions.edit')"
         v-if="!isEditing"
         @click="edit"
       ></q-btn>
@@ -25,8 +25,8 @@
         dense
         class="bg-secondary shadow-2"
       >
-        <q-tab name="input" icon="edit_note" label="Input" />
-        <q-tab name="preview" icon="preview" label="Preview" />
+        <q-tab name="input" icon="edit_note" :label="$t('opinions.input')" />
+        <q-tab name="preview" icon="preview" :label="$t('opinions.preview')" />
       </q-tabs>
 
       <q-tab-panels v-model="activeEditTab" animated>
@@ -37,6 +37,7 @@
           <textarea
             v-model="newMarkdown"
             class="bg-secondary shadow-2"
+            :placeholder="$t('opinions.placeholder')"
           ></textarea>
         </q-tab-panel>
 
@@ -54,7 +55,9 @@
         class="markdown bg-secondary shadow-2 q-pa-md"
         v-if="!deleted"
       ></div>
-      <span v-else class="deleted text-subtitle2">deleted</span></q-card-section
+      <span v-else class="deleted text-subtitle2">{{
+        $t('opinions.deleted')
+      }}</span></q-card-section
     >
 
     <q-card-actions align="around" v-if="isEditing">
@@ -62,13 +65,13 @@
         color="negative"
         text-color="secondary"
         @click="isEditing = false"
-        label="Cancel"
+        :label="$t('opinions.cancel')"
       ></q-btn>
       <q-btn
         color="positive"
         text-color="secondary"
         :disable="!canSubmit"
-        label="Submit"
+        :label="$t('opinions.submit')"
         @click="submit"
       ></q-btn>
     </q-card-actions>
@@ -78,13 +81,13 @@
         text-color="secondary"
         v-if="hasAuthor"
         @click="$router.push('/watchlist/' + authorId)"
-        label="Watchlist"
+        :label="$t('opinions.watchlist')"
       ></q-btn>
 
       <q-btn
         color="accent"
         text-color="secondary"
-        label="Replies"
+        :label="$t('opinions.replies')"
         @click="$router.push('/opinion/' + id + '/replies')"
       ></q-btn>
     </q-card-actions>

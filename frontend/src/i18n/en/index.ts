@@ -4,6 +4,7 @@ import { entry } from './entry';
 import { errors } from './errors';
 import { landing } from './landing';
 import { lang } from './lang';
+import { opinions } from './opinions';
 import { topbar } from './topbar';
 
 export default {
@@ -14,4 +15,5 @@ export default {
   errors,
   account,
   entry,
+  opinions,
 };

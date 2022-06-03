@@ -1,6 +1,8 @@
 <template>
   <div class="column justify-center items-center content-center">
-    <h4 class="q-my-xl" v-if="opinions.length === 0">No replies...</h4>
+    <h4 class="q-my-xl" v-if="opinions.length === 0">
+      {{ $t('opinions.noReplies') }}
+    </h4>
     <NewReply :id="props.id" class="q-my-xl" v-if="loggedIn" />
     <ReplyComponent
       v-for="opinion in opinions"

@@ -1,0 +1,15 @@
+export const opinions = {
+  input: 'Input',
+  placeholder: 'Write your opinion here(markdown supported)',
+  preview: 'Preview',
+  post: 'Post',
+  cancel: 'Cancel',
+  submit: 'Submit',
+  edit: 'Edit',
+  delete: 'Delete',
+  watchlist: 'Watchlist',
+  replies: 'Replies',
+  addReply: 'Add a reply',
+  noReplies: 'No replies yet...',
+  deleted: 'Deleted',
+};

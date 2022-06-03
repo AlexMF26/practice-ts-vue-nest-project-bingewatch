@@ -8,8 +8,8 @@
         dense
         class="bg-secondary shadow-2"
       >
-        <q-tab name="input" icon="edit_note" label="Input" />
-        <q-tab name="preview" icon="preview" label="Preview" />
+        <q-tab name="input" icon="edit_note" :label="$t('opinions.input')" />
+        <q-tab name="preview" icon="preview" :label="$t('opinions.preview')" />
       </q-tabs>
     </q-card-section>
     <q-separator />
@@ -20,7 +20,11 @@
           name="input"
           class="column justify-center items-center content-center"
         >
-          <textarea v-model="markdown" class="bg-secondary shadow-2"></textarea>
+          <textarea
+            v-model="markdown"
+            class="bg-secondary shadow-2"
+            :placeholder="$t('opinions.placeholder')"
+          ></textarea>
         </q-tab-panel>
 
         <q-tab-panel name="preview">
@@ -40,7 +44,7 @@
         :disable="disabled"
         @click="postReview"
       >
-        Post
+        {{ $t('opinions.post') }}
       </q-btn>
     </q-card-actions>
   </q-card>
