@@ -5,9 +5,9 @@
     class="bg-primary text-secondary shadow-2"
     active-color="accent"
   >
-    <q-tab name="name" icon="person" label="Name" />
-    <q-tab name="email" icon="email" label="Email" />
-    <q-tab name="password" icon="lock" label="Password" />
+    <q-tab name="name" icon="person" :label="$t('auth.name')" />
+    <q-tab name="email" icon="email" :label="$t('auth.email')" />
+    <q-tab name="password" icon="lock" :label="$t('auth.password')" />
   </q-tabs>
   <q-separator />
   <q-card-section>
@@ -16,9 +16,9 @@
         <q-input
           filled
           v-model="name"
-          label="Your name *"
+          :label="$t('auth.yourName')"
           type="text"
-          :rules="[(val) => isInvalidName(val) || 'Please enter a valid name']"
+          :rules="[(val) => isInvalidName(val) || $t('auth.invalidName')]"
         >
           <template v-slot:prepend>
             <q-icon name="person" />
@@ -30,11 +30,9 @@
         <q-input
           filled
           v-model="email"
-          label="Your email *"
+          :label="$t('auth.yourEmail')"
           type="email"
-          :rules="[
-            (val) => isInvalidEmail(val) || 'Please enter a valid email',
-          ]"
+          :rules="[(val) => isInvalidEmail(val) || $t('auth.invalidEmail')]"
         >
           <template v-slot:prepend>
             <q-icon name="email" />
@@ -46,10 +44,10 @@
         <q-input
           filled
           v-model="password"
-          label="Your password *"
+          :label="$t('auth.yourPassword')"
           type="password"
           :rules="[
-            (val) => isInvalidPassword(val) || 'Please enter a valid password',
+            (val) => isInvalidPassword(val) || $t('auth.invalidPassword'),
           ]"
         >
           <template v-slot:prepend>
@@ -60,14 +58,14 @@
     </q-tab-panels>
     <div class="row items-center justify-evenly buttons-row">
       <q-btn
-        label="Submit"
+        :label="$t('auth.submit')"
         color="accent"
         text-color="secondary"
         :disable="disableSubmit"
         @click="submit()"
       />
       <q-btn
-        label="Reset"
+        :label="$t('auth.reset')"
         color="accent"
         flat
         class="q-ml-sm"
@@ -80,6 +78,7 @@
 <script setup lang="ts">
 import { debounce } from 'quasar';
 import { computed, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '../stores/auth.store';
 import { useUsersStore } from '../stores/users.store';
@@ -197,30 +196,32 @@ function isInvalidName(val: string) {
   return false;
 }
 
+const { t } = useI18n({ useScope: 'global' });
+
 function isInvalidPassword(val: string) {
   if (/[\s]/.test(val)) {
     invalidPassword.value = true;
-    return 'Password must not contain spaces';
+    return t('auth.passwordSpace');
   }
   if (!/(?=.{8,})/.test(val)) {
     invalidPassword.value = true;
-    return 'Password must be at least 8 characters long';
+    return t('auth.passwordLength');
   }
   if (!/(?=.*[a-z])/.test(val)) {
     invalidPassword.value = true;
-    return 'Password must contain at least one lowercase letter';
+    return t('auth.passwordLowercase');
   }
   if (!/(?=.*[A-Z])/.test(val)) {
     invalidPassword.value = true;
-    return 'Password must contain at least one uppercase letter';
+    return t('auth.passwordUppercase');
   }
   if (!/(?=.*\d)/.test(val)) {
     invalidPassword.value = true;
-    return 'Password must contain at least digit number';
+    return t('auth.passwordDigit');
   }
   if (!/(?=.*[!@#$%^&*])/.test(val)) {
     invalidPassword.value = true;
-    return 'Password must contain at least one special character';
+    return t('auth.passwordSpecial');
   }
   invalidPassword.value = false;
   return true;

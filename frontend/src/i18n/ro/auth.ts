@@ -15,4 +15,7 @@ export const auth = {
   passwordLowercase: 'Parola trebuie să aibă cel puțin o literă mică',
   passwordDigit: 'Parola trebuie să aibă cel puțin un caracter numeric',
   passwordSpecial: 'Parola trebuie să aibă cel puțin un caracter special',
+  name: 'Nume',
+  email: 'Email',
+  password: 'Parolă',
 };

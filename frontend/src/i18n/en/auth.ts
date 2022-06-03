@@ -15,4 +15,7 @@ export const auth = {
   passwordLowercase: 'Password must contain at least one lowercase letter',
   passwordDigit: 'Password must contain at least one digit',
   passwordSpecial: 'Password must contain at least one special character',
+  name: 'Name',
+  email: 'Email',
+  password: 'Password',
 };
