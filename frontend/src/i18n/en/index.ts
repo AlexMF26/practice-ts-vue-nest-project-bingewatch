@@ -1,3 +1,4 @@
+import { account } from './account';
 import { auth } from './auth';
 import { errors } from './errors';
 import { landing } from './landing';
@@ -10,4 +11,5 @@ export default {
   auth,
   topbar,
   errors,
+  account,
 };

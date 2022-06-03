@@ -63,7 +63,7 @@
         label="Submit"
         color="accent"
         text-color="secondary"
-        :disabled="disableSubmit"
+        :disable="disableSubmit"
         @click="submit()"
       />
       <q-btn

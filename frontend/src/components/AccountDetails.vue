@@ -1,7 +1,8 @@
 <template>
   <div v-for="value in props.infos" :key="value.description">
     <q-icon :name="value.icon" />
-    <b class="q-mr-md">{{ value.description }}:</b>{{ value.data }}
+    <b class="q-mr-md">{{ $t(`account.${value.description}`) }}:</b
+    >{{ value.data }}
   </div>
 </template>
 

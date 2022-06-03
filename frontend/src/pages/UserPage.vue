@@ -1,6 +1,6 @@
 <template>
   <q-page class="fit column justify-start items-center content-center">
-    <h2 class="text-center">Account overview</h2>
+    <h2 class="text-center">{{ $t('account.overview') }}</h2>
     <AccountOverview :id="props.id" />
   </q-page>
 </template>

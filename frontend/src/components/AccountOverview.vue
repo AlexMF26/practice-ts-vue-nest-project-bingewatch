@@ -7,8 +7,8 @@
         class="bg-primary text-secondary shadow-2"
         active-color="accent"
       >
-        <q-tab name="details" icon="info" label="Details" />
-        <q-tab name="update" icon="update" label="Update" />
+        <q-tab :label="$t('account.details')" icon="info" name="details" />
+        <q-tab :label="$t('account.update')" icon="update" name="update" />
       </q-tabs>
     </q-card-section>
 
@@ -52,17 +52,17 @@ async function fetchData() {
     const user = await store.getUser(props.id);
     infos.value = [
       {
-        description: 'Username',
+        description: 'name',
         data: user.name,
         icon: 'person',
       },
       {
-        description: 'Email',
+        description: 'email',
         data: user.email,
         icon: 'email',
       },
       {
-        description: 'Role',
+        description: 'role',
         data: user.role,
         icon: 'workspace_premium',
       },
