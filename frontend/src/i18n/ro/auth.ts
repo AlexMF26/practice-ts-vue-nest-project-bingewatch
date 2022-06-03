@@ -5,6 +5,8 @@ export const auth = {
   reset: 'Resetare',
   yourEmail: 'Adresa ta de email *',
   yourPassword: 'Parola ta *',
+  yourName: 'Numele tău *',
+  invalidName: 'Introdu un nume valid',
   invalidEmail: 'Te rugăm să introduci o adresă de email validă',
   invalidPassword: 'Te rugăm să introduci o parolă validă',
   passwordSpace: 'Parola nu poate conține spații',

@@ -5,6 +5,8 @@ export const auth = {
   reset: 'Reset',
   yourEmail: 'Your email *',
   yourPassword: 'Your password *',
+  yourName: 'Your name *',
+  invalidName: 'Please enter a valid name',
   invalidEmail: 'Please enter a valid email address',
   invalidPassword: 'Please enter a valid password',
   passwordSpace: 'Password should not contain spaces',
