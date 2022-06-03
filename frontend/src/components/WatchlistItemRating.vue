@@ -4,11 +4,11 @@
       v-if="!loading"
       v-model="newRating"
       :options="ratings"
-      label="Your rating"
+      :label="$t('watchlist.rating')"
       filled
       dense
     ></q-select>
-    <span v-else>Loading...</span>
+    <span v-else>{{ $t('watchlist.loading') }}</span>
   </div>
 
   <div v-else>{{ item?.rating ?? 'N/A' }}</div>

@@ -6,6 +6,7 @@ import { landing } from './landing';
 import { lang } from './lang';
 import { opinions } from './opinions';
 import { topbar } from './topbar';
+import { watchlist } from './watchlist';
 
 export default {
   landing,
@@ -16,4 +17,5 @@ export default {
   account,
   entry,
   opinions,
+  watchlist,
 };

@@ -7,7 +7,7 @@
       :sort-method="customSort"
       :pagination="{ sortBy: 'title' }"
       :rows-per-page-options="[0]"
-      no-data-label="No items in your watchlist"
+      :no-data-label="$t('watchlist.noItems')"
       hide-pagination
       dense
     >
@@ -43,6 +43,7 @@ import { storeToRefs } from 'pinia';
 import { useWatchlistStore } from '../stores/watchlist.store';
 import { DetailedWatchlistItemEntity } from '../types/api/interface';
 import { QTableProps } from 'quasar';
+import { useI18n } from 'vue-i18n';
 
 export type Props = {
   isOwner: boolean;
@@ -52,30 +53,31 @@ const componentProps = defineProps<Props>();
 
 const watchlistStore = useWatchlistStore();
 const { items } = storeToRefs(watchlistStore);
+const { t } = useI18n({ useScope: 'global' });
 
 const columns: QTableProps['columns'] = [
   {
     name: 'title',
-    label: 'Title',
+    label: t('watchlist.title'),
     field: (row: DetailedWatchlistItemEntity) => row.entry.title,
     align: 'center',
   },
 
   {
     name: 'progress',
-    label: 'Progress',
+    label: t('watchlist.progress'),
     field: (row: DetailedWatchlistItemEntity) => row.progress,
     align: 'center',
   },
   {
     name: 'rating',
-    label: 'Rating',
+    label: t('watchlist.rating'),
     field: (row: DetailedWatchlistItemEntity) => row.rating ?? 'N/A',
     align: 'center',
   },
 ];
 
-function customSort(rows: DetailedWatchlistItemEntity[]) {
+function customSort(rows: readonly DetailedWatchlistItemEntity[]) {
   const data = [...rows];
 
   data.sort(
@@ -83,6 +85,6 @@ function customSort(rows: DetailedWatchlistItemEntity[]) {
       return a.entry.title < b.entry.title ? -1 : 1;
     }
   );
-  return data;
+  return data as readonly DetailedWatchlistItemEntity[];
 }
 </script>

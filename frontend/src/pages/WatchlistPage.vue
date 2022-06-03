@@ -1,5 +1,7 @@
 <template>
-  <h2 class="text-center" v-if="ready">{{ userName }}'s Watchlist</h2>
+  <h2 class="text-center" v-if="ready">
+    {{ $t('watchlist.header', { username: userName }) }}
+  </h2>
   <q-page> <WatchlistComponent v-if="ready" :isOwner="isOwner" /></q-page>
 </template>
 

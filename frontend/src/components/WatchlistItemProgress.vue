@@ -9,13 +9,17 @@
       icon="remove"
       round
       text-color="secondary"
-      :disabled="(item?.progress ?? 0) <= 0"
+      :disable="(item?.progress ?? 0) <= 0"
       @click="remove"
       v-if="props.isOwner"
       class="offset-5 offset-sm-0"
     />
     <div v-if="type == 'movie'" class="text-center col-12 col-sm-auto">
-      {{ item?.progress === 1 ? 'Completed' : 'Not completed' }}
+      {{
+        item?.progress === 1
+          ? $t('watchlist.completed')
+          : $t('watchlist.uncompleted')
+      }}
     </div>
     <div v-else class="text-center col-12 col-sm-auto">
       {{ item?.progress }}/{{ maxProgress }}
