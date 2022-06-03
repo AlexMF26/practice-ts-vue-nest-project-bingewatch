@@ -5,7 +5,9 @@
     <div>
       <div style="font-size: 30vh">401</div>
 
-      <div class="text-h2" style="opacity: 0.4">You shouldn't be here...</div>
+      <div class="text-h2" style="opacity: 0.4">
+        {{ $t('errors.unauthorizedMessage') }}.
+      </div>
 
       <q-btn
         class="q-mt-xl"
@@ -13,7 +15,7 @@
         text-color="accent"
         unelevated
         to="/"
-        label="Go Home"
+        :label="$t('errors.backToHome')"
         no-caps
       />
     </div>
