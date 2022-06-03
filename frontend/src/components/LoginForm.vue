@@ -38,7 +38,7 @@
           type="submit"
           color="primary"
           text-color="accent"
-          :disabled="invalidEmail || invalidPassword"
+          :disable="invalidEmail || invalidPassword"
         />
         <q-btn label="Reset" type="reset" color="accent" flat class="q-ml-sm" />
       </div>
