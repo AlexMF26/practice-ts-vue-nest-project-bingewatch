@@ -7,7 +7,7 @@
       class="col-5"
       icon-right="login"
     ></q-btn>
-    <span class="text-h6">OR</span>
+    <span class="text-h6">{{ $t('landing.or') }}</span>
     <q-btn
       icon="person_add"
       :label="$t('auth.register')"
