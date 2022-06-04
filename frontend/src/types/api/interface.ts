@@ -66,7 +66,10 @@ export interface UpdateItemDto {
    */
   rating?: number;
 
-  /** @example -1 */
+  /**
+   * @min 0
+   * @example 123
+   */
   progress?: number;
 }
 
