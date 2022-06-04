@@ -74,7 +74,7 @@ export class UsersService {
     const validId = await this.securityService.checkValidUUID(id);
     if (!validId) {
       this.logger.warn(`Invalid id "${id}".`);
-      throw new Error('The given id is not valid.');
+      throw new Error('Id is invalid.');
     }
     let user: { role: PrismaRole };
     try {
@@ -157,7 +157,7 @@ export class UsersService {
     const validId = await this.securityService.checkValidUUID(id);
     if (!validId) {
       this.logger.warn(`Invalid id "${id}".`);
-      throw new Error('The given id is not valid.');
+      throw new Error('Id is invalid.');
     }
     try {
       // prepare and run the query select the user by id and retrieve its data

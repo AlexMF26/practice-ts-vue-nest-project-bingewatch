@@ -50,7 +50,7 @@ export class OpinionsService {
       });
       if (!opinion) {
         this.logger.warn(`Opinion ${opinionId} does not exist.`);
-        throw new Error('Opinion not found.');
+        throw new Error('Opinion was not found.');
       }
       return new OpinionEntity(opinion);
     } catch (error) {
@@ -74,7 +74,7 @@ export class OpinionsService {
         `User ${authorId} is not watching entry ${entryId} but he tries to review it.`,
       );
       throw new Error(
-        `User ${authorId} does not have an item in the watchlist for entry ${entryId}.`,
+        "You are not allowed to review this entry because you haven't watched it.",
       );
     }
     try {
@@ -89,7 +89,7 @@ export class OpinionsService {
           `Review for entry ${entryId} by user ${authorId} already exists.`,
         );
         throw new Error(
-          `Review for entry ${entryId} by user ${authorId} already exists.`,
+          'A review for this entry by this user already exists. Cannot create a new one.',
         );
       }
       const review = await this.repositoryService.opinion.create({
@@ -125,7 +125,7 @@ export class OpinionsService {
     const author = await this.usersService.findById(authorId);
     if (!author) {
       this.logger.warn(`User ${authorId} does not exist.`);
-      throw new Error(`User ${authorId} does not exist.`);
+      throw new Error('The user was not found.');
     }
     // will throw error if opinionId is invalid or opinion does not exist
     await this.findOpinion(opinionId);
@@ -162,9 +162,7 @@ export class OpinionsService {
       this.logger.warn(
         `The given opinion ${opinionId} is deleted and cannot be updated..`,
       );
-      throw new Error(
-        `The given opinion ${opinionId} is deleted and cannot be updated.`,
-      );
+      throw new Error('The given opinion is deleted and cannot be updated.');
     }
     if (opinion.authorId !== requesterId) {
       // will throw error if requesterId is invalid or user does not exist
@@ -173,9 +171,7 @@ export class OpinionsService {
         this.logger.warn(
           `User ${requesterId} is not the authorized to update opinion ${opinionId}.`,
         );
-        throw new Error(
-          `User ${requesterId} is not authorized to update opinion ${opinionId}.`,
-        );
+        throw new Error('User is not authorized to update opinion.');
       }
     }
     try {
@@ -205,9 +201,7 @@ export class OpinionsService {
         this.logger.warn(
           `User ${requesterId} is not the authorized to delete opinion ${opinionId}.`,
         );
-        throw new Error(
-          `User ${requesterId} is not authorized to delete opinion ${opinionId}.`,
-        );
+        throw new Error('User is not authorized to delete opinion.');
       }
     }
     try {

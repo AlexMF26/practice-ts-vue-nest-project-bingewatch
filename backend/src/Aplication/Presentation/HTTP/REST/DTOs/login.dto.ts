@@ -33,7 +33,7 @@ export class LoginDto {
     /(?!.*\s)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
     {
       message:
-        "Your password isn't valid. Our passwords use at least 8 characters, one uppercase, one lowercase, one number and one special character.",
+        'Your password is invalid. Our passwords use at least 8 characters, one uppercase, one lowercase, one number and one special character.',
     },
   )
   @IsString()

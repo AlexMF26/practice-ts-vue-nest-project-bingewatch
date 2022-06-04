@@ -109,7 +109,7 @@ export class EntriesService {
     const entry = await this.getEntryByImdbId(imdbId);
     if (entry === null) {
       this.logger.error(`No entry with imdbId "${imdbId}".`);
-      throw new Error(`No entry with imdbId "${imdbId}" was found.`);
+      throw new Error('Entry was not found.');
     }
     try {
       // get the review data

@@ -11,7 +11,7 @@ export class CreateUserDto {
     allows for "'", "-" and "," and ".".
   */
   @Matches(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*.?$/, {
-    message: 'Name is not valid.',
+    message: 'Name is invalid.',
   })
   @IsString()
   public readonly name: string;
@@ -48,7 +48,7 @@ export class CreateUserDto {
     /(?!.*\s)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
     {
       message:
-        'Your password is too weak. Use at least 8 characters, one uppercase, one lowercase, one number and one special character.',
+        'Your password is invalid. Our passwords use at least 8 characters, one uppercase, one lowercase, one number and one special character.',
     },
   )
   @IsString()

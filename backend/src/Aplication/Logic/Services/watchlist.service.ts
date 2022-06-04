@@ -24,12 +24,12 @@ export class WatchlistService {
     const user = await this.usersService.findById(userId);
     if (!user) {
       this.logger.warn(`User with id "${userId}" not found`);
-      throw new Error(`User with id "${userId}" not found`);
+      throw new Error('The user was not found.');
     }
     const entry = await this.entriesService.getEntryByImdbId(imdbId);
     if (!entry) {
       this.logger.warn(`Entry with imdbId "${imdbId}" not found`);
-      throw new Error(`Entry with imdbId "${imdbId}" not found`);
+      throw new Error('Entry was not found.');
     }
     try {
       const item = await this.repositoryService.watchlistItem.findFirst({
@@ -60,7 +60,7 @@ export class WatchlistService {
         `User with id "${requesterId}" tried to add entry with id "${entryId}" to the watchlist of user "${userId}"`,
       );
       throw new Error(
-        'You are not authorized add entries to other users watchlist.',
+        'You are not authorized add entries to a watchlist that is not yours.',
       );
     }
     const existentItem = await this.findItemByImdbIdForUser(entryId, userId);
@@ -69,7 +69,7 @@ export class WatchlistService {
         `Item for entry "${entryId}" in the watchlist of user "${userId}" already exists`,
       );
       throw new Error(
-        `The given entry is already in the watchlist of user "${userId}"`,
+        'The given entry is already in the watchlist of the user.',
       );
     }
     try {
@@ -100,7 +100,7 @@ export class WatchlistService {
     const validId = await this.securityService.checkValidUUID(id);
     if (!validId) {
       this.logger.warn(`Invalid id "${id}".`);
-      throw new Error('The given id is not valid.');
+      throw new Error('Id is invalid.');
     }
     try {
       const item = await this.repositoryService.watchlistItem.findUnique({
@@ -159,7 +159,7 @@ export class WatchlistService {
     const validId = await this.securityService.checkValidUUID(id);
     if (!validId) {
       this.logger.warn(`Invalid id "${id}".`);
-      throw new Error('The given id is not valid.');
+      throw new Error('Id is invalid.');
     }
     let item;
     try {
@@ -199,7 +199,7 @@ export class WatchlistService {
             data.rating <= 10;
       if (!updatableRating) {
         this.logger.warn(`Rating ${data.rating} is out of range`);
-        throw new Error('The given rating must be between 0 and 10');
+        throw new Error('Rating is invalid. It must be between 0 and 10.');
       } else {
         changes.rating = data.rating;
       }
@@ -219,7 +219,7 @@ export class WatchlistService {
         data.progress + item.progress < 0
       ) {
         this.logger.warn(`Progress ${data.progress} is out of range`);
-        throw new Error('The given progress is out of range.');
+        throw new Error('Rating is invalid. It is out of range.');
       } else {
         changes.progress = data.progress + item.progress;
       }

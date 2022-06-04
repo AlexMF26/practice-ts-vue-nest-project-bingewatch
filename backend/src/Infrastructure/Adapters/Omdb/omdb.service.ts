@@ -26,7 +26,7 @@ export class OmdbService {
     if (response.status !== 200) {
       this.logger.error(`External error while getting entry "${id}".`);
       throw new Error(
-        `External provider OMDB returned status ${response.status}.`,
+        'External provider OMDB returned status different than 200.',
       );
     }
     const entry = response.data;
@@ -42,7 +42,7 @@ export class OmdbService {
     this.logger.log(`Getting season "${seasonNumber}" for entry "${id}".`);
     if (Number.isInteger(seasonNumber) === false) {
       this.logger.error('Season number number must be an integer.');
-      throw new Error('The given season number page number is not an integer.');
+      throw new Error('Season number is invalid. It is not an integer.');
     }
     const params = {
       i: id,
@@ -60,7 +60,7 @@ export class OmdbService {
         `External error while getting season "${seasonNumber}" for IMDBid "${id}".`,
       );
       throw new Error(
-        `External provider OMDB returned status ${response.status}.`,
+        'External provider OMDB returned status different than 200.',
       );
     }
     const season = response.data;
@@ -78,17 +78,17 @@ export class OmdbService {
     this.logger.log(`Getting page "${page}" for search with query "${query}".`);
     if (page < 1) {
       this.logger.error('Page number must be greater than 0.');
-      throw new Error('The given page number is less than 1.');
+      throw new Error('Page number is invalid. It is less than 1.');
     }
     if (Number.isInteger(page) === false) {
       this.logger.error('Page number must be an integer.');
-      throw new Error('The given page number is not an integer.');
+      throw new Error('Page number is invalid. It is not an integer.');
     }
     //check if the query doesn't contains something else than spaces
     query = query.trim();
     if (query.length === 0) {
       this.logger.error('Search query must not be empty.');
-      throw new Error('The given search query is empty.');
+      throw new Error('Search query is invalid. It is empty.');
     }
     const params = {
       s: query,
@@ -104,7 +104,7 @@ export class OmdbService {
     if (response.status !== 200) {
       this.logger.error(`External error while searching for "${query}".`);
       throw new Error(
-        `External provider OMDB returned status ${response.status}.`,
+        'External provider OMDB returned status different than 200.',
       );
     }
     const result = response.data;
