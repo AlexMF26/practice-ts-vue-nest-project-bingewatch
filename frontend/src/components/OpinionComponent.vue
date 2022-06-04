@@ -100,6 +100,7 @@ import { storeToRefs } from 'pinia';
 import { computed, ref } from 'vue';
 import { useAuthStore } from '../stores/auth.store';
 import { useOpinionsStore } from '../stores/opinions.stores';
+import DOMPurify from 'dompurify';
 
 export type Props = {
   id: string;
@@ -134,10 +135,12 @@ const content = computed(() => {
 const deleted = computed(() => {
   return opinion.value?.authorId === null && opinion.value?.text === null;
 });
-const contentHtml = computed(() => marked(content.value));
+const contentHtml = computed(() => DOMPurify.sanitize(marked(content.value)));
 const newMarkdown = ref(content.value);
 
-const newMarkdownToHtml = computed(() => marked(newMarkdown.value));
+const newMarkdownToHtml = computed(() =>
+  DOMPurify.sanitize(marked(newMarkdown.value))
+);
 
 const activeEditTab = ref<'input' | 'preview'>('input');
 

@@ -19,6 +19,7 @@
   "dependencies": {
     "@quasar/extras": "1.14.0",
     "axios": "0.27.2",
+    "dompurify": "^2.3.8",
     "jwt-decode": "3.1.2",
     "marked": "4.0.16",
     "pinia": "2.0.14",
@@ -32,6 +33,7 @@
   "devDependencies": {
     "@intlify/vite-plugin-vue-i18n": "3.4.0",
     "@quasar/app-vite": "1.0.1",
+    "@types/dompurify": "^2.3.3",
     "@types/marked": "4.0.3",
     "@types/node": "16.11.38",
     "@types/uuid": "8.3.4",

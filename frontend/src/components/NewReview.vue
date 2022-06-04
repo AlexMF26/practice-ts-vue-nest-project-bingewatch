@@ -55,6 +55,7 @@ import { ref, computed } from 'vue';
 import { marked } from 'marked';
 import { useOpinionsStore } from '../stores/opinions.stores';
 import { debounce } from 'quasar';
+import DOMPurify from 'dompurify';
 
 export type Props = {
   id: string;
@@ -63,8 +64,9 @@ export type Props = {
 const props = defineProps<Props>();
 
 const markdown = ref('');
-const markdownToHtml = computed(() => marked(markdown.value));
-
+const markdownToHtml = computed(() =>
+  DOMPurify.sanitize(marked(markdown.value))
+);
 const activeTab = ref<'input' | 'preview'>('input');
 
 const disabled = computed(() => {
