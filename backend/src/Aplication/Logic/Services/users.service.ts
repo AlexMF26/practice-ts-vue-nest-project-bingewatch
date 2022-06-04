@@ -204,7 +204,7 @@ export class UsersService {
     // if data is empty
     if (data && Object.keys(data).length === 0) {
       this.logger.error(`No data to change ${id}.`);
-      throw new Error('No data to change was given.');
+      return await this.getUser(id);
     }
     // get if the requester's role is admin
     const isAdmin = await this.isAdmin(requesterId);

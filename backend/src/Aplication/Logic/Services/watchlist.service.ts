@@ -17,6 +17,28 @@ export class WatchlistService {
 
   logger = new Logger(WatchlistService.name);
 
+  private async getItem(id: string) {
+    this.logger.log(`Getting item with id "${id}".`);
+    const validId = await this.securityService.checkValidUUID(id);
+    if (!validId) {
+      this.logger.warn(`Invalid id "${id}".`);
+      throw new Error('Id is invalid.');
+    }
+    try {
+      const item = await this.repositoryService.watchlistItem.findUnique({
+        where: { id },
+      });
+      if (!item) {
+        this.logger.error(`Item with id "${id}" was not found.`);
+        throw new Error('Item was not found.');
+      }
+      return new WatchlistItemEntity(item);
+    } catch (error) {
+      this.logger.error(error.message);
+      throw error;
+    }
+  }
+
   public async findItemByImdbIdForUser(imdbId: string, userId: string) {
     this.logger.log(
       `Getting item for entry "${imdbId}" in the watchlist of user "${userId}"`,
@@ -159,7 +181,7 @@ export class WatchlistService {
     const validId = await this.securityService.checkValidUUID(id);
     if (!validId) {
       this.logger.warn(`Invalid id "${id}".`);
-      throw new Error('Id is invalid.');
+      return await this.getItem(id);
     }
     let item;
     try {
