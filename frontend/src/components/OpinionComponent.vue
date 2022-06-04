@@ -227,5 +227,16 @@ textarea {
     padding: 0.1rem 0.3rem;
     border-radius: 0.2rem;
   }
+
+  table,
+  th,
+  td {
+    border: 1px solid;
+    text-align: center;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
 }
 </style>
