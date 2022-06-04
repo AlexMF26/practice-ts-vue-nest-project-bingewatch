@@ -226,24 +226,18 @@ export class WatchlistService {
         changes.rating = data.rating;
       }
     }
-    if (data?.progress) {
-      let maxProgress: number;
-      const numberofSeasons = item.entry.seasonsData.length;
-      if (numberofSeasons === 0) {
-        maxProgress = 1;
-      } else {
-        maxProgress = item.entry.seasonsData.reduce((acc, cur) => {
-          return acc + cur;
-        }, 0);
-      }
-      if (
-        data.progress + item.progress > maxProgress ||
-        data.progress + item.progress < 0
-      ) {
+    if (data?.progress !== undefined && data.progress !== item?.progress) {
+      const maxProgress =
+        item.entry.seasonsData.length === 0
+          ? 1
+          : item.entry.seasonsData.reduce((acc, cur) => {
+              return acc + cur;
+            }, 0);
+      if (data.progress > maxProgress || data.progress < 0) {
         this.logger.warn(`Progress ${data.progress} is out of range`);
-        throw new Error('Rating is invalid. It is out of range.');
+        throw new Error('Progress is invalid. It is out of range.');
       } else {
-        changes.progress = data.progress + item.progress;
+        changes.progress = data.progress;
       }
     }
     if (Object.keys(changes).length === 0) {

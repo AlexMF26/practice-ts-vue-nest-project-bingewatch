@@ -53,9 +53,12 @@ const maxProgress = computed(() => {
     }, 0);
   }
 });
+
 const type = computed(() =>
   entry.value?.seasons.length !== 0 ? 'series' : 'movie'
 );
+
+const progress = computed(() => userData.value?.progress ?? 0);
 
 const canAdd = computed(() => {
   if (
@@ -90,14 +93,14 @@ async function refreshData() {
 
 async function add() {
   await watchlistStore.updateWatchListItem(userData.value?.id as string, {
-    progress: 1,
+    progress: progress.value + 1,
   });
   await refreshData();
 }
 
 async function remove() {
   await watchlistStore.updateWatchListItem(userData.value?.id as string, {
-    progress: -1,
+    progress: progress.value - 1,
   });
   await refreshData();
 }

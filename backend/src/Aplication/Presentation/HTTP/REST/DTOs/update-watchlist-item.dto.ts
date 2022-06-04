@@ -12,8 +12,9 @@ export class UpdateItemDto {
   public readonly rating?: number;
 
   @ApiPropertyOptional({
-    example: -1,
+    example: 123,
   })
+  @Min(0)
   @IsInt()
   @IsOptional()
   public readonly progress?: number;

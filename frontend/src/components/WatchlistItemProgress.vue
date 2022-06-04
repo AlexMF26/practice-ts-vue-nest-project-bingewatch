@@ -67,10 +67,14 @@ const type = computed(() =>
 );
 
 async function add() {
-  await watchlistStore.updateWatchListItem(props.id, { progress: 1 });
+  await watchlistStore.updateWatchListItem(props.id, {
+    progress: (item.value?.progress ?? 0) + 1,
+  });
 }
 
 async function remove() {
-  await watchlistStore.updateWatchListItem(props.id, { progress: -1 });
+  await watchlistStore.updateWatchListItem(props.id, {
+    progress: (item.value?.progress ?? 0) - 1,
+  });
 }
 </script>
