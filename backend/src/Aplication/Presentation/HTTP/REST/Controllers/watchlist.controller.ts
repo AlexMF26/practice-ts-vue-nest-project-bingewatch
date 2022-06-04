@@ -1,30 +1,30 @@
 import {
-  BadRequestException,
   Body,
   Controller,
   Delete,
   Get,
   Logger,
-  NotFoundException,
   Param,
   Patch,
   Post,
   Query,
-  ServiceUnavailableException,
-  UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
 import { ApiCookieAuth, ApiTags } from '@nestjs/swagger';
 import { WatchlistService } from '../../../../Logic/Services/watchlist.service';
 import { userId } from '../../Decorators/userId.decorator';
 import { JwtGuard } from '../../Guards/jwt.guard';
+import { ErrorsService } from '../../Util/errors.service';
 import { CreateItemDto } from '../DTOs/create-watchlist-item.dto';
 import { UpdateItemDto } from '../DTOs/update-watchlist-item.dto';
 
 @Controller('watchlist')
 @ApiTags('watchlist')
 export class WatchlistController {
-  public constructor(private readonly watchlistService: WatchlistService) {}
+  public constructor(
+    private readonly watchlistService: WatchlistService,
+    private readonly errorsService: ErrorsService,
+  ) {}
 
   private readonly logger = new Logger(WatchlistController.name);
 
@@ -44,18 +44,7 @@ export class WatchlistController {
       );
       return item;
     } catch (error) {
-      if (error.message.includes('found')) {
-        throw new NotFoundException(error.message);
-      } else if (error.message.includes('given')) {
-        throw new BadRequestException(error.message);
-      } else if (error.message.includes('authorized')) {
-        throw new UnauthorizedException(error.message);
-      } else if (error.message.includes('External')) {
-        throw new ServiceUnavailableException(error.message);
-      } else {
-        this.logger.error(error.message);
-        throw error;
-      }
+      this.errorsService.mapToHTTPError(error);
     }
   }
 
@@ -77,18 +66,7 @@ export class WatchlistController {
       );
       return watchlistItem;
     } catch (error) {
-      if (error.message.includes('found')) {
-        throw new NotFoundException(error.message);
-      } else if (error.message.includes('given')) {
-        throw new BadRequestException(error.message);
-      } else if (error.message.includes('authorized')) {
-        throw new UnauthorizedException(error.message);
-      } else if (error.message.includes('External')) {
-        throw new ServiceUnavailableException(error.message);
-      } else {
-        this.logger.error(error.message);
-        throw error;
-      }
+      this.errorsService.mapToHTTPError(error);
     }
   }
 
@@ -106,18 +84,7 @@ export class WatchlistController {
       const watchlistItem = await this.watchlistService.delete(id, requesterId);
       return watchlistItem;
     } catch (error) {
-      if (error.message.includes('found')) {
-        throw new NotFoundException(error.message);
-      } else if (error.message.includes('given')) {
-        throw new BadRequestException(error.message);
-      } else if (error.message.includes('authorized')) {
-        throw new UnauthorizedException(error.message);
-      } else if (error.message.includes('External')) {
-        throw new ServiceUnavailableException(error.message);
-      } else {
-        this.logger.error(error.message);
-        throw error;
-      }
+      this.errorsService.mapToHTTPError(error);
     }
   }
 
@@ -140,18 +107,7 @@ export class WatchlistController {
       );
       return watchlistItem;
     } catch (error) {
-      if (error.message.includes('found')) {
-        throw new NotFoundException(error.message);
-      } else if (error.message.includes('given')) {
-        throw new BadRequestException(error.message);
-      } else if (error.message.includes('authorized')) {
-        throw new UnauthorizedException(error.message);
-      } else if (error.message.includes('External')) {
-        throw new ServiceUnavailableException(error.message);
-      } else {
-        this.logger.error(error.message);
-        throw error;
-      }
+      this.errorsService.mapToHTTPError(error);
     }
   }
 }

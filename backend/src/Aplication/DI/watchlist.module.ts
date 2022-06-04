@@ -5,9 +5,16 @@ import { SecurityModule } from './security.module';
 import { EntriesModule } from './entries.module';
 import { RepositoryModule } from './repository.module';
 import { UsersModule } from './users.module';
+import { ErrorsModule } from './errors.module';
 
 @Module({
-  imports: [RepositoryModule, UsersModule, EntriesModule, SecurityModule],
+  imports: [
+    RepositoryModule,
+    UsersModule,
+    EntriesModule,
+    SecurityModule,
+    ErrorsModule,
+  ],
   providers: [WatchlistService],
   controllers: [WatchlistController],
   exports: [WatchlistService],

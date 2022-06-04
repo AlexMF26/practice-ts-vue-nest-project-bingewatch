@@ -1,16 +1,12 @@
 import {
-  BadRequestException,
   Body,
   ClassSerializerInterceptor,
   Controller,
   Get,
   Logger,
-  NotFoundException,
   Param,
   Patch,
   Post,
-  ServiceUnavailableException,
-  UnauthorizedException,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
@@ -24,13 +20,17 @@ import { SerializedUserEntity } from '../../../../../Domain/Entities/user.entity
 import { UsersService } from '../../../../Logic/Services/users.service';
 import { userId } from '../../Decorators/userId.decorator';
 import { JwtGuard } from '../../Guards/jwt.guard';
+import { ErrorsService } from '../../Util/errors.service';
 import { CreateUserDto } from '../DTOs/create-user.dto';
 import { UpdateUserDto } from '../DTOs/update-user.dto';
 
 @Controller('users')
 @ApiTags('users')
 export class UsersController {
-  public constructor(private readonly usersService: UsersService) {}
+  public constructor(
+    private readonly usersService: UsersService,
+    private readonly errorsService: ErrorsService,
+  ) {}
 
   private readonly logger = new Logger(UsersController.name);
 
@@ -44,18 +44,7 @@ export class UsersController {
       const opinions = await this.usersService.findOpinionsByUser(authorId);
       return opinions;
     } catch (error) {
-      if (error.message.includes('found')) {
-        throw new NotFoundException(error.message);
-      } else if (error.message.includes('given')) {
-        throw new BadRequestException(error.message);
-      } else if (error.message.includes('authorized')) {
-        throw new UnauthorizedException(error.message);
-      } else if (error.message.includes('External')) {
-        throw new ServiceUnavailableException(error.message);
-      } else {
-        this.logger.error(error.message);
-        throw error;
-      }
+      this.errorsService.mapToHTTPError(error);
     }
   }
 
@@ -69,18 +58,7 @@ export class UsersController {
       const watchlist = await this.usersService.getWatchlist(id);
       return watchlist;
     } catch (error) {
-      if (error.message.includes('found')) {
-        throw new NotFoundException(error.message);
-      } else if (error.message.includes('given')) {
-        throw new BadRequestException(error.message);
-      } else if (error.message.includes('authorized')) {
-        throw new UnauthorizedException(error.message);
-      } else if (error.message.includes('External')) {
-        throw new ServiceUnavailableException(error.message);
-      } else {
-        this.logger.error(error.message);
-        throw error;
-      }
+      this.errorsService.mapToHTTPError(error);
     }
   }
 
@@ -101,18 +79,7 @@ export class UsersController {
       );
       return user;
     } catch (error) {
-      if (error.message.includes('found')) {
-        throw new NotFoundException(error.message);
-      } else if (error.message.includes('given')) {
-        throw new BadRequestException(error.message);
-      } else if (error.message.includes('authorized')) {
-        throw new UnauthorizedException(error.message);
-      } else if (error.message.includes('External')) {
-        throw new ServiceUnavailableException(error.message);
-      } else {
-        this.logger.error(error.message);
-        throw error;
-      }
+      this.errorsService.mapToHTTPError(error);
     }
   }
 
@@ -140,18 +107,7 @@ export class UsersController {
       );
       return user;
     } catch (error) {
-      if (error.message.includes('found')) {
-        throw new NotFoundException(error.message);
-      } else if (error.message.includes('given')) {
-        throw new BadRequestException(error.message);
-      } else if (error.message.includes('authorized')) {
-        throw new UnauthorizedException(error.message);
-      } else if (error.message.includes('External')) {
-        throw new ServiceUnavailableException(error.message);
-      } else {
-        this.logger.error(error.message);
-        throw error;
-      }
+      this.errorsService.mapToHTTPError(error);
     }
   }
 
@@ -167,18 +123,7 @@ export class UsersController {
       const user = await this.usersService.getUser(targetId);
       return user;
     } catch (error) {
-      if (error.message.includes('found')) {
-        throw new NotFoundException(error.message);
-      } else if (error.message.includes('given')) {
-        throw new BadRequestException(error.message);
-      } else if (error.message.includes('authorized')) {
-        throw new UnauthorizedException(error.message);
-      } else if (error.message.includes('External')) {
-        throw new ServiceUnavailableException(error.message);
-      } else {
-        this.logger.error(error.message);
-        throw error;
-      }
+      this.errorsService.mapToHTTPError(error);
     }
   }
 }

@@ -1,16 +1,12 @@
 import {
-  BadRequestException,
   Body,
   ClassSerializerInterceptor,
   Controller,
   ForbiddenException,
   Get,
   Logger,
-  NotFoundException,
   Post,
   Res,
-  ServiceUnavailableException,
-  UnauthorizedException,
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
@@ -22,6 +18,7 @@ import { userId } from '../../Decorators/userId.decorator';
 import { JwtGuard } from '../../Guards/jwt.guard';
 import { LoginDto } from '../DTOs/login.dto';
 import { SecurityService } from '../../../../Logic/Services/security.service';
+import { ErrorsService } from '../../Util/errors.service';
 
 @Controller('authentification')
 @ApiTags('authentification')
@@ -29,6 +26,7 @@ export class AuthentificationController {
   public constructor(
     private readonly securityService: SecurityService,
     private readonly usersService: UsersService,
+    private readonly errorsService: ErrorsService,
   ) {}
 
   private readonly logger = new Logger(AuthentificationController.name);
@@ -48,18 +46,7 @@ export class AuthentificationController {
         loginDto.password,
       );
     } catch (error) {
-      if (error.message.includes('found')) {
-        throw new NotFoundException(error.message);
-      } else if (error.message.includes('given')) {
-        throw new BadRequestException(error.message);
-      } else if (error.message.includes('authorized')) {
-        throw new UnauthorizedException(error.message);
-      } else if (error.message.includes('External')) {
-        throw new ServiceUnavailableException(error.message);
-      } else {
-        this.logger.error(error.message);
-        throw error;
-      }
+      this.errorsService.mapToHTTPError(error);
     }
     if (!validUser) {
       throw new ForbiddenException('Wrong name or password.');
@@ -85,18 +72,7 @@ export class AuthentificationController {
       const user = await this.usersService.findById(id);
       return user;
     } catch (error) {
-      if (error.message.includes('found')) {
-        throw new NotFoundException(error.message);
-      } else if (error.message.includes('given')) {
-        throw new BadRequestException(error.message);
-      } else if (error.message.includes('authorized')) {
-        throw new UnauthorizedException(error.message);
-      } else if (error.message.includes('External')) {
-        throw new ServiceUnavailableException(error.message);
-      } else {
-        this.logger.error(error.message);
-        throw error;
-      }
+      this.errorsService.mapToHTTPError(error);
     }
   }
 }

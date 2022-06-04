@@ -6,9 +6,16 @@ import { SecurityModule } from './security.module';
 import { UsersModule } from './users.module';
 import { OpinionsListener } from '../Logic/Listeners/opinions.listener';
 import { OpinionsController } from '../Presentation/HTTP/REST/Controllers/opinions.controller';
+import { ErrorsModule } from './errors.module';
 
 @Module({
-  imports: [RepositoryModule, WatchlistModule, UsersModule, SecurityModule],
+  imports: [
+    RepositoryModule,
+    WatchlistModule,
+    UsersModule,
+    SecurityModule,
+    ErrorsModule,
+  ],
   providers: [OpinionsService, OpinionsListener],
   exports: [OpinionsService],
   controllers: [OpinionsController],

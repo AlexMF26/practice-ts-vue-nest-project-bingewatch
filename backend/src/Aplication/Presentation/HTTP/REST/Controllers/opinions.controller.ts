@@ -1,22 +1,19 @@
 import {
-  BadRequestException,
   Body,
   Controller,
   Delete,
   Get,
   Logger,
-  NotFoundException,
   Param,
   Patch,
   Post,
-  ServiceUnavailableException,
-  UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
 import { ApiCookieAuth, ApiTags } from '@nestjs/swagger';
 import { OpinionsService } from '../../../../Logic/Services/opinions.service';
 import { userId } from '../../Decorators/userId.decorator';
 import { JwtGuard } from '../../Guards/jwt.guard';
+import { ErrorsService } from '../../Util/errors.service';
 import { AddReviewDto } from '../DTOs/add-review.dto';
 import { OpinionContentDto } from '../DTOs/opinion-content.dto';
 
@@ -25,7 +22,10 @@ import { OpinionContentDto } from '../DTOs/opinion-content.dto';
 export class OpinionsController {
   private readonly logger = new Logger(OpinionsController.name);
 
-  constructor(private readonly opinionsService: OpinionsService) {}
+  constructor(
+    private readonly opinionsService: OpinionsService,
+    private readonly errorsService: ErrorsService,
+  ) {}
 
   @Get(':id')
   public async getOpinion(@Param('id') id: string) {
@@ -37,21 +37,7 @@ export class OpinionsController {
       const opinion = await this.opinionsService.findOpinion(id);
       return opinion;
     } catch (error) {
-      if (error.message.includes('found')) {
-        throw new NotFoundException(error.message);
-      } else if (
-        error.message.includes('given') ||
-        error.message.includes('invalid')
-      ) {
-        throw new BadRequestException(error.message);
-      } else if (error.message.includes('authorized')) {
-        throw new UnauthorizedException(error.message);
-      } else if (error.message.includes('External')) {
-        throw new ServiceUnavailableException(error.message);
-      } else {
-        this.logger.error(error.message);
-        throw error;
-      }
+      this.errorsService.mapToHTTPError(error);
     }
   }
 
@@ -65,21 +51,7 @@ export class OpinionsController {
       const replies = await this.opinionsService.findRepliesForOpinion(id);
       return replies;
     } catch (error) {
-      if (error.message.includes('found')) {
-        throw new NotFoundException(error.message);
-      } else if (
-        error.message.includes('given') ||
-        error.message.includes('invalid')
-      ) {
-        throw new BadRequestException(error.message);
-      } else if (error.message.includes('authorized')) {
-        throw new UnauthorizedException(error.message);
-      } else if (error.message.includes('External')) {
-        throw new ServiceUnavailableException(error.message);
-      } else {
-        this.logger.error(error.message);
-        throw error;
-      }
+      this.errorsService.mapToHTTPError(error);
     }
   }
 
@@ -102,21 +74,7 @@ export class OpinionsController {
       );
       return review;
     } catch (error) {
-      if (error.message.includes('found')) {
-        throw new NotFoundException(error.message);
-      } else if (
-        error.message.includes('given') ||
-        error.message.includes('invalid')
-      ) {
-        throw new BadRequestException(error.message);
-      } else if (error.message.includes('authorized')) {
-        throw new UnauthorizedException(error.message);
-      } else if (error.message.includes('External')) {
-        throw new ServiceUnavailableException(error.message);
-      } else {
-        this.logger.error(error.message);
-        throw error;
-      }
+      this.errorsService.mapToHTTPError(error);
     }
   }
 
@@ -140,21 +98,7 @@ export class OpinionsController {
       );
       return reply;
     } catch (error) {
-      if (error.message.includes('found')) {
-        throw new NotFoundException(error.message);
-      } else if (
-        error.message.includes('given') ||
-        error.message.includes('invalid')
-      ) {
-        throw new BadRequestException(error.message);
-      } else if (error.message.includes('authorized')) {
-        throw new UnauthorizedException(error.message);
-      } else if (error.message.includes('External')) {
-        throw new ServiceUnavailableException(error.message);
-      } else {
-        this.logger.error(error.message);
-        throw error;
-      }
+      this.errorsService.mapToHTTPError(error);
     }
   }
 
@@ -178,21 +122,7 @@ export class OpinionsController {
       );
       return opinion;
     } catch (error) {
-      if (error.message.includes('found')) {
-        throw new NotFoundException(error.message);
-      } else if (
-        error.message.includes('given') ||
-        error.message.includes('invalid')
-      ) {
-        throw new BadRequestException(error.message);
-      } else if (error.message.includes('authorized')) {
-        throw new UnauthorizedException(error.message);
-      } else if (error.message.includes('External')) {
-        throw new ServiceUnavailableException(error.message);
-      } else {
-        this.logger.error(error.message);
-        throw error;
-      }
+      this.errorsService.mapToHTTPError(error);
     }
   }
 
@@ -213,21 +143,7 @@ export class OpinionsController {
       );
       return opinion;
     } catch (error) {
-      if (error.message.includes('found')) {
-        throw new NotFoundException(error.message);
-      } else if (
-        error.message.includes('given') ||
-        error.message.includes('invalid')
-      ) {
-        throw new BadRequestException(error.message);
-      } else if (error.message.includes('authorized')) {
-        throw new UnauthorizedException(error.message);
-      } else if (error.message.includes('External')) {
-        throw new ServiceUnavailableException(error.message);
-      } else {
-        this.logger.error(error.message);
-        throw error;
-      }
+      this.errorsService.mapToHTTPError(error);
     }
   }
 }

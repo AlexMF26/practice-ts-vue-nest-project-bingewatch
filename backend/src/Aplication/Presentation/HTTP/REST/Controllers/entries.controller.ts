@@ -1,22 +1,15 @@
-import {
-  BadRequestException,
-  Controller,
-  Get,
-  Logger,
-  NotFoundException,
-  Param,
-  Post,
-  Query,
-  ServiceUnavailableException,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { Controller, Get, Logger, Param, Post, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { EntriesService } from '../../../../Logic/Services/entries.service';
+import { ErrorsService } from '../../Util/errors.service';
 
 @Controller('entries')
 @ApiTags('entries')
 export class EntriesController {
-  public constructor(private readonly entriesService: EntriesService) {}
+  public constructor(
+    private readonly entriesService: EntriesService,
+    private readonly errorsService: ErrorsService,
+  ) {}
 
   private readonly logger = new Logger(EntriesController.name);
 
@@ -28,18 +21,7 @@ export class EntriesController {
       const answear = await this.entriesService.query(query, 1);
       return answear;
     } catch (error) {
-      if (error.message.includes('found')) {
-        throw new NotFoundException(error.message);
-      } else if (error.message.includes('given')) {
-        throw new BadRequestException(error.message);
-      } else if (error.message.includes('authorized')) {
-        throw new UnauthorizedException(error.message);
-      } else if (error.message.includes('External')) {
-        throw new ServiceUnavailableException(error.message);
-      } else {
-        this.logger.error(error.message);
-        throw error;
-      }
+      this.errorsService.mapToHTTPError(error);
     }
   }
 
@@ -53,18 +35,7 @@ export class EntriesController {
       const entry = await this.entriesService.getEntryByImdbId(imdbId);
       return entry;
     } catch (error) {
-      if (error.message.includes('found')) {
-        throw new NotFoundException(error.message);
-      } else if (error.message.includes('given')) {
-        throw new BadRequestException(error.message);
-      } else if (error.message.includes('authorized')) {
-        throw new UnauthorizedException(error.message);
-      } else if (error.message.includes('External')) {
-        throw new ServiceUnavailableException(error.message);
-      } else {
-        this.logger.error(error.message);
-        throw error;
-      }
+      this.errorsService.mapToHTTPError(error);
     }
   }
 
@@ -78,18 +49,7 @@ export class EntriesController {
       const reviews = await this.entriesService.findReviewsForEntry(imdbId);
       return reviews;
     } catch (error) {
-      if (error.message.includes('found')) {
-        throw new NotFoundException(error.message);
-      } else if (error.message.includes('given')) {
-        throw new BadRequestException(error.message);
-      } else if (error.message.includes('authorized')) {
-        throw new UnauthorizedException(error.message);
-      } else if (error.message.includes('External')) {
-        throw new ServiceUnavailableException(error.message);
-      } else {
-        this.logger.error(error.message);
-        throw error;
-      }
+      this.errorsService.mapToHTTPError(error);
     }
   }
 }
