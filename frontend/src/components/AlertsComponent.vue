@@ -3,7 +3,7 @@
     v-for="(alert, index) in alerts"
     :key="alert.id"
     class="alert-card shadow-2"
-    v-bind:style="{ 'margin-top': 4 + index * 10 + 'vh' }"
+    :style="{ 'margin-top': 4 + index * 10 + 'vh' }"
   >
     <div class="q-pa-md q-pr-xs row">
       <q-icon
@@ -20,7 +20,7 @@
         size="md"
         left
       />
-      <div>{{ alert.message }}</div>
+      <div class="absolute-center">{{ alert.message }}</div>
       <q-icon
         name="close"
         @click="removeAlert(alert.id)"
