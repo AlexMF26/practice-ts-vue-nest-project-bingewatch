@@ -2,6 +2,8 @@ import { boot } from 'quasar/wrappers';
 import axios, { AxiosError, AxiosInstance } from 'axios';
 import { useAlertsStore } from '../stores/alerts.store';
 import { AlertType } from '../types/Alert';
+import { i18n } from './i18n';
+import { apiErrors } from '../i18n/en/apiErrors';
 
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
@@ -38,32 +40,68 @@ export default boot(({ app, store, router }) => {
     (error) => {
       if (error instanceof AxiosError) {
         const statusCode = error.response?.status;
-        if (statusCode === undefined) {
+        if (statusCode === undefined || statusCode === 500) {
           router.push('/unknown-error');
         } else if (statusCode === 401) {
           router.push('/unauthorized');
         } else if (statusCode === 404) {
           router.push('/not-found');
         } else {
-          let message = error.response?.data?.message;
-          if (message == undefined) {
+          if (error.response?.data?.message == undefined) {
             router.push('/unknown-error');
-          } else if (Array.isArray(message)) {
-            message = message
-              .map((messageUnit) => {
-                let m = messageUnit.trim();
-                m = m.charAt(m.length - 1) === '.' ? m : m + '.';
-                return m;
-              })
-              .join(' ');
-            useAlertsStore(store).addAlert(message, AlertType.Error, 6000);
-          } else {
-            message = message.trim();
-            message =
-              message.charAt(message.length - 1) === '.'
-                ? message
-                : message + '.';
-            useAlertsStore(store).addAlert(message, AlertType.Error, 6000);
+          } else if (statusCode === 400) {
+            for (const property in apiErrors.badRequest) {
+              if (
+                apiErrors.badRequest[property] === error.response.data.message
+              ) {
+                useAlertsStore(store).addAlert(
+                  i18n.global.t(`apiErrors.badRequest.${property}`),
+                  AlertType.Error,
+                  6000
+                );
+                break;
+              }
+            }
+          } else if (statusCode === 403) {
+            for (const property in apiErrors.forbidden) {
+              if (
+                apiErrors.forbidden[property] === error.response.data.message
+              ) {
+                useAlertsStore(store).addAlert(
+                  i18n.global.t(`apiErrors.forbidden.${property}`),
+                  AlertType.Error,
+                  6000
+                );
+                break;
+              }
+            }
+          } else if (statusCode === 409) {
+            for (const property in apiErrors.conflict) {
+              if (
+                apiErrors.conflict[property] === error.response.data.message
+              ) {
+                useAlertsStore(store).addAlert(
+                  i18n.global.t(`apiErrors.conflict.${property}`),
+                  AlertType.Error,
+                  6000
+                );
+                break;
+              }
+            }
+          } else if (statusCode === 503) {
+            for (const property in apiErrors.serviceUnavailable) {
+              if (
+                apiErrors.serviceUnavailable[property] ===
+                error.response.data.message
+              ) {
+                useAlertsStore(store).addAlert(
+                  i18n.global.t(`apiErrors.serviceUnavailable.${property}`),
+                  AlertType.Error,
+                  6000
+                );
+                break;
+              }
+            }
           }
         }
       } else {
