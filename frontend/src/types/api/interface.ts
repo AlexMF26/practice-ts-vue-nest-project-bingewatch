@@ -27,10 +27,10 @@ export interface EntryEntity {
   seasons: Season[];
   plot: string;
   rated: string;
-  director: string;
   year: string;
   awards: string;
   runtime: string;
+  director: string[];
   writer: string[];
   actors: string[];
   genre: string[];
