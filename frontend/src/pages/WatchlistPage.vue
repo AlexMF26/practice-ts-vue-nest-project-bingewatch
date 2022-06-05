@@ -1,8 +1,10 @@
 <template>
-  <h2 class="text-center" v-if="ready">
-    {{ $t('watchlist.header', { username: userName }) }}
-  </h2>
-  <q-page> <WatchlistComponent v-if="ready" :isOwner="isOwner" /></q-page>
+  <q-page>
+    <h2 class="text-center" v-if="ready">
+      {{ $t('watchlist.header', { username: userName }) }}
+    </h2>
+    <WatchlistComponent v-if="ready" :isOwner="isOwner"
+  /></q-page>
 </template>
 
 <script setup lang="ts">
