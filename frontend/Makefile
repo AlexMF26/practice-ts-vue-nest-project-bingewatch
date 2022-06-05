@@ -1,9 +1,17 @@
 .PHONY: start
-start: stop start-api
+start: stop
 	UID=$(shell id -u) ENTRY=start TYPE=node docker-compose up
 
 .PHONY: start-root
-start-root: stop start-api-root
+start-root: stop
+	UID=$(shell id -u) ENTRY=start TYPE=root docker-compose up
+
+.PHONY: start-with-api
+start-with-api: stop start-api
+	UID=$(shell id -u) ENTRY=start TYPE=node docker-compose up
+
+.PHONY: start-with-api-root
+start-with-api-root: stop start-api-root
 	UID=$(shell id -u) ENTRY=start TYPE=root docker-compose up
 
 .PHONY: test
