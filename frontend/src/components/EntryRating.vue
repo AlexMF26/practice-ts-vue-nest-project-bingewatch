@@ -1,37 +1,27 @@
 <template>
-  <div class="row">
-    <q-select
-      v-model="newRating"
-      :options="ratings"
-      :label="$t('entry.yourRating')"
-      filled
-      dense
-      class="col-12 col-sm-grow q-mt-lg"
-    ></q-select>
-    <q-btn
-      v-if="canUpdate"
-      :label="$t('entry.update')"
-      color="accent"
-      @click="update"
-      class="col-12 col-sm-auto q-mt-lg offset-0 offset-sm-1"
-    ></q-btn>
-  </div>
+  <q-select
+    v-if="!loading"
+    v-model="newRating"
+    :options="ratings"
+    :label="$t('watchlist.rating')"
+    filled
+    dense
+  ></q-select>
+  <span v-else>{{ $t('watchlist.loading') }}</span>
 </template>
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { computed, ref } from 'vue';
-import { useAuthStore } from '../stores/auth.store';
+import { ref, watchEffect } from 'vue';
 import { useEntriesStore } from '../stores/entries.store';
 import { useWatchlistStore } from '../stores/watchlist.store';
 
 const entriesStore = useEntriesStore();
-const authStore = useAuthStore();
 const watchlistStore = useWatchlistStore();
 
-const { entry, userData } = storeToRefs(entriesStore);
+const { userData } = storeToRefs(entriesStore);
 
-const { userId } = storeToRefs(authStore);
+const loading = ref(false);
 
 const getLabel = (rating: number | null) =>
   rating === null ? 'N/A' : `${rating}`;
@@ -58,28 +48,17 @@ const ratings = [
   { value: 10, label: getLabel(10) },
 ];
 
-const canUpdate = computed(() => {
+watchEffect(async () => {
   if (
-    userData.value !== null &&
-    userData.value?.rating !== newRating.value.value
+    userData.value != null &&
+    newRating.value.value !== userData.value.rating
   ) {
-    return true;
-  } else {
-    return false;
+    loading.value = true;
+    await watchlistStore.updateWatchListItem(userData.value?.id as string, {
+      rating: newRating.value.value as number | undefined,
+    });
+    await new Promise((resolve) => setTimeout(resolve, 200));
+    loading.value = false;
   }
 });
-
-async function refreshData() {
-  await entriesStore.getUserData(
-    entry.value?.imdbId as string,
-    userId.value as string
-  );
-}
-
-async function update() {
-  await watchlistStore.updateWatchListItem(userData.value?.id as string, {
-    rating: newRating.value.value as number | undefined,
-  });
-  await refreshData();
-}
 </script>
