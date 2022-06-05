@@ -30,7 +30,7 @@ export class WatchlistService {
       });
       if (!item) {
         this.logger.error(`Item with id "${id}" was not found.`);
-        throw new Error('Item was not found.');
+        throw new Error('The item was not found.');
       }
       return new WatchlistItemEntity(item);
     } catch (error) {
@@ -197,7 +197,7 @@ export class WatchlistService {
     }
     if (!item) {
       this.logger.error(`Item with id "${id}" was not found.`);
-      throw new Error('Item was not found.');
+      throw new Error('The item was not found.');
     }
     if (item.userId !== requesterId) {
       this.logger.error(

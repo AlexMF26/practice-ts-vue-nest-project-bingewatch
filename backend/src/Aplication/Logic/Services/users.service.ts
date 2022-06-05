@@ -239,7 +239,7 @@ export class UsersService {
         updateData.role = data.role;
       } else {
         this.logger.warn(`User "${requesterId}" is not authorized to roles.`);
-        throw new Error('You are not authorized to roles.');
+        throw new Error('You are not authorized to update user roles.');
       }
     }
     // check if the password is required to change
