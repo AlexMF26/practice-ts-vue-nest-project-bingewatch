@@ -1,18 +1,17 @@
 export const apiErrors = {
   badRequest: {
-    invalidOpinionId: 'Invalid opinionId.',
     invalidText: 'Invalid text. Cannot be empty.',
     invalidPassword:
       'Your password is invalid. Our passwords use at least 8 characters, one uppercase, one lowercase, one number and one special character.',
     invalidName: 'Name is invalid.',
     invalidEmail: 'Invalid email.',
-    invalidId: 'Id is invalid.',
     invalidRating: 'Rating is invalid. It must be between 0 and 10.',
     invalidProgress: 'Progress is invalid. It is out of range.',
     invalidSeasonNumber: 'Season number is invalid. It is not an integer.',
     negativePage: 'Page number is invalid. It is less than 1.',
     nonIntegerPage: 'Page number is invalid. It is not an integer.',
     invalidSearchQuery: 'Search query is invalid. It is empty.',
+    invalidId: 'Id is invalid.',
   },
   conflict: {
     emailInUse: 'The given email is already in use.',
