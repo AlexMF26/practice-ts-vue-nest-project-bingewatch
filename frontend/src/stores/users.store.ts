@@ -7,6 +7,7 @@ import {
 import { api } from '../boot/axios';
 import { useAlertsStore } from './alerts.store';
 import { AlertType } from '../types/Alert';
+import { i18n } from '../boot/i18n';
 
 export const useUsersStore = defineStore('users', {
   actions: {
@@ -17,7 +18,7 @@ export const useUsersStore = defineStore('users', {
       );
       const registerData = registerResponse.data;
       useAlertsStore().addAlert(
-        'You are now registered.',
+        i18n.global.t('alerts.users.registerSuccess'),
         AlertType.Success,
         2000
       );
@@ -30,7 +31,11 @@ export const useUsersStore = defineStore('users', {
         updateInfo
       );
       const updateData = updateResponse.data;
-      useAlertsStore().addAlert('Update successful.', AlertType.Success, 2000);
+      useAlertsStore().addAlert(
+        i18n.global.t('alerts.users.updateSuccess'),
+        AlertType.Success,
+        2000
+      );
       return updateData;
     },
 

@@ -4,6 +4,7 @@ import jwt_decode from 'jwt-decode';
 import { api } from '../boot/axios';
 import { useAlertsStore } from './alerts.store';
 import { AlertType } from '../types/Alert';
+import { i18n } from '../boot/i18n';
 
 export type AuthState = {
   loggedIn: boolean;
@@ -37,6 +38,11 @@ export const useAuthStore = defineStore('auth', {
         userName: '',
         email: '',
       };
+      useAlertsStore().addAlert(
+        i18n.global.t('alerts.auth.logout'),
+        AlertType.Success,
+        2000
+      );
     },
 
     expirationCheck() {
@@ -84,11 +90,10 @@ export const useAuthStore = defineStore('auth', {
       await this.getDetails();
       this.loggedIn = true;
       useAlertsStore().addAlert(
-        'You are now logged in.',
+        i18n.global.t('alerts.auth.loginSuccess'),
         AlertType.Success,
         2000
       );
-      console.log(this.expiration);
     },
   },
 });

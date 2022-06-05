@@ -1,4 +1,5 @@
 import { account } from './account';
+import { alerts } from './alerts';
 import { apiErrors } from './apiErrors';
 import { auth } from './auth';
 import { entry } from './entry';
@@ -20,4 +21,5 @@ export default {
   opinions,
   watchlist,
   apiErrors,
+  alerts,
 };

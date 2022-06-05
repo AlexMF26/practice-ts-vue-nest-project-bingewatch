@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { api } from '../boot/axios';
+import { i18n } from '../boot/i18n';
 import { AlertType } from '../types/Alert';
 import {
   AddReviewDto,
@@ -36,6 +37,11 @@ export const useOpinionsStore = defineStore('opinions', {
     async addReview(dto: AddReviewDto) {
       const response = await api.post<OpinionEntity>('/opinions', dto);
       this.opinions.push(response.data);
+      useAlertsStore().addAlert(
+        i18n.global.t('alerts.opinions.reviewAdded'),
+        AlertType.Success,
+        5000
+      );
       return response.data;
     },
     async addReply(opinionId: string, dto: OpinionContentDto) {
@@ -44,7 +50,11 @@ export const useOpinionsStore = defineStore('opinions', {
         dto
       );
       this.opinions.push(response.data);
-      useAlertsStore().addAlert('Reply added', AlertType.Success, 5000);
+      useAlertsStore().addAlert(
+        i18n.global.t('alerts.opinions.replyAdded'),
+        AlertType.Success,
+        5000
+      );
       return response.data;
     },
     async changeOpionion(opinionId: string, dto: OpinionContentDto) {
@@ -57,6 +67,11 @@ export const useOpinionsStore = defineStore('opinions', {
       );
       if (index !== -1) {
         this.opinions[index] = response.data;
+        useAlertsStore().addAlert(
+          i18n.global.t('alerts.opinions.opinionUpdated'),
+          AlertType.Success,
+          5000
+        );
       }
     },
     async deleteOpinion(opinionId: string) {
@@ -78,6 +93,11 @@ export const useOpinionsStore = defineStore('opinions', {
           (opinion) => opinion.id !== opinionId
         );
       }
+      useAlertsStore().addAlert(
+        i18n.global.t('alerts.opinions.opinionDeleted'),
+        AlertType.Success,
+        5000
+      );
     },
   },
 });
