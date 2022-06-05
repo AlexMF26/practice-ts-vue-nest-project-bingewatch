@@ -18,7 +18,7 @@ import { userId } from '../../Decorators/userId.decorator';
 import { JwtGuard } from '../../Guards/jwt.guard';
 import { LoginDto } from '../DTOs/login.dto';
 import { SecurityService } from '../../../../Logic/Services/security.service';
-import { ErrorsService } from '../../Util/errors.service';
+import { HTTPErrorsService } from '../../Util/httpErrors.service';
 
 @Controller('authentification')
 @ApiTags('authentification')
@@ -26,7 +26,7 @@ export class AuthentificationController {
   public constructor(
     private readonly securityService: SecurityService,
     private readonly usersService: UsersService,
-    private readonly errorsService: ErrorsService,
+    private readonly errorsService: HTTPErrorsService,
   ) {}
 
   private readonly logger = new Logger(AuthentificationController.name);

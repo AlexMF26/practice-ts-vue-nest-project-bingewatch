@@ -14,7 +14,7 @@ import { ApiCookieAuth, ApiTags } from '@nestjs/swagger';
 import { WatchlistService } from '../../../../Logic/Services/watchlist.service';
 import { userId } from '../../Decorators/userId.decorator';
 import { JwtGuard } from '../../Guards/jwt.guard';
-import { ErrorsService } from '../../Util/errors.service';
+import { HTTPErrorsService } from '../../Util/httpErrors.service';
 import { CreateItemDto } from '../DTOs/create-watchlist-item.dto';
 import { UpdateItemDto } from '../DTOs/update-watchlist-item.dto';
 
@@ -23,7 +23,7 @@ import { UpdateItemDto } from '../DTOs/update-watchlist-item.dto';
 export class WatchlistController {
   public constructor(
     private readonly watchlistService: WatchlistService,
-    private readonly errorsService: ErrorsService,
+    private readonly errorsService: HTTPErrorsService,
   ) {}
 
   private readonly logger = new Logger(WatchlistController.name);

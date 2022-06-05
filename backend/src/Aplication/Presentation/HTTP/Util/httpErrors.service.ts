@@ -11,8 +11,8 @@ import {
 export type ThrownError = Record<string, unknown> & Error;
 
 @Injectable()
-export class ErrorsService {
-  private readonly logger = new Logger(ErrorsService.name);
+export class HTTPErrorsService {
+  private readonly logger = new Logger(HTTPErrorsService.name);
 
   public mapToHTTPError(err: ThrownError) {
     this.logger.log('Mapping error');

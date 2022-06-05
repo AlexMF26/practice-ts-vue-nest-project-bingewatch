@@ -1,14 +1,14 @@
 import { Controller, Get, Logger, Param, Post, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { EntriesService } from '../../../../Logic/Services/entries.service';
-import { ErrorsService } from '../../Util/errors.service';
+import { HTTPErrorsService } from '../../Util/httpErrors.service';
 
 @Controller('entries')
 @ApiTags('entries')
 export class EntriesController {
   public constructor(
     private readonly entriesService: EntriesService,
-    private readonly errorsService: ErrorsService,
+    private readonly errorsService: HTTPErrorsService,
   ) {}
 
   private readonly logger = new Logger(EntriesController.name);

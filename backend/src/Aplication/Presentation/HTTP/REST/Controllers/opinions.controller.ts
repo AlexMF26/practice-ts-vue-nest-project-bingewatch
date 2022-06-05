@@ -13,7 +13,7 @@ import { ApiCookieAuth, ApiTags } from '@nestjs/swagger';
 import { OpinionsService } from '../../../../Logic/Services/opinions.service';
 import { userId } from '../../Decorators/userId.decorator';
 import { JwtGuard } from '../../Guards/jwt.guard';
-import { ErrorsService } from '../../Util/errors.service';
+import { HTTPErrorsService } from '../../Util/httpErrors.service';
 import { AddReviewDto } from '../DTOs/add-review.dto';
 import { OpinionContentDto } from '../DTOs/opinion-content.dto';
 
@@ -24,7 +24,7 @@ export class OpinionsController {
 
   constructor(
     private readonly opinionsService: OpinionsService,
-    private readonly errorsService: ErrorsService,
+    private readonly errorsService: HTTPErrorsService,
   ) {}
 
   @Get(':id')

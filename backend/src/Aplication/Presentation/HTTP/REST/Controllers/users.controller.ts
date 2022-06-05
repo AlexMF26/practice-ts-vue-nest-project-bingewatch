@@ -20,7 +20,7 @@ import { SerializedUserEntity } from '../../../../../Domain/Entities/user.entity
 import { UsersService } from '../../../../Logic/Services/users.service';
 import { userId } from '../../Decorators/userId.decorator';
 import { JwtGuard } from '../../Guards/jwt.guard';
-import { ErrorsService } from '../../Util/errors.service';
+import { HTTPErrorsService } from '../../Util/httpErrors.service';
 import { CreateUserDto } from '../DTOs/create-user.dto';
 import { UpdateUserDto } from '../DTOs/update-user.dto';
 
@@ -29,7 +29,7 @@ import { UpdateUserDto } from '../DTOs/update-user.dto';
 export class UsersController {
   public constructor(
     private readonly usersService: UsersService,
-    private readonly errorsService: ErrorsService,
+    private readonly errorsService: HTTPErrorsService,
   ) {}
 
   private readonly logger = new Logger(UsersController.name);
