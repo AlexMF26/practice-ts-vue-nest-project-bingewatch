@@ -1,10 +1,10 @@
 <template>
-  <div v-if="userData === null">
-    <q-btn @click="watch()" color="positive">{{ $t('entry.watch') }}</q-btn>
-  </div>
-  <div v-else>
-    <q-btn @click="unwatch()" color="negative">{{ $t('entry.unwatch') }}</q-btn>
-  </div>
+  <q-btn @click="watch()" color="positive" v-if="userData === null">{{
+    $t('entry.watch')
+  }}</q-btn>
+  <q-btn @click="unwatch()" color="negative" v-else>{{
+    $t('entry.unwatch')
+  }}</q-btn>
 </template>
 
 <script setup lang="ts">
@@ -50,9 +50,3 @@ const unwatch = debounce(
   true
 );
 </script>
-
-<style scoped lang="scss">
-.q-btn {
-  min-width: 32vw;
-}
-</style>
