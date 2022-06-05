@@ -1,14 +1,9 @@
 <template>
-  <div class="full-width row items-center content-center justify-evenly">
-    <EntryWatchUnwatchButton
-      class="text-center col-12 col-sm-auto q-mt-lg q-mr-md"
-    />
-    <EntryProgress
-      v-if="userData !== null"
-      class="col-12 col-sm-auto q-mt-lg"
-    />
+  <div>
+    <EntryWatchUnwatchButton />
+    <EntryProgress v-if="userData !== null" class="q-mt-md" />
+    <EntryRating v-if="userData !== null" class="q-mt-md" />
   </div>
-  <EntryRating v-if="userData !== null" />
 </template>
 
 <script setup lang="ts">
