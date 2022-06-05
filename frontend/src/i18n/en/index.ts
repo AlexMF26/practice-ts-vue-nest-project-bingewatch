@@ -1,4 +1,5 @@
 import { account } from './account';
+import { apiErrors } from './apiErrors';
 import { auth } from './auth';
 import { entry } from './entry';
 import { errors } from './errors';
@@ -18,4 +19,5 @@ export default {
   entry,
   opinions,
   watchlist,
+  apiErrors,
 };
