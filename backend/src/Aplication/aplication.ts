@@ -5,6 +5,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { RepositoryService } from '../Infrastructure/Persistence/Repository/repository.service';
 import { AppModule } from './DI/app.module';
 import * as cookieParser from 'cookie-parser';
+import * as compression from 'compression';
 
 export async function bootstrap() {
   const app = await init();
@@ -13,6 +14,7 @@ export async function bootstrap() {
 }
 
 export async function prepare(app: INestApplication) {
+  addCompression(app);
   await addPrismaHooks(app);
   addMiddleware(app);
   addSwagger(app);
@@ -30,6 +32,11 @@ async function start(app: INestApplication) {
   const configService = app.get(ConfigService);
   const port = configService.get<number>('PORT');
   await app.listen(port);
+}
+
+function addCompression(app: INestApplication) {
+  app.use(compression());
+  return app;
 }
 
 async function addPrismaHooks(app: INestApplication) {
