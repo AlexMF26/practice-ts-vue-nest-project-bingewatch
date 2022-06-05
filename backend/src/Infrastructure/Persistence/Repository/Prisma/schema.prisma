@@ -35,11 +35,20 @@ model Entry {
   watchlistItem WatchlistItem[]
   opinion       Opinion[]
   imdbId        String          @id
+  rating        Float?
   title         String
   posterUrl     String
   plot          String          @db.Text
-  rating        Float?
   seasonsData   Int[] // will be empty for movies
+  actors        String[]
+  genre         String[]
+  language      String[]
+  writer        String[]
+  year          String
+  awards        String
+  director      String
+  rated         String
+  runtime       String
 }
 
 model WatchlistItem {

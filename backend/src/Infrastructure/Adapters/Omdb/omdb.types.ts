@@ -32,7 +32,7 @@ export interface OmdbSearchResult {
 
 export interface OmdbSearch {
   Title: string;
-  Year: number;
+  Year: string;
   imdbID: string;
   Type: OmdbType;
   Poster: string;
@@ -40,7 +40,7 @@ export interface OmdbSearch {
 
 export interface OmdbMovie {
   Title: string;
-  Year: number;
+  Year: string;
   Rated: string;
   Released: string;
   Runtime: string;
@@ -68,7 +68,7 @@ export interface OmdbMovie {
 
 export interface OmdbSeries {
   Title: string;
-  Year: number;
+  Year: string;
   Rated: string;
   Released: string;
   Runtime: string;
@@ -109,7 +109,7 @@ export interface OmdbSeason {
 
 export interface OmdbEpisode {
   Title: string;
-  Year: number;
+  Year: string;
   Rated: string;
   Released: string;
   Season: number;
