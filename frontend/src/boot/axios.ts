@@ -50,25 +50,25 @@ export default boot(({ app, store, router }) => {
           if (error.response?.data?.message == undefined) {
             router.push('/unknown-error');
           } else if (statusCode === 400) {
-            for (const property in apiErrors.badRequest) {
-              if (
-                apiErrors.badRequest[property] === error.response.data.message
-              ) {
-                useAlertsStore(store).addAlert(
-                  i18n.global.t(`apiErrors.badRequest.${property}`),
-                  AlertType.Error,
-                  6000
-                );
-                break;
+            if (error.response.data.message == apiErrors.badRequest.invalidId) {
+              router.push('/not-found');
+            } else {
+              for (const [key, value] of Object.entries(apiErrors.badRequest)) {
+                if (value === error.response.data.message) {
+                  useAlertsStore(store).addAlert(
+                    i18n.global.t(`apiErrors.badRequest.${key}`),
+                    AlertType.Error,
+                    6000
+                  );
+                  break;
+                }
               }
             }
           } else if (statusCode === 403) {
-            for (const property in apiErrors.forbidden) {
-              if (
-                apiErrors.forbidden[property] === error.response.data.message
-              ) {
+            for (const [key, value] of Object.entries(apiErrors.forbidden)) {
+              if (value === error.response.data.message) {
                 useAlertsStore(store).addAlert(
-                  i18n.global.t(`apiErrors.forbidden.${property}`),
+                  i18n.global.t(`apiErrors.forbidden.${key}`),
                   AlertType.Error,
                   6000
                 );
@@ -76,12 +76,10 @@ export default boot(({ app, store, router }) => {
               }
             }
           } else if (statusCode === 409) {
-            for (const property in apiErrors.conflict) {
-              if (
-                apiErrors.conflict[property] === error.response.data.message
-              ) {
+            for (const [key, value] of Object.entries(apiErrors.conflict)) {
+              if (value === error.response.data.message) {
                 useAlertsStore(store).addAlert(
-                  i18n.global.t(`apiErrors.conflict.${property}`),
+                  i18n.global.t(`apiErrors.conflict.${key}`),
                   AlertType.Error,
                   6000
                 );
@@ -89,13 +87,12 @@ export default boot(({ app, store, router }) => {
               }
             }
           } else if (statusCode === 503) {
-            for (const property in apiErrors.serviceUnavailable) {
-              if (
-                apiErrors.serviceUnavailable[property] ===
-                error.response.data.message
-              ) {
+            for (const [key, value] of Object.entries(
+              apiErrors.serviceUnavailable
+            )) {
+              if (value === error.response.data.message) {
                 useAlertsStore(store).addAlert(
-                  i18n.global.t(`apiErrors.serviceUnavailable.${property}`),
+                  i18n.global.t(`apiErrors.serviceUnavailable.${key}`),
                   AlertType.Error,
                   6000
                 );
