@@ -20,7 +20,7 @@
         size="md"
         left
       />
-      <div class="absolute-center">{{ alert.message }}</div>
+      <div class="q-mt-sm">{{ alert.message }}</div>
       <q-icon
         name="close"
         @click="removeAlert(alert.id)"
@@ -50,6 +50,6 @@ const { removeAlert } = store;
   right: 0;
   margin-right: 5vw;
   min-width: 30vw;
-  max-width: 95vw;
+  max-width: 90vw;
 }
 </style>
