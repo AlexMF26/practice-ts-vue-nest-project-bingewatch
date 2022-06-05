@@ -1,5 +1,40 @@
 # Changelog
 
+## [1.1.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v1.0.2...v1.1.0) (2022-06-05)
+
+
+### Features
+
+* **backend:** :sparkles: added utility to map errors to http errors ([d355037](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/d3550372332528d1a519fb6a1fc04741dbabd219))
+* **frontend:** :globe_with_meridians: add internationalization to account update ([3dca1f5](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/3dca1f51e019074a8abc3e696f13dc1a75ce8e75))
+* **frontend:** :globe_with_meridians: add internationalization to accouny overview ([b087973](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/b087973f22a8acf858f0b280d667ff4ee4724e82))
+* **frontend:** :globe_with_meridians: add internationalization to alerts ([8612c89](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/8612c890ddf9d606be5013897c62471715b07d97))
+* **frontend:** :globe_with_meridians: add internationalization to api errors ([7d39997](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/7d3999796a452c89bac0bd834737e225df8ba0bc))
+* **frontend:** :globe_with_meridians: add internationalization to entry page ([30edfe7](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/30edfe73cfc24bd33904896775479e79bdbe1f94))
+* **frontend:** :globe_with_meridians: add internationalization to landing page ([5e0e86a](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/5e0e86a41eedac12e5ca1cfe4e40f4a52f7c3289))
+* **frontend:** :globe_with_meridians: add internationalization to opinions ([5bb03da](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/5bb03da2a81fe499084ca6c1be8ee3eeb99d01b6))
+* **frontend:** :globe_with_meridians: add internationalization to register ([aeca46a](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/aeca46a009bafa5cca9ad73dc3c354dd833d83bb))
+* **frontend:** :globe_with_meridians: add internationalization to watchlist ([96f9f28](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/96f9f28c0a7bd5dea3c7c15e868c043b181ed733))
+* **frontend:** :globe_with_meridians: added translations for api errors ([2ae2d30](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/2ae2d3040651190b47b586de047df2ac706dea98))
+* **frontend:** :sparkles: added language switcher ([6c1b907](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/6c1b9075c28b0d67402028ad81b9565f456a1c2f))
+* **frontend:** :sparkles: internationalized errors ([221a82e](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/221a82eeefdcae350be73a1bce8d2d8ae3cd91b4))
+* **frontend:** :sparkles: login internationalization ([eb469c4](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/eb469c4c320a95cb826431d62dc34d037eb1f017))
+* **frontend:** :sparkles: topbar internationalization ([47f031e](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/47f031e0f9ae1372d9391ccfcd4fc0fa708144ac))
+
+
+### Bug Fixes
+
+* **deps:** update dependency @nestjs/config to v2.1.0 ([70c4373](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/70c4373447ffcbbfd225cd5bae3f29715ff4ca19))
+* **deps:** update nest monorepo to v8.4.6 ([13a657d](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/13a657d9a38562ffaef9307b33817bfb9190162a))
+* **frontend:** :alien: updated props due to change in quasar ([49890cf](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/49890cfce5cd372ad0eb5844466b09bb836ffeaa))
+* **frontend:** :bug: button doesn't fet disabled ([e284064](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/e284064d2a5f60a1fcfb35da72ebfa24ff543af0))
+* **frontend:** :bug: fix  default validation ([dae02ed](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/dae02edc059eb4b57332db6773c3453554cd6705))
+* **frontend:** :bug: fix markdown rendered html ([d8aa4cb](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/d8aa4cb97823252d5456817c593bbbc12f10b05d))
+* **frontend:** :lipstick: fix alert text vertical alignment ([69f9ccd](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/69f9ccd744c343f69f8b413365972fb556f84bcf))
+* **frontend:** :lock: sanitize markdown to html ([d3e3b4f](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/d3e3b4f7ba4a7c41e481a7ef4e9dfd78e6750f11))
+* **frontend:** :sparkles: allow i18n to be used outside components ([da4d505](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/da4d5058be5cf6e651a6209d7163e4746161868a))
+* **frontend:** :speech_balloon: fix text ([d292bb2](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/d292bb293b10350d5551add3ba69f60828bacc5e))
+
 ### [1.0.2](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v1.0.1...v1.0.2) (2022-05-27)
 
 
