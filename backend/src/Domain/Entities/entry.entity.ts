@@ -8,10 +8,10 @@ export class EntryEntity implements Omit<Entry, 'seasonsData'> {
   public readonly seasons: Season[];
   public readonly plot: string;
   public readonly rated: string;
-  public readonly director: string;
   public readonly year: string;
   public readonly awards: string;
   public readonly runtime: string;
+  public readonly director: string[];
   public readonly writer: string[];
   public readonly actors: string[];
   public readonly genre: string[];

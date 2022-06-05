@@ -44,9 +44,9 @@ model Entry {
   genre         String[]
   language      String[]
   writer        String[]
+  director      String[]
   year          String
   awards        String
-  director      String
   rated         String
   runtime       String
 }
