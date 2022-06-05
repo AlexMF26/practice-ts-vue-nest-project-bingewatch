@@ -40,7 +40,7 @@ export class OpinionsService {
     const validOpinionId = this.securityService.checkValidUUID(opinionId);
     if (!validOpinionId) {
       this.logger.warn(`Invalid opinion id ${opinionId}.`);
-      throw new Error('Invalid opinionId.');
+      throw new Error('Id is invalid.');
     }
     try {
       const opinion = await this.repositoryService.opinion.findUnique({
