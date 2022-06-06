@@ -1,4 +1,4 @@
-FROM node:18.2.0 AS development-stage-root-user
+FROM node:18.3.0 AS development-stage-root-user
 
 WORKDIR /api
 
@@ -7,7 +7,7 @@ EXPOSE 9229
 
 
 
-FROM node:18.2.0 AS development-stage-node-user
+FROM node:18.3.0 AS development-stage-node-user
 
 USER node
 ARG UID
