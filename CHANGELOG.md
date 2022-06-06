@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.2.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v1.1.0...v1.2.0) (2022-06-06)
+
+
+### Features
+
+* **backend:** :sparkles: added compression ([ebeb8ce](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/ebeb8ce78c5f39cff99233457ca66c15f11f0361))
+* **backend:** :sparkles: extended entries data ([1d47feb](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/1d47feb21fb303b902319dbe1faa23becb3f03c0))
+* **frontend:** :sparkles: added some statistics ([9b3f7c4](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/9b3f7c4f0694d3ccef5677e919042aa3e61d6186))
+* **frontend:** :sparkles: extended entries data ([c513e00](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/c513e00e94c1d15041f40e1938908bdefa652dd5))
+
+
+### Bug Fixes
+
+* **backend:** :bug: correct db model ([c538927](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/c5389276fe268b559a2784a21e467d6b936c0235))
+* **frontend:** :lipstick: fix alert style ([601f187](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/601f187e9ca59d5814da5022e20659387c2eb687))
+
 ## [1.1.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v1.0.2...v1.1.0) (2022-06-05)
 
 
