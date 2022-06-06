@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v1.2.0...v1.2.1) (2022-06-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency vue to v3.2.37 ([ad8c6be](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/ad8c6be45b09209cb053d2b5e5cea038d8a9e5c6))
+
 ## [1.2.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v1.1.0...v1.2.0) (2022-06-06)
 
 
