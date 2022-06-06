@@ -16,6 +16,9 @@
           <q-td key="title" :props="props">
             <WatchlistItemTitle :id="props.key" />
           </q-td>
+          <q-td key="rated" :props="props">
+            {{ props.row.entry.rated }}
+          </q-td>
           <q-td key="progress" :props="props">
             <WatchlistItemProgress
               :id="props.key"
@@ -44,6 +47,7 @@ import { useWatchlistStore } from '../stores/watchlist.store';
 import { DetailedWatchlistItemEntity } from '../types/api/interface';
 import { QTableProps } from 'quasar';
 import { useI18n } from 'vue-i18n';
+import { computed } from 'vue';
 
 export type Props = {
   isOwner: boolean;
@@ -55,14 +59,19 @@ const watchlistStore = useWatchlistStore();
 const { items } = storeToRefs(watchlistStore);
 const { t } = useI18n({ useScope: 'global' });
 
-const columns: QTableProps['columns'] = [
+const columns = computed<QTableProps['columns']>(() => [
   {
     name: 'title',
     label: t('watchlist.title'),
     field: (row: DetailedWatchlistItemEntity) => row.entry.title,
     align: 'center',
   },
-
+  {
+    name: 'rated',
+    label: t('watchlist.rated'),
+    field: (row: DetailedWatchlistItemEntity) => row.entry.rated,
+    align: 'center',
+  },
   {
     name: 'progress',
     label: t('watchlist.progress'),
@@ -75,7 +84,7 @@ const columns: QTableProps['columns'] = [
     field: (row: DetailedWatchlistItemEntity) => row.rating ?? 'N/A',
     align: 'center',
   },
-];
+]);
 
 function customSort(rows: readonly DetailedWatchlistItemEntity[]) {
   const data = [...rows];

@@ -7,6 +7,7 @@ import { errors } from './errors';
 import { landing } from './landing';
 import { lang } from './lang';
 import { opinions } from './opinions';
+import { statistics } from './statistics';
 import { topbar } from './topbar';
 import { watchlist } from './watchlist';
 
@@ -22,4 +23,5 @@ export default {
   watchlist,
   apiErrors,
   alerts,
+  statistics,
 };

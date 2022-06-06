@@ -8,4 +8,7 @@ export const watchlist = {
   uncompleted: 'Uncompleted',
   yourRating: 'Your rating',
   loading: 'Loading...',
+  statistics: 'Statistics',
+  close: 'Close',
+  rated: 'Rated',
 };

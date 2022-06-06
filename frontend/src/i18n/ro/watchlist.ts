@@ -8,4 +8,7 @@ export const watchlist = {
   uncompleted: 'Necompletat',
   yourRating: 'Nota ta',
   loading: 'Se încarcă...',
+  statistics: 'Statistici',
+  close: 'Închide',
+  rated: 'Evaluat',
 };
