@@ -11,6 +11,7 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ScheduleModule } from '@nestjs/schedule';
 import { UsersService } from '../Logic/Services/users.service';
 import { OpinionsModule } from './opinions.module';
+import { HTTPErrorsModule } from './errors.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { OpinionsModule } from './opinions.module';
     EntriesModule,
     WatchlistModule,
     OpinionsModule,
+    HTTPErrorsModule,
   ],
   controllers: [AppController],
 })
