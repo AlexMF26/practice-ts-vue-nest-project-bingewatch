@@ -29,3 +29,8 @@ prepare-fast:
 prepare:
 	cd backend && make prepare
 	cd frontend && make prepare
+
+.PHONY: cleanup
+cleanup:
+	cd backend && make cleanup
+	cd frontend && make cleanup
