@@ -12,4 +12,5 @@ export const opinions = {
   addReply: 'Adaugă un răspuns',
   noReplies: 'Nu există răspunsuri încă...',
   deleted: 'Șters',
+  noReviews: 'Nu există recenzii încă...',
 };

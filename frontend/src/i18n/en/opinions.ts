@@ -12,4 +12,5 @@ export const opinions = {
   addReply: 'Add a reply',
   noReplies: 'No replies yet...',
   deleted: 'Deleted',
+  noReviews: 'No reviews yet...',
 };

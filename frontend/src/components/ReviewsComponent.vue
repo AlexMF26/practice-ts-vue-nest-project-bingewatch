@@ -13,6 +13,9 @@
       :id="opinion.id"
       class="q-my-xl"
     ></OpinionComponent>
+    <h4 class="q-my-xl" v-if="opinions.length === 0">
+      {{ $t('opinions.noReviews') }}
+    </h4>
   </div>
 </template>
 
