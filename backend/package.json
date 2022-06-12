@@ -15,7 +15,8 @@
     "lint": "eslint \"src/**/*.ts\" --fix",
     "test": "prisma migrate reset -f && jest --runInBand --forceExit",
     "test:debug": "node --inspect-brk=0.0.0.0:9229 -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand --forceExit",
-    "test:cov": "jest --coverage"
+    "test:cov": "jest --coverage",
+    "generate:diagram": "tplant  -C -A --input src/{Aplication/{Logic/**/,Presentation/HTTP/{REST/**/,Util/}},Domain/**/,Infrastructure/**/}*.ts --output docs/classUML.puml"
   },
   "dependencies": {
     "@nestjs/axios": "0.0.8",
@@ -64,6 +65,7 @@
     "prisma": "3.14.0",
     "source-map-support": "0.5.21",
     "supertest": "6.2.3",
+    "tplant": "^3.1.0",
     "ts-jest": "28.0.4",
     "ts-loader": "9.3.0",
     "ts-node": "10.8.1",
