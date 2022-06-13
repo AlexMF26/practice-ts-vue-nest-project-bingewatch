@@ -25,11 +25,11 @@ export class TasksService {
     //dispatch a event for each imdb id
     imdbIds.forEach(async (imdbId) => {
       this.logger.log(`Dispatching maintenance events for entry ${imdbId}`);
-      await this.eventEmitterService.emitAsync(
+      this.eventEmitterService.emitAsync(
         RefreshEntryDataEvent.name,
         new RefreshEntryDataEvent(imdbId),
       );
-      await this.eventEmitterService.emitAsync(
+      this.eventEmitterService.emitAsync(
         RefreshEntryRatingEvent.name,
         new RefreshEntryRatingEvent(imdbId),
       );
@@ -44,7 +44,7 @@ export class TasksService {
     const ids = await this.opinionsService.getPreservedOpinionsIds();
     ids.forEach(async (id) => {
       this.logger.log(`Dispatching maintenance events for opinion ${id}`);
-      await this.eventEmitterService.emitAsync(
+      this.eventEmitterService.emitAsync(
         DeleteOpinionEvent.name,
         new DeleteOpinionEvent(id),
       );
