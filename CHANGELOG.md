@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.2.2](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v1.2.1...v1.2.2) (2022-06-15)
+
+
+### Bug Fixes
+
+* **backend:** :fire: no need to return event output ([ccd2824](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/ccd28241a6d0911f2892c7399d2d2784104733a4))
+* **backend:** :sparkles: changed HTTPErrorsModule scope to global ([d301f43](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/d301f43194faa8b2e900fa83b2c26eddd783979e))
+* **backend:** :zap: event creation should be done without awaiting ([4c189c9](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/4c189c931d7e8f45d219ff27b716bb42f564c1d6))
+* **deps:** update dependency marked to v4.0.17 ([f245c82](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/f245c82ec72246dd9cf735d0c3a9d6d44f64ccd4))
+* **deps:** update dependency vue-router to v4.0.16 ([e2ff352](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/e2ff3522362e39caacbb08368239a90606fd491a))
+* **deps:** update nest monorepo ([b722883](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/b722883f139b9871b7221dc1cf0c307f8c436e69))
+* **deps:** update prisma monorepo to v3.15.1 ([92ec23d](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/92ec23d9777a156c4b5e6f1a187d518e163f76cd))
+* **frontend:** :bug: display only 2 digits in floats ([f33b1d5](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/f33b1d5e3604d7f1e8b54ecd31f7be5278497d09))
+* **frontend:** :sparkles: Display message when there are no reviews ([1136adc](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/1136adc32f8fde09cc08cd5298d78d223a75965c))
+
 ## [1.2.1](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v1.2.0...v1.2.1) (2022-06-06)
 
 
