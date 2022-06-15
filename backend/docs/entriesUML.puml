@@ -1,0 +1,78 @@
+@startuml
+class EntryEntity {
+    +imdbId: string
+    +title: string
+    +posterUrl: string
+    +rating: number
+    +seasons: Season[]
+    +plot: string
+    +rated: string
+    +year: string
+    +awards: string
+    +runtime: string
+    +director: string[]
+    +writer: string[]
+    +actors: string[]
+    +genre: string[]
+    +language: string[]
+}
+class Season {
+    +episodes: number
+}
+class EntrySearchResult {
+    +imdbId: string
+    +title: string
+    +posterUrl: string
+}
+class OpinionEntity {
+    +id: string
+    +authorId: string
+    +entryImdb: string
+    +replyToId: string
+    +text: string
+}
+class OmdbService {
+    -logger: Logger
+    -httpService: HttpService
+    +getEntry(id: string): Promise<OmitNever<Pick<OmitNever<Pick<OmdbMovie & OmdbEpisode, "Title" | "Year" | "Rated" | "Released" | "Runtime" | "Genre" | "Director" | "Writer" | "Actors" | "Plot" | "Language" | ... 9 more ... | "Response">> & OmdbSeries, "Title" | ... 19 more ... | "Response">>>
+    +getSeason(id: string, seasonNumber: number): Promise<OmdbSeason>
+    +search(query: string, page: number): Promise<OmdbSearchResult>
+}
+class RepositoryService extends PrismaClient {
+    -logger: Logger
+    +onModuleDestroy(): Promise<void>
+    +onModuleInit(): Promise<void>
+    +enableShutdownHooks(app: INestApplication): Promise<void>
+}
+class EntriesService {
+    -repositoryService: RepositoryService
+    -omdbService: OmdbService
+    -logger: Logger
+    +findReviewsForEntry(entryId: string): Promise<OpinionEntity[]>
+    -getSeason(imdbId: string, seasonNumber: number): Promise<number>
+    -getSeasons(imdbId: string): Promise<number[]>
+    -create(imdbId: string): Promise<EntryEntity>
+    +getEntryByImdbId(imdbId: string): Promise<EntryEntity>
+    +refreshRating(imdbId: string): Promise<EntryEntity>
+    +refreshData(imdbId: string): Promise<EntryEntity>
+    +query(query: string, page: number): Promise<EntrySearchResult[]>
+    +getAllIds(): Promise<string[]>
+}
+class HTTPErrorsService {
+    -logger: Logger
+    +mapToHTTPError(err: ThrownError): void
+}
+class EntriesController {
+    -entriesService: EntriesService
+    -errorsService: HTTPErrorsService
+    -logger: Logger
+    +query(query: string): Promise<EntrySearchResult[]>
+    +get(imdbId: string): Promise<EntryEntity>
+    +getReviews(imdbId: string): Promise<OpinionEntity[]>
+}
+EntryEntity --> "*" Season
+EntriesService ..> RepositoryService
+EntriesService ..> OmdbService
+EntriesController ..> EntriesService
+EntriesController ..> HTTPErrorsService
+@enduml
