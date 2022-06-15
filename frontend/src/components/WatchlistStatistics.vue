@@ -95,7 +95,9 @@ const averageRating = computed(() => {
     }
     return acc;
   }, 0);
-  return ratingsCount.value === 0 ? 'N/A' : ratings / ratingsCount.value;
+  return ratingsCount.value === 0
+    ? 'N/A'
+    : (ratings / ratingsCount.value).toFixed(2);
 });
 
 const seasonsCount = computed(() =>
