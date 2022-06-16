@@ -1,4 +1,4 @@
-FROM node:18.3.0 AS build-stage
+FROM node:18.4.0 AS build-stage
 
 WORKDIR /api
 
@@ -10,7 +10,7 @@ RUN npm run build
 
 
 
-FROM node:18.3.0 AS production-stage
+FROM node:18.4.0 AS production-stage
 
 COPY --from=build-stage /api/node_modules /api/node_modules
 COPY --from=build-stage /api/dist /api/dist
