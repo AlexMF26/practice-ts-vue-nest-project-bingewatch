@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.3.0](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v1.2.2...v1.3.0) (2022-06-18)
+
+
+### Features
+
+* **backend:** :sparkles: include author to opinion ([5822db9](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/5822db9e89bfef6490e3011fe629eef3269e6b4a))
+
+
+### Bug Fixes
+
+* **deps:** update prisma monorepo to v3.15.2 ([28e1c61](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/commit/28e1c61296b0c03f2311cbe913f2b8673f59a746))
+
 ## [1.2.2](https://github.com/AlexMF26/practice-ts-vue-nest-project-bingewatch/compare/v1.2.1...v1.2.2) (2022-06-15)
 
 
