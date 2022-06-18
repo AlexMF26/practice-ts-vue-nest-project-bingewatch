@@ -24,6 +24,9 @@ export class OpinionsService {
     try {
       const opinions = await this.repositoryService.opinion.findMany({
         where: { replyTo: { id: opinionId } },
+        include: {
+          author: { select: { name: true } },
+        },
       });
       if (!opinions) {
         return [];
@@ -46,6 +49,9 @@ export class OpinionsService {
       const opinion = await this.repositoryService.opinion.findUnique({
         where: {
           id: opinionId,
+        },
+        include: {
+          author: { select: { name: true } },
         },
       });
       if (!opinion) {
@@ -102,6 +108,9 @@ export class OpinionsService {
             },
           },
         },
+        include: {
+          author: { select: { name: true } },
+        },
       });
       return new OpinionEntity(review);
     } catch (error) {
@@ -135,6 +144,9 @@ export class OpinionsService {
           text: text,
           author: { connect: { id: authorId } },
           replyTo: { connect: { id: opinionId } },
+        },
+        include: {
+          author: { select: { name: true } },
         },
       });
       return new OpinionEntity(reply);
@@ -180,6 +192,9 @@ export class OpinionsService {
         data: {
           text: text,
         },
+        include: {
+          author: { select: { name: true } },
+        },
       });
       return new OpinionEntity(updatedOpinion);
     } catch (error) {
@@ -214,7 +229,7 @@ export class OpinionsService {
 
   public async deleteOpinionSafely(opinionId: string) {
     const shouldPreserve = await this.hasUndeletedReplies(opinionId);
-    let opinion: Opinion;
+    let opinion: Opinion & { author: { name: string } | null };
     if (shouldPreserve) {
       this.logger.log(
         `Opinion ${opinionId} has undeleted replies. Cannot fully delete. Will remove author and text.`,
@@ -225,6 +240,9 @@ export class OpinionsService {
           author: { disconnect: true },
           text: null,
         },
+        include: {
+          author: { select: { name: true } },
+        },
       });
     } else {
       this.logger.log(
@@ -232,6 +250,9 @@ export class OpinionsService {
       );
       opinion = await this.repositoryService.opinion.delete({
         where: { id: opinionId },
+        include: {
+          author: { select: { name: true } },
+        },
       });
     }
     return new OpinionEntity(opinion);

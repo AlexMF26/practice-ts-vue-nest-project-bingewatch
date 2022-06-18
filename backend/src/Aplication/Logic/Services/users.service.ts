@@ -30,6 +30,13 @@ export class UsersService {
         where: {
           authorId: userId,
         },
+        include: {
+          author: {
+            select: {
+              name: true,
+            },
+          },
+        },
       });
       if (!opinions) {
         return [];

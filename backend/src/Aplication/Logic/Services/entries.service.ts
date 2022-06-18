@@ -28,6 +28,13 @@ export class EntriesService {
           entryImdb: entryId,
           replyTo: null,
         },
+        include: {
+          author: {
+            select: {
+              name: true,
+            },
+          },
+        },
       });
       if (!opinions) {
         return [];
