@@ -13,4 +13,5 @@ export const opinions = {
   noReplies: 'No replies yet...',
   deleted: 'Deleted',
   noReviews: 'No reviews yet...',
+  accountSettings: 'Account settings',
 };

@@ -40,6 +40,7 @@ export interface EntryEntity {
 export interface OpinionEntity {
   id: string;
   authorId: string | null;
+  author: { name: string };
   entryImdb: string | null;
   replyToId: string | null;
   text: string | null;

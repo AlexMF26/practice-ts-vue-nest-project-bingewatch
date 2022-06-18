@@ -13,4 +13,5 @@ export const opinions = {
   noReplies: 'Nu există răspunsuri încă...',
   deleted: 'Șters',
   noReviews: 'Nu există recenzii încă...',
+  accountSettings: 'Setări cont',
 };

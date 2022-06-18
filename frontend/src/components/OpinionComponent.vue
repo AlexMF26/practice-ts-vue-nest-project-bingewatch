@@ -1,5 +1,9 @@
 <template>
   <q-card bordered>
+    <q-card-actions align="around" v-if="!deleted">
+      {{ opinion?.author.name }}
+    </q-card-actions>
+    <q-separator v-if="hasFullAcces" />
     <q-card-actions align="around" v-if="hasFullAcces && !deleted">
       <q-btn
         color="negative"
@@ -82,6 +86,14 @@
         v-if="hasAuthor"
         @click="$router.push('/watchlist/' + authorId)"
         :label="$t('opinions.watchlist')"
+      ></q-btn>
+
+      <q-btn
+        color="positive"
+        text-color="secondary"
+        :label="$t('opinions.accountSettings')"
+        v-if="hasFullAcces && !deleted && isAdmin"
+        @click="$router.push('/user/' + authorId)"
       ></q-btn>
 
       <q-btn
@@ -192,6 +204,10 @@ async function submit() {
   max-width: 90vw;
   max-height: 50vh;
   overflow: auto;
+}
+
+.q-btn {
+  margin: 0.1rem;
 }
 .deleted {
   text-align: center;
