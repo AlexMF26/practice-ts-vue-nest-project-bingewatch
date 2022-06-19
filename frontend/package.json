@@ -24,7 +24,7 @@
     "marked": "4.0.17",
     "pinia": "2.0.14",
     "pinia-plugin-persistedstate": "1.6.1",
-    "quasar": "2.7.1",
+    "quasar": "2.7.3",
     "uuid": "8.3.2",
     "vue": "3.2.37",
     "vue-i18n": "9.1.10",
