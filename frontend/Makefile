@@ -30,10 +30,6 @@ update-api-interface: stop start-api
 update-api-interface-root: stop start-api-root
 	UID=$(shell id -u) ENTRY=update-api-interface TYPE=root docker-compose up
 
-.PHONY: build
-build:
-	docker build . --file ./Dockerfile-prod --target production-stage --no-cache --force-rm -t production-app
-
 .PHONY: prepare-fast
 prepare-fast: cleanup
 	npm ci

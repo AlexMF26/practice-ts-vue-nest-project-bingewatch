@@ -50,10 +50,6 @@ migration-root: stop
 	docker-compose exec api npm run migration
 	make stop
 
-.PHONY: build
-build:
-	docker build . --file ./Dockerfile-prod --target production-stage --no-cache --force-rm -t production-api
-
 .PHONY: prepare-fast
 prepare-fast: cleanup
 	npm ci

@@ -43,13 +43,6 @@ jobs:
         run: npm run lint
         working-directory: backend
 
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Build backend
-        run: make build
-        working-directory: backend
   test:
     runs-on: ubuntu-latest
     env:
